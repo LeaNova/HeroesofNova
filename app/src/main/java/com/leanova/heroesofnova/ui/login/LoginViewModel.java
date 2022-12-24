@@ -37,6 +37,10 @@ public class LoginViewModel extends AndroidViewModel {
     }
 
     public void iniciarSesion(String mail, String pass) {
+        if(mail.contains(" ")) {
+            mail.replace(" ", "");
+        }
+
         Call<String> tokenPromesa = ApiRetrofit.getServiceApi().login(mail, pass);
         tokenPromesa.enqueue(new Callback<String>() {
             @Override
@@ -66,7 +70,6 @@ public class LoginViewModel extends AndroidViewModel {
                 Log.d("APIerror", t.getMessage());
             }
         });
-        Toast.makeText(context, "Sesión iniciada", Toast.LENGTH_SHORT).show();
     }
 
     public void registrarse() {

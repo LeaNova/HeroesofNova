@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/grupo_item"
+    android:layout_width="match_parent"
+    android:layout_height="220dp"
+    app:cardBackgroundColor="#C3C3C3"
+    app:cardCornerRadius="20dp"
+    app:cardElevation="10dp"
+    app:cardUseCompatPadding="true"
+    app:contentPadding="10dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/ivGFoto"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginStart="24dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:srcCompat="@tools:sample/avatars" />
+
+        <TextView
+            android:id="@+id/textGGrupo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="10dp"
+            android:text="Grupo:"
+            app:layout_constraintStart_toEndOf="@+id/ivGFoto"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tvGGrupo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="TextGrupo"
+            app:layout_constraintStart_toStartOf="@+id/textGGrupo"
+            app:layout_constraintTop_toBottomOf="@+id/textGGrupo" />
+
+        <TextView
+            android:id="@+id/textGMaster"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="Máster:"
+            app:layout_constraintStart_toStartOf="@+id/tvGGrupo"
+            app:layout_constraintTop_toBottomOf="@+id/tvGGrupo" />
+
+        <TextView
+            android:id="@+id/tvGMaster"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="TextMaster"
+            app:layout_constraintStart_toStartOf="@+id/textGMaster"
+            app:layout_constraintTop_toBottomOf="@+id/textGMaster" />
+
+        <TextView
+            android:id="@+id/textGPersonaje"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="Personaje:"
+            app:layout_constraintStart_toStartOf="@+id/tvGMaster"
+            app:layout_constraintTop_toBottomOf="@+id/tvGMaster" />
+
+        <TextView
+            android:id="@+id/tvGPersonaje"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="TextPersonaje"
+            app:layout_constraintStart_toStartOf="@+id/textGPersonaje"
+            app:layout_constraintTop_toBottomOf="@+id/textGPersonaje" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.cardview.widget.CardView>

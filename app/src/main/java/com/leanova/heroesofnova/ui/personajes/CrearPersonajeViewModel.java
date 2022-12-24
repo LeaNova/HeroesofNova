@@ -1,0 +1,140 @@
+package com.leanova.heroesofnova.ui.personajes;
+
+import android.app.Application;
+import android.content.Context;
+import android.util.Log;
+import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.lifecycle.AndroidViewModel;
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
+
+import com.leanova.heroesofnova.modelos.Clase;
+import com.leanova.heroesofnova.modelos.Genero;
+import com.leanova.heroesofnova.modelos.Personaje;
+import com.leanova.heroesofnova.modelos.Raza;
+import com.leanova.heroesofnova.request.ApiRetrofit;
+
+import java.util.ArrayList;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
+public class CrearPersonajeViewModel extends AndroidViewModel {
+    private Context context;
+    private MutableLiveData<Raza> mutableRaza;
+    private MutableLiveData<ArrayList<String>> mutableTiros;
+    private MutableLiveData<String> mutableAviso;
+
+    public CrearPersonajeViewModel(@NonNull Application application) {
+        super(application);
+        this.context = application.getApplicationContext();
+    }
+
+    public LiveData<Raza> getMutableRaza() {
+        if(mutableRaza == null) {
+            mutableRaza = new MutableLiveData<>();
+        }
+        return mutableRaza;
+    }
+
+    public LiveData<ArrayList<String>> getMutableTiros() {
+        if(mutableTiros == null) {
+            mutableTiros = new MutableLiveData<>();
+        }
+        return mutableTiros;
+    }
+
+    public LiveData<String> getMutableAviso() {
+        if(mutableAviso == null) {
+            mutableAviso = new MutableLiveData<>();
+        }
+        return mutableAviso;
+    }
+
+    public void setRaza(Raza raza) {
+        mutableRaza.setValue(raza);
+    }
+
+    //Operaciones
+    public void hacerTiros(Raza raza) {
+        ArrayList<String> tiros = new ArrayList<>();
+
+        for(int i = 0; i < 3; i++) {
+            int tiro = (int) (Math.random() * raza.getVidaBase() + 1);
+            tiros.add(tiro+"");
+        }
+
+        for(int i = 0; i < 8; i++) {
+            int tiro = (int) (Math.random() * 4 + 1);
+            tiros.add(tiro+"");
+        }
+
+        mutableTiros.setValue(tiros);
+    }
+
+    public void setToEmpty() {
+        ArrayList<String> tiros = new ArrayList<>();
+
+        for(int i = 0; i < 11; i++) {
+            tiros.add("");
+        }
+
+        mutableTiros.setValue(tiros);
+    }
+
+    public void getAviso() {
+        mutableAviso.setValue("Revise que todos los campos esten llenos correctamente");
+    }
+
+    public void crearPersonaje(String nombre, Genero genero, Raza raza, Clase clase, int vida1, int vida2, int vida3, int atk, int atm, int def, int dfm, int dex, int eva, int crt, int acc) {
+        boolean ok = true;
+        String aviso = "";
+
+        if(nombre.isEmpty()) {
+            aviso += "* Debe agregar un nombre a su personaje.\n";
+            ok = false;
+        }
+
+        if(vida1 > raza.getVidaBase() || vida2 > raza.getVidaBase() || vida3 > raza.getVidaBase()) {
+            aviso += "* La vida no puede ser mayor a la base de la raza.\n";
+            ok = false;
+        }
+
+        if(ok) {
+            int vida = (int) (vida1 + vida2 + vida3) / 3;
+            String token = ApiRetrofit.obtenerToken(context);
+
+            vida += raza.getVidaBase();
+            atk += raza.getBaseAtk();
+            atm += raza.getBaseAtm();
+            def += raza.getBaseDef();
+            dfm += raza.getBaseDfm();
+            dex += raza.getBaseDex();
+            eva += raza.getBaseEva();
+            crt += raza.getBaseCrt();
+            acc += raza.getBaseAcc();
+
+            Call<Personaje> personajePromesa = ApiRetrofit.getServiceApi().crearPersonaje(nombre, raza.getIdRaza(), genero.getIdGenero(), clase.getIdClase(), vida, 1, 0, atk, atm, def, dfm, dex, eva, crt, acc, "Carga desde app", 1, true, token);
+            personajePromesa.enqueue(new Callback<Personaje>() {
+                @Override
+                public void onResponse(Call<Personaje> call, Response<Personaje> response) {
+                    if(response.isSuccessful()) {
+                        Toast.makeText(context, "Personaje creado correctamente", Toast.LENGTH_SHORT).show();
+                    } else {
+                        Toast.makeText(context, "Ocurrió un error", Toast.LENGTH_SHORT).show();
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<Personaje> call, Throwable t) {
+                    Log.d("APIerror", t.getMessage());
+                }
+            });
+        } else {
+            mutableAviso.setValue(aviso);
+        }
+    }
+}

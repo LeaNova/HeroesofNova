@@ -3,6 +3,10 @@ package com.leanova.heroesofnova.request;
 
 import android.util.Log;
 
+import com.leanova.heroesofnova.modelos.Clase;
+import com.leanova.heroesofnova.modelos.Genero;
+import com.leanova.heroesofnova.modelos.Mochila;
+import com.leanova.heroesofnova.modelos.Raza;
 import com.leanova.heroesofnova.modelos.Rol;
 
 import java.util.ArrayList;
@@ -39,4 +43,5 @@ public class DefaultValues {
     public static ArrayList<Rol> getRoles() {
         return listaRoles;
     }
+
 }

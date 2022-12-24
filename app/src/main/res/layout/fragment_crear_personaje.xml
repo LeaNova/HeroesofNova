@@ -1,0 +1,444 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.personajes.CrearPersonajeFragment">
+
+    <TextView
+        android:id="@+id/textTitulo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Nuevo personaje"
+        android:textSize="34sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textNombre"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="32dp"
+        android:text="Nombre: "
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textTitulo" />
+
+    <EditText
+        android:id="@+id/etNombre_CP"
+        android:layout_width="280dp"
+        android:layout_height="52dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        app:layout_constraintBottom_toBottomOf="@+id/textNombre"
+        app:layout_constraintStart_toEndOf="@+id/textNombre"
+        app:layout_constraintTop_toTopOf="@+id/textNombre" />
+
+
+    <TextView
+        android:id="@+id/textGenero"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="Genero: "
+        app:layout_constraintStart_toStartOf="@+id/textNombre"
+        app:layout_constraintTop_toBottomOf="@+id/textNombre" />
+
+    <Spinner
+        android:id="@+id/spGenero_CP"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@+id/textGenero"
+        app:layout_constraintStart_toEndOf="@+id/textGenero"
+        app:layout_constraintTop_toTopOf="@+id/textGenero" />
+
+    <TextView
+        android:id="@+id/textRaza"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="Raza: "
+        app:layout_constraintStart_toStartOf="@+id/textGenero"
+        app:layout_constraintTop_toBottomOf="@+id/textGenero" />
+
+    <Spinner
+        android:id="@+id/spRaza_CP"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@+id/textRaza"
+        app:layout_constraintStart_toEndOf="@+id/textRaza"
+        app:layout_constraintTop_toTopOf="@+id/textRaza" />
+
+    <TextView
+        android:id="@+id/textClase"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="Clase: "
+        app:layout_constraintStart_toStartOf="@+id/textRaza"
+        app:layout_constraintTop_toBottomOf="@+id/textRaza" />
+
+    <Spinner
+        android:id="@+id/spClase_CP"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@+id/textClase"
+        app:layout_constraintStart_toEndOf="@+id/textClase"
+        app:layout_constraintTop_toTopOf="@+id/textClase" />
+
+    <TextView
+        android:id="@+id/textVida"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="Vida: "
+        app:layout_constraintStart_toStartOf="@+id/textClase"
+        app:layout_constraintTop_toBottomOf="@+id/textClase" />
+
+    <TextView
+        android:id="@+id/textVidaBase"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="[base]"
+        app:layout_constraintBottom_toBottomOf="@+id/textVida"
+        app:layout_constraintStart_toEndOf="@+id/textVida" />
+
+    <EditText
+        android:id="@+id/etVida_CP1"
+        android:layout_width="50dp"
+        android:layout_height="52dp"
+        android:ems="10"
+        android:inputType="number"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toBottomOf="@+id/textVidaBase"
+        app:layout_constraintStart_toEndOf="@+id/textVidaBase"
+        app:layout_constraintTop_toTopOf="@+id/textVidaBase" />
+
+    <EditText
+        android:id="@+id/etVida_CP2"
+        android:layout_width="50dp"
+        android:layout_height="52dp"
+        android:layout_marginStart="8dp"
+        android:ems="10"
+        android:inputType="number"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toBottomOf="@+id/etVida_CP1"
+        app:layout_constraintStart_toEndOf="@+id/etVida_CP1" />
+
+    <EditText
+        android:id="@+id/etVida_CP3"
+        android:layout_width="50dp"
+        android:layout_height="52dp"
+        android:layout_marginStart="8dp"
+        android:ems="10"
+        android:inputType="number"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toBottomOf="@+id/etVida_CP2"
+        app:layout_constraintStart_toEndOf="@+id/etVida_CP2" />
+
+    <TextView
+        android:id="@+id/textAtk"
+        android:layout_width="38dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="20dp"
+        android:text="ATK: "
+        android:textAlignment="textEnd"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/guideline6" />
+
+    <TextView
+        android:id="@+id/textAtkBase"
+        android:layout_width="40dp"
+        android:layout_height="wrap_content"
+        android:text="[base]"
+        android:textAlignment="textEnd"
+        app:layout_constraintBottom_toBottomOf="@+id/textAtk"
+        app:layout_constraintStart_toEndOf="@+id/textAtk" />
+
+    <EditText
+        android:id="@+id/etAtk_CP"
+        android:layout_width="50dp"
+        android:layout_height="52dp"
+        android:ems="10"
+        android:inputType="number"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toBottomOf="@+id/textAtkBase"
+        app:layout_constraintStart_toEndOf="@+id/textAtkBase"
+        app:layout_constraintTop_toTopOf="@+id/textAtkBase" />
+
+    <TextView
+        android:id="@+id/textAtm"
+        android:layout_width="38dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="ATM: "
+        android:textAlignment="textEnd"
+        app:layout_constraintStart_toStartOf="@+id/textAtk"
+        app:layout_constraintTop_toBottomOf="@+id/textAtk" />
+
+    <TextView
+        android:id="@+id/textAtmBase"
+        android:layout_width="40dp"
+        android:layout_height="wrap_content"
+        android:text="[base]"
+        android:textAlignment="textEnd"
+        app:layout_constraintBottom_toBottomOf="@+id/textAtm"
+        app:layout_constraintStart_toEndOf="@+id/textAtm" />
+
+    <EditText
+        android:id="@+id/etAtm_CP"
+        android:layout_width="50dp"
+        android:layout_height="52dp"
+        android:ems="10"
+        android:inputType="number"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toBottomOf="@+id/textAtmBase"
+        app:layout_constraintStart_toEndOf="@+id/textAtmBase"
+        app:layout_constraintTop_toTopOf="@+id/textAtmBase" />
+
+    <TextView
+        android:id="@+id/textDef"
+        android:layout_width="38dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="DEF: "
+        android:textAlignment="textEnd"
+        app:layout_constraintStart_toStartOf="@+id/textAtm"
+        app:layout_constraintTop_toBottomOf="@+id/textAtm" />
+
+    <TextView
+        android:id="@+id/textDefBase"
+        android:layout_width="40dp"
+        android:layout_height="wrap_content"
+        android:text="[base]"
+        android:textAlignment="textEnd"
+        app:layout_constraintBottom_toBottomOf="@+id/textDef"
+        app:layout_constraintStart_toEndOf="@+id/textDef" />
+
+    <EditText
+        android:id="@+id/etDef_CP"
+        android:layout_width="50dp"
+        android:layout_height="52dp"
+        android:ems="10"
+        android:inputType="number"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toBottomOf="@+id/textDefBase"
+        app:layout_constraintStart_toEndOf="@+id/textDefBase"
+        app:layout_constraintTop_toTopOf="@+id/textDefBase" />
+
+    <TextView
+        android:id="@+id/textDfm"
+        android:layout_width="38dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="DFM: "
+        android:textAlignment="textEnd"
+        app:layout_constraintStart_toStartOf="@+id/textDef"
+        app:layout_constraintTop_toBottomOf="@+id/textDef" />
+
+    <TextView
+        android:id="@+id/textDfmBase"
+        android:layout_width="40dp"
+        android:layout_height="wrap_content"
+        android:text="[base]"
+        android:textAlignment="textEnd"
+        app:layout_constraintBottom_toBottomOf="@+id/textDfm"
+        app:layout_constraintStart_toEndOf="@+id/textDfm" />
+
+    <EditText
+        android:id="@+id/etDfm_CP"
+        android:layout_width="50dp"
+        android:layout_height="52dp"
+        android:ems="10"
+        android:inputType="number"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toBottomOf="@+id/textDfmBase"
+        app:layout_constraintStart_toEndOf="@+id/textDfmBase"
+        app:layout_constraintTop_toTopOf="@+id/textDfmBase" />
+
+    <TextView
+        android:id="@+id/textDex"
+        android:layout_width="38dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="20dp"
+        android:text="DEX: "
+        android:textAlignment="textEnd"
+        app:layout_constraintStart_toStartOf="@+id/guideline2"
+        app:layout_constraintTop_toTopOf="@+id/guideline6"
+        tools:ignore="MissingConstraints" />
+
+    <TextView
+        android:id="@+id/textDexBase"
+        android:layout_width="40dp"
+        android:layout_height="wrap_content"
+        android:text="[base]"
+        android:textAlignment="textEnd"
+        app:layout_constraintBottom_toBottomOf="@+id/textDex"
+        app:layout_constraintStart_toEndOf="@+id/textDex" />
+
+    <EditText
+        android:id="@+id/etDex_CP"
+        android:layout_width="50dp"
+        android:layout_height="52dp"
+        android:ems="10"
+        android:inputType="number"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toBottomOf="@+id/textDexBase"
+        app:layout_constraintStart_toEndOf="@+id/textDexBase"
+        app:layout_constraintTop_toTopOf="@+id/textDexBase" />
+
+    <TextView
+        android:id="@+id/textEva"
+        android:layout_width="38dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="EVA: "
+        android:textAlignment="textEnd"
+        app:layout_constraintStart_toStartOf="@+id/textDex"
+        app:layout_constraintTop_toBottomOf="@+id/textDex" />
+
+    <TextView
+        android:id="@+id/textEvaBase"
+        android:layout_width="40dp"
+        android:layout_height="wrap_content"
+        android:text="[base]"
+        android:textAlignment="textEnd"
+        app:layout_constraintBottom_toBottomOf="@+id/textEva"
+        app:layout_constraintStart_toEndOf="@+id/textEva" />
+
+    <EditText
+        android:id="@+id/etEva_CP"
+        android:layout_width="50dp"
+        android:layout_height="52dp"
+        android:ems="10"
+        android:inputType="number"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toBottomOf="@+id/textEvaBase"
+        app:layout_constraintStart_toEndOf="@+id/textEvaBase"
+        app:layout_constraintTop_toTopOf="@+id/textEvaBase" />
+
+    <TextView
+        android:id="@+id/textCrt"
+        android:layout_width="38dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="CRT: "
+        android:textAlignment="textEnd"
+        app:layout_constraintStart_toStartOf="@+id/textEva"
+        app:layout_constraintTop_toBottomOf="@+id/textEva" />
+
+    <TextView
+        android:id="@+id/textCrtBase"
+        android:layout_width="40dp"
+        android:layout_height="wrap_content"
+        android:text="[base]"
+        android:textAlignment="textEnd"
+        app:layout_constraintBottom_toBottomOf="@+id/textCrt"
+        app:layout_constraintStart_toEndOf="@+id/textCrt" />
+
+    <EditText
+        android:id="@+id/etCrt_CP"
+        android:layout_width="50dp"
+        android:layout_height="52dp"
+        android:ems="10"
+        android:inputType="number"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toBottomOf="@+id/textCrtBase"
+        app:layout_constraintStart_toEndOf="@+id/textCrtBase"
+        app:layout_constraintTop_toTopOf="@+id/textCrtBase" />
+
+    <TextView
+        android:id="@+id/textAcc"
+        android:layout_width="38dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="ACC: "
+        android:textAlignment="textEnd"
+        app:layout_constraintStart_toStartOf="@+id/textCrt"
+        app:layout_constraintTop_toBottomOf="@+id/textCrt" />
+
+    <TextView
+        android:id="@+id/textAccBase"
+        android:layout_width="40dp"
+        android:layout_height="wrap_content"
+        android:text="[base]"
+        android:textAlignment="textEnd"
+        app:layout_constraintBottom_toBottomOf="@+id/textAcc"
+        app:layout_constraintStart_toEndOf="@+id/textAcc" />
+
+    <EditText
+        android:id="@+id/etAcc_CP"
+        android:layout_width="50dp"
+        android:layout_height="52dp"
+        android:ems="10"
+        android:inputType="number"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toBottomOf="@+id/textAccBase"
+        app:layout_constraintStart_toEndOf="@+id/textAccBase"
+        app:layout_constraintTop_toTopOf="@+id/textAccBase" />
+
+    <Button
+        android:id="@+id/btTirar_CP"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Tirar"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/guideline8" />
+
+    <Button
+        android:id="@+id/btGuardar_CP"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Guardar"
+        app:layout_constraintBottom_toBottomOf="@+id/btTirar_CP"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/btTirar_CP" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="203dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="350dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="570dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="650dp" />
+
+    <TextView
+        android:id="@+id/tvAviso_CP"
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="8dp"
+        android:text=""
+        android:textColor="#FF0000"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/guideline7" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

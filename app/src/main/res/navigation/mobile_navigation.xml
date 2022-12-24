@@ -12,10 +12,19 @@
         tools:layout="@layout/fragment_home" />
 
     <fragment
-        android:id="@+id/nav_gallery"
-        android:name="com.leanova.heroesofnova.ui.gallery.GalleryFragment"
-        android:label="@string/menu_gallery"
-        tools:layout="@layout/fragment_gallery" />
+        android:id="@+id/nav_personajes"
+        android:name="com.leanova.heroesofnova.ui.personajes.PersonajeFragment"
+        android:label="@string/menu_personajes"
+        tools:layout="@layout/fragment_personaje" >
+        <action
+            android:id="@+id/action_nav_personajes_to_crearPersonaje"
+            app:destination="@id/crearPersonajeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/crearPersonajeFragment"
+        android:name="com.leanova.heroesofnova.ui.personajes.CrearPersonajeFragment"
+        android:label="fragment_crear_personaje"
+        tools:layout="@layout/fragment_crear_personaje" />
 
     <fragment
         android:id="@+id/nav_slideshow"

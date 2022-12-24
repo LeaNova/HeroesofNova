@@ -21,13 +21,13 @@
         android:id="@+id/etLMail"
         android:layout_width="wrap_content"
         android:layout_height="52dp"
-        android:layout_marginTop="128dp"
+        android:layout_marginTop="48dp"
         android:ems="10"
         android:hint="Usuario"
         android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textTituloApp" />
+        app:layout_constraintTop_toBottomOf="@+id/etIP" />
 
     <EditText
         android:id="@+id/etLPass"
@@ -73,4 +73,28 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btLLogin" />
+
+    <EditText
+        android:id="@+id/etIP"
+        android:layout_width="wrap_content"
+        android:layout_height="52dp"
+        android:layout_marginTop="48dp"
+        android:ems="10"
+        android:hint="IP"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.25"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textTituloApp" />
+
+    <Button
+        android:id="@+id/btSetIP"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Set"
+        app:layout_constraintBottom_toBottomOf="@+id/etIP"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/etIP"
+        app:layout_constraintTop_toTopOf="@+id/etIP" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
