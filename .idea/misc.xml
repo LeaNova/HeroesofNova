@@ -9,16 +9,29 @@
         <entry key="..\:/Users/LeaNova/AndroidStudioProjects/HeroesofNova/app/src/main/res/layout/activity_main.xml" value="0.371875" />
         <entry key="..\:/Users/LeaNova/AndroidStudioProjects/HeroesofNova/app/src/main/res/layout/activity_signin.xml" value="0.3578125" />
         <entry key="..\:/Users/LeaNova/AndroidStudioProjects/HeroesofNova/app/src/main/res/layout/app_bar_main.xml" value="0.371875" />
+        <entry key="..\:/Users/LeaNova/AndroidStudioProjects/HeroesofNova/app/src/main/res/layout/clase_item.xml" value="0.37083333333333335" />
         <entry key="..\:/Users/LeaNova/AndroidStudioProjects/HeroesofNova/app/src/main/res/layout/content_main.xml" value="0.35190217391304346" />
+        <entry key="..\:/Users/LeaNova/AndroidStudioProjects/HeroesofNova/app/src/main/res/layout/fragment_clases.xml" value="0.371875" />
+        <entry key="..\:/Users/LeaNova/AndroidStudioProjects/HeroesofNova/app/src/main/res/layout/fragment_crear_clase.xml" value="0.371875" />
+        <entry key="..\:/Users/LeaNova/AndroidStudioProjects/HeroesofNova/app/src/main/res/layout/fragment_crear_mochila.xml" value="0.371875" />
         <entry key="..\:/Users/LeaNova/AndroidStudioProjects/HeroesofNova/app/src/main/res/layout/fragment_crear_personaje.xml" value="0.34663865546218486" />
+        <entry key="..\:/Users/LeaNova/AndroidStudioProjects/HeroesofNova/app/src/main/res/layout/fragment_crear_raza.xml" value="0.371875" />
+        <entry key="..\:/Users/LeaNova/AndroidStudioProjects/HeroesofNova/app/src/main/res/layout/fragment_detalle_clase.xml" value="0.371875" />
+        <entry key="..\:/Users/LeaNova/AndroidStudioProjects/HeroesofNova/app/src/main/res/layout/fragment_detalle_mochila.xml" value="0.371875" />
+        <entry key="..\:/Users/LeaNova/AndroidStudioProjects/HeroesofNova/app/src/main/res/layout/fragment_detalle_personaje.xml" value="0.3578125" />
+        <entry key="..\:/Users/LeaNova/AndroidStudioProjects/HeroesofNova/app/src/main/res/layout/fragment_detalle_raza.xml" value="0.371875" />
         <entry key="..\:/Users/LeaNova/AndroidStudioProjects/HeroesofNova/app/src/main/res/layout/fragment_gallery.xml" value="0.371875" />
         <entry key="..\:/Users/LeaNova/AndroidStudioProjects/HeroesofNova/app/src/main/res/layout/fragment_home.xml" value="0.371875" />
+        <entry key="..\:/Users/LeaNova/AndroidStudioProjects/HeroesofNova/app/src/main/res/layout/fragment_mochila.xml" value="0.371875" />
         <entry key="..\:/Users/LeaNova/AndroidStudioProjects/HeroesofNova/app/src/main/res/layout/fragment_personaje.xml" value="0.371875" />
+        <entry key="..\:/Users/LeaNova/AndroidStudioProjects/HeroesofNova/app/src/main/res/layout/fragment_raza.xml" value="0.1" />
         <entry key="..\:/Users/LeaNova/AndroidStudioProjects/HeroesofNova/app/src/main/res/layout/fragment_slideshow.xml" value="0.371875" />
         <entry key="..\:/Users/LeaNova/AndroidStudioProjects/HeroesofNova/app/src/main/res/layout/grupo_item.xml" value="0.371875" />
         <entry key="..\:/Users/LeaNova/AndroidStudioProjects/HeroesofNova/app/src/main/res/layout/ip_request.xml" value="0.371875" />
+        <entry key="..\:/Users/LeaNova/AndroidStudioProjects/HeroesofNova/app/src/main/res/layout/mochila_item.xml" value="0.371875" />
         <entry key="..\:/Users/LeaNova/AndroidStudioProjects/HeroesofNova/app/src/main/res/layout/nav_header_main.xml" value="0.371875" />
         <entry key="..\:/Users/LeaNova/AndroidStudioProjects/HeroesofNova/app/src/main/res/layout/personaje_item.xml" value="0.5" />
+        <entry key="..\:/Users/LeaNova/AndroidStudioProjects/HeroesofNova/app/src/main/res/layout/raza_item.xml" value="0.371875" />
         <entry key="..\:/Users/LeaNova/AndroidStudioProjects/HeroesofNova/app/src/main/res/layout/spinner_c1.xml" value="0.37083333333333335" />
         <entry key="..\:/Users/LeaNova/AndroidStudioProjects/HeroesofNova/app/src/main/res/menu/activity_main_drawer.xml" value="0.371875" />
         <entry key="..\:/Users/LeaNova/AndroidStudioProjects/HeroesofNova/app/src/main/res/menu/main.xml" value="0.371875" />

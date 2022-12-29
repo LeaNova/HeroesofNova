@@ -1,12 +1,14 @@
 package com.leanova.heroesofnova.ui.personajes;
 
 import android.content.Context;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.leanova.heroesofnova.R;
@@ -18,19 +20,19 @@ import java.util.List;
 
 public class PersonajeAdapter extends RecyclerView.Adapter<PersonajeAdapter.ViewHolder> {
     private Context context;
-    private LayoutInflater layoutInflater;
+    private LayoutInflater lInflater;
     private List<Personaje> lista;
 
     public PersonajeAdapter(Context context, LayoutInflater layoutInflater, List<Personaje> lista) {
         this.context = context;
-        this.layoutInflater = layoutInflater;
+        this.lInflater = layoutInflater;
         this.lista = lista;
     }
 
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = layoutInflater.inflate(R.layout.personaje_item, parent, false);
+        View view = lInflater.inflate(R.layout.personaje_item, parent, false);
 
         return new ViewHolder(view);
     }
@@ -56,6 +58,15 @@ public class PersonajeAdapter extends RecyclerView.Adapter<PersonajeAdapter.View
         holder.tvEva_PI.setText(pj.getEvasion()+"");
         holder.tvCrt_PI.setText(pj.getCritico()+"");
         holder.tvAcc_PI.setText(pj.getPrecision()+"");
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Bundle bPersonaje = new Bundle();
+                bPersonaje.putSerializable("personaje", pj);
+                Navigation.findNavController(view).navigate(R.id.detallePersonajeFragment, bPersonaje);
+            }
+        });
     }
 
     @Override

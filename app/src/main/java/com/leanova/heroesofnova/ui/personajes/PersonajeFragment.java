@@ -26,9 +26,10 @@ public class PersonajeFragment extends Fragment {
     private FragmentPersonajeBinding binding;
     private PersonajeViewModel pvm;
     private PersonajeValues pv;
+
     private RecyclerView rv;
     private TextView tvAviso_PJ;
-    private Button btAgregar_PJ;
+    private Button btNuevo_PJ;
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         binding = FragmentPersonajeBinding.inflate(inflater, container, false);
@@ -73,8 +74,8 @@ public class PersonajeFragment extends Fragment {
         this.tvAviso_PJ.setText("");
         this.tvAviso_PJ.setVisibility(View.GONE);
 
-        this.btAgregar_PJ = v.findViewById(R.id.btAgregar_PJ);
-        this.btAgregar_PJ.setOnClickListener(new View.OnClickListener() {
+        this.btNuevo_PJ = v.findViewById(R.id.btNuevo_PJ);
+        this.btNuevo_PJ.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Navigation.findNavController(view).navigate(R.id.crearPersonajeFragment);

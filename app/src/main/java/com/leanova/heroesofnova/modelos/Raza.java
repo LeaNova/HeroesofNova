@@ -1,6 +1,8 @@
 package com.leanova.heroesofnova.modelos;
 
-public class Raza {
+import java.io.Serializable;
+
+public class Raza implements Serializable {
     private int idRaza;
     private String nombre;
     private String descripcion;

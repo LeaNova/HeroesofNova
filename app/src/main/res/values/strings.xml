@@ -9,5 +9,8 @@
 
     <string name="menu_home">Home</string>
     <string name="menu_personajes">Personajes</string>
-    <string name="menu_slideshow">Slideshow</string>
+    <string name="menu_grupos">Grupos</string>
+    <string name="menu_razas">Razas</string>
+    <string name="menu_clases">Clases</string>
+    <string name="menu_mochilas">Mochilas</string>
 </resources>

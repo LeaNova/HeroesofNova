@@ -1,6 +1,8 @@
 package com.leanova.heroesofnova.modelos;
 
-public class Mochila {
+import java.io.Serializable;
+
+public class Mochila implements Serializable {
     private int idMochila;
     private String nombre;
     private String descripcion;

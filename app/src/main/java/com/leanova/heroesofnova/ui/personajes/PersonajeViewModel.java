@@ -1,7 +1,6 @@
 package com.leanova.heroesofnova.ui.personajes;
 
 import android.app.Application;
-import android.app.Person;
 import android.content.Context;
 import android.util.Log;
 
@@ -54,6 +53,7 @@ public class PersonajeViewModel extends AndroidViewModel {
                     ArrayList<Personaje> personajes = response.body();
                     if(personajes.size() > 0) {
                         mutablePersonajes.postValue(personajes);
+                        mutableAvisoPj.postValue("");
                     } else {
                         mutableAvisoPj.postValue("Aun no tiene personajes. Puede agregar uno nuevo apretando el botón \"Agregar\" abajo");
                     }

@@ -3,18 +3,42 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:showIn="navigation_view">
 
-    <group android:checkableBehavior="single">
-        <item
-            android:id="@+id/nav_home"
-            android:icon="@drawable/ic_menu_camera"
-            android:title="@string/menu_home" />
+    <item
+        android:id="@+id/nav_home"
+        android:icon="@drawable/ic_menu_camera"
+        android:title="@string/menu_home" />
+
+    <group android:checkableBehavior="single"
+        android:id="@+id/jugador">
         <item
             android:id="@+id/nav_personajes"
             android:icon="@drawable/ic_menu_gallery"
             android:title="@string/menu_personajes" />
+    </group>
+
+    <group
+        android:checkableBehavior="single"
+        android:id="@+id/master">
         <item
-            android:id="@+id/nav_slideshow"
+            android:id="@+id/nav_grupos"
             android:icon="@drawable/ic_menu_slideshow"
-            android:title="@string/menu_slideshow" />
+            android:title="@string/menu_grupos" />
+    </group>
+
+    <group
+        android:checkableBehavior="single"
+        android:id="@+id/admin">
+        <item
+            android:id="@+id/nav_razas"
+            android:icon="@drawable/ic_menu_slideshow"
+            android:title="@string/menu_razas" />
+        <item
+            android:id="@+id/nav_clases"
+            android:icon="@drawable/ic_menu_slideshow"
+            android:title="@string/menu_clases" />
+        <item
+            android:id="@+id/nav_mochilas"
+            android:icon="@drawable/ic_menu_slideshow"
+            android:title="@string/menu_mochilas" />
     </group>
 </menu>

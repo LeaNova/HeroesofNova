@@ -1,7 +1,9 @@
 package com.leanova.heroesofnova.modelos;
 
-public class Clase {
-    private String idClase;
+import java.io.Serializable;
+
+public class Clase implements Serializable {
+    private int idClase;
     private String nombre;
     private String descripcion;
     private float modVida;
@@ -15,7 +17,7 @@ public class Clase {
     private float modAcc;
 
     public Clase() { }
-    public Clase(String idClase, String nombre, String descripcion, float modVida, float modAtk, float modAtm, float modDef, float modDfm, float modDex, float modEva, float modCrt, float modAcc) {
+    public Clase(int idClase, String nombre, String descripcion, float modVida, float modAtk, float modAtm, float modDef, float modDfm, float modDex, float modEva, float modCrt, float modAcc) {
         this.idClase = idClase;
         this.nombre = nombre;
         this.descripcion = descripcion;
@@ -30,11 +32,11 @@ public class Clase {
         this.modAcc = modAcc;
     }
 
-    public String getIdClase() {
+    public int getIdClase() {
         return idClase;
     }
 
-    public void setIdClase(String idClase) {
+    public void setIdClase(int idClase) {
         this.idClase = idClase;
     }
 

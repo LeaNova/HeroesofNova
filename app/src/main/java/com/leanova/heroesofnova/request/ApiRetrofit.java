@@ -18,18 +18,24 @@ import com.leanova.heroesofnova.modelos.Usuario;
 import java.net.Inet4Address;
 import java.net.InetAddress;
 import java.net.NetworkInterface;
+import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
+import okhttp3.OkHttpClient;
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
+import retrofit2.http.DELETE;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
+import retrofit2.http.PATCH;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
 
@@ -40,7 +46,12 @@ public class ApiRetrofit {
     private static ServiceApi serviceApi;
 
     public static ServiceApi getServiceApi() {
-        Gson gson = new GsonBuilder().setLenient().create();
+        Date dateF = new Date();
+
+        Gson gson = new GsonBuilder()
+                .setDateFormat("yyyy-MM-dd'T'HH:mm:ss")
+                .setLenient()
+                .create();
 
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(PATH)
@@ -88,27 +99,37 @@ public class ApiRetrofit {
     }
 
     public interface ServiceApi {
-        //LOGIN-SIGNIN
+        //LOGIN
         @FormUrlEncoded
         @POST("usuario/login")
         Call<String> login(
                 @Field("mail") String mail,
-                @Field("pass") String pass
-        );
+                @Field("pass") String pass);
 
         @GET("rol/get")
         Call<ArrayList<Rol>> obtenerRoles();
 
+        //SIGNIN
         @FormUrlEncoded
         @POST("usuario/signin")
         Call<Usuario> signin(
                 @Field("nombre") String nombre,
                 @Field("apellido") String apellido,
                 @Field("mail") String mail,
+                @Field("usuario") String usuario,
                 @Field("pass") String pass,
                 @Field("rolId") int rolId,
-                @Header("Authorization") String token
-        );
+                @Header("Authorization") String token);
+
+        //USUARIO
+        @GET("usuario/get")
+        Call<Usuario> obtener(@Header("Authorization") String token);
+
+        @GET("usuario/check_mail/{mail}")
+        Call<Usuario> obtenerMail(@Path("mail") String mail);
+
+        @GET("usuario/check_usuario/{usuario}")
+        Call<Usuario> obtenerUsuario(@Path("usuario") String usuario);
 
         //GENEROS
         @GET("genero/get")
@@ -128,11 +149,16 @@ public class ApiRetrofit {
                 @Field("baseDex") int baseDex,
                 @Field("baseEva") int baseEva,
                 @Field("baseCrt") int baseCrt,
-                @Field("baseAcc") int baseAcc
-        );
+                @Field("baseAcc") int baseAcc,
+                @Header("Authorization") String token);
 
         @GET("raza/get")
         Call<ArrayList<Raza>> obtenerRazas(@Header("Authorization") String token);
+
+        @DELETE("raza/borrar/{id}")
+        Call<ResponseBody> borrarRaza(
+                @Path("id") int id,
+                @Header("Authorization") String token);
 
         //CLASES
         @FormUrlEncoded
@@ -149,15 +175,32 @@ public class ApiRetrofit {
                 @Field("modEva") float modEva,
                 @Field("modCrt") float modCrt,
                 @Field("modAcc") float modAcc,
-                @Header("Authorization") String token
-        );
+                @Header("Authorization") String token);
 
         @GET("clase/get")
         Call<ArrayList<Clase>> obtenerClases(@Header("Authorization") String token);
 
+        @DELETE("clase/borrar/{id}")
+        Call<ResponseBody> borrarClase(
+                @Path("id") int id,
+                @Header("Authorization") String token);
+
         //MOCHILA
+        @FormUrlEncoded
+        @POST("mochila/crear")
+        Call<Mochila> crearMochila(
+                @Field("nombre") String nombre,
+                @Field("descripcion") String descripcion,
+                @Field("pesoMax") int pesoMax,
+                @Header("Authorization") String token);
+
         @GET("mochila/get")
         Call<ArrayList<Mochila>> obtenerMochilas(@Header("Authorization") String token);
+
+        @DELETE("mochila/borrar/{id}")
+        Call<ResponseBody> borrarMochila(
+                @Path("id") int id,
+                @Header("Authorization") String token);
 
         //PERSONAJE
         @FormUrlEncoded
@@ -166,7 +209,7 @@ public class ApiRetrofit {
                 @Field("nombre") String nombre,
                 @Field("razaId") int razaId,
                 @Field("generoId") int generoId,
-                @Field("claseId") String claseId,
+                @Field("claseId") int claseId,
                 @Field("vida") int vida,
                 @Field("nivel") int nivel,
                 @Field("experiencia") int exp,
@@ -181,8 +224,7 @@ public class ApiRetrofit {
                 @Field("descripcion") String descripcion,
                 @Field("mochilaId") int mochilaId,
                 @Field("disponible") boolean disponible,
-                @Header("Authorization") String token
-        );
+                @Header("Authorization") String token);
 
         @GET("personaje/get")
         Call<ArrayList<Personaje>> obtenerPersonajes(@Header("Authorization") String token);

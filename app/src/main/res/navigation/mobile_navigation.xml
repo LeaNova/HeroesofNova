@@ -12,6 +12,12 @@
         tools:layout="@layout/fragment_home" />
 
     <fragment
+        android:id="@+id/nav_grupos"
+        android:name="com.leanova.heroesofnova.ui.grupos.GrupoFragment"
+        android:label="Grupos"
+        tools:layout="@layout/fragment_grupo" />
+
+    <fragment
         android:id="@+id/nav_personajes"
         android:name="com.leanova.heroesofnova.ui.personajes.PersonajeFragment"
         android:label="@string/menu_personajes"
@@ -19,16 +25,95 @@
         <action
             android:id="@+id/action_nav_personajes_to_crearPersonaje"
             app:destination="@id/crearPersonajeFragment" />
+        <action
+            android:id="@+id/action_nav_personajes_to_detallePersonajeFragment"
+            app:destination="@id/detallePersonajeFragment" />
     </fragment>
+
     <fragment
         android:id="@+id/crearPersonajeFragment"
         android:name="com.leanova.heroesofnova.ui.personajes.CrearPersonajeFragment"
-        android:label="fragment_crear_personaje"
+        android:label="Nuevo personaje"
         tools:layout="@layout/fragment_crear_personaje" />
 
     <fragment
-        android:id="@+id/nav_slideshow"
-        android:name="com.leanova.heroesofnova.ui.slideshow.SlideshowFragment"
-        android:label="@string/menu_slideshow"
-        tools:layout="@layout/fragment_slideshow" />
+        android:id="@+id/detallePersonajeFragment"
+        android:name="com.leanova.heroesofnova.ui.personajes.DetallePersonajeFragment"
+        android:label="Detalle personaje"
+        tools:layout="@layout/fragment_detalle_personaje" />
+
+    <fragment
+        android:id="@+id/nav_clases"
+        android:name="com.leanova.heroesofnova.ui.clases.ClaseFragment"
+        android:label="@string/menu_clases"
+        tools:layout="@layout/fragment_clases" >
+        <action
+            android:id="@+id/action_nav_clases_to_detalleClaseFragment"
+            app:destination="@id/detalleClaseFragment" />
+        <action
+            android:id="@+id/action_nav_clases_to_crearClaseFragment"
+            app:destination="@id/crearClaseFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/detalleClaseFragment"
+        android:name="com.leanova.heroesofnova.ui.clases.DetalleClaseFragment"
+        android:label="Detalle clase"
+        tools:layout="@layout/fragment_detalle_clase" />
+
+    <fragment
+        android:id="@+id/crearClaseFragment"
+        android:name="com.leanova.heroesofnova.ui.clases.CrearClaseFragment"
+        android:label="Crear clase"
+        tools:layout="@layout/fragment_crear_clase" />
+
+    <fragment
+        android:id="@+id/nav_razas"
+        android:name="com.leanova.heroesofnova.ui.razas.RazaFragment"
+        android:label="@string/menu_razas"
+        tools:layout="@layout/fragment_raza" >
+        <action
+            android:id="@+id/action_nav_razas_to_detalleRazaFragment"
+            app:destination="@id/detalleRazaFragment" />
+        <action
+            android:id="@+id/action_nav_razas_to_crearRazaFragment"
+            app:destination="@id/crearRazaFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/crearRazaFragment"
+        android:name="com.leanova.heroesofnova.ui.razas.CrearRazaFragment"
+        android:label="Crear raza"
+        tools:layout="@layout/fragment_crear_raza" />
+
+    <fragment
+        android:id="@+id/detalleRazaFragment"
+        android:name="com.leanova.heroesofnova.ui.razas.DetalleRazaFragment"
+        android:label="Detalle raza"
+        tools:layout="@layout/fragment_detalle_raza" />
+
+    <fragment
+        android:id="@+id/nav_mochilas"
+        android:name="com.leanova.heroesofnova.ui.mochilas.MochilaFragment"
+        android:label="@string/menu_mochilas"
+        tools:layout="@layout/fragment_mochila" >
+        <action
+            android:id="@+id/action_mochilaFragment_to_detalleMochilaFragment"
+            app:destination="@id/detalleMochilaFragment" />
+        <action
+            android:id="@+id/action_mochilaFragment_to_crearMochilaFragment"
+            app:destination="@id/crearMochilaFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/detalleMochilaFragment"
+        android:name="com.leanova.heroesofnova.ui.mochilas.DetalleMochilaFragment"
+        android:label="Detalle mochila"
+        tools:layout="@layout/fragment_detalle_mochila" />
+
+    <fragment
+        android:id="@+id/crearMochilaFragment"
+        android:name="com.leanova.heroesofnova.ui.mochilas.CrearMochilaFragment"
+        android:label="Crear mochila"
+        tools:layout="@layout/fragment_crear_mochila" />
 </navigation>

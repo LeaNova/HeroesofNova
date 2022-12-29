@@ -86,12 +86,20 @@ public class CrearPersonajeViewModel extends AndroidViewModel {
     }
 
     public void getAviso() {
-        mutableAviso.setValue("Revise que todos los campos esten llenos correctamente");
+        mutableAviso.setValue("* Revise que todos los campos esten llenos correctamente");
     }
 
     public void crearPersonaje(String nombre, Genero genero, Raza raza, Clase clase, int vida1, int vida2, int vida3, int atk, int atm, int def, int dfm, int dex, int eva, int crt, int acc) {
         boolean ok = true;
         String aviso = "";
+        int atkT = atk + raza.getBaseAtk();
+        int atmT = atm + raza.getBaseAtm();
+        int defT = def + raza.getBaseDef();
+        int dfmT = dfm + raza.getBaseDfm();
+        int dexT = dex + raza.getBaseDex();
+        int evaT = eva + raza.getBaseEva();
+        int crtT = crt + raza.getBaseCrt();
+        int accT = acc + raza.getBaseAcc();
 
         if(nombre.isEmpty()) {
             aviso += "* Debe agregar un nombre a su personaje.\n";
@@ -103,21 +111,18 @@ public class CrearPersonajeViewModel extends AndroidViewModel {
             ok = false;
         }
 
+        if(atkT > 20 || atmT > 20 || defT > 20 || dfmT > 20 || dexT > 20 || evaT > 20 || crtT > 20 || accT > 20) {
+            aviso += "* El total de cada estadistica no puede ser mayor a 20.\n";
+            ok = false;
+        }
+
         if(ok) {
-            int vida = (int) (vida1 + vida2 + vida3) / 3;
+            int vida = (vida1 + vida2 + vida3) / 3;
             String token = ApiRetrofit.obtenerToken(context);
 
             vida += raza.getVidaBase();
-            atk += raza.getBaseAtk();
-            atm += raza.getBaseAtm();
-            def += raza.getBaseDef();
-            dfm += raza.getBaseDfm();
-            dex += raza.getBaseDex();
-            eva += raza.getBaseEva();
-            crt += raza.getBaseCrt();
-            acc += raza.getBaseAcc();
 
-            Call<Personaje> personajePromesa = ApiRetrofit.getServiceApi().crearPersonaje(nombre, raza.getIdRaza(), genero.getIdGenero(), clase.getIdClase(), vida, 1, 0, atk, atm, def, dfm, dex, eva, crt, acc, "Carga desde app", 1, true, token);
+            Call<Personaje> personajePromesa = ApiRetrofit.getServiceApi().crearPersonaje(nombre, raza.getIdRaza(), genero.getIdGenero(), clase.getIdClase(), vida, 1, 0, atkT, atmT, defT, dfmT, dexT, evaT, crtT, accT, "Carga desde app", 1, true, token);
             personajePromesa.enqueue(new Callback<Personaje>() {
                 @Override
                 public void onResponse(Call<Personaje> call, Response<Personaje> response) {

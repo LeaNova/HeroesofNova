@@ -27,16 +27,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textTitulo" />
 
-    <Button
-        android:id="@+id/btAgregar_PJ"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="AGREGAR"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/rvPersonajes" />
-
     <TextView
         android:id="@+id/tvAviso_PJ"
         android:layout_width="wrap_content"
@@ -47,4 +37,14 @@
         app:layout_constraintEnd_toEndOf="@+id/rvPersonajes"
         app:layout_constraintStart_toStartOf="@+id/rvPersonajes"
         app:layout_constraintTop_toTopOf="@+id/rvPersonajes" />
+
+    <Button
+        android:id="@+id/btNuevo_PJ"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Nuevo"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/rvPersonajes" />
 </androidx.constraintlayout.widget.ConstraintLayout>

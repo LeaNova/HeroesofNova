@@ -7,6 +7,8 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
 
 import com.leanova.heroesofnova.modelos.Rol;
 import com.leanova.heroesofnova.modelos.Usuario;
@@ -22,6 +24,9 @@ import retrofit2.Response;
 public class SigninViewModel extends AndroidViewModel {
     private Context context;
     private ArrayList<Rol> listaRoles;
+    private MutableLiveData<String> mutableAvisoMail;
+    private MutableLiveData<String> mutableAvisoUsuaio;
+    private MutableLiveData<String> mutableAvisoPass;
 
     public SigninViewModel(@NonNull Application application) {
         super(application);
@@ -39,17 +44,80 @@ public class SigninViewModel extends AndroidViewModel {
         return nombreRoles;
     }
 
-    public void registrarUsuario(String nombre, String apellido, String mail, String pass1, String pass2, int rol) {
-        String token = ApiRetrofit.obtenerToken(context);
-        Call<Usuario> usuarioPromesa = ApiRetrofit.getServiceApi().signin(nombre, apellido, mail, pass1, rol, token);
+    public LiveData<String> getMutableAvisoMail() {
+        if(mutableAvisoMail == null) {
+            mutableAvisoMail = new MutableLiveData<>();
+        }
+        return mutableAvisoMail;
+    }
+
+    public LiveData<String> getMutableAvisoUsuario() {
+        if(mutableAvisoUsuaio == null) {
+            mutableAvisoUsuaio = new MutableLiveData<>();
+        }
+        return mutableAvisoUsuaio;
+    }
+
+    public LiveData<String> getMutableAvisoPass() {
+        if(mutableAvisoPass == null) {
+            mutableAvisoPass = new MutableLiveData<>();
+        }
+        return mutableAvisoPass;
+    }
+
+    public void registrarUsuario(String nombre, String apellido, String mail, String usuario, String pass1, String pass2, int rol) {
+        if(pass1.equals(pass2)) {
+            String token = ApiRetrofit.obtenerToken(context);
+            Call<Usuario> usuarioPromesa = ApiRetrofit.getServiceApi().signin(nombre, apellido, mail, usuario, pass1, rol, token);
+            usuarioPromesa.enqueue(new Callback<Usuario>() {
+                @Override
+                public void onResponse(Call<Usuario> call, Response<Usuario> response) {
+                    if (response.isSuccessful()) {
+                        Toast.makeText(context, "Usuario registrado", Toast.LENGTH_SHORT).show();
+                        System.exit(0);
+                    } else {
+                        Toast.makeText(context, "Error en registrar", Toast.LENGTH_SHORT).show();
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<Usuario> call, Throwable t) {
+                    Log.d("APIerror", t.getMessage());
+                }
+            });
+        } else {
+            mutableAvisoPass.setValue("Las contraseñas no coinciden");
+        }
+    }
+
+    public void checkMail(String mail) {
+        Call<Usuario> usuarioPromesa = ApiRetrofit.getServiceApi().obtenerMail(mail);
         usuarioPromesa.enqueue(new Callback<Usuario>() {
             @Override
             public void onResponse(Call<Usuario> call, Response<Usuario> response) {
                 if(response.isSuccessful()) {
-                    Toast.makeText(context, "Usuario registrado", Toast.LENGTH_SHORT).show();
-                    System.exit(0);
+                    mutableAvisoMail.postValue("*Mail ya registrado");
                 } else {
-                    Toast.makeText(context, "Error en registrar", Toast.LENGTH_SHORT).show();
+                    mutableAvisoMail.postValue("");
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Usuario> call, Throwable t) {
+                Log.d("APIerror", t.getMessage());
+            }
+        });
+    }
+
+    public void checUsuario(String usuario) {
+        Call<Usuario> usuarioPromesa = ApiRetrofit.getServiceApi().obtenerUsuario(usuario);
+        usuarioPromesa.enqueue(new Callback<Usuario>() {
+            @Override
+            public void onResponse(Call<Usuario> call, Response<Usuario> response) {
+                if(response.isSuccessful()) {
+                    mutableAvisoUsuaio.postValue("*Nombre de usuario no disponible");
+                } else {
+                    mutableAvisoUsuaio.postValue("");
                 }
             }
 

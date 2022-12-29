@@ -1,6 +1,10 @@
 package com.leanova.heroesofnova.modelos;
 
-public class Personaje {
+import java.io.Serializable;
+//import java.sql.Date;
+import java.util.Date;
+
+public class Personaje implements Serializable {
     //Principal
     private int idPersonaje;
     private int usuarioId;
@@ -24,12 +28,16 @@ public class Personaje {
     private String descripcion;
     private int mochilaId;
     private boolean disponible;
+    private Date fechaCreado;
     //Clases foráneas
     private Usuario usuario;
     private Raza raza;
     private Genero genero;
     private Clase clase;
     private Mochila mochila;
+    //OTROS
+    private int vidaMax;
+    private int nextExp;
 
     public Personaje() { }
     public Personaje(int idPersonaje,
@@ -52,7 +60,7 @@ public class Personaje {
                      String descripcion,
                      int mochilaId,
                      boolean disponible,
-                     Usuario usuario,
+                     Date fechaCreado, Usuario usuario,
                      Raza raza,
                      Genero genero,
                      Clase clase,
@@ -77,6 +85,7 @@ public class Personaje {
         this.descripcion = descripcion;
         this.mochilaId = mochilaId;
         this.disponible = disponible;
+        this.fechaCreado = fechaCreado;
         this.usuario = usuario;
         this.raza = raza;
         this.genero = genero;
@@ -244,6 +253,14 @@ public class Personaje {
         this.disponible = disponible;
     }
 
+    public Date getFechaCreado() {
+        return fechaCreado;
+    }
+
+    public void setFechaCreado(Date fechaCreado) {
+        this.fechaCreado = fechaCreado;
+    }
+
     public Usuario getUsuario() {
         return usuario;
     }
@@ -284,7 +301,27 @@ public class Personaje {
         this.mochila = mochila;
     }
 
+    public int getVidaMax() {
+        return vidaMax;
+    }
+
+    public void setVidaMax() {
+        this.vidaMax = vida;
+    }
+
+    public int getNextExp() {
+        return nextExp;
+    }
+
+    public void setNextExp() {
+        this.nextExp = (int) (100 * Math.pow(nivel, 2) + 300 * nivel);
+    }
+
     /*******___Funciones___*******/
+    public void setGame() {
+        setVidaMax();
+        setNextExp();
+    }
     /*Funciones para subir nivel*/
     public void subirHasta(int hasta) {
         if(this.nivel < 60 && (hasta <= 60 && hasta > 1)) {
@@ -307,6 +344,16 @@ public class Personaje {
                 this.evasion *= this.clase.getModEva();
                 this.critico *= this.clase.getModCrt();
                 this.precision *= this.clase.getModAcc();
+            }
+        }
+    }
+
+    public void subirExp(int exp) {
+        this.experiencia += exp;
+
+        if(experiencia > nextExp) {
+            while (experiencia > nextExp) {
+                subirNivel();
             }
         }
     }

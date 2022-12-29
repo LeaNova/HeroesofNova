@@ -10,7 +10,7 @@
         android:id="@+id/textSignin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="24dp"
         android:text="Registrarse"
         android:textSize="34sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -21,7 +21,7 @@
         android:id="@+id/etSNombre"
         android:layout_width="wrap_content"
         android:layout_height="52dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="24dp"
         android:ems="10"
         android:hint="Nombre"
         android:inputType="textPersonName"
@@ -54,6 +54,39 @@
         app:layout_constraintTop_toBottomOf="@+id/etSApellido" />
 
     <TextView
+        android:id="@+id/tvSAvisoMail"
+        android:layout_width="wrap_content"
+        android:layout_height="16dp"
+        android:text=""
+        android:textColor="#FF0000"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toTopOf="@+id/etSUsuario"
+        app:layout_constraintStart_toStartOf="@+id/etSMail"
+        app:layout_constraintTop_toBottomOf="@+id/etSMail" />
+
+    <EditText
+        android:id="@+id/etSUsuario"
+        android:layout_width="wrap_content"
+        android:layout_height="52dp"
+        android:layout_marginTop="16dp"
+        android:ems="10"
+        android:hint="Usuario"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etSMail" />
+
+    <TextView
+        android:id="@+id/tvSAvisoUsuario"
+        android:layout_width="wrap_content"
+        android:layout_height="16dp"
+        android:text=""
+        android:textColor="#FF0000"
+        android:textSize="12sp"
+        app:layout_constraintStart_toStartOf="@+id/etSUsuario"
+        app:layout_constraintTop_toBottomOf="@+id/etSUsuario" />
+
+    <TextView
         android:id="@+id/textSContra"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -62,7 +95,7 @@
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etSMail" />
+        app:layout_constraintTop_toBottomOf="@+id/etSUsuario" />
 
     <EditText
         android:id="@+id/etSPass1"
@@ -71,7 +104,7 @@
         android:layout_marginTop="32dp"
         android:ems="10"
         android:hint="Contraseña"
-        android:inputType="textPersonName"
+        android:inputType="textPassword"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textSContra" />
@@ -83,20 +116,19 @@
         android:layout_marginTop="16dp"
         android:ems="10"
         android:hint="Contraseña"
-        android:inputType="textPersonName"
+        android:inputType="textPassword"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/etSPass1" />
 
-    <Spinner
-        android:id="@+id/spSRoles"
-        android:layout_width="210dp"
-        android:layout_height="52dp"
-        android:layout_marginTop="16dp"
-        android:contentDescription="roles"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
+    <TextView
+        android:id="@+id/tvSAvisoPass"
+        android:layout_width="wrap_content"
+        android:layout_height="16dp"
+        android:text=""
+        android:textColor="#FF0000"
+        android:textSize="12sp"
+        app:layout_constraintStart_toStartOf="@+id/etSPass2"
         app:layout_constraintTop_toBottomOf="@+id/etSPass2" />
 
     <Button
@@ -107,5 +139,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spSRoles" />
+        app:layout_constraintTop_toBottomOf="@+id/etSPass2" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
