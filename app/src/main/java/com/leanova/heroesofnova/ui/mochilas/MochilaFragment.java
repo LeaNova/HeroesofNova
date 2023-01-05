@@ -45,7 +45,6 @@ public class MochilaFragment extends Fragment {
                 lvMochila_M.setAdapter(ma);
             }
         });
-
         mvm.obtenerMochilas();
 
         return root;

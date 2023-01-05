@@ -14,8 +14,25 @@
     <fragment
         android:id="@+id/nav_grupos"
         android:name="com.leanova.heroesofnova.ui.grupos.GrupoFragment"
-        android:label="Grupos"
-        tools:layout="@layout/fragment_grupo" />
+        android:label="@string/menu_grupos"
+        tools:layout="@layout/fragment_grupo" >
+        <action
+            android:id="@+id/action_nav_grupos_to_buscarGrupoFragment"
+            app:destination="@id/buscarGrupoFragment" />
+        <action
+            android:id="@+id/action_nav_grupos_to_crearGrupoFragment"
+            app:destination="@id/crearGrupoFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/crearGrupoFragment"
+        android:name="com.leanova.heroesofnova.ui.grupos.CrearGrupoFragment"
+        android:label="fragment_crear_grupo"
+        tools:layout="@layout/fragment_crear_grupo" />
+    <fragment
+        android:id="@+id/buscarGrupoFragment"
+        android:name="com.leanova.heroesofnova.ui.grupos.BuscarGrupoFragment"
+        android:label="fragment_buscar_grupo"
+        tools:layout="@layout/fragment_buscar_grupo" />
 
     <fragment
         android:id="@+id/nav_personajes"
@@ -29,18 +46,25 @@
             android:id="@+id/action_nav_personajes_to_detallePersonajeFragment"
             app:destination="@id/detallePersonajeFragment" />
     </fragment>
-
     <fragment
         android:id="@+id/crearPersonajeFragment"
         android:name="com.leanova.heroesofnova.ui.personajes.CrearPersonajeFragment"
         android:label="Nuevo personaje"
         tools:layout="@layout/fragment_crear_personaje" />
-
     <fragment
         android:id="@+id/detallePersonajeFragment"
         android:name="com.leanova.heroesofnova.ui.personajes.DetallePersonajeFragment"
         android:label="Detalle personaje"
-        tools:layout="@layout/fragment_detalle_personaje" />
+        tools:layout="@layout/fragment_detalle_personaje" >
+        <action
+            android:id="@+id/action_detallePersonajeFragment_to_jugarFragment"
+            app:destination="@id/jugarFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/jugarFragment"
+        android:name="com.leanova.heroesofnova.ui.personajes.JugarFragment"
+        android:label="Jugar"
+        tools:layout="@layout/fragment_jugar" />
 
     <fragment
         android:id="@+id/nav_clases"

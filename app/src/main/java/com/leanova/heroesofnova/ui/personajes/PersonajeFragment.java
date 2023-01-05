@@ -27,7 +27,7 @@ public class PersonajeFragment extends Fragment {
     private PersonajeViewModel pvm;
     private PersonajeValues pv;
 
-    private RecyclerView rv;
+    private RecyclerView rvPersonajes_PJ;
     private TextView tvAviso_PJ;
     private Button btNuevo_PJ;
 
@@ -43,10 +43,9 @@ public class PersonajeFragment extends Fragment {
             @Override
             public void onChanged(ArrayList<Personaje> personajes) {
                 PersonajeAdapter pa = new PersonajeAdapter(getContext(), getLayoutInflater(), personajes);
-                rv.setAdapter(pa);
+                rvPersonajes_PJ.setAdapter(pa);
             }
         });
-
         pvm.getMutableAviso().observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override
             public void onChanged(String s) {
@@ -66,9 +65,9 @@ public class PersonajeFragment extends Fragment {
     }
 
     public void inicializarVista(View v) {
-        this.rv = v.findViewById(R.id.rvPersonajes);
+        this.rvPersonajes_PJ = v.findViewById(R.id.rvPersonajes_PJ);
         GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(), 1, GridLayoutManager.VERTICAL, false);
-        this.rv.setLayoutManager(gridLayoutManager);
+        this.rvPersonajes_PJ.setLayoutManager(gridLayoutManager);
 
         this.tvAviso_PJ = v.findViewById(R.id.tvAviso_PJ);
         this.tvAviso_PJ.setText("");

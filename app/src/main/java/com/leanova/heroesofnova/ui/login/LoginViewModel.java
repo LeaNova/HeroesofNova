@@ -37,12 +37,8 @@ public class LoginViewModel extends AndroidViewModel {
         return mutableAviso;
     }
 
-    public void iniciarSesion(String mail, String pass) {
-        if(mail.contains(" ")) {
-            mail.replace(" ", "");
-        }
-
-        Call<String> tokenPromesa = ApiRetrofit.getServiceApi().login(mail, pass);
+    public void iniciarSesion(String usuario, String pass) {
+        Call<String> tokenPromesa = ApiRetrofit.getServiceApi().login(usuario, pass);
         tokenPromesa.enqueue(new Callback<String>() {
             @Override
             public void onResponse(Call<String> call, Response<String> response) {

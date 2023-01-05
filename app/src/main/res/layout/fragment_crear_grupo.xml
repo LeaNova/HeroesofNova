@@ -7,11 +7,11 @@
     tools:context=".ui.clases.CrearClaseFragment">
 
     <TextView
-        android:id="@+id/textNuevaMochila"
+        android:id="@+id/textNuevoGrupo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:text="Nueva Mochila"
+        android:text="Nuevo grupo"
         android:textAlignment="center"
         android:textSize="24sp"
         android:textStyle="bold"
@@ -28,10 +28,10 @@
         android:text="Nombre: "
         android:textAlignment="textEnd"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textNuevaMochila" />
+        app:layout_constraintTop_toBottomOf="@+id/textNuevoGrupo" />
 
     <EditText
-        android:id="@+id/etNombre_CM"
+        android:id="@+id/etNombre_CG"
         android:layout_width="250dp"
         android:layout_height="52dp"
         android:ems="10"
@@ -51,7 +51,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textNombre" />
 
     <EditText
-        android:id="@+id/etDescripcion_CM"
+        android:id="@+id/etDescripcion_CG"
         android:layout_width="250dp"
         android:layout_height="52dp"
         android:ems="10"
@@ -68,26 +68,26 @@
         app:layout_constraintGuide_begin="175dp" />
 
     <TextView
-        android:id="@+id/textPeso"
-        android:layout_width="100dp"
+        android:id="@+id/textContrasenia"
+        android:layout_width="85dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
-        android:text="Peso máximo: "
+        android:text="Contraseña: "
         android:textAlignment="textEnd"
         app:layout_constraintBottom_toTopOf="@+id/guideline2"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/guideline1" />
 
     <EditText
-        android:id="@+id/etPesoMax_CM"
-        android:layout_width="130dp"
+        android:id="@+id/etContrasenia_CG"
+        android:layout_width="250dp"
         android:layout_height="52dp"
         android:ems="10"
         android:inputType="numberDecimal"
         android:textAlignment="center"
-        app:layout_constraintBottom_toBottomOf="@+id/textPeso"
-        app:layout_constraintStart_toEndOf="@+id/textPeso"
-        app:layout_constraintTop_toTopOf="@+id/textPeso"
+        app:layout_constraintBottom_toBottomOf="@+id/textContrasenia"
+        app:layout_constraintStart_toEndOf="@+id/textContrasenia"
+        app:layout_constraintTop_toTopOf="@+id/textContrasenia"
         app:layout_constraintVertical_bias="0.484" />
 
     <androidx.constraintlayout.widget.Guideline
@@ -98,7 +98,7 @@
         app:layout_constraintGuide_begin="246dp" />
 
     <TextView
-        android:id="@+id/tvAviso_CM"
+        android:id="@+id/tvAviso_CG"
         android:layout_width="350dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
@@ -116,7 +116,7 @@
         app:layout_constraintGuide_begin="650dp" />
 
     <Button
-        android:id="@+id/btCrear_CM"
+        android:id="@+id/btCrear_CG"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Crear"

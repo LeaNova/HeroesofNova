@@ -73,4 +73,8 @@ public class DefaultValues {
     public static Usuario getUsuario() {
         return usuario;
     }
+
+    public static String getAccess() {
+        return usuario.getRol().getNombre();
+    }
 }

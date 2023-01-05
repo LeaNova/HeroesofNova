@@ -4,78 +4,49 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/grupo_item"
     android:layout_width="match_parent"
-    android:layout_height="220dp"
+    android:layout_height="180dp"
     app:cardBackgroundColor="#C3C3C3"
-    app:cardCornerRadius="20dp"
-    app:cardElevation="10dp"
+    app:cardCornerRadius="10dp"
     app:cardUseCompatPadding="true"
-    app:contentPadding="10dp">
+    app:contentPadding="5dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <ImageView
-            android:id="@+id/ivGFoto"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:layout_marginStart="24dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:srcCompat="@tools:sample/avatars" />
-
         <TextView
-            android:id="@+id/textGGrupo"
+            android:id="@+id/tvNombre_GI"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
-            android:layout_marginTop="10dp"
-            android:text="Grupo:"
-            app:layout_constraintStart_toEndOf="@+id/ivGFoto"
+            android:layout_marginTop="8dp"
+            android:text="[Grupo]"
+            android:textColor="#000000"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/tvGGrupo"
+            android:id="@+id/textDescripcion"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="TextGrupo"
-            app:layout_constraintStart_toStartOf="@+id/textGGrupo"
-            app:layout_constraintTop_toBottomOf="@+id/textGGrupo" />
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="4dp"
+            android:text="Descripción: "
+            android:textColor="#000000"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvNombre_GI" />
 
         <TextView
-            android:id="@+id/textGMaster"
-            android:layout_width="wrap_content"
+            android:id="@+id/tvDescripcion_GI"
+            android:layout_width="375dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:text="Máster:"
-            app:layout_constraintStart_toStartOf="@+id/tvGGrupo"
-            app:layout_constraintTop_toBottomOf="@+id/tvGGrupo" />
+            android:text="[descripción]"
+            android:textColor="#000000"
+            app:layout_constraintStart_toStartOf="@+id/textDescripcion"
+            app:layout_constraintTop_toBottomOf="@+id/textDescripcion" />
 
-        <TextView
-            android:id="@+id/tvGMaster"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="TextMaster"
-            app:layout_constraintStart_toStartOf="@+id/textGMaster"
-            app:layout_constraintTop_toBottomOf="@+id/textGMaster" />
-
-        <TextView
-            android:id="@+id/textGPersonaje"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:text="Personaje:"
-            app:layout_constraintStart_toStartOf="@+id/tvGMaster"
-            app:layout_constraintTop_toBottomOf="@+id/tvGMaster" />
-
-        <TextView
-            android:id="@+id/tvGPersonaje"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="TextPersonaje"
-            app:layout_constraintStart_toStartOf="@+id/textGPersonaje"
-            app:layout_constraintTop_toBottomOf="@+id/textGPersonaje" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.cardview.widget.CardView>

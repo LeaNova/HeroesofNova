@@ -1,7 +1,6 @@
 package com.leanova.heroesofnova.modelos;
 
 import java.io.Serializable;
-//import java.sql.Date;
 import java.util.Date;
 
 public class Personaje implements Serializable {
@@ -11,10 +10,10 @@ public class Personaje implements Serializable {
     private String nombre;
     private int razaId;
     private int generoId;
-    private String claseId;
-    private int vida;
+    private int claseId;
     private int nivel;
     private int experiencia;
+    private int vida;
     //Estadisticas
     private int ataque;
     private int atkMagico;
@@ -36,7 +35,7 @@ public class Personaje implements Serializable {
     private Clase clase;
     private Mochila mochila;
     //OTROS
-    private int vidaMax;
+    private int vidaAct;
     private int nextExp;
 
     public Personaje() { }
@@ -45,10 +44,10 @@ public class Personaje implements Serializable {
                      String nombre,
                      int razaId,
                      int generoId,
-                     String claseId,
-                     int vida,
+                     int claseId,
                      int nivel,
                      int experiencia,
+                     int vida,
                      int ataque,
                      int atkMagico,
                      int defensa,
@@ -71,9 +70,9 @@ public class Personaje implements Serializable {
         this.razaId = razaId;
         this.generoId = generoId;
         this.claseId = claseId;
-        this.vida = vida;
         this.nivel = nivel;
         this.experiencia = experiencia;
+        this.vida = vida;
         this.ataque = ataque;
         this.atkMagico = atkMagico;
         this.defensa = defensa;
@@ -133,20 +132,12 @@ public class Personaje implements Serializable {
         this.generoId = generoId;
     }
 
-    public String getClaseId() {
+    public int getClaseId() {
         return claseId;
     }
 
-    public void setClaseId(String claseId) {
+    public void setClaseId(int claseId) {
         this.claseId = claseId;
-    }
-
-    public int getVida() {
-        return vida;
-    }
-
-    public void setVida(int vida) {
-        this.vida = vida;
     }
 
     public int getNivel() {
@@ -163,6 +154,14 @@ public class Personaje implements Serializable {
 
     public void setExperiencia(int experiencia) {
         this.experiencia = experiencia;
+    }
+
+    public int getVida() {
+        return vida;
+    }
+
+    public void setVida(int vida) {
+        this.vida = vida;
     }
 
     public int getAtaque() {
@@ -301,12 +300,12 @@ public class Personaje implements Serializable {
         this.mochila = mochila;
     }
 
-    public int getVidaMax() {
-        return vidaMax;
+    public int getVidaAct() {
+        return vidaAct;
     }
 
-    public void setVidaMax() {
-        this.vidaMax = vida;
+    public void setVidaAct() {
+        this.vidaAct = vida;
     }
 
     public int getNextExp() {
@@ -319,31 +318,37 @@ public class Personaje implements Serializable {
 
     /*******___Funciones___*******/
     public void setGame() {
-        setVidaMax();
+        setVidaAct();
         setNextExp();
     }
     /*Funciones para subir nivel*/
     public void subirHasta(int hasta) {
-        if(this.nivel < 60 && (hasta <= 60 && hasta > 1)) {
-            for (int desde = this.nivel; desde < hasta; desde++) {
+        if(nivel < 60 && (hasta <= 60 && hasta > 1)) {
+            for (int desde = nivel; desde < hasta; desde++) {
                 subirNivel();
             }
         }
     }
 
     public void subirNivel() {
-        if(this.nivel <= 60) {
-            this.nivel++;
+        if(nivel < 60) {
+            nivel++;
+            setNextExp();
 
-            if (this.nivel % 3 == 0) {
-                this.ataque *= this.clase.getModAtk();
-                this.atkMagico *= this.clase.getModAtm();
-                this.defensa *= this.clase.getModDef();
-                this.defMagico *= this.clase.getModDfm();
-                this.agilidad *= this.clase.getModDex();
-                this.evasion *= this.clase.getModEva();
-                this.critico *= this.clase.getModCrt();
-                this.precision *= this.clase.getModAcc();
+            if(nivel % 3 == 0) {
+                ataque = (int) Math.round(ataque * clase.getModAtk());
+                atkMagico = (int) Math.round(atkMagico * clase.getModAtm());
+                defensa = (int) Math.round(defensa * clase.getModDef());
+                defMagico = (int) Math.round(defMagico * clase.getModDfm());
+                agilidad = (int) Math.round(agilidad * clase.getModDex());
+                evasion = (int) Math.round(evasion * clase.getModEva());
+                critico = (int) Math.round(critico * clase.getModCrt());
+                precision = (int) Math.round(precision * clase.getModAcc());
+            }
+
+            if((nivel+1) % 3 == 0) {
+                vida = (int) Math.round(clase.getModVida() * vida);
+                setVidaAct();
             }
         }
     }
@@ -351,10 +356,61 @@ public class Personaje implements Serializable {
     public void subirExp(int exp) {
         this.experiencia += exp;
 
-        if(experiencia > nextExp) {
-            while (experiencia > nextExp) {
-                subirNivel();
+        if(experiencia >= nextExp) {
+            while (experiencia >= nextExp) {
+                if(nivel < 60) {
+                    subirNivel();
+                } else {
+                    experiencia = nextExp;
+                    break;
+                }
             }
         }
     }
+
+    /*Funciones de Vida*/
+    public void recibirDanioFisico(int danio) {
+        if(vidaAct > 0) {
+            int danioT = (int) danio - Math.round(defensa * 0.5f);
+            if(danioT > 0) {
+                vidaAct -= danioT;
+            }
+
+            if (vidaAct < 0) {
+                vidaAct = 0;
+            }
+        }
+    }
+
+    public void recibirDanioMagico(int danio) {
+        if(vidaAct > 0) {
+            int danioT = (int) danio - Math.round(defMagico * 0.5f);
+            if(danioT > 0) {
+                vidaAct -= danioT;
+            }
+
+            if (vidaAct < 0) {
+                vidaAct = 0;
+            }
+        }
+    }
+
+    public void recuperarVida(int heal) {
+        if(vidaAct < vida) {
+            vidaAct += heal;
+
+            if (vidaAct > vida) {
+                vidaAct = vida;
+            }
+        }
+    }
+
+    /*Funciones de Ataque*/
+    /*
+    public int atacar() {
+        int dadoR = (int) (Math.random()*dado + 1);
+        float atk = personaje.getAtaque() * 0.05f;
+        int danio = (int) Math.round(atk * dadoR);
+    }
+    */
 }

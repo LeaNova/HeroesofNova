@@ -61,7 +61,6 @@ public class CrearPersonajeFragment extends Fragment {
                 textAccBase.setText(raza.getBaseAcc() + " + ");
             }
         });
-
         cpvm.getMutableTiros().observe(getViewLifecycleOwner(), new Observer<ArrayList<String>>() {
             @Override
             public void onChanged(ArrayList<String> tiros) {
@@ -78,7 +77,6 @@ public class CrearPersonajeFragment extends Fragment {
                 etAcc_CP.setText(tiros.get(10));
             }
         });
-
         cpvm.getMutableAviso().observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override
             public void onChanged(String s) {
@@ -93,28 +91,27 @@ public class CrearPersonajeFragment extends Fragment {
         this.etNombre_CP = v.findViewById(R.id.etNombre_CP);
 
         this.spGenero_CP = v.findViewById(R.id.spGenero_CP);
-        ArrayAdapter<Genero> spinnerGenero = new ArrayAdapter<>(getContext(), R.layout.spinner_c1, PersonajeValues.getGeneros());
+        ArrayAdapter<Genero> spinnerGenero = new ArrayAdapter<>(getContext(), R.layout.style_sp_c1, PersonajeValues.getGeneros());
         this.spGenero_CP.setAdapter(spinnerGenero);
 
         this.spRaza_CP = v.findViewById(R.id.spRaza_CP);
-        ArrayAdapter<Raza> spinnerRaza = new ArrayAdapter<>(getContext(), R.layout.spinner_c1, PersonajeValues.getRazas());
+        ArrayAdapter<Raza> spinnerRaza = new ArrayAdapter<>(getContext(), R.layout.style_sp_c1, PersonajeValues.getRazas());
         this.spRaza_CP.setAdapter(spinnerRaza);
         this.spRaza_CP.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 Raza r = (Raza) spRaza_CP.getSelectedItem();
                 cpvm.setRaza(r);
-                cpvm.setToEmpty();
             }
 
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
-
+                //Nada
             }
         });
 
         this.spClase_CP = v.findViewById(R.id.spClase_CP);
-        ArrayAdapter<Clase> spinnerClase = new ArrayAdapter<>(getContext(), R.layout.spinner_c1, PersonajeValues.getClases());
+        ArrayAdapter<Clase> spinnerClase = new ArrayAdapter<>(getContext(), R.layout.style_sp_c1, PersonajeValues.getClases());
         this.spClase_CP.setAdapter(spinnerClase);
 
         this.textVidaBase = v.findViewById(R.id.textVidaBase);

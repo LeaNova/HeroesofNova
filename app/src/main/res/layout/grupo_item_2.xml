@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/grupo_item_2"
+    android:layout_width="match_parent"
+    android:layout_height="90dp"
+    app:cardBackgroundColor="#C3C3C3"
+    app:cardCornerRadius="10dp"
+    app:cardUseCompatPadding="true"
+    app:contentPadding="5dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/textGrupo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:text="Grupo: "
+            android:textColor="#000000"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tvGrupo_GI2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="[grupo]"
+            android:textColor="#000000"
+            app:layout_constraintBottom_toBottomOf="@+id/textGrupo"
+            app:layout_constraintStart_toEndOf="@+id/textGrupo" />
+
+        <TextView
+            android:id="@+id/textPersonaje"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Personaje: "
+            android:textColor="#000000"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="@+id/textGrupo"
+            app:layout_constraintTop_toBottomOf="@+id/textGrupo" />
+
+        <TextView
+            android:id="@+id/tvPersonaje_GI2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="[personaje]"
+            android:textColor="#000000"
+            app:layout_constraintBottom_toBottomOf="@+id/textPersonaje"
+            app:layout_constraintStart_toEndOf="@+id/textPersonaje" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_begin="196dp" />
+
+        <TextView
+            android:id="@+id/textMaster"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:text="Máster: "
+            android:textColor="#000000"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="@+id/guideline1"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tvMaster_GI2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="[master]"
+            android:textColor="#000000"
+            app:layout_constraintBottom_toBottomOf="@+id/textMaster"
+            app:layout_constraintStart_toEndOf="@+id/textMaster" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.cardview.widget.CardView>

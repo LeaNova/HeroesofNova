@@ -35,7 +35,7 @@ import java.util.Locale;
 public class LoginActivity extends AppCompatActivity {
     private DefaultValues dv;
     private LoginViewModel lvm;
-    private EditText etIP, etLMail, etLPass;
+    private EditText etIP, etLUsuario, etLPass;
     private Button btSetIP, btLLogin, btLSignin;
     private TextView textLAviso;
 
@@ -69,14 +69,14 @@ public class LoginActivity extends AppCompatActivity {
             }
         });*/
 
-        this.etLMail = findViewById(R.id.etLMail);
+        this.etLUsuario = findViewById(R.id.etLUsuario);
         this.etLPass = findViewById(R.id.etLPass);
 
         this.btLLogin = findViewById(R.id.btLLogin);
         this.btLLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String mail = etLMail.getText().toString();
+                String mail = etLUsuario.getText().toString();
                 String pass = etLPass.getText().toString();
                 lvm.iniciarSesion(mail, pass);
             }

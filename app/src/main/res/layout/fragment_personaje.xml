@@ -19,7 +19,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvPersonajes"
+        android:id="@+id/rvPersonajes_PJ"
         android:layout_width="match_parent"
         android:layout_height="580dp"
         android:layout_marginTop="16dp"
@@ -34,9 +34,9 @@
         android:text="[Aviso]"
         android:textAlignment="center"
         android:visibility="visible"
-        app:layout_constraintEnd_toEndOf="@+id/rvPersonajes"
-        app:layout_constraintStart_toStartOf="@+id/rvPersonajes"
-        app:layout_constraintTop_toTopOf="@+id/rvPersonajes" />
+        app:layout_constraintEnd_toEndOf="@+id/rvPersonajes_PJ"
+        app:layout_constraintStart_toStartOf="@+id/rvPersonajes_PJ"
+        app:layout_constraintTop_toTopOf="@+id/rvPersonajes_PJ" />
 
     <Button
         android:id="@+id/btNuevo_PJ"
@@ -46,5 +46,5 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/rvPersonajes" />
+        app:layout_constraintTop_toBottomOf="@+id/rvPersonajes_PJ" />
 </androidx.constraintlayout.widget.ConstraintLayout>

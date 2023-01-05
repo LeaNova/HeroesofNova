@@ -74,7 +74,7 @@ public class CrearPersonajeViewModel extends AndroidViewModel {
 
         mutableTiros.setValue(tiros);
     }
-
+/*
     public void setToEmpty() {
         ArrayList<String> tiros = new ArrayList<>();
 
@@ -83,7 +83,7 @@ public class CrearPersonajeViewModel extends AndroidViewModel {
         }
 
         mutableTiros.setValue(tiros);
-    }
+    }*/
 
     public void getAviso() {
         mutableAviso.setValue("* Revise que todos los campos esten llenos correctamente");

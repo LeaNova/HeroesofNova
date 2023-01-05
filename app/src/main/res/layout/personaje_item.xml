@@ -1,202 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/personaje_item"
     android:layout_width="match_parent"
-    android:layout_height="270dp"
+    android:layout_height="140dp"
     app:cardBackgroundColor="#FFBF61"
-    app:cardCornerRadius="20dp"
-    app:cardElevation="10dp"
+    app:cardCornerRadius="10dp"
     app:cardUseCompatPadding="true"
-    app:contentPadding="10dp">
+    app:contentPadding="5dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-
-        <TextView
-            android:id="@+id/textVida"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="4dp"
-            android:text="Vida: "
-            android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/guideline4" />
-
-        <TextView
-            android:id="@+id/tvVida_PI"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="[Vida]"
-            app:layout_constraintBottom_toBottomOf="@+id/textVida"
-            app:layout_constraintStart_toEndOf="@+id/textVida" />
-
-        <TextView
-            android:id="@+id/textNivel"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="4dp"
-            android:text="Nivel: "
-            android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="@+id/guideline5"
-            app:layout_constraintTop_toTopOf="@+id/guideline4" />
-
-        <TextView
-            android:id="@+id/tvNivel_PI"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="[Nivel]"
-            app:layout_constraintBottom_toBottomOf="@+id/textNivel"
-            app:layout_constraintStart_toEndOf="@+id/textNivel" />
-
-        <TextView
-            android:id="@+id/textAtk"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:text="ATK: "
-            android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="@+id/textVida"
-            app:layout_constraintTop_toBottomOf="@+id/textVida"
-            tools:ignore="MissingConstraints" />
-
-        <TextView
-            android:id="@+id/tvAtk_PI"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="[ATK]"
-            app:layout_constraintBottom_toBottomOf="@+id/textAtk"
-            app:layout_constraintStart_toEndOf="@+id/textAtk" />
-
-        <TextView
-            android:id="@+id/textAtm"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:text="ATM: "
-            android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="@+id/textAtk"
-            app:layout_constraintTop_toBottomOf="@+id/textAtk" />
-
-        <TextView
-            android:id="@+id/tvAtm_PI"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="[ATM]"
-            app:layout_constraintBottom_toBottomOf="@+id/textAtm"
-            app:layout_constraintStart_toEndOf="@+id/textAtm" />
-
-        <TextView
-            android:id="@+id/textDef"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:text="DEF: "
-            android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="@+id/textAtm"
-            app:layout_constraintTop_toBottomOf="@+id/textAtm" />
-
-        <TextView
-            android:id="@+id/tvDef_PI"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="[DEF]"
-            app:layout_constraintBottom_toBottomOf="@+id/textDef"
-            app:layout_constraintStart_toEndOf="@+id/textDef" />
-
-        <TextView
-            android:id="@+id/textDfm"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:text="DFM: "
-            android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="@+id/textDef"
-            app:layout_constraintTop_toBottomOf="@+id/textDef" />
-
-        <TextView
-            android:id="@+id/tvDfm_PI"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="[DFM]"
-            app:layout_constraintBottom_toBottomOf="@+id/textDfm"
-            app:layout_constraintStart_toEndOf="@+id/textDfm" />
-
-        <TextView
-            android:id="@+id/textDex"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:text="DEX: "
-            android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="@+id/textNivel"
-            app:layout_constraintTop_toBottomOf="@+id/textNivel" />
-
-        <TextView
-            android:id="@+id/tvDex_PI"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="[DEX]"
-            app:layout_constraintBottom_toBottomOf="@+id/textDex"
-            app:layout_constraintStart_toEndOf="@+id/textDex" />
-
-        <TextView
-            android:id="@+id/textEva"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:text="EVA: "
-            android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="@+id/textDex"
-            app:layout_constraintTop_toBottomOf="@+id/textDex" />
-
-        <TextView
-            android:id="@+id/tvEva_PI"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="[EVA]"
-            app:layout_constraintBottom_toBottomOf="@+id/textEva"
-            app:layout_constraintStart_toEndOf="@+id/textEva" />
-
-        <TextView
-            android:id="@+id/textCrt"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:text="CRT: "
-            android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="@+id/textEva"
-            app:layout_constraintTop_toBottomOf="@+id/textEva" />
-
-        <TextView
-            android:id="@+id/tvCrt_PI"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="[Crt]"
-            app:layout_constraintBottom_toBottomOf="@+id/textCrt"
-            app:layout_constraintStart_toEndOf="@+id/textCrt" />
-
-        <TextView
-            android:id="@+id/textAcc"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:text="ACC: "
-            android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="@+id/textCrt"
-            app:layout_constraintTop_toBottomOf="@+id/textCrt" />
-
-        <TextView
-            android:id="@+id/tvAcc_PI"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="[ACC]"
-            app:layout_constraintBottom_toBottomOf="@+id/textAcc"
-            app:layout_constraintStart_toEndOf="@+id/textAcc" />
 
         <TextView
             android:id="@+id/textNombre"
@@ -254,18 +69,56 @@
             app:layout_constraintStart_toEndOf="@+id/textClase" />
 
         <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guideline4"
+            android:id="@+id/guideline1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             app:layout_constraintGuide_begin="84dp" />
 
+        <TextView
+            android:id="@+id/textVida"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="4dp"
+            android:text="Vida: "
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/guideline1" />
+
+        <TextView
+            android:id="@+id/tvVida_PI"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="[Vida]"
+            app:layout_constraintBottom_toBottomOf="@+id/textVida"
+            app:layout_constraintStart_toEndOf="@+id/textVida" />
+
         <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guideline5"
+            android:id="@+id/guideline2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            app:layout_constraintGuide_begin="180dp" />
+            app:layout_constraintGuide_begin="196dp" />
+
+        <TextView
+            android:id="@+id/textNivel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="4dp"
+            android:text="Nivel: "
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="@+id/guideline2"
+            app:layout_constraintTop_toTopOf="@+id/guideline1" />
+
+        <TextView
+            android:id="@+id/tvNivel_PI"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="[Nivel]"
+            app:layout_constraintBottom_toBottomOf="@+id/textNivel"
+            app:layout_constraintStart_toEndOf="@+id/textNivel" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

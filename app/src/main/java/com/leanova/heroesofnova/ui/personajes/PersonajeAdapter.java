@@ -50,15 +50,6 @@ public class PersonajeAdapter extends RecyclerView.Adapter<PersonajeAdapter.View
         holder.tvRaza_PI.setText(raza.getNombre());
         holder.tvClase_PI.setText(clase.getNombre());
 
-        holder.tvAtk_PI.setText(pj.getAtaque()+"");
-        holder.tvAtm_PI.setText(pj.getAtkMagico()+"");
-        holder.tvDef_PI.setText(pj.getDefensa()+"");
-        holder.tvDfm_PI.setText(pj.getDefMagico()+"");
-        holder.tvDex_PI.setText(pj.getDefensa()+"");
-        holder.tvEva_PI.setText(pj.getEvasion()+"");
-        holder.tvCrt_PI.setText(pj.getCritico()+"");
-        holder.tvAcc_PI.setText(pj.getPrecision()+"");
-
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -75,7 +66,7 @@ public class PersonajeAdapter extends RecyclerView.Adapter<PersonajeAdapter.View
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        private TextView tvVida_PI, tvNivel_PI, tvNombre_PI, tvRaza_PI, tvClase_PI, tvAtk_PI, tvAtm_PI, tvDef_PI, tvDfm_PI, tvDex_PI, tvEva_PI, tvCrt_PI, tvAcc_PI;
+        private TextView tvVida_PI, tvNivel_PI, tvNombre_PI, tvRaza_PI, tvClase_PI;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -84,15 +75,6 @@ public class PersonajeAdapter extends RecyclerView.Adapter<PersonajeAdapter.View
             this.tvNombre_PI = itemView.findViewById(R.id.tvNombre_PI);
             this.tvRaza_PI = itemView.findViewById(R.id.tvRaza_PI);
             this.tvClase_PI = itemView.findViewById(R.id.tvClase_PI);
-
-            this.tvAtk_PI = itemView.findViewById(R.id.tvAtk_PI);
-            this.tvAtm_PI = itemView.findViewById(R.id.tvAtm_PI);
-            this.tvDef_PI = itemView.findViewById(R.id.tvDef_PI);
-            this.tvDfm_PI = itemView.findViewById(R.id.tvDfm_PI);
-            this.tvDex_PI = itemView.findViewById(R.id.tvDex_PI);
-            this.tvEva_PI = itemView.findViewById(R.id.tvEva_PI);
-            this.tvCrt_PI = itemView.findViewById(R.id.tvCrt_PI);
-            this.tvAcc_PI = itemView.findViewById(R.id.tvAcc_PI);
         }
     }
 }

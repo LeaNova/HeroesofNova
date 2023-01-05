@@ -9,7 +9,9 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.leanova.heroesofnova.modelos.Clase;
 import com.leanova.heroesofnova.modelos.Genero;
+import com.leanova.heroesofnova.modelos.Grupo;
 import com.leanova.heroesofnova.modelos.Mochila;
+import com.leanova.heroesofnova.modelos.Participante;
 import com.leanova.heroesofnova.modelos.Personaje;
 import com.leanova.heroesofnova.modelos.Raza;
 import com.leanova.heroesofnova.modelos.Rol;
@@ -103,7 +105,7 @@ public class ApiRetrofit {
         @FormUrlEncoded
         @POST("usuario/login")
         Call<String> login(
-                @Field("mail") String mail,
+                @Field("usuario") String usuario,
                 @Field("pass") String pass);
 
         @GET("rol/get")
@@ -210,9 +212,9 @@ public class ApiRetrofit {
                 @Field("razaId") int razaId,
                 @Field("generoId") int generoId,
                 @Field("claseId") int claseId,
-                @Field("vida") int vida,
                 @Field("nivel") int nivel,
                 @Field("experiencia") int exp,
+                @Field("vida") int vida,
                 @Field("ataque") int atk,
                 @Field("atkMagico") int atm,
                 @Field("defensa") int def,
@@ -228,5 +230,34 @@ public class ApiRetrofit {
 
         @GET("personaje/get")
         Call<ArrayList<Personaje>> obtenerPersonajes(@Header("Authorization") String token);
+
+        //GRUPO
+        @FormUrlEncoded
+        @POST("grupo/crear")
+        Call<Grupo> crearGrupo(
+                @Field("nombre") String nombre,
+                @Field("pass") String pass,
+                @Field("descripcion") String descripcion,
+                @Field("disponible") boolean disponible,
+                @Header("Authorization") String token);
+
+        @GET("grupo/get_own")
+        Call<ArrayList<Grupo>> obtenerGrupos(@Header("Authorization") String token);
+
+        @GET("grupo/get_nombre/{nombre}")
+        Call<ArrayList<Grupo>> obtenerGrupos(
+                @Path("nombre") String nombre,
+                @Header("Authorization") String token);
+
+        //PARTICIPANTE
+        @FormUrlEncoded
+        @POST("participante/crear")
+        Call<Participante> crearParticipante(
+                @Field("grupoId") int grupoId,
+                @Field("personajeId") int personajeId,
+                @Header("Authorization") String token);
+
+        @GET("participante/get/grupos")
+        Call<ArrayList<Participante>> obtenerMisGrupos(@Header("Authorization") String token);
     }
 }

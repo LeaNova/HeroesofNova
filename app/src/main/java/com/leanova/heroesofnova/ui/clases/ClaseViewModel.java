@@ -2,6 +2,7 @@ package com.leanova.heroesofnova.ui.clases;
 
 import android.app.Application;
 import android.content.Context;
+import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
@@ -48,13 +49,13 @@ public class ClaseViewModel extends AndroidViewModel {
             public void onResponse(Call<ArrayList<Clase>> call, Response<ArrayList<Clase>> response) {
                 if(response.isSuccessful()) {
                     listaClases = response.body();
-                    mutableClases.postValue(response.body());
+                    mutableClases.postValue(listaClases);
                 }
             }
 
             @Override
             public void onFailure(Call<ArrayList<Clase>> call, Throwable t) {
-
+                Log.d("APIerror", t.getMessage());
             }
         });
     }

@@ -20,11 +20,12 @@
 
     <TextView
         android:id="@+id/textNombre"
-        android:layout_width="wrap_content"
+        android:layout_width="60dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginTop="32dp"
         android:text="Nombre: "
+        android:textAlignment="textEnd"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textTitulo" />
 
@@ -41,16 +42,17 @@
 
     <TextView
         android:id="@+id/textGenero"
-        android:layout_width="wrap_content"
+        android:layout_width="60dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
         android:text="Genero: "
+        android:textAlignment="textEnd"
         app:layout_constraintStart_toStartOf="@+id/textNombre"
         app:layout_constraintTop_toBottomOf="@+id/textNombre" />
 
     <Spinner
         android:id="@+id/spGenero_CP"
-        android:layout_width="250dp"
+        android:layout_width="280dp"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="@+id/textGenero"
         app:layout_constraintStart_toEndOf="@+id/textGenero"
@@ -58,16 +60,17 @@
 
     <TextView
         android:id="@+id/textRaza"
-        android:layout_width="wrap_content"
+        android:layout_width="60dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
         android:text="Raza: "
+        android:textAlignment="textEnd"
         app:layout_constraintStart_toStartOf="@+id/textGenero"
         app:layout_constraintTop_toBottomOf="@+id/textGenero" />
 
     <Spinner
         android:id="@+id/spRaza_CP"
-        android:layout_width="250dp"
+        android:layout_width="280dp"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="@+id/textRaza"
         app:layout_constraintStart_toEndOf="@+id/textRaza"
@@ -75,16 +78,17 @@
 
     <TextView
         android:id="@+id/textClase"
-        android:layout_width="wrap_content"
+        android:layout_width="60dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
         android:text="Clase: "
+        android:textAlignment="textEnd"
         app:layout_constraintStart_toStartOf="@+id/textRaza"
         app:layout_constraintTop_toBottomOf="@+id/textRaza" />
 
     <Spinner
         android:id="@+id/spClase_CP"
-        android:layout_width="250dp"
+        android:layout_width="280dp"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="@+id/textClase"
         app:layout_constraintStart_toEndOf="@+id/textClase"
@@ -92,10 +96,11 @@
 
     <TextView
         android:id="@+id/textVida"
-        android:layout_width="wrap_content"
+        android:layout_width="60dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
         android:text="Vida: "
+        android:textAlignment="textEnd"
         app:layout_constraintStart_toStartOf="@+id/textClase"
         app:layout_constraintTop_toBottomOf="@+id/textClase" />
 
@@ -407,7 +412,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_begin="203dp" />
+        app:layout_constraintGuide_begin="205dp" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline6"
