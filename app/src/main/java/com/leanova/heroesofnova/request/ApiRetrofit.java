@@ -48,8 +48,6 @@ public class ApiRetrofit {
     private static ServiceApi serviceApi;
 
     public static ServiceApi getServiceApi() {
-        Date dateF = new Date();
-
         Gson gson = new GsonBuilder()
                 .setDateFormat("yyyy-MM-dd'T'HH:mm:ss")
                 .setLenient()
@@ -70,25 +68,6 @@ public class ApiRetrofit {
         PATH = "http://" + ip + ":5000/";
     }
     */
-    /*
-    public static void setIP(Context context) {
-        List<InetAddress> addrs;
-        String address = "";
-        try{
-            List<NetworkInterface> interfaces = Collections.list(NetworkInterface.getNetworkInterfaces());
-            for(NetworkInterface intf : interfaces){
-                addrs = Collections.list(intf.getInetAddresses());
-                for(InetAddress addr : addrs){
-                    if(!addr.isLoopbackAddress() && addr instanceof Inet4Address){
-                        address = addr.getHostAddress().toUpperCase();
-                    }
-                }
-            }
-        }catch (Exception e){
-            Log.d("error", e.getMessage());
-        }
-        //PATH = "http://" + address + ":5000/";
-    }*/
 
     public static String obtenerIP() {
         return PATH;
@@ -144,6 +123,30 @@ public class ApiRetrofit {
                 @Field("nombre") String nombre,
                 @Field("descripcion") String descripcion,
                 @Field("vidaBase") int vidaBase,
+                @Field("energiaBase") int energiaBase,
+                @Field("baseAtk") int baseAtk,
+                @Field("baseAtm") int baseAtm,
+                @Field("baseDef") int baseDef,
+                @Field("baseDfm") int baseDfm,
+                @Field("baseDex") int baseDex,
+                @Field("baseEva") int baseEva,
+                @Field("baseCrt") int baseCrt,
+                @Field("baseAcc") int baseAcc,
+                @Header("Authorization") String token);
+
+        @DELETE("raza/borrar/{id}")
+        Call<ResponseBody> borrarRaza(
+                @Path("id") int id,
+                @Header("Authorization") String token);
+
+        @FormUrlEncoded
+        @POST("raza/modificar/{id}")
+        Call<Raza> editarRaza(
+                @Path("id") int id,
+                @Field("nombre") String nombre,
+                @Field("descripcion") String descripcion,
+                @Field("vidaBase") int vidaBase,
+                @Field("energiaBase") int energiaBase,
                 @Field("baseAtk") int baseAtk,
                 @Field("baseAtm") int baseAtm,
                 @Field("baseDef") int baseDef,
@@ -157,8 +160,8 @@ public class ApiRetrofit {
         @GET("raza/get")
         Call<ArrayList<Raza>> obtenerRazas(@Header("Authorization") String token);
 
-        @DELETE("raza/borrar/{id}")
-        Call<ResponseBody> borrarRaza(
+        @GET("raza/get/{id}")
+        Call<Raza> obtenerRaza(
                 @Path("id") int id,
                 @Header("Authorization") String token);
 
@@ -167,8 +170,8 @@ public class ApiRetrofit {
         @POST("clase/crear")
         Call<Clase> crearClase(
                 @Field("nombre") String nombre,
-                @Field("descripcion") String descripcion,
                 @Field("modVida") float modVida,
+                @Field("modEnergia") float modEnergia,
                 @Field("modAtk") float modAtk,
                 @Field("modAtm") float modAtm,
                 @Field("modDef") float modDef,
@@ -177,13 +180,37 @@ public class ApiRetrofit {
                 @Field("modEva") float modEva,
                 @Field("modCrt") float modCrt,
                 @Field("modAcc") float modAcc,
+                @Field("descripcion") String descripcion,
+                @Header("Authorization") String token);
+
+        @DELETE("clase/borrar/{id}")
+        Call<ResponseBody> borrarClase(
+                @Path("id") int id,
+                @Header("Authorization") String token);
+
+        @FormUrlEncoded
+        @POST("clase/modificar/{id}")
+        Call<Clase> editarClase(
+                @Path("id") int id,
+                @Field("nombre") String nombre,
+                @Field("modVida") float modVida,
+                @Field("modEnergia") float modEnergia,
+                @Field("modAtk") float modAtk,
+                @Field("modAtm") float modAtm,
+                @Field("modDef") float modDef,
+                @Field("modDfm") float modDfm,
+                @Field("modDex") float modDex,
+                @Field("modEva") float modEva,
+                @Field("modCrt") float modCrt,
+                @Field("modAcc") float modAcc,
+                @Field("descripcion") String descripcion,
                 @Header("Authorization") String token);
 
         @GET("clase/get")
         Call<ArrayList<Clase>> obtenerClases(@Header("Authorization") String token);
 
-        @DELETE("clase/borrar/{id}")
-        Call<ResponseBody> borrarClase(
+        @GET("clase/get/{id}")
+        Call<Clase> obtenerClase(
                 @Path("id") int id,
                 @Header("Authorization") String token);
 
@@ -192,15 +219,29 @@ public class ApiRetrofit {
         @POST("mochila/crear")
         Call<Mochila> crearMochila(
                 @Field("nombre") String nombre,
-                @Field("descripcion") String descripcion,
                 @Field("pesoMax") int pesoMax,
+                @Field("descripcion") String descripcion,
+                @Header("Authorization") String token);
+
+        @DELETE("mochila/borrar/{id}")
+        Call<ResponseBody> borrarMochila(
+                @Path("id") int id,
+                @Header("Authorization") String token);
+
+        @FormUrlEncoded
+        @POST("mochila/modificar/{id}")
+        Call<Mochila> editarMochila(
+                @Path("id") int id,
+                @Field("nombre") String nombre,
+                @Field("pesoMax") int pesoMax,
+                @Field("descripcion") String descripcion,
                 @Header("Authorization") String token);
 
         @GET("mochila/get")
         Call<ArrayList<Mochila>> obtenerMochilas(@Header("Authorization") String token);
 
-        @DELETE("mochila/borrar/{id}")
-        Call<ResponseBody> borrarMochila(
+        @GET("mochila/get/{id}")
+        Call<Mochila> obtenerMochila(
                 @Path("id") int id,
                 @Header("Authorization") String token);
 
@@ -215,6 +256,7 @@ public class ApiRetrofit {
                 @Field("nivel") int nivel,
                 @Field("experiencia") int exp,
                 @Field("vida") int vida,
+                @Field("energia") int energia,
                 @Field("ataque") int atk,
                 @Field("atkMagico") int atm,
                 @Field("defensa") int def,
@@ -236,9 +278,34 @@ public class ApiRetrofit {
         @POST("grupo/crear")
         Call<Grupo> crearGrupo(
                 @Field("nombre") String nombre,
-                @Field("pass") String pass,
                 @Field("descripcion") String descripcion,
+                @Field("pass") String pass,
                 @Field("disponible") boolean disponible,
+                @Header("Authorization") String token);
+
+        @FormUrlEncoded
+        @POST("grupo/modificar/{id}")
+        Call<Grupo> editarGrupo(
+                @Path("id") int id,
+                @Field("nombre") String nombre,
+                @Field("descripcion") String descripcion,
+                @Field("pass") String pass,
+                @Field("disponible") boolean disponible,
+                @Header("Authorization") String token);
+
+        @DELETE("grupo/borrar/{id}")
+        Call<ResponseBody> borrarGrupo(
+                @Path("id") int id,
+                @Header("Authorization") String token);
+
+        @POST("grupo/baja/{id}")
+        Call<Grupo> bajaGrupo(
+                @Path("id") int id,
+                @Header("Authorization") String token);
+
+        @GET("grupo/get/{id}")
+        Call<Grupo> obtenerId(
+                @Path("id") int id,
                 @Header("Authorization") String token);
 
         @GET("grupo/get_own")
@@ -257,7 +324,17 @@ public class ApiRetrofit {
                 @Field("personajeId") int personajeId,
                 @Header("Authorization") String token);
 
+        @DELETE("participante/borrar/grupo={grupoId}")
+        Call<ResponseBody> salirGrupo(
+                @Path("grupoId") int grupoId,
+                @Header("Authorization") String token);
+
         @GET("participante/get/grupos")
         Call<ArrayList<Participante>> obtenerMisGrupos(@Header("Authorization") String token);
+
+        @GET("participante/get/grupo/{id}")
+        Call<ArrayList<Participante>> obtenerParticipantes(
+                @Path("id") int id,
+                @Header("Authorization") String token);
     }
 }

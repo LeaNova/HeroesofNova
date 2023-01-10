@@ -41,12 +41,18 @@ public class ClaseFragment extends Fragment {
         cvm.getMutableClases().observe(getViewLifecycleOwner(), new Observer<ArrayList<Clase>>() {
             @Override
             public void onChanged(ArrayList<Clase> clases) {
-                ClaseAdapter ca = new ClaseAdapter(getContext(), R.layout.clase_item, clases);
+                ClaseAdapter ca = new ClaseAdapter(getContext(), R.layout.item_clase, clases);
                 lvClase_C.setAdapter(ca);
             }
         });
-
         cvm.obtenerClases();
+        cvm.getMutableAccess().observe(getViewLifecycleOwner(), new Observer<Integer>() {
+            @Override
+            public void onChanged(Integer integer) {
+                btNuevo_C.setVisibility(integer);
+            }
+        });
+        cvm.setAccess();
 
         return root;
     }

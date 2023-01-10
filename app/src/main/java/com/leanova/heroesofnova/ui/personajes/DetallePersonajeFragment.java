@@ -25,7 +25,7 @@ public class DetallePersonajeFragment extends Fragment {
     private DetallePersonajeViewModel dpvm;
 
     private Personaje personaje;
-    private TextView tvNombre_DP, tvRaza_DP, tvClase_DP, tvVida_DP, tvNivel_DP, tvExp_DP, tvAtk_DP, tvAtm_DP, tvDef_DP, tvDfm_DP, tvDex_DP, tvEva_DP, tvCrt_DP, tvAcc_DP, tvAviso_DP;
+    private TextView tvNombre_DP, tvRaza_DP, tvClase_DP, tvVida_DP, tvEnergia_DP, tvNivel_DP, tvExp_DP, tvAtk_DP, tvAtm_DP, tvDef_DP, tvDfm_DP, tvDex_DP, tvEva_DP, tvCrt_DP, tvAcc_DP, tvAviso_DP;
     private Button btJugar_DP;
 
     @Override
@@ -44,6 +44,7 @@ public class DetallePersonajeFragment extends Fragment {
                 tvRaza_DP.setText(personaje.getRaza().getNombre());
                 tvClase_DP.setText(personaje.getClase().getNombre());
                 tvVida_DP.setText(personaje.getVida()+"");
+                tvEnergia_DP.setText(personaje.getEnergia()+"");
                 tvNivel_DP.setText(personaje.getNivel()+"");
                 tvExp_DP.setText(personaje.getExperiencia()+"/"+personaje.getNextExp());
 
@@ -52,9 +53,9 @@ public class DetallePersonajeFragment extends Fragment {
                 tvDef_DP.setText(personaje.getDefensa()+"");
                 tvDfm_DP.setText(personaje.getDefMagico()+"");
                 tvDex_DP.setText(personaje.getAgilidad()+"");
-                tvEva_DP.setText(personaje.getEvasion()+"");
-                tvCrt_DP.setText(personaje.getCritico()+"");
-                tvAcc_DP.setText(personaje.getPrecision()+"");
+                tvEva_DP.setText(personaje.getEvasion()+"%");
+                tvCrt_DP.setText(personaje.getCritico()+"%");
+                tvAcc_DP.setText(personaje.getPrecision()+"%");
             }
         });
         dpvm.obtenerPersonaje(getArguments());
@@ -69,6 +70,7 @@ public class DetallePersonajeFragment extends Fragment {
         this.tvRaza_DP = v.findViewById(R.id.tvRaza_DP);
         this.tvClase_DP = v.findViewById(R.id.tvClase_DP);
         this.tvVida_DP = v.findViewById(R.id.tvVida_DP);
+        this.tvEnergia_DP = v.findViewById(R.id.tvEnergia_DP);
         this.tvNivel_DP = v.findViewById(R.id.tvNivel_DP);
         this.tvExp_DP = v.findViewById(R.id.tvExp_DP);
         this.tvAtk_DP = v.findViewById(R.id.tvAtk_DP);

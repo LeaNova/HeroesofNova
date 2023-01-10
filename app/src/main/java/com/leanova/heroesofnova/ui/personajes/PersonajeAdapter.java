@@ -32,29 +32,29 @@ public class PersonajeAdapter extends RecyclerView.Adapter<PersonajeAdapter.View
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = lInflater.inflate(R.layout.personaje_item, parent, false);
+        View view = lInflater.inflate(R.layout.item_personaje, parent, false);
 
         return new ViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        Personaje pj = lista.get(position);
+        Personaje p = lista.get(position);
 
-        Raza raza = pj.getRaza();
-        Clase clase = pj.getClase();
+        Raza raza = p.getRaza();
+        Clase clase = p.getClase();
 
-        holder.tvVida_PI.setText(pj.getVida()+"");
-        holder.tvNivel_PI.setText(pj.getNivel()+"");
-        holder.tvNombre_PI.setText(pj.getNombre());
+        holder.tvNombre_PI.setText(p.getNombre());
         holder.tvRaza_PI.setText(raza.getNombre());
         holder.tvClase_PI.setText(clase.getNombre());
+        holder.tvVida_PI.setText(p.getVida()+"");
+        holder.tvNivel_PI.setText(p.getNivel()+"");
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Bundle bPersonaje = new Bundle();
-                bPersonaje.putSerializable("personaje", pj);
+                bPersonaje.putSerializable("personaje", p);
                 Navigation.findNavController(view).navigate(R.id.detallePersonajeFragment, bPersonaje);
             }
         });
@@ -66,15 +66,15 @@ public class PersonajeAdapter extends RecyclerView.Adapter<PersonajeAdapter.View
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        private TextView tvVida_PI, tvNivel_PI, tvNombre_PI, tvRaza_PI, tvClase_PI;
+        private TextView tvNombre_PI, tvRaza_PI, tvClase_PI, tvVida_PI, tvNivel_PI;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            this.tvVida_PI = itemView.findViewById(R.id.tvVida_PI);
-            this.tvNivel_PI = itemView.findViewById(R.id.tvNivel_PI);
             this.tvNombre_PI = itemView.findViewById(R.id.tvNombre_PI);
             this.tvRaza_PI = itemView.findViewById(R.id.tvRaza_PI);
             this.tvClase_PI = itemView.findViewById(R.id.tvClase_PI);
+            this.tvVida_PI = itemView.findViewById(R.id.tvVida_PI);
+            this.tvNivel_PI = itemView.findViewById(R.id.tvNivel_PI);
         }
     }
 }

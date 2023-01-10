@@ -20,21 +20,23 @@ import retrofit2.Response;
 
 public class BuscarGrupoViewModel extends AndroidViewModel {
     private Context context;
-    private MutableLiveData<ArrayList<Grupo>> mutableListaGrupos;
+    private ArrayList<Grupo> listaGrupos;
+    private MutableLiveData<ArrayList<Grupo>> mutableGrupos;
     private MutableLiveData<String> mutableAviso;
     private MutableLiveData<Integer> mutableShow;
 
     public BuscarGrupoViewModel(@NonNull Application application) {
         super(application);
         this.context = application.getApplicationContext();
+        this.listaGrupos = new ArrayList<>();
     }
 
-    //Mutables
-    public LiveData<ArrayList<Grupo>> getMutableListaGrupos() {
-        if(mutableListaGrupos == null) {
-            mutableListaGrupos = new MutableLiveData<>();
+    //MUTABLES
+    public LiveData<ArrayList<Grupo>> getMutableGrupos() {
+        if(mutableGrupos == null) {
+            mutableGrupos = new MutableLiveData<>();
         }
-        return mutableListaGrupos;
+        return mutableGrupos;
     }
 
     public LiveData<String> getMutableAviso() {
@@ -51,10 +53,9 @@ public class BuscarGrupoViewModel extends AndroidViewModel {
         return mutableShow;
     }
 
-    //Funciones
-    public void setAviso() {
-        mutableAviso.setValue("Introduce el nombre del grupo seguido preciona \"Buscar\".");
-        mutableShow.setValue(0);
+    //FUNCIONES
+    public ArrayList<Grupo> getListaGrupos() {
+        return listaGrupos;
     }
 
     public void obtenerGrupos(String nombre) {
@@ -65,15 +66,15 @@ public class BuscarGrupoViewModel extends AndroidViewModel {
             @Override
             public void onResponse(Call<ArrayList<Grupo>> call, Response<ArrayList<Grupo>> response) {
                 if(response.isSuccessful()) {
-                    ArrayList<Grupo> listaGrupos = response.body();
-                    if(listaGrupos.size() > 0) {
-                        mutableListaGrupos.postValue(listaGrupos);
-                        mutableAviso.postValue("");
-                        mutableShow.postValue(8);
-                    } else {
-                        mutableAviso.postValue("No se encontraron grupos.");
-                        mutableShow.postValue(0);
-                    }
+                    listaGrupos = response.body();
+                    mutableGrupos.postValue(listaGrupos);
+                    mutableAviso.postValue("");
+                    mutableShow.postValue(8);
+                } else {
+                    listaGrupos = new ArrayList<>();
+                    mutableGrupos.postValue(listaGrupos);
+                    mutableAviso.postValue("No se encontraron grupos.");
+                    mutableShow.postValue(0);
                 }
             }
 

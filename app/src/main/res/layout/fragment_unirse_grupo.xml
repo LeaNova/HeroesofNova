@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.grupos.UnirseGrupoFragment" >
+
+    <TextView
+        android:id="@+id/tvNombre_UG"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="[nombre]"
+        android:textAlignment="center"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textMaster_UG"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="32dp"
+        android:text="Master: "
+        android:textAlignment="textEnd"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvNombre_UG" />
+
+    <TextView
+        android:id="@+id/tvMaster_UG"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="[master]"
+        android:textAlignment="textEnd"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@+id/textMaster_UG"
+        app:layout_constraintStart_toEndOf="@+id/textMaster_UG" />
+
+    <TextView
+        android:id="@+id/textContrasenia"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="Contraseña: "
+        android:textAlignment="textEnd"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="@+id/textMaster_UG"
+        app:layout_constraintTop_toBottomOf="@+id/textMaster_UG" />
+
+    <EditText
+        android:id="@+id/etContrasenia_UG"
+        android:layout_width="230dp"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        app:layout_constraintBottom_toBottomOf="@+id/textContrasenia"
+        app:layout_constraintStart_toEndOf="@+id/textContrasenia"
+        app:layout_constraintTop_toTopOf="@+id/textContrasenia" />
+
+    <TextView
+        android:id="@+id/textPersonaje"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="Personaje: "
+        android:textAlignment="textEnd"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="@+id/textContrasenia"
+        app:layout_constraintTop_toBottomOf="@+id/textContrasenia" />
+
+    <Spinner
+        android:id="@+id/spPersonajes_UG"
+        android:layout_width="230dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@+id/textPersonaje"
+        app:layout_constraintStart_toEndOf="@+id/textPersonaje"
+        app:layout_constraintTop_toTopOf="@+id/textPersonaje" />
+
+    <TextView
+        android:id="@+id/tvAviso_UG"
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text=""
+        android:textColor="#FF0000"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textPersonaje" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="650dp" />
+
+    <Button
+        android:id="@+id/btUnirse_UC"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Unirse"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/guideline5" />
+</androidx.constraintlayout.widget.ConstraintLayout>

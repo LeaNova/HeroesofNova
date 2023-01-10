@@ -41,11 +41,18 @@ public class MochilaFragment extends Fragment {
         mvm.getMutableMochilas().observe(getViewLifecycleOwner(), new Observer<ArrayList<Mochila>>() {
             @Override
             public void onChanged(ArrayList<Mochila> mochilas) {
-                MochilaAdapter ma = new MochilaAdapter(getContext(), R.layout.mochila_item, mochilas);
+                MochilaAdapter ma = new MochilaAdapter(getContext(), R.layout.item_mochila, mochilas);
                 lvMochila_M.setAdapter(ma);
             }
         });
         mvm.obtenerMochilas();
+        mvm.getMutableAccess().observe(getViewLifecycleOwner(), new Observer<Integer>() {
+            @Override
+            public void onChanged(Integer integer) {
+                btNuevo_M.setVisibility(integer);
+            }
+        });
+        mvm.setAccess();
 
         return root;
     }

@@ -69,12 +69,12 @@
 
     <TextView
         android:id="@+id/textVida"
-        android:layout_width="125dp"
+        android:layout_width="140dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
+        android:layout_marginTop="24dp"
         android:text="Modificador vida: "
         android:textAlignment="textEnd"
-        app:layout_constraintBottom_toTopOf="@+id/guideline2"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/guideline1" />
 
@@ -89,19 +89,40 @@
         app:layout_constraintStart_toEndOf="@+id/textVida"
         app:layout_constraintTop_toTopOf="@+id/textVida" />
 
+    <TextView
+        android:id="@+id/textModEnergia"
+        android:layout_width="140dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="Modificador energía: "
+        android:textAlignment="textEnd"
+        app:layout_constraintStart_toStartOf="@+id/textVida"
+        app:layout_constraintTop_toBottomOf="@+id/textVida" />
+
+    <EditText
+        android:id="@+id/etEnergia_CC"
+        android:layout_width="50dp"
+        android:layout_height="52dp"
+        android:ems="10"
+        android:inputType="numberDecimal"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toBottomOf="@+id/textModEnergia"
+        app:layout_constraintStart_toEndOf="@+id/textModEnergia"
+        app:layout_constraintTop_toTopOf="@+id/textModEnergia" />
+
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_begin="246dp" />
+        app:layout_constraintGuide_begin="295dp" />
 
     <TextView
         android:id="@+id/textAtk"
         android:layout_width="125dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="24dp"
         android:text="Modificador ATK: "
         android:textAlignment="textEnd"
         app:layout_constraintStart_toStartOf="parent"
@@ -193,7 +214,7 @@
         android:layout_width="125dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="24dp"
         android:text="Modificador DEX: "
         android:textAlignment="textEnd"
         app:layout_constraintStart_toStartOf="@+id/guideline3"
@@ -278,7 +299,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_begin="485dp" />
+        app:layout_constraintGuide_begin="520dp" />
 
     <TextView
         android:id="@+id/tvAviso_CC"
@@ -299,7 +320,7 @@
         app:layout_constraintGuide_begin="650dp" />
 
     <Button
-        android:id="@+id/btCrear_CC"
+        android:id="@+id/btCrearActualizar_CC"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Crear"

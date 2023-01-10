@@ -19,14 +19,15 @@ import android.widget.TextView;
 
 import com.leanova.heroesofnova.R;
 import com.leanova.heroesofnova.databinding.FragmentCrearMochilaBinding;
+import com.leanova.heroesofnova.modelos.Mochila;
 
 public class CrearMochilaFragment extends Fragment {
     private FragmentCrearMochilaBinding binding;
     private CrearMochilaViewModel cmvm;
 
-    private EditText etNombre_CM, etDescripcion_CM, etPesoMax_CM;
+    private EditText etNombre_CM, etPesoMax_CM, etDescripcion_CM;
     private TextView tvAviso_CM;
-    private Button btCrear_CM;
+    private Button btCrearActualizar_CM;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -34,9 +35,19 @@ public class CrearMochilaFragment extends Fragment {
         View root = binding.getRoot();
 
         cmvm = new ViewModelProvider(this).get(CrearMochilaViewModel.class);
+        cmvm.getMutableMochila().observe(getViewLifecycleOwner(), new Observer<Mochila>() {
+            @Override
+            public void onChanged(Mochila mochila) {
+                etNombre_CM.setText(mochila.getNombre());
+                etPesoMax_CM.setText(mochila.getPesoMax()+"");
+                etDescripcion_CM.setText(mochila.getDescripcion());
+
+                btCrearActualizar_CM.setText("Actualizar");
+            }
+        });
+        cmvm.getMochila(getArguments());
 
         inicializarVista(root);
-
         cmvm.getMutableAviso().observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override
             public void onChanged(String s) {
@@ -47,8 +58,8 @@ public class CrearMochilaFragment extends Fragment {
             @Override
             public void onChanged(String s) {
                 etNombre_CM.setText(s);
-                etDescripcion_CM.setText(s);
                 etPesoMax_CM.setText(s);
+                etDescripcion_CM.setText(s);
                 tvAviso_CM.setText(s);
             }
         });
@@ -58,21 +69,22 @@ public class CrearMochilaFragment extends Fragment {
 
     private void inicializarVista(View v) {
         this.etNombre_CM = v.findViewById(R.id.etNombre_CM);
-        this.etDescripcion_CM = v.findViewById(R.id.etDescripcion_CM);
         this.etPesoMax_CM = v.findViewById(R.id.etPesoMax_CM);
+        this.etDescripcion_CM = v.findViewById(R.id.etDescripcion_CM);
         this.tvAviso_CM = v.findViewById(R.id.tvAviso_CM);
 
-        this.btCrear_CM = v.findViewById(R.id.btCrear_CM);
-        this.btCrear_CM.setOnClickListener(new View.OnClickListener() {
+        this.btCrearActualizar_CM = v.findViewById(R.id.btCrearActualizar_CM);
+        this.btCrearActualizar_CM.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 try {
+                    String accion = btCrearActualizar_CM.getText().toString();
                     String nombre = etNombre_CM.getText().toString();
                     String descripcion = etDescripcion_CM.getText().toString();
 
                     int pesoMax = Integer.parseInt(etPesoMax_CM.getText().toString());
 
-                    cmvm.crearMochila(nombre, descripcion, pesoMax);
+                    cmvm.tomarAccion(accion, nombre, pesoMax, descripcion);
                 } catch (NumberFormatException ex) {
                     cmvm.getAviso();
                 } catch (Exception ex) {

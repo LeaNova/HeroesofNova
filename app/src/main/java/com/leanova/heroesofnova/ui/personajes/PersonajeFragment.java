@@ -27,9 +27,9 @@ public class PersonajeFragment extends Fragment {
     private PersonajeViewModel pvm;
     private PersonajeValues pv;
 
-    private RecyclerView rvPersonajes_PJ;
-    private TextView tvAviso_PJ;
-    private Button btNuevo_PJ;
+    private RecyclerView rvPersonajes_P;
+    private TextView tvAviso_P;
+    private Button btNuevo_P;
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         binding = FragmentPersonajeBinding.inflate(inflater, container, false);
@@ -39,18 +39,24 @@ public class PersonajeFragment extends Fragment {
         pvm = new ViewModelProvider(this).get(PersonajeViewModel.class);
 
         inicializarVista(root);
-        pvm.getMutablePersonajes().observe(getViewLifecycleOwner(), new Observer<ArrayList<Personaje>>() {
+        pvm.getMutableShow().observe(getViewLifecycleOwner(), new Observer<Integer>() {
             @Override
-            public void onChanged(ArrayList<Personaje> personajes) {
-                PersonajeAdapter pa = new PersonajeAdapter(getContext(), getLayoutInflater(), personajes);
-                rvPersonajes_PJ.setAdapter(pa);
+            public void onChanged(Integer integer) {
+                tvAviso_P.setVisibility(integer);
             }
         });
         pvm.getMutableAviso().observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override
             public void onChanged(String s) {
-                tvAviso_PJ.setVisibility(View.VISIBLE);
-                tvAviso_PJ.setText(s);
+                tvAviso_P.setVisibility(View.VISIBLE);
+                tvAviso_P.setText(s);
+            }
+        });
+        pvm.getMutablePersonajes().observe(getViewLifecycleOwner(), new Observer<ArrayList<Personaje>>() {
+            @Override
+            public void onChanged(ArrayList<Personaje> personajes) {
+                PersonajeAdapter pa = new PersonajeAdapter(getContext(), getLayoutInflater(), personajes);
+                rvPersonajes_P.setAdapter(pa);
             }
         });
         pvm.obtenerPersonajes();
@@ -65,16 +71,16 @@ public class PersonajeFragment extends Fragment {
     }
 
     public void inicializarVista(View v) {
-        this.rvPersonajes_PJ = v.findViewById(R.id.rvPersonajes_PJ);
+        this.rvPersonajes_P = v.findViewById(R.id.rvPersonajes_P);
         GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(), 1, GridLayoutManager.VERTICAL, false);
-        this.rvPersonajes_PJ.setLayoutManager(gridLayoutManager);
+        this.rvPersonajes_P.setLayoutManager(gridLayoutManager);
 
-        this.tvAviso_PJ = v.findViewById(R.id.tvAviso_PJ);
-        this.tvAviso_PJ.setText("");
-        this.tvAviso_PJ.setVisibility(View.GONE);
+        this.tvAviso_P = v.findViewById(R.id.tvAviso_P);
+        this.tvAviso_P.setText("");
+        this.tvAviso_P.setVisibility(View.GONE);
 
-        this.btNuevo_PJ = v.findViewById(R.id.btNuevo_PJ);
-        this.btNuevo_PJ.setOnClickListener(new View.OnClickListener() {
+        this.btNuevo_P = v.findViewById(R.id.btNuevo_P);
+        this.btNuevo_P.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Navigation.findNavController(view).navigate(R.id.crearPersonajeFragment);

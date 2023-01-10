@@ -14,6 +14,7 @@ public class Personaje implements Serializable {
     private int nivel;
     private int experiencia;
     private int vida;
+    private int energia;
     //Estadisticas
     private int ataque;
     private int atkMagico;
@@ -36,6 +37,7 @@ public class Personaje implements Serializable {
     private Mochila mochila;
     //OTROS
     private int vidaAct;
+    private int energiaAct;
     private int nextExp;
 
     public Personaje() { }
@@ -48,6 +50,7 @@ public class Personaje implements Serializable {
                      int nivel,
                      int experiencia,
                      int vida,
+                     int energia,
                      int ataque,
                      int atkMagico,
                      int defensa,
@@ -73,6 +76,7 @@ public class Personaje implements Serializable {
         this.nivel = nivel;
         this.experiencia = experiencia;
         this.vida = vida;
+        this.energia = energia;
         this.ataque = ataque;
         this.atkMagico = atkMagico;
         this.defensa = defensa;
@@ -162,6 +166,14 @@ public class Personaje implements Serializable {
 
     public void setVida(int vida) {
         this.vida = vida;
+    }
+
+    public int getEnergia() {
+        return energia;
+    }
+
+    public void setEnergia(int energia) {
+        this.energia = energia;
     }
 
     public int getAtaque() {
@@ -308,6 +320,14 @@ public class Personaje implements Serializable {
         this.vidaAct = vida;
     }
 
+    public int getEnergiaAct() {
+        return energiaAct;
+    }
+
+    public void setEnergiaAct() {
+        this.energiaAct = energia;
+    }
+
     public int getNextExp() {
         return nextExp;
     }
@@ -319,6 +339,7 @@ public class Personaje implements Serializable {
     /*******___Funciones___*******/
     public void setGame() {
         setVidaAct();
+        setEnergiaAct();
         setNextExp();
     }
     /*Funciones para subir nivel*/
@@ -336,19 +357,21 @@ public class Personaje implements Serializable {
             setNextExp();
 
             if(nivel % 3 == 0) {
-                ataque = (int) Math.round(ataque * clase.getModAtk());
-                atkMagico = (int) Math.round(atkMagico * clase.getModAtm());
-                defensa = (int) Math.round(defensa * clase.getModDef());
-                defMagico = (int) Math.round(defMagico * clase.getModDfm());
-                agilidad = (int) Math.round(agilidad * clase.getModDex());
-                evasion = (int) Math.round(evasion * clase.getModEva());
-                critico = (int) Math.round(critico * clase.getModCrt());
-                precision = (int) Math.round(precision * clase.getModAcc());
+                ataque = Math.round(ataque * clase.getModAtk());
+                atkMagico = Math.round(atkMagico * clase.getModAtm());
+                defensa = Math.round(defensa * clase.getModDef());
+                defMagico = Math.round(defMagico * clase.getModDfm());
+                agilidad = Math.round(agilidad * clase.getModDex());
+                evasion = Math.round(evasion * clase.getModEva());
+                critico = Math.round(critico * clase.getModCrt());
+                precision = Math.round(precision * clase.getModAcc());
             }
 
             if((nivel+1) % 3 == 0) {
-                vida = (int) Math.round(clase.getModVida() * vida);
+                vida = Math.round(clase.getModVida() * vida);
+                energia = Math.round(clase.getModEnergia() * energia);
                 setVidaAct();
+                setEnergiaAct();
             }
         }
     }
@@ -371,7 +394,7 @@ public class Personaje implements Serializable {
     /*Funciones de Vida*/
     public void recibirDanioFisico(int danio) {
         if(vidaAct > 0) {
-            int danioT = (int) danio - Math.round(defensa * 0.5f);
+            int danioT = danio - Math.round(defensa * 0.5f);
             if(danioT > 0) {
                 vidaAct -= danioT;
             }
@@ -384,7 +407,7 @@ public class Personaje implements Serializable {
 
     public void recibirDanioMagico(int danio) {
         if(vidaAct > 0) {
-            int danioT = (int) danio - Math.round(defMagico * 0.5f);
+            int danioT = danio - Math.round(defMagico * 0.5f);
             if(danioT > 0) {
                 vidaAct -= danioT;
             }
@@ -405,6 +428,16 @@ public class Personaje implements Serializable {
         }
     }
 
+    public void recuperarEnergia(int gain) {
+        if(vidaAct < vida) {
+            vidaAct += gain;
+
+            if (vidaAct > vida) {
+                vidaAct = vida;
+            }
+        }
+    }
+
     /*Funciones de Ataque*/
     /*
     public int atacar() {
@@ -413,4 +446,9 @@ public class Personaje implements Serializable {
         int danio = (int) Math.round(atk * dadoR);
     }
     */
+
+    @Override
+    public String toString() {
+        return nombre + " - Nivel" + nivel;
+    }
 }

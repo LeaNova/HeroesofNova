@@ -10,19 +10,20 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
 import com.leanova.heroesofnova.modelos.Personaje;
+import com.leanova.heroesofnova.request.ApiRetrofit;
 
 public class JugarViewModel extends AndroidViewModel {
     private Context context;
     private Personaje personaje;
     private MutableLiveData<Personaje> mutablePersonaje;
     private MutableLiveData<String> mutableClean;
-    private MutableLiveData<Integer> mutableDanio;
 
     public JugarViewModel(@NonNull Application application) {
         super(application);
         this.context = application.getApplicationContext();
     }
 
+    //MUTABLES
     public LiveData<Personaje> getMutablePersonaje() {
         if(mutablePersonaje == null) {
             mutablePersonaje = new MutableLiveData<>();
@@ -37,20 +38,23 @@ public class JugarViewModel extends AndroidViewModel {
         return mutableClean;
     }
 
-    public LiveData<Integer> getMutableDanio() {
-        if(mutableDanio == null) {
-            mutableDanio = new MutableLiveData<>();
-        }
-        return mutableDanio;
-    }
-
+    //FUNCIONES
     public void obtenerPersonaje(Bundle bPersonaje) {
         Personaje p = (Personaje) bPersonaje.getSerializable("jugar");
         personaje = p;
         mutablePersonaje.setValue(personaje);
     }
 
-    public void getDanio(int danio, String opcion) {
+    public void recuperar(int total, String opcion) {
+        if(opcion.equals("Vida")) {
+            personaje.recuperarVida(total);
+        } else {
+            personaje.recuperarEnergia(total);
+        }
+        actualizar();
+    }
+
+    public void recibirDanio(int danio, String opcion) {
         if(opcion.equals("Fisico")) {
             personaje.recibirDanioFisico(danio);
         } else {
@@ -59,10 +63,15 @@ public class JugarViewModel extends AndroidViewModel {
         actualizar();
     }
 
-    public void getCura(int cura) {
-        personaje.recuperarVida(cura);
+    /*
+    public void hacerDanio(int danio, String opcion) {
+        if(opcion.equals("Fisico")) {
+            personaje.recibirDanioFisico(danio);
+        } else {
+            personaje.recibirDanioMagico(danio);
+        }
         actualizar();
-    }
+    }*/
 
     public void getExp(int exp) {
         personaje.subirExp(exp);
@@ -72,5 +81,9 @@ public class JugarViewModel extends AndroidViewModel {
     private void actualizar() {
         mutablePersonaje.setValue(personaje);
         mutableClean.setValue("");
+    }
+
+    public void finalizar() {
+        String token = ApiRetrofit.obtenerToken(context);
     }
 }

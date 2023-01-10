@@ -19,14 +19,15 @@ import android.widget.TextView;
 
 import com.leanova.heroesofnova.R;
 import com.leanova.heroesofnova.databinding.FragmentCrearClaseBinding;
+import com.leanova.heroesofnova.modelos.Clase;
 
 public class CrearClaseFragment extends Fragment {
     private FragmentCrearClaseBinding binding;
     private CrearClaseViewModel ccvm;
 
-    private EditText etNombre_CC, etDescripcion_CC, etVida_CC, etAtk_CC, etAtm_CC, etDef_CC, etDfm_CC, etDex_CC, etEva_CC, etCrt_CC, etAcc_CC;
+    private EditText etNombre_CC, etVida_CC, etEnergia_CC, etAtk_CC, etAtm_CC, etDef_CC, etDfm_CC, etDex_CC, etEva_CC, etCrt_CC, etAcc_CC, etDescripcion_CC;
     private TextView tvAviso_CC;
-    private Button btCrear_CC;
+    private Button btCrearActualizar_CC;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -34,9 +35,28 @@ public class CrearClaseFragment extends Fragment {
         View root = binding.getRoot();
 
         ccvm = new ViewModelProvider(this).get(CrearClaseViewModel.class);
+        ccvm.getMutableClase().observe(getViewLifecycleOwner(), new Observer<Clase>() {
+            @Override
+            public void onChanged(Clase clase) {
+                etNombre_CC.setText(clase.getNombre());
+                etVida_CC .setText(clase.getModVida()+"");
+                etEnergia_CC.setText(clase.getModEnergia()+"");
+                etAtk_CC.setText(clase.getModAtk()+"");
+                etAtm_CC.setText(clase.getModAtm()+"");
+                etDef_CC.setText(clase.getModDef()+"");
+                etDfm_CC.setText(clase.getModDfm()+"");
+                etDex_CC.setText(clase.getModDex()+"");
+                etEva_CC.setText(clase.getModEva()+"");
+                etCrt_CC.setText(clase.getModCrt()+"");
+                etAcc_CC.setText(clase.getModAcc()+"");
+                etDescripcion_CC.setText(clase.getDescripcion());
+
+                btCrearActualizar_CC.setText("Actualizar");
+            }
+        });
+        ccvm.getClase(getArguments());
 
         inicializarVista(root);
-
         ccvm.getMutableAviso().observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override
             public void onChanged(String s) {
@@ -47,8 +67,8 @@ public class CrearClaseFragment extends Fragment {
             @Override
             public void onChanged(String s) {
                 etNombre_CC.setText(s);
-                etDescripcion_CC.setText(s);
                 etVida_CC .setText(s);
+                etEnergia_CC.setText(s);
                 etAtk_CC.setText(s);
                 etAtm_CC.setText(s);
                 etDef_CC.setText(s);
@@ -58,6 +78,7 @@ public class CrearClaseFragment extends Fragment {
                 etCrt_CC.setText(s);
                 etAcc_CC.setText(s);
                 tvAviso_CC.setText(s);
+                etDescripcion_CC.setText(s);
             }
         });
 
@@ -66,8 +87,8 @@ public class CrearClaseFragment extends Fragment {
 
     private void inicializarVista(View v) {
         this.etNombre_CC = v.findViewById(R.id.etNombre_CC);
-        this.etDescripcion_CC = v.findViewById(R.id.etDescripcion_CC);
         this.etVida_CC = v.findViewById(R.id.etVida_CC);
+        this.etEnergia_CC = v.findViewById(R.id.etEnergia_CC);
         this.etAtk_CC = v.findViewById(R.id.etAtk_CC);
         this.etAtm_CC = v.findViewById(R.id.etAtm_CC);
         this.etDef_CC = v.findViewById(R.id.etDef_CC);
@@ -76,17 +97,20 @@ public class CrearClaseFragment extends Fragment {
         this.etEva_CC = v.findViewById(R.id.etEva_CC);
         this.etCrt_CC = v.findViewById(R.id.etCrt_CC);
         this.etAcc_CC = v.findViewById(R.id.etAcc_CC);
+        this.etDescripcion_CC = v.findViewById(R.id.etDescripcion_CC);
         this.tvAviso_CC = v.findViewById(R.id.tvAviso_CC);
 
-        this.btCrear_CC = v.findViewById(R.id.btCrear_CC);
-        this.btCrear_CC.setOnClickListener(new View.OnClickListener() {
+        this.btCrearActualizar_CC = v.findViewById(R.id.btCrearActualizar_CC);
+        this.btCrearActualizar_CC.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 try {
+                    String accion = btCrearActualizar_CC.getText().toString();
                     String nombre = etNombre_CC.getText().toString();
                     String descripcion = etDescripcion_CC.getText().toString();
 
                     float vida = Float.parseFloat(etVida_CC.getText().toString());
+                    float energia = Float.parseFloat(etEnergia_CC.getText().toString());
                     float atk = Float.parseFloat(etAtk_CC.getText().toString());
                     float atm = Float.parseFloat(etAtm_CC.getText().toString());
                     float def = Float.parseFloat(etDef_CC.getText().toString());
@@ -96,7 +120,7 @@ public class CrearClaseFragment extends Fragment {
                     float crt = Float.parseFloat(etCrt_CC.getText().toString());
                     float acc = Float.parseFloat(etAcc_CC.getText().toString());
 
-                    ccvm.crearClase(nombre, descripcion, vida, atk, atm, def, dfm, dex, eva, crt, acc);
+                    ccvm.tomarAccion(accion, nombre, vida, energia, atk, atm, def, dfm, dex, eva, crt, acc, descripcion);
                 } catch (NumberFormatException ex) {
                     ccvm.getAviso();
                 } catch (Exception ex) {

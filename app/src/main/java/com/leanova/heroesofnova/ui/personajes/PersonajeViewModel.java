@@ -21,7 +21,8 @@ import retrofit2.Response;
 public class PersonajeViewModel extends AndroidViewModel {
     private Context context;
     private MutableLiveData<ArrayList<Personaje>> mutablePersonajes;
-    private MutableLiveData<String> mutableAvisoPj;
+    private MutableLiveData<String> mutableAviso;
+    private MutableLiveData<Integer> mutableShow;
 
     public PersonajeViewModel(@NonNull Application application) {
         super(application);
@@ -36,10 +37,17 @@ public class PersonajeViewModel extends AndroidViewModel {
     }
 
     public LiveData<String> getMutableAviso() {
-        if(mutableAvisoPj == null) {
-            mutableAvisoPj = new MutableLiveData<>();
+        if(mutableAviso == null) {
+            mutableAviso = new MutableLiveData<>();
         }
-        return mutableAvisoPj;
+        return mutableAviso;
+    }
+
+    public LiveData<Integer> getMutableShow() {
+        if(mutableShow == null) {
+            mutableShow = new MutableLiveData<>();
+        }
+        return mutableShow;
     }
 
     public void obtenerPersonajes() {
@@ -53,12 +61,14 @@ public class PersonajeViewModel extends AndroidViewModel {
                     ArrayList<Personaje> personajes = response.body();
                     if(personajes.size() > 0) {
                         mutablePersonajes.postValue(personajes);
-                        mutableAvisoPj.postValue("");
+                        mutableAviso.postValue("");
+                        mutableShow.postValue(8);
                     } else {
-                        mutableAvisoPj.postValue("Aun no tiene personajes. Puede agregar uno nuevo apretando el botón \"Agregar\" abajo");
+                        mutableAviso.postValue("Aun no tiene personajes. Puede agregar uno nuevo apretando el botón \"Agregar\" abajo.");
+                        mutableShow.postValue(0);
                     }
                 } else {
-                    mutableAvisoPj.postValue("Ocurrio un error al obtener personajes");
+                    mutableAviso.postValue("Ocurrio un error al obtener personajes.");
                 }
             }
 

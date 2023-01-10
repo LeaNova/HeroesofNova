@@ -12,7 +12,6 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.navigation.Navigation;
 
 import com.leanova.heroesofnova.R;
-import com.leanova.heroesofnova.modelos.Clase;
 import com.leanova.heroesofnova.modelos.Grupo;
 import com.leanova.heroesofnova.modelos.Participante;
 import com.leanova.heroesofnova.request.ApiRetrofit;
@@ -74,7 +73,7 @@ public class GrupoViewModel extends AndroidViewModel {
     }
 
     public void navegar(String accion, View view) {
-        if(accion.equals("Master")) {
+        if(accion.equals("Nuevo")) {
             Navigation.findNavController(view).navigate(R.id.crearGrupoFragment);
         } else {
             Navigation.findNavController(view).navigate(R.id.buscarGrupoFragment);
@@ -90,12 +89,11 @@ public class GrupoViewModel extends AndroidViewModel {
                 @Override
                 public void onResponse(Call<ArrayList<Grupo>> call, Response<ArrayList<Grupo>> response) {
                     if (response.isSuccessful()) {
-                        if (response.body().size() > 0) {
-                            mutableGrupos.postValue(response.body());
-                            mutableAviso.postValue("");
-                        } else {
-                            mutableAviso.postValue("No tiene ningun grupo creado por el momento");
-                        }
+                        mutableGrupos.postValue(response.body());
+                        mutableAviso.postValue("");
+                    } else {
+                        mutableGrupos.postValue(new ArrayList<>());
+                        mutableAviso.postValue("No tiene ningun grupo creado por el momento");
                     }
                 }
 
@@ -110,12 +108,11 @@ public class GrupoViewModel extends AndroidViewModel {
                 @Override
                 public void onResponse(Call<ArrayList<Participante>> call, Response<ArrayList<Participante>> response) {
                     if (response.isSuccessful()) {
-                        if (response.body().size() > 0) {
-                            mutableMisGrupos.postValue(response.body());
-                            mutableAviso.postValue("");
-                        } else {
-                            mutableAviso.postValue("No tiene ningun grupo creado por el momento");
-                        }
+                        mutableMisGrupos.postValue(response.body());
+                        mutableAviso.postValue("");
+                    } else {
+                        mutableMisGrupos.postValue(new ArrayList<>());
+                        mutableAviso.postValue("No tiene ningun grupo creado por el momento");
                     }
                 }
 

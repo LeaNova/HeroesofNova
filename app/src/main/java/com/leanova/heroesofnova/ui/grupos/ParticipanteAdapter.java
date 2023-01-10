@@ -11,18 +11,18 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.leanova.heroesofnova.R;
-import com.leanova.heroesofnova.modelos.Grupo;
+import com.leanova.heroesofnova.modelos.Participante;
 
 import java.util.List;
 
-public class GrupoAdapter3 extends ArrayAdapter<Grupo> {
+public class ParticipanteAdapter extends ArrayAdapter<Participante> {
     private LayoutInflater lInflater;
-    private List<Grupo> listaGrupo;
+    private List<Participante> listaParticipantes;
 
-    public GrupoAdapter3(@NonNull Context context, int resource, @NonNull List<Grupo> objects) {
+    public ParticipanteAdapter(@NonNull Context context, int resource, @NonNull List<Participante> objects) {
         super(context, resource, objects);
         this.lInflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        this.listaGrupo = objects;
+        this.listaParticipantes = objects;
     }
 
     @NonNull
@@ -31,13 +31,15 @@ public class GrupoAdapter3 extends ArrayAdapter<Grupo> {
         View itemView = convertView;
 
         if(itemView == null) {
-            itemView = lInflater.inflate(R.layout.item_grupo_3, parent, false);
+            itemView = lInflater.inflate(R.layout.item_participante, parent, false);
         }
 
-        Grupo g = listaGrupo.get(position);
+        Participante p = listaParticipantes.get(position);
 
-        TextView tvNombre_GI3 = itemView.findViewById(R.id.tvNombre_GI3);
-        tvNombre_GI3.setText(g.getNombre());
+        TextView tvNombre_ParI = itemView.findViewById(R.id.tvNombre_ParI);
+        TextView tvParsonaje_ParI = itemView.findViewById(R.id.tvParsonaje_ParI);
+        tvNombre_ParI.setText(p.getJugador().getUsuario());
+        tvParsonaje_ParI.setText(p.getPersonaje().getNombre() + " (Nivel " + p.getPersonaje().getNivel() + ")");
 
         return itemView;
     }

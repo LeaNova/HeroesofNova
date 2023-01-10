@@ -12,7 +12,6 @@ import androidx.annotation.Nullable;
 
 import com.leanova.heroesofnova.R;
 import com.leanova.heroesofnova.modelos.Mochila;
-import com.leanova.heroesofnova.modelos.Raza;
 
 import java.util.List;
 
@@ -32,7 +31,7 @@ public class MochilaAdapter extends ArrayAdapter<Mochila> {
         View itemView = convertView;
 
         if(itemView == null) {
-            itemView = lInflater.inflate(R.layout.mochila_item, parent, false);
+            itemView = lInflater.inflate(R.layout.item_mochila, parent, false);
         }
 
         Mochila m = listaMochilas.get(position);

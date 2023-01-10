@@ -31,7 +31,7 @@ public class ClaseAdapter extends ArrayAdapter<Clase> {
         View itemView = convertView;
 
         if(itemView == null) {
-            itemView = lInflater.inflate(R.layout.clase_item, parent, false);
+            itemView = lInflater.inflate(R.layout.item_clase, parent, false);
         }
 
         Clase c = listaClases.get(position);

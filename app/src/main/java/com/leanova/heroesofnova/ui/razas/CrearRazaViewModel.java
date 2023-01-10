@@ -2,6 +2,7 @@ package com.leanova.heroesofnova.ui.razas;
 
 import android.app.Application;
 import android.content.Context;
+import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -19,12 +20,21 @@ import retrofit2.Response;
 
 public class CrearRazaViewModel extends AndroidViewModel {
     private Context context;
+    private MutableLiveData<Raza> mutableRaza;
     private MutableLiveData<String> mutableAviso;
     private MutableLiveData<String> mutableClean;
 
     public CrearRazaViewModel(@NonNull Application application) {
         super(application);
         this.context = application.getApplicationContext();
+    }
+
+    //MUTABLES
+    public LiveData<Raza> getMutableRaza() {
+        if(mutableRaza == null) {
+            mutableRaza = new MutableLiveData<>();
+        }
+        return mutableRaza;
     }
 
     public LiveData<String> getMutableAviso() {
@@ -41,6 +51,14 @@ public class CrearRazaViewModel extends AndroidViewModel {
         return mutableClean;
     }
 
+    //FUNCIONES
+    public void getRaza(Bundle bRaza) {
+        if(bRaza != null) {
+            Raza r = (Raza) bRaza.getSerializable("razaEdit");
+            mutableRaza.setValue(r);
+        }
+    }
+
     public void getAviso() {
         mutableAviso.setValue("* Revise que todos los campos esten llenos correctamente");
     }
@@ -49,48 +67,84 @@ public class CrearRazaViewModel extends AndroidViewModel {
         mutableClean.setValue("");
     }
 
-    public void crearRaza(String nombre, String descripcion, int vida, int atk, int atm, int def, int dfm, int dex, int eva, int crt, int acc) {
+    public void tomarAccion(String accion, String nombre, int vida, int energia, int atk, int atm, int def, int dfm, int dex, int eva, int crt, int acc, String descripcion) {
         boolean ok = true;
         String aviso = "";
 
         if(vida%2!=0 || (vida < 6 || vida > 12)) {
-            aviso += "* La vida debe estar entre 6 y 12\n";
+            aviso += "* La vida debe estar entre 6 y 12.\n";
+            ok = false;
+        }
+
+        if(energia%2!=0 || (vida < 6 || vida > 12)) {
+            aviso += "* La energia debe estar entre 6 y 12.\n";
             ok = false;
         }
 
         if(atk + atm + def + dfm + dex + eva + crt + acc > 72) {
-            aviso += "* La base total no puede superar los 72 puntos en total\n";
+            aviso += "* La base total no puede superar los 72 puntos en total.\n";
             ok = false;
         }
 
         if(atk > 20 || atm > 20 || def > 20 || dfm > 20 || dex > 20 || eva > 20 || crt > 20 || acc > 20) {
-            aviso += "* La base de las estadisticas no puede superar los 20 puntos\n";
+            aviso += "* La base de las estadisticas no puede superar los 20 puntos.\n";
             ok = false;
         }
 
-        if(ok) {
-            String token = ApiRetrofit.obtenerToken(context);
-
-            Call<Raza> razaPromesa = ApiRetrofit.getServiceApi().crearRaza(nombre, descripcion, vida, atk, atm, def, dfm, dex, eva, crt, acc, token);
-            razaPromesa.enqueue(new Callback<Raza>() {
-                @Override
-                public void onResponse(Call<Raza> call, Response<Raza> response) {
-                    if(response.isSuccessful()) {
-                        mutableAviso.postValue("");
-                        setClean();
-                        Toast.makeText(context, "Raza creada", Toast.LENGTH_SHORT).show();
-                    } else {
-                        Toast.makeText(context, "Error en crear raza", Toast.LENGTH_SHORT).show();
-                    }
-                }
-
-                @Override
-                public void onFailure(Call<Raza> call, Throwable t) {
-                    Log.d("APIerror", t.getMessage());
-                }
-            });
-        } else {
-            mutableAviso.setValue(aviso);
+        if(ok && accion.equals("Crear")) {
+            crearRaza(nombre, vida, energia, atk, atm, def, dfm, dex, eva, crt, acc, descripcion);
         }
+
+        if(ok && accion.equals("Actualizar")) {
+            editarRaza(nombre, vida, energia, atk, atm, def, dfm, dex, eva, crt, acc, descripcion);
+        }
+
+        mutableAviso.setValue(aviso);
+    }
+
+    private void crearRaza(String nombre, int vida, int energia, int atk, int atm, int def, int dfm, int dex, int eva, int crt, int acc, String descripcion) {
+        String token = ApiRetrofit.obtenerToken(context);
+
+        Call<Raza> razaPromesa = ApiRetrofit.getServiceApi().crearRaza(nombre, descripcion, vida, energia, atk, atm, def, dfm, dex, eva, crt, acc, token);
+        razaPromesa.enqueue(new Callback<Raza>() {
+            @Override
+            public void onResponse(Call<Raza> call, Response<Raza> response) {
+                if(response.isSuccessful()) {
+                    mutableAviso.postValue("");
+                    setClean();
+                    Toast.makeText(context, "Raza creada", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(context, "Error en crear raza", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Raza> call, Throwable t) {
+                Log.d("APIerror", t.getMessage());
+            }
+        });
+    }
+
+    private void editarRaza(String nombre, int vida, int energia, int atk, int atm, int def, int dfm, int dex, int eva, int crt, int acc, String descripcion) {
+        Raza r = mutableRaza.getValue();
+        String token = ApiRetrofit.obtenerToken(context);
+
+        Call<Raza> razaPromesa = ApiRetrofit.getServiceApi().editarRaza(r.getIdRaza(), nombre, descripcion, vida, energia, atk, atm, def, dfm, dex, eva, crt, acc, token);
+        razaPromesa.enqueue(new Callback<Raza>() {
+            @Override
+            public void onResponse(Call<Raza> call, Response<Raza> response) {
+                if(response.isSuccessful()) {
+                    mutableAviso.postValue("");
+                    Toast.makeText(context, "Raza actualizada", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(context, "Error en actualizar", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Raza> call, Throwable t) {
+                Log.d("APIerror", t.getMessage());
+            }
+        });
     }
 }

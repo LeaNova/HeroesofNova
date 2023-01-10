@@ -15,6 +15,7 @@ import androidx.navigation.Navigation;
 
 import com.leanova.heroesofnova.modelos.Raza;
 import com.leanova.heroesofnova.request.ApiRetrofit;
+import com.leanova.heroesofnova.request.DefaultValues;
 
 import okhttp3.ResponseBody;
 import retrofit2.Call;
@@ -24,12 +25,14 @@ import retrofit2.Response;
 public class DetalleRazaViewModel extends AndroidViewModel {
     private Context context;
     private MutableLiveData<Raza> mutableRaza;
+    private MutableLiveData<Integer> mutableAccess;
 
     public DetalleRazaViewModel(@NonNull Application application) {
         super(application);
         this.context = application.getApplicationContext();
     }
 
+    //MUTABLES
     public LiveData<Raza> getMutableRaza() {
         if(mutableRaza == null) {
             mutableRaza = new MutableLiveData<>();
@@ -37,9 +40,46 @@ public class DetalleRazaViewModel extends AndroidViewModel {
         return mutableRaza;
     }
 
-    public void obtenerRaza(Bundle bRaza) {
+    public LiveData<Integer> getMutableAccess() {
+        if(mutableAccess == null) {
+            mutableAccess = new MutableLiveData<>();
+        }
+        return mutableAccess;
+    }
+
+    //FUNCIONES
+    public void getRaza(Bundle bRaza) {
         Raza r = (Raza) bRaza.getSerializable("raza");
-        mutableRaza.setValue(r);
+        obtenerRaza(r.getIdRaza());
+    }
+
+    public void setAccess() {
+        String access = DefaultValues.getAccess();
+
+        if(access.equals("Admin")) {
+            mutableAccess.setValue(0);
+        } else {
+            mutableAccess.setValue(8);
+        }
+    }
+
+    private void obtenerRaza(int id) {
+        String token = ApiRetrofit.obtenerToken(context);
+
+        Call<Raza> razaPromesa = ApiRetrofit.getServiceApi().obtenerRaza(id, token);
+        razaPromesa.enqueue(new Callback<Raza>() {
+            @Override
+            public void onResponse(Call<Raza> call, Response<Raza> response) {
+                if(response.isSuccessful()) {
+                    mutableRaza.postValue(response.body());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Raza> call, Throwable t) {
+
+            }
+        });
     }
 
     public void borrarRaza(int id, View view) {
@@ -59,7 +99,7 @@ public class DetalleRazaViewModel extends AndroidViewModel {
 
             @Override
             public void onFailure(Call<ResponseBody> call, Throwable t) {
-                Log.d("salida", t.getMessage());
+                Log.d("APIerror", t.getMessage());
             }
         });
     }

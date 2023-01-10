@@ -15,6 +15,7 @@ import androidx.navigation.Navigation;
 
 import com.leanova.heroesofnova.modelos.Clase;
 import com.leanova.heroesofnova.request.ApiRetrofit;
+import com.leanova.heroesofnova.request.DefaultValues;
 
 import okhttp3.ResponseBody;
 import retrofit2.Call;
@@ -24,12 +25,14 @@ import retrofit2.Response;
 public class DetalleClaseViewModel extends AndroidViewModel {
     private Context context;
     private MutableLiveData<Clase> mutableClase;
+    private MutableLiveData<Integer> mutableAccess;
 
     public DetalleClaseViewModel(@NonNull Application application) {
         super(application);
         this.context = application.getApplicationContext();
     }
 
+    //MUTABLES
     public LiveData<Clase> getMutableClase() {
         if(mutableClase == null) {
             mutableClase = new MutableLiveData<>();
@@ -37,9 +40,46 @@ public class DetalleClaseViewModel extends AndroidViewModel {
         return mutableClase;
     }
 
-    public void obtenerClase(Bundle bClase) {
+    public LiveData<Integer> getMutableAccess() {
+        if(mutableAccess == null) {
+            mutableAccess = new MutableLiveData<>();
+        }
+        return mutableAccess;
+    }
+
+    //FUNCIONES
+    public void setAccess() {
+        String access = DefaultValues.getAccess();
+
+        if(access.equals("Master")) {
+            mutableAccess.setValue(0);
+        } else {
+            mutableAccess.setValue(8);
+        }
+    }
+
+    public void getClase(Bundle bClase) {
         Clase c = (Clase) bClase.getSerializable("clase");
-        mutableClase.setValue(c);
+        obtenerClase(c.getIdClase());
+    }
+
+    private void obtenerClase(int id) {
+        String token = ApiRetrofit.obtenerToken(context);
+
+        Call<Clase> clasePromesa = ApiRetrofit.getServiceApi().obtenerClase(id, token);
+        clasePromesa.enqueue(new Callback<Clase>() {
+            @Override
+            public void onResponse(Call<Clase> call, Response<Clase> response) {
+                if(response.isSuccessful()) {
+                    mutableClase.postValue(response.body());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Clase> call, Throwable t) {
+                Log.d("APIerror", t.getMessage());
+            }
+        });
     }
 
     public void borrarClase(int id, View view) {

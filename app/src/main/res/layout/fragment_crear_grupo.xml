@@ -4,10 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.clases.CrearClaseFragment">
+    tools:context=".ui.grupos.CrearGrupoFragment">
 
     <TextView
-        android:id="@+id/textNuevoGrupo"
+        android:id="@+id/textNuevoActualizar_CG"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
@@ -21,14 +21,14 @@
 
     <TextView
         android:id="@+id/textNombre"
-        android:layout_width="85dp"
+        android:layout_width="90dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginTop="32dp"
         android:text="Nombre: "
         android:textAlignment="textEnd"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textNuevoGrupo" />
+        app:layout_constraintTop_toBottomOf="@+id/textNuevoActualizar_CG" />
 
     <EditText
         android:id="@+id/etNombre_CG"
@@ -42,7 +42,7 @@
 
     <TextView
         android:id="@+id/textDescripcion"
-        android:layout_width="85dp"
+        android:layout_width="90dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
         android:text="Descripción: "
@@ -69,7 +69,7 @@
 
     <TextView
         android:id="@+id/textContrasenia"
-        android:layout_width="85dp"
+        android:layout_width="90dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:text="Contraseña: "
@@ -83,8 +83,7 @@
         android:layout_width="250dp"
         android:layout_height="52dp"
         android:ems="10"
-        android:inputType="numberDecimal"
-        android:textAlignment="center"
+        android:inputType="textPersonName"
         app:layout_constraintBottom_toBottomOf="@+id/textContrasenia"
         app:layout_constraintStart_toEndOf="@+id/textContrasenia"
         app:layout_constraintTop_toTopOf="@+id/textContrasenia"
@@ -95,7 +94,25 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_begin="246dp" />
+        app:layout_constraintGuide_begin="245dp" />
+
+    <CheckBox
+        android:id="@+id/cbDisponible_CG"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Disponible"
+        android:checked="true"
+        app:layout_constraintBottom_toTopOf="@+id/guideline5"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/guideline2" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="315dp" />
 
     <TextView
         android:id="@+id/tvAviso_CG"
@@ -106,23 +123,23 @@
         android:textColor="#FF0000"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/guideline2" />
+        app:layout_constraintTop_toTopOf="@+id/guideline5" />
 
     <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline5"
+        android:id="@+id/guideline3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layout_constraintGuide_begin="650dp" />
 
     <Button
-        android:id="@+id/btCrear_CG"
+        android:id="@+id/btCrearActualizar_CG"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Crear"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/guideline5" />
+        app:layout_constraintTop_toTopOf="@+id/guideline3" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

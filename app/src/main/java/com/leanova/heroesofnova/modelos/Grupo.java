@@ -1,23 +1,26 @@
 package com.leanova.heroesofnova.modelos;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class Grupo {
+public class Grupo implements Serializable {
     private int idGrupo;
     private int masterId;
     private String nombre ;
     private String pass;
     private String descripcion;
+    private Boolean disponible;
     private Date fechaCreado;
     private Usuario master;
 
     public Grupo() { }
-    public Grupo(int idGrupo, int masterId, String nombre, String pass, String descripcion, Date fechaCreado, Usuario master) {
+    public Grupo(int idGrupo, int masterId, String nombre, String pass, String descripcion, Boolean disponible, Date fechaCreado, Usuario master) {
         this.idGrupo = idGrupo;
         this.masterId = masterId;
         this.nombre = nombre;
         this.pass = pass;
         this.descripcion = descripcion;
+        this.disponible = disponible;
         this.fechaCreado = fechaCreado;
         this.master = master;
     }
@@ -60,6 +63,14 @@ public class Grupo {
 
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
+    }
+
+    public Boolean getDisponible() {
+        return disponible;
+    }
+
+    public void setDisponible(Boolean disponible) {
+        this.disponible = disponible;
     }
 
     public Date getFechaCreado() {

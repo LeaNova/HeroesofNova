@@ -20,10 +20,12 @@
 
     <ListView
         android:id="@+id/lvRaza_R"
-        android:layout_width="match_parent"
+        android:layout_width="380dp"
         android:layout_height="580dp"
         android:layout_marginTop="16dp"
-        app:layout_constraintTop_toBottomOf="@+id/textRaza"/>
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textRaza" />
 
     <Button
         android:id="@+id/btNuevo_R"

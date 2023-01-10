@@ -20,7 +20,7 @@
 
     <TextView
         android:id="@+id/textNombre"
-        android:layout_width="60dp"
+        android:layout_width="65dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginTop="32dp"
@@ -42,9 +42,9 @@
 
     <TextView
         android:id="@+id/textGenero"
-        android:layout_width="60dp"
+        android:layout_width="65dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="24dp"
         android:text="Genero: "
         android:textAlignment="textEnd"
         app:layout_constraintStart_toStartOf="@+id/textNombre"
@@ -60,9 +60,9 @@
 
     <TextView
         android:id="@+id/textRaza"
-        android:layout_width="60dp"
+        android:layout_width="65dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="16dp"
         android:text="Raza: "
         android:textAlignment="textEnd"
         app:layout_constraintStart_toStartOf="@+id/textGenero"
@@ -78,9 +78,9 @@
 
     <TextView
         android:id="@+id/textClase"
-        android:layout_width="60dp"
+        android:layout_width="65dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="16dp"
         android:text="Clase: "
         android:textAlignment="textEnd"
         app:layout_constraintStart_toStartOf="@+id/textRaza"
@@ -96,9 +96,9 @@
 
     <TextView
         android:id="@+id/textVida"
-        android:layout_width="60dp"
+        android:layout_width="65dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="24dp"
         android:text="Vida: "
         android:textAlignment="textEnd"
         app:layout_constraintStart_toStartOf="@+id/textClase"
@@ -106,9 +106,10 @@
 
     <TextView
         android:id="@+id/textVidaBase"
-        android:layout_width="wrap_content"
+        android:layout_width="40dp"
         android:layout_height="wrap_content"
         android:text="[base]"
+        android:textAlignment="textEnd"
         app:layout_constraintBottom_toBottomOf="@+id/textVida"
         app:layout_constraintStart_toEndOf="@+id/textVida" />
 
@@ -144,6 +145,59 @@
         android:textAlignment="center"
         app:layout_constraintBottom_toBottomOf="@+id/etVida_CP2"
         app:layout_constraintStart_toEndOf="@+id/etVida_CP2" />
+
+
+    <TextView
+        android:id="@+id/textEnergia"
+        android:layout_width="65dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="Energía: "
+        android:textAlignment="textEnd"
+        app:layout_constraintStart_toStartOf="@+id/textVida"
+        app:layout_constraintTop_toBottomOf="@+id/textVida" />
+
+    <TextView
+        android:id="@+id/textEnergiaBase"
+        android:layout_width="40dp"
+        android:layout_height="wrap_content"
+        android:text="[base]"
+        android:textAlignment="textEnd"
+        app:layout_constraintBottom_toBottomOf="@+id/textEnergia"
+        app:layout_constraintStart_toEndOf="@+id/textEnergia" />
+
+    <EditText
+        android:id="@+id/etEnergia_CP1"
+        android:layout_width="50dp"
+        android:layout_height="52dp"
+        android:ems="10"
+        android:inputType="number"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toBottomOf="@+id/textEnergiaBase"
+        app:layout_constraintStart_toEndOf="@+id/textEnergiaBase"
+        app:layout_constraintTop_toTopOf="@+id/textEnergiaBase" />
+
+    <EditText
+        android:id="@+id/etEnergia_CP2"
+        android:layout_width="50dp"
+        android:layout_height="52dp"
+        android:layout_marginStart="8dp"
+        android:ems="10"
+        android:inputType="number"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toBottomOf="@+id/etEnergia_CP1"
+        app:layout_constraintStart_toEndOf="@+id/etEnergia_CP1" />
+
+    <EditText
+        android:id="@+id/etEnergia_CP3"
+        android:layout_width="50dp"
+        android:layout_height="52dp"
+        android:layout_marginStart="8dp"
+        android:ems="10"
+        android:inputType="number"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toBottomOf="@+id/etEnergia_CP2"
+        app:layout_constraintStart_toEndOf="@+id/etEnergia_CP2" />
 
     <TextView
         android:id="@+id/textAtk"
@@ -419,7 +473,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_begin="350dp" />
+        app:layout_constraintGuide_begin="330dp" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline7"
@@ -427,13 +481,6 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layout_constraintGuide_begin="570dp" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline8"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_begin="650dp" />
 
     <TextView
         android:id="@+id/tvAviso_CP"
@@ -445,5 +492,12 @@
         android:textColor="#FF0000"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/guideline7" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="650dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

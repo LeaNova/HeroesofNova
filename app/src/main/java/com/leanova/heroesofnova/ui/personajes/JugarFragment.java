@@ -28,13 +28,12 @@ public class JugarFragment extends Fragment {
     private FragmentJugarBinding binding;
     private JugarViewModel jvm;
 
-    private TextView tvPersonaje_JP, tvVida_JP, tvVidaT_JP, tvExp_JP, tvExpT_JP;
-    private EditText etDanio_JP, etExp_JP;
+    private TextView tvPersonaje_JP, tvVida_JP, tvVidaT_JP, tvEnergia_JP, tvEnergiaT_JP, tvExp_JP, tvExpT_JP;
+    private EditText etRecuperar_JP, etDanio_JP, etExp_JP;
     private Button btDanio_JP, btCurar_JP, btExp_JP;
-    private RadioGroup rgAtaque_JP;
+    private RadioGroup rgRecuperar_JP, rgDanio_JP, rgAtaque_JP;
     private RadioButton rbOpcion;
-
-    private ProgressBar pbVida_JP;
+    private ProgressBar pbVida_JP, pbEnergia_JP;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -45,15 +44,18 @@ public class JugarFragment extends Fragment {
         jvm.getMutablePersonaje().observe(getViewLifecycleOwner(), new Observer<Personaje>() {
             @Override
             public void onChanged(Personaje personaje) {
-                //personaje.setGame();
                 tvPersonaje_JP.setText(personaje.getNombre() + " - Nivel " + personaje.getNivel());
                 tvVida_JP.setText(personaje.getVidaAct()+"");
                 tvVidaT_JP.setText(personaje.getVida()+"");
+                tvEnergia_JP.setText(personaje.getEnergiaAct()+"");
+                tvEnergiaT_JP.setText(personaje.getEnergia()+"");
                 tvExp_JP.setText(personaje.getExperiencia()+"");
                 tvExpT_JP.setText(personaje.getNextExp()+"");
 
                 pbVida_JP.setMax(personaje.getVida());
                 pbVida_JP.setProgress(personaje.getVidaAct());
+                pbEnergia_JP.setMax(personaje.getEnergia());
+                pbEnergia_JP.setProgress(personaje.getEnergiaAct());
             }
         });
         jvm.getMutableClean().observe(getViewLifecycleOwner(), new Observer<String>() {
@@ -76,10 +78,34 @@ public class JugarFragment extends Fragment {
         this.pbVida_JP = v.findViewById(R.id.pbVida_JP);
         this.tvVida_JP = v.findViewById(R.id.tvVida_JP);
         this.tvVidaT_JP = v.findViewById(R.id.tvVidaT_JP);
+        this.pbEnergia_JP = v.findViewById(R.id.pbEnergia_JP);
+        this.tvEnergia_JP = v.findViewById(R.id.tvEnergia_JP);
+        this.tvEnergiaT_JP = v.findViewById(R.id.tvEnergiaT_JP);
         this.tvExp_JP = v.findViewById(R.id.tvExp_JP);
         this.tvExpT_JP = v.findViewById(R.id.tvExpT_JP);
-        this.etDanio_JP = v.findViewById(R.id.etDanio_JP);
 
+        this.etRecuperar_JP = v.findViewById(R.id.etRecuperar_JP);
+        this.rgRecuperar_JP = v.findViewById(R.id.rgRecuperar_JP);
+        this.btCurar_JP = v.findViewById(R.id.btCurar_JP);
+        this.btCurar_JP.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                try {
+                    int total = Integer.parseInt(etRecuperar_JP.getText().toString());
+
+                    int rbOpcionID = rgRecuperar_JP.getCheckedRadioButtonId();
+                    rbOpcion = v.findViewById(rbOpcionID);
+                    String opcion = rbOpcion.getText().toString();
+
+                    jvm.recuperar(total, opcion);
+                } catch (NumberFormatException ex) {
+                    //Nada
+                }
+            }
+        });
+
+        this.rgDanio_JP = v.findViewById(R.id.rgDanio_JP);
+        this.etDanio_JP = v.findViewById(R.id.etDanio_JP);
         this.btDanio_JP = v.findViewById(R.id.btDanio_JP);
         this.btDanio_JP.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -87,30 +113,18 @@ public class JugarFragment extends Fragment {
                 try {
                     int danio = Integer.parseInt(etDanio_JP.getText().toString());
 
-                    int rbOpcionID = rgAtaque_JP.getCheckedRadioButtonId();
+                    int rbOpcionID = rgDanio_JP.getCheckedRadioButtonId();
                     rbOpcion = v.findViewById(rbOpcionID);
                     String opcion = rbOpcion.getText().toString();
 
-                    jvm.getDanio(danio, opcion);
+                    jvm.recibirDanio(danio, opcion);
                 } catch (NumberFormatException ex) {
                     //Nada
                 }
             }
         });
 
-        this.btCurar_JP = v.findViewById(R.id.btCurar_JP);
-        this.btCurar_JP.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                try {
-                    int cura = Integer.parseInt(etDanio_JP.getText().toString());
-                    jvm.getCura(cura);
-                } catch (NumberFormatException ex) {
-                    //Nada
-                }
-            }
-        });
-
+        this.etExp_JP = v.findViewById(R.id.etExp_JP);
         this.btExp_JP = v.findViewById(R.id.btExp_JP);
         this.btExp_JP.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -124,7 +138,5 @@ public class JugarFragment extends Fragment {
             }
         });
 
-        this.rgAtaque_JP = v.findViewById(R.id.rgAtaque_JP);
-        this.etExp_JP = v.findViewById(R.id.etExp_JP);
     }
 }

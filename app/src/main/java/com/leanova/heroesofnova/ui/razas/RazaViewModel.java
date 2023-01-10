@@ -11,6 +11,7 @@ import androidx.lifecycle.MutableLiveData;
 
 import com.leanova.heroesofnova.modelos.Raza;
 import com.leanova.heroesofnova.request.ApiRetrofit;
+import com.leanova.heroesofnova.request.DefaultValues;
 
 import java.util.ArrayList;
 
@@ -22,6 +23,7 @@ public class RazaViewModel extends AndroidViewModel {
     private Context context;
     private ArrayList<Raza> listaRazas;
     private MutableLiveData<ArrayList<Raza>> mutableRaza;
+    private MutableLiveData<Integer> mutableAccess;
 
     public RazaViewModel(@NonNull Application application) {
         super(application);
@@ -29,11 +31,30 @@ public class RazaViewModel extends AndroidViewModel {
         this.listaRazas = new ArrayList<>();
     }
 
+    //MUTABLES
     public LiveData<ArrayList<Raza>> getMutableRazas() {
         if(mutableRaza == null) {
             mutableRaza = new MutableLiveData<>();
         }
         return mutableRaza;
+    }
+
+    public LiveData<Integer> getMutableAccess() {
+        if(mutableAccess == null) {
+            mutableAccess = new MutableLiveData<>();
+        }
+        return mutableAccess;
+    }
+
+    //FUNCIONES
+    public void setAccess() {
+        String access = DefaultValues.getAccess();
+
+        if(access.equals("Admin")) {
+            mutableAccess.setValue(0);
+        } else {
+            mutableAccess.setValue(8);
+        }
     }
 
     public ArrayList<Raza> getListaRazas() {
@@ -55,7 +76,7 @@ public class RazaViewModel extends AndroidViewModel {
 
             @Override
             public void onFailure(Call<ArrayList<Raza>> call, Throwable t) {
-                Log.d("salida", t.getMessage());
+                Log.d("APIerror", t.getMessage());
             }
         });
     }

@@ -9,7 +9,11 @@
         android:title="@string/menu_home" />
 
     <group android:checkableBehavior="single"
-        android:id="@+id/jugador">
+        android:id="@+id/jugar">
+        <item
+            android:id="@+id/nav_grupos"
+            android:icon="@drawable/ic_menu_slideshow"
+            android:title="@string/menu_grupos" />
         <item
             android:id="@+id/nav_personajes"
             android:icon="@drawable/ic_menu_gallery"
@@ -18,16 +22,7 @@
 
     <group
         android:checkableBehavior="single"
-        android:id="@+id/master">
-        <item
-            android:id="@+id/nav_grupos"
-            android:icon="@drawable/ic_menu_slideshow"
-            android:title="@string/menu_grupos" />
-    </group>
-
-    <group
-        android:checkableBehavior="single"
-        android:id="@+id/admin">
+        android:id="@+id/creacion">
         <item
             android:id="@+id/nav_razas"
             android:icon="@drawable/ic_menu_slideshow"

@@ -36,14 +36,6 @@ public class SigninViewModel extends AndroidViewModel {
         }
     }
 
-    public ArrayList<String> getRoles() {
-        ArrayList<String> nombreRoles = new ArrayList<>();
-        for(Rol item: DefaultValues.getRoles()) {
-            nombreRoles.add(item.getNombre());
-        }
-        return nombreRoles;
-    }
-
     public LiveData<String> getMutableAvisoMail() {
         if(mutableAvisoMail == null) {
             mutableAvisoMail = new MutableLiveData<>();

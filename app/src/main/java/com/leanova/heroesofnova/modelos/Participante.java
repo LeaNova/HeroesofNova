@@ -1,20 +1,22 @@
 package com.leanova.heroesofnova.modelos;
 
-public class Participante {
+import java.io.Serializable;
+
+public class Participante implements Serializable {
     private int grupoId;
     private int usuarioId;
     private int personajeId;
     private Grupo grupo;
-    private Usuario usuario;
+    private Usuario jugador;
     private Personaje personaje;
 
     public Participante() { }
-    public Participante(int grupoId, int usuarioId, int personajeId, Grupo grupo, Usuario usuario, Personaje personaje) {
+    public Participante(int grupoId, int usuarioId, int personajeId, Grupo grupo, Usuario jugador, Personaje personaje) {
         this.grupoId = grupoId;
         this.usuarioId = usuarioId;
         this.personajeId = personajeId;
         this.grupo = grupo;
-        this.usuario = usuario;
+        this.jugador = jugador;
         this.personaje = personaje;
     }
 
@@ -50,12 +52,12 @@ public class Participante {
         this.grupo = grupo;
     }
 
-    public Usuario getUsuario() {
-        return usuario;
+    public Usuario getJugador() {
+        return jugador;
     }
 
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
+    public void setJugador(Usuario jugador) {
+        this.jugador = jugador;
     }
 
     public Personaje getPersonaje() {

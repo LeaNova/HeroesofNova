@@ -11,6 +11,7 @@ import androidx.lifecycle.MutableLiveData;
 
 import com.leanova.heroesofnova.modelos.Mochila;
 import com.leanova.heroesofnova.request.ApiRetrofit;
+import com.leanova.heroesofnova.request.DefaultValues;
 
 import java.util.ArrayList;
 
@@ -22,6 +23,7 @@ public class MochilaViewModel extends AndroidViewModel {
     private Context context;
     private ArrayList<Mochila> listaMochilas;
     private MutableLiveData<ArrayList<Mochila>> mutableMochilas;
+    private MutableLiveData<Integer> mutableAccess;
 
     public MochilaViewModel(@NonNull Application application) {
         super(application);
@@ -29,11 +31,30 @@ public class MochilaViewModel extends AndroidViewModel {
         this.listaMochilas = new ArrayList<>();
     }
 
+    //MUTABLES
     public LiveData<ArrayList<Mochila>> getMutableMochilas() {
         if(mutableMochilas == null) {
             mutableMochilas = new MutableLiveData<>();
         }
         return mutableMochilas;
+    }
+
+    public LiveData<Integer> getMutableAccess() {
+        if(mutableAccess == null) {
+            mutableAccess = new MutableLiveData<>();
+        }
+        return mutableAccess;
+    }
+
+    //FUNCIONES
+    public void setAccess() {
+        String access = DefaultValues.getAccess();
+
+        if(access.equals("Admin")) {
+            mutableAccess.setValue(0);
+        } else {
+            mutableAccess.setValue(8);
+        }
     }
 
     public ArrayList<Mochila> getListaMochilas() {

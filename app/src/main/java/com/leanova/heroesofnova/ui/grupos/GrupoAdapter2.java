@@ -1,12 +1,14 @@
 package com.leanova.heroesofnova.ui.grupos;
 
 import android.content.Context;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.leanova.heroesofnova.R;
@@ -30,7 +32,7 @@ public class GrupoAdapter2 extends RecyclerView.Adapter<GrupoAdapter2.ViewHolder
     @NonNull
     @Override
     public GrupoAdapter2.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = lInflater.inflate(R.layout.grupo_item_2, parent, false);
+        View view = lInflater.inflate(R.layout.item_grupo_2, parent, false);
 
         return new GrupoAdapter2.ViewHolder(view);
     }
@@ -45,6 +47,15 @@ public class GrupoAdapter2 extends RecyclerView.Adapter<GrupoAdapter2.ViewHolder
         holder.tvGrupo_GI2.setText(g.getNombre());
         holder.tvMaster_GI2.setText(g.getMaster().getUsuario());
         holder.tvPersonaje_GI2.setText(pj.getNombre());
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Bundle bGrupo = new Bundle();
+                bGrupo.putSerializable("grupo", g);
+                Navigation.findNavController(view).navigate(R.id.detalleGrupoFragment, bGrupo);
+            }
+        });
     }
 
     @Override

@@ -30,16 +30,17 @@
 
     <ListView
         android:id="@+id/lvGrupos_BG"
-        android:layout_width="340dp"
+        android:layout_width="360dp"
         android:layout_height="630dp"
         android:layout_marginTop="16dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.492"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/etBuscar_BG" />
 
     <TextView
         android:id="@+id/tvAviso_BG"
-        android:layout_width="180dp"
+        android:layout_width="260dp"
         android:layout_height="wrap_content"
         android:text="[aviso]"
         android:textAlignment="center"

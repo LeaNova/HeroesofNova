@@ -62,23 +62,15 @@
         app:layout_constraintBottom_toBottomOf="@+id/textClase"
         app:layout_constraintStart_toEndOf="@+id/textClase" />
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_begin="140dp" />
-
     <TextView
         android:id="@+id/textVida"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="24dp"
         android:text="Vida: "
         android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/guideline2" />
+        app:layout_constraintStart_toStartOf="@+id/textClase"
+        app:layout_constraintTop_toBottomOf="@+id/textClase" />
 
     <TextView
         android:id="@+id/tvVida_DP"
@@ -87,6 +79,24 @@
         android:text="[Vida]"
         app:layout_constraintBottom_toBottomOf="@+id/textVida"
         app:layout_constraintStart_toEndOf="@+id/textVida" />
+
+    <TextView
+        android:id="@+id/textEnergia"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Energía: "
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@+id/textVida"
+        app:layout_constraintTop_toBottomOf="@+id/textVida" />
+
+    <TextView
+        android:id="@+id/tvEnergia_DP"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="[Energia]"
+        app:layout_constraintBottom_toBottomOf="@+id/textEnergia"
+        app:layout_constraintStart_toEndOf="@+id/textEnergia" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline3"
@@ -100,11 +110,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="24dp"
         android:text="Nivel: "
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="@+id/guideline3"
-        app:layout_constraintTop_toTopOf="@+id/guideline2" />
+        app:layout_constraintTop_toBottomOf="@+id/textClase" />
 
     <TextView
         android:id="@+id/tvNivel_DP"
@@ -132,24 +142,16 @@
         app:layout_constraintBottom_toBottomOf="@+id/textExp"
         app:layout_constraintStart_toEndOf="@+id/textExp" />
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_begin="210dp" />
-
     <TextView
         android:id="@+id/textAtk"
         android:layout_width="40dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="24dp"
         android:text="ATK: "
         android:textAlignment="textEnd"
         android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/guideline4"
+        app:layout_constraintStart_toStartOf="@+id/textEnergia"
+        app:layout_constraintTop_toBottomOf="@+id/textEnergia"
         tools:ignore="MissingConstraints" />
 
     <TextView
@@ -221,13 +223,12 @@
         android:id="@+id/textDex"
         android:layout_width="40dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="24dp"
         android:text="DEX: "
         android:textAlignment="textEnd"
         android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="@+id/guideline3"
-        app:layout_constraintTop_toTopOf="@+id/guideline4" />
+        app:layout_constraintStart_toStartOf="@+id/textExp"
+        app:layout_constraintTop_toBottomOf="@+id/textExp" />
 
     <TextView
         android:id="@+id/tvDex_DP"
@@ -305,6 +306,7 @@
         android:id="@+id/textMochila"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
         android:text="Mochila"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -312,8 +314,8 @@
 
     <ListView
         android:id="@+id/lvMochila_DP"
-        android:layout_width="383dp"
-        android:layout_height="295dp"
+        android:layout_width="380dp"
+        android:layout_height="280dp"
         app:layout_constraintBottom_toTopOf="@+id/guideline6"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -343,6 +345,27 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/guideline6" />
+
+    <Button
+        android:id="@+id/btBorrar_DP"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="24dp"
+        android:backgroundTint="#FF4B4B"
+        android:text="Borrar"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/btJugar_DP"
+        app:layout_constraintTop_toTopOf="@+id/guideline6" />
+
+    <Button
+        android:id="@+id/btEditar_DP"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:text="Editar"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/btJugar_DP"
         app:layout_constraintTop_toTopOf="@+id/guideline6" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

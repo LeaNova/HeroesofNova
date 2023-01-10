@@ -31,7 +31,7 @@ public class RazaAdapter extends ArrayAdapter<Raza> {
         View itemView = convertView;
 
         if(itemView == null) {
-            itemView = lInflater.inflate(R.layout.raza_item, parent, false);
+            itemView = lInflater.inflate(R.layout.item_raza, parent, false);
         }
 
         Raza r = listaRazas.get(position);

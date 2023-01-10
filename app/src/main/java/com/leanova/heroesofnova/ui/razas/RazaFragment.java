@@ -41,12 +41,19 @@ public class RazaFragment extends Fragment {
         rvm.getMutableRazas().observe(getViewLifecycleOwner(), new Observer<ArrayList<Raza>>() {
             @Override
             public void onChanged(ArrayList<Raza> razas) {
-                RazaAdapter ra = new RazaAdapter(getContext(), R.layout.raza_item, razas);
+                RazaAdapter ra = new RazaAdapter(getContext(), R.layout.item_raza, razas);
                 lvRaza_R.setAdapter(ra);
             }
         });
 
         rvm.obtenerRazas();
+        rvm.getMutableAccess().observe(getViewLifecycleOwner(), new Observer<Integer>() {
+            @Override
+            public void onChanged(Integer integer) {
+                btNuevo_R.setVisibility(integer);
+            }
+        });
+        rvm.setAccess();
 
         return root;
     }

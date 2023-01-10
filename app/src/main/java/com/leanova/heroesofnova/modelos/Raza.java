@@ -5,8 +5,8 @@ import java.io.Serializable;
 public class Raza implements Serializable {
     private int idRaza;
     private String nombre;
-    private String descripcion;
     private int vidaBase;
+    private int energiaBase;
     private int baseAtk;
     private int baseAtm;
     private int baseDef;
@@ -15,13 +15,14 @@ public class Raza implements Serializable {
     private int baseEva;
     private int baseCrt;
     private int baseAcc;
+    private String descripcion;
 
     public Raza() { }
-    public Raza(int idRaza, String nombre, String descripcion, int vidaBase, int baseAtk, int baseAtm, int baseDef, int baseDfm, int baseDex, int baseEva, int baseCrt, int baseAcc) {
+    public Raza(int idRaza, String nombre, int vidaBase, int energiaBase, int baseAtk, int baseAtm, int baseDef, int baseDfm, int baseDex, int baseEva, int baseCrt, int baseAcc, String descripcion) {
         this.idRaza = idRaza;
         this.nombre = nombre;
-        this.descripcion = descripcion;
         this.vidaBase = vidaBase;
+        this.energiaBase = energiaBase;
         this.baseAtk = baseAtk;
         this.baseAtm = baseAtm;
         this.baseDef = baseDef;
@@ -30,6 +31,7 @@ public class Raza implements Serializable {
         this.baseEva = baseEva;
         this.baseCrt = baseCrt;
         this.baseAcc = baseAcc;
+        this.descripcion = descripcion;
     }
 
     public int getIdRaza() {
@@ -48,20 +50,20 @@ public class Raza implements Serializable {
         this.nombre = nombre;
     }
 
-    public String getDescripcion() {
-        return descripcion;
-    }
-
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
-    }
-
     public int getVidaBase() {
         return vidaBase;
     }
 
     public void setVidaBase(int vidaBase) {
         this.vidaBase = vidaBase;
+    }
+
+    public int getEnergiaBase() {
+        return energiaBase;
+    }
+
+    public void setEnergiaBase(int energiaBase) {
+        this.energiaBase = energiaBase;
     }
 
     public int getBaseAtk() {
@@ -126,6 +128,14 @@ public class Raza implements Serializable {
 
     public void setBaseAcc(int baseAcc) {
         this.baseAcc = baseAcc;
+    }
+
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
     }
 
     @Override

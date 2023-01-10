@@ -33,6 +33,7 @@ public class CrearPersonajeViewModel extends AndroidViewModel {
         this.context = application.getApplicationContext();
     }
 
+    //MUTABLES
     public LiveData<Raza> getMutableRaza() {
         if(mutableRaza == null) {
             mutableRaza = new MutableLiveData<>();
@@ -54,16 +55,21 @@ public class CrearPersonajeViewModel extends AndroidViewModel {
         return mutableAviso;
     }
 
+    //FUNCIONES
     public void setRaza(Raza raza) {
         mutableRaza.setValue(raza);
     }
 
-    //Operaciones
     public void hacerTiros(Raza raza) {
         ArrayList<String> tiros = new ArrayList<>();
 
         for(int i = 0; i < 3; i++) {
             int tiro = (int) (Math.random() * raza.getVidaBase() + 1);
+            tiros.add(tiro+"");
+        }
+
+        for(int i = 0; i < 3; i++) {
+            int tiro = (int) (Math.random() * raza.getEnergiaBase() + 1);
             tiros.add(tiro+"");
         }
 
@@ -74,22 +80,12 @@ public class CrearPersonajeViewModel extends AndroidViewModel {
 
         mutableTiros.setValue(tiros);
     }
-/*
-    public void setToEmpty() {
-        ArrayList<String> tiros = new ArrayList<>();
-
-        for(int i = 0; i < 11; i++) {
-            tiros.add("");
-        }
-
-        mutableTiros.setValue(tiros);
-    }*/
 
     public void getAviso() {
         mutableAviso.setValue("* Revise que todos los campos esten llenos correctamente");
     }
 
-    public void crearPersonaje(String nombre, Genero genero, Raza raza, Clase clase, int vida1, int vida2, int vida3, int atk, int atm, int def, int dfm, int dex, int eva, int crt, int acc) {
+    public void crearPersonaje(String nombre, Raza raza, Genero genero, Clase clase, int vida1, int vida2, int vida3, int energia1, int energia2, int energia3, int atk, int atm, int def, int dfm, int dex, int eva, int crt, int acc) {
         boolean ok = true;
         String aviso = "";
         int atkT = atk + raza.getBaseAtk();
@@ -118,11 +114,12 @@ public class CrearPersonajeViewModel extends AndroidViewModel {
 
         if(ok) {
             int vida = (vida1 + vida2 + vida3) / 3;
+            int energia = (energia1 + energia2 + energia3) / 3;
             String token = ApiRetrofit.obtenerToken(context);
 
             vida += raza.getVidaBase();
 
-            Call<Personaje> personajePromesa = ApiRetrofit.getServiceApi().crearPersonaje(nombre, raza.getIdRaza(), genero.getIdGenero(), clase.getIdClase(), vida, 1, 0, atkT, atmT, defT, dfmT, dexT, evaT, crtT, accT, "Carga desde app", 1, true, token);
+            Call<Personaje> personajePromesa = ApiRetrofit.getServiceApi().crearPersonaje(nombre, raza.getIdRaza(), genero.getIdGenero(), clase.getIdClase(), 1, 0, vida, energia, atkT, atmT, defT, dfmT, dexT, evaT, crtT, accT, "Carga desde app", 1, true, token);
             personajePromesa.enqueue(new Callback<Personaje>() {
                 @Override
                 public void onResponse(Call<Personaje> call, Response<Personaje> response) {

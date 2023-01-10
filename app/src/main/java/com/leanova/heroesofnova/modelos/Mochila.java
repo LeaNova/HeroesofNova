@@ -5,15 +5,15 @@ import java.io.Serializable;
 public class Mochila implements Serializable {
     private int idMochila;
     private String nombre;
-    private String descripcion;
     private int pesoMax;
+    private String descripcion;
 
     public Mochila() { }
-    public Mochila(int idMochila, String nombre, String descripcion, int pesoMax) {
+    public Mochila(int idMochila, String nombre, int pesoMax, String descripcion) {
         this.idMochila = idMochila;
         this.nombre = nombre;
-        this.descripcion = descripcion;
         this.pesoMax = pesoMax;
+        this.descripcion = descripcion;
     }
 
     public int getIdMochila() {
@@ -32,19 +32,19 @@ public class Mochila implements Serializable {
         this.nombre = nombre;
     }
 
-    public String getDescripcion() {
-        return descripcion;
-    }
-
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
-    }
-
     public int getPesoMax() {
         return pesoMax;
     }
 
     public void setPesoMax(int pesoMax) {
         this.pesoMax = pesoMax;
+    }
+
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
     }
 }

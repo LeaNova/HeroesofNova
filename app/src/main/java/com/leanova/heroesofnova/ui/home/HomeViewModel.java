@@ -7,10 +7,14 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
-import androidx.lifecycle.ViewModel;
 
 import com.leanova.heroesofnova.modelos.Usuario;
+import com.leanova.heroesofnova.request.ApiRetrofit;
 import com.leanova.heroesofnova.request.DefaultValues;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class HomeViewModel extends AndroidViewModel {
     private Context context;
@@ -29,8 +33,21 @@ public class HomeViewModel extends AndroidViewModel {
     }
 
     public void getUsuario() {
-        Usuario u = DefaultValues.getUsuario();
+         String token = ApiRetrofit.obtenerToken(context);
 
-        mutableUsuario.setValue(u);
+         Call<Usuario> usuarioPromesa = ApiRetrofit.getServiceApi().obtener(token);
+         usuarioPromesa.enqueue(new Callback<Usuario>() {
+             @Override
+             public void onResponse(Call<Usuario> call, Response<Usuario> response) {
+                 Usuario u = response.body();
+                 DefaultValues.setUsuario(u);
+                 mutableUsuario.postValue(u);
+             }
+
+             @Override
+             public void onFailure(Call<Usuario> call, Throwable t) {
+
+             }
+         });
     }
 }

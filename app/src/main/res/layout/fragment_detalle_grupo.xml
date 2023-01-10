@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.clases.DetalleClaseFragment">
+    tools:context=".ui.grupos.DetalleGrupoFragment">
 
     <TextView
         android:id="@+id/tvNombre_DG"
@@ -17,6 +17,16 @@
         app:layout_constraintBottom_toTopOf="@+id/guideline1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <CheckBox
+        android:id="@+id/cbDisponible_DG"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:text=""
+        app:layout_constraintBottom_toTopOf="@+id/guideline1"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.constraintlayout.widget.Guideline
@@ -40,25 +50,25 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_begin="230dp" />
+        app:layout_constraintGuide_begin="210dp" />
 
     <TextView
-        android:id="@+id/textContrasenia"
+        android:id="@+id/textPassMaster_DG"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
-        android:text="Contraseña: "
+        android:text="[Pass/Master]: "
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/guideline2" />
 
     <TextView
-        android:id="@+id/tvContrasenia_DG"
+        android:id="@+id/tvPassMaster_DG"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="[pass]"
-        app:layout_constraintBottom_toBottomOf="@+id/textContrasenia"
-        app:layout_constraintStart_toEndOf="@+id/textContrasenia" />
+        android:text="[pass/master]"
+        app:layout_constraintBottom_toBottomOf="@+id/textPassMaster_DG"
+        app:layout_constraintStart_toEndOf="@+id/textPassMaster_DG" />
 
     <TextView
         android:id="@+id/textJugadores"
@@ -69,7 +79,7 @@
         android:text="Jugadores: "
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textContrasenia" />
+        app:layout_constraintTop_toBottomOf="@+id/textPassMaster_DG" />
 
     <ListView
         android:id="@+id/lvJugadores_DG"
@@ -84,7 +94,40 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_begin="640dp" />
+        app:layout_constraintGuide_begin="650dp" />
+
+    <!--
+    <Button
+        android:id="@+id/btEditarUnirse_DG"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Button"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/guideline3" />
+    -->
+
+    <Button
+        android:id="@+id/btUnirse_DG"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Unirse"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/guideline3" />
+
+    <Button
+        android:id="@+id/btSalir_DG"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Salir"
+        android:backgroundTint="#FF4B4B"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/btUnirse_DG"
+        app:layout_constraintTop_toTopOf="@+id/guideline3" />
 
     <Button
         android:id="@+id/btEditar_DG"
@@ -101,9 +144,18 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Borrar"
+        android:backgroundTint="#FF4B4B"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/btEditar_DG"
         app:layout_constraintTop_toTopOf="@+id/guideline3" />
+
+    <TextView
+        android:id="@+id/tvAviso_DG"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=""
+        app:layout_constraintBottom_toBottomOf="@+id/textJugadores"
+        app:layout_constraintStart_toEndOf="@+id/textJugadores" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

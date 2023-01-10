@@ -8,14 +8,17 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.leanova.heroesofnova.R;
 import com.leanova.heroesofnova.databinding.FragmentBuscarGrupoBinding;
@@ -52,15 +55,13 @@ public class BuscarGrupoFragment extends Fragment {
                 tvAviso_BG.setText(s);
             }
         });
-        bgvm.setAviso();
-        bgvm.getMutableListaGrupos().observe(getViewLifecycleOwner(), new Observer<ArrayList<Grupo>>() {
+        bgvm.getMutableGrupos().observe(getViewLifecycleOwner(), new Observer<ArrayList<Grupo>>() {
             @Override
             public void onChanged(ArrayList<Grupo> grupos) {
-                GrupoAdapter3 ga = new GrupoAdapter3(getContext(), R.layout.grupo_item_3, grupos);
+                GrupoAdapter3 ga = new GrupoAdapter3(getContext(), R.layout.item_grupo_3, grupos);
                 lvGrupos_BG.setAdapter(ga);
             }
         });
-
 
         return root;
     }
@@ -78,6 +79,18 @@ public class BuscarGrupoFragment extends Fragment {
         });
 
         this.lvGrupos_BG = v.findViewById(R.id.lvGrupos_BG);
+        this.lvGrupos_BG.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Grupo gSeleccionado = bgvm.getListaGrupos().get(i);
+
+                Bundle bGrupo = new Bundle();
+                bGrupo.putSerializable("grupo", gSeleccionado);
+                Navigation.findNavController(v).navigate(R.id.detalleGrupoFragment, bGrupo);
+            }
+        });
+
         this.tvAviso_BG = v.findViewById(R.id.tvAviso_BG);
+        this.tvAviso_BG.setText("Introduce el nombre del grupo, seguido preciona \"Buscar\".");
     }
 }

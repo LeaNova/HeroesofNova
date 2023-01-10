@@ -5,8 +5,8 @@ import java.io.Serializable;
 public class Clase implements Serializable {
     private int idClase;
     private String nombre;
-    private String descripcion;
     private float modVida;
+    private float modEnergia;
     private float modAtk;
     private float modAtm;
     private float modDef;
@@ -15,13 +15,14 @@ public class Clase implements Serializable {
     private float modEva;
     private float modCrt;
     private float modAcc;
+    private String descripcion;
 
     public Clase() { }
-    public Clase(int idClase, String nombre, String descripcion, float modVida, float modAtk, float modAtm, float modDef, float modDfm, float modDex, float modEva, float modCrt, float modAcc) {
+    public Clase(int idClase, String nombre, float modVida, float modEnergia, float modAtk, float modAtm, float modDef, float modDfm, float modDex, float modEva, float modCrt, float modAcc, String descripcion) {
         this.idClase = idClase;
         this.nombre = nombre;
-        this.descripcion = descripcion;
         this.modVida = modVida;
+        this.modEnergia = modEnergia;
         this.modAtk = modAtk;
         this.modAtm = modAtm;
         this.modDef = modDef;
@@ -30,6 +31,7 @@ public class Clase implements Serializable {
         this.modEva = modEva;
         this.modCrt = modCrt;
         this.modAcc = modAcc;
+        this.descripcion = descripcion;
     }
 
     public int getIdClase() {
@@ -48,20 +50,20 @@ public class Clase implements Serializable {
         this.nombre = nombre;
     }
 
-    public String getDescripcion() {
-        return descripcion;
-    }
-
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
-    }
-
     public float getModVida() {
         return modVida;
     }
 
     public void setModVida(float modVida) {
         this.modVida = modVida;
+    }
+
+    public float getModEnergia() {
+        return modEnergia;
+    }
+
+    public void setModEnergia(float modEnergia) {
+        this.modEnergia = modEnergia;
     }
 
     public float getModAtk() {
@@ -126,6 +128,14 @@ public class Clase implements Serializable {
 
     public void setModAcc(float modAcc) {
         this.modAcc = modAcc;
+    }
+
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
     }
 
     @Override

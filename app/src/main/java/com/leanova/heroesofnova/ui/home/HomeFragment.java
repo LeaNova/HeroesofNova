@@ -28,8 +28,6 @@ public class HomeFragment extends Fragment {
 
         hvm = new ViewModelProvider(this).get(HomeViewModel.class);
 
-        inicializarVista(root);
-
         hvm.getMutableUsuario().observe(getViewLifecycleOwner(), new Observer<Usuario>() {
             @Override
             public void onChanged(Usuario usuario) {
@@ -45,6 +43,8 @@ public class HomeFragment extends Fragment {
             }
         });
         hvm.getUsuario();
+
+        inicializarVista(root);
 
         return root;
     }

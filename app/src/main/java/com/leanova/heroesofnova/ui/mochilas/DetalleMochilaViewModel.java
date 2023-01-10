@@ -16,6 +16,7 @@ import androidx.navigation.Navigation;
 import com.leanova.heroesofnova.modelos.Mochila;
 import com.leanova.heroesofnova.modelos.Raza;
 import com.leanova.heroesofnova.request.ApiRetrofit;
+import com.leanova.heroesofnova.request.DefaultValues;
 
 import okhttp3.ResponseBody;
 import retrofit2.Call;
@@ -25,6 +26,7 @@ import retrofit2.Response;
 public class DetalleMochilaViewModel extends AndroidViewModel {
     private Context context;
     private MutableLiveData<Mochila> mutableMochila;
+    private MutableLiveData<Integer> mutableAccess;
 
     public DetalleMochilaViewModel(@NonNull Application application) {
         super(application);
@@ -38,9 +40,46 @@ public class DetalleMochilaViewModel extends AndroidViewModel {
         return mutableMochila;
     }
 
-    public void obtenerMochila(Bundle bMochila) {
+    public LiveData<Integer> getMutableAccess() {
+        if(mutableAccess == null) {
+            mutableAccess = new MutableLiveData<>();
+        }
+        return mutableAccess;
+    }
+
+    //FUNCIONES
+    public void setAccess() {
+        String access = DefaultValues.getAccess();
+
+        if(access.equals("Admin")) {
+            mutableAccess.setValue(0);
+        } else {
+            mutableAccess.setValue(8);
+        }
+    }
+
+    public void getMochila(Bundle bMochila) {
         Mochila m = (Mochila) bMochila.getSerializable("mochila");
-        mutableMochila.setValue(m);
+        obtenerMochila(m.getIdMochila());
+    }
+
+    private void obtenerMochila(int id) {
+        String token = ApiRetrofit.obtenerToken(context);
+
+        Call<Mochila> mochilaPromesa = ApiRetrofit.getServiceApi().obtenerMochila(id, token);
+        mochilaPromesa.enqueue(new Callback<Mochila>() {
+            @Override
+            public void onResponse(Call<Mochila> call, Response<Mochila> response) {
+                if(response.isSuccessful()) {
+                    mutableMochila.postValue(response.body());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Mochila> call, Throwable t) {
+                Log.d("APIerror", t.getMessage());
+            }
+        });
     }
 
     public void borrarMochila(int id, View view) {

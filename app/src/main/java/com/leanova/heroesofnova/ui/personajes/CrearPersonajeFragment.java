@@ -34,8 +34,8 @@ public class CrearPersonajeFragment extends Fragment {
     private CrearPersonajeViewModel cpvm;
 
     private Spinner spGenero_CP, spRaza_CP, spClase_CP;
-    private TextView textVidaBase, textAtkBase, textAtmBase, textDefBase, textDfmBase, textDexBase, textEvaBase, textCrtBase, textAccBase, tvAviso_CP;
-    private EditText etNombre_CP, etVida_CP1, etVida_CP2, etVida_CP3, etAtk_CP, etAtm_CP, etDef_CP, etDfm_CP, etDex_CP, etEva_CP, etCrt_CP, etAcc_CP;
+    private TextView textVidaBase, textEnergiaBase, textAtkBase, textAtmBase, textDefBase, textDfmBase, textDexBase, textEvaBase, textCrtBase, textAccBase, tvAviso_CP;
+    private EditText etNombre_CP, etVida_CP1, etVida_CP2, etVida_CP3, etEnergia_CP1, etEnergia_CP2, etEnergia_CP3, etAtk_CP, etAtm_CP, etDef_CP, etDfm_CP, etDex_CP, etEva_CP, etCrt_CP, etAcc_CP;
     private Button btTirar_CP, btGuardar_CP;
 
     @Override
@@ -50,7 +50,8 @@ public class CrearPersonajeFragment extends Fragment {
         cpvm.getMutableRaza().observe(getViewLifecycleOwner(), new Observer<Raza>() {
             @Override
             public void onChanged(Raza raza) {
-                textVidaBase .setText(raza.getVidaBase() + " + ");
+                textVidaBase.setText(raza.getVidaBase() + " + ");
+                textEnergiaBase.setText(raza.getEnergiaBase() + " + ");
                 textAtkBase.setText(raza.getBaseAtk() + " + ");
                 textAtmBase.setText(raza.getBaseAtm() + " + ");
                 textDefBase.setText(raza.getBaseDef() + " + ");
@@ -67,14 +68,17 @@ public class CrearPersonajeFragment extends Fragment {
                 etVida_CP1.setText(tiros.get(0));
                 etVida_CP2.setText(tiros.get(1));
                 etVida_CP3.setText(tiros.get(2));
-                etAtk_CP.setText(tiros.get(3));
-                etAtm_CP.setText(tiros.get(4));
-                etDef_CP.setText(tiros.get(5));
-                etDfm_CP.setText(tiros.get(6));
-                etDex_CP.setText(tiros.get(7));
-                etEva_CP.setText(tiros.get(8));
-                etCrt_CP.setText(tiros.get(9));
-                etAcc_CP.setText(tiros.get(10));
+                etEnergia_CP1.setText(tiros.get(3));
+                etEnergia_CP2.setText(tiros.get(4));
+                etEnergia_CP3.setText(tiros.get(5));
+                etAtk_CP.setText(tiros.get(6));
+                etAtm_CP.setText(tiros.get(7));
+                etDef_CP.setText(tiros.get(8));
+                etDfm_CP.setText(tiros.get(9));
+                etDex_CP.setText(tiros.get(10));
+                etEva_CP.setText(tiros.get(11));
+                etCrt_CP.setText(tiros.get(12));
+                etAcc_CP.setText(tiros.get(13));
             }
         });
         cpvm.getMutableAviso().observe(getViewLifecycleOwner(), new Observer<String>() {
@@ -119,27 +123,25 @@ public class CrearPersonajeFragment extends Fragment {
         this.etVida_CP2 = v.findViewById(R.id.etVida_CP2);
         this.etVida_CP3 = v.findViewById(R.id.etVida_CP3);
 
+        this.textEnergiaBase = v.findViewById(R.id.textEnergiaBase);
+        this.etEnergia_CP1 = v.findViewById(R.id.etEnergia_CP1);
+        this.etEnergia_CP2 = v.findViewById(R.id.etEnergia_CP2);
+        this.etEnergia_CP3 = v.findViewById(R.id.etEnergia_CP3);
+
         this.textAtkBase = v.findViewById(R.id.textAtkBase);
         this.etAtk_CP = v.findViewById(R.id.etAtk_CP);
-
         this.textAtmBase = v.findViewById(R.id.textAtmBase);
         this.etAtm_CP = v.findViewById(R.id.etAtm_CP);
-
         this.textDefBase = v.findViewById(R.id.textDefBase);
         this.etDef_CP = v.findViewById(R.id.etDef_CP);
-
         this.textDfmBase = v.findViewById(R.id.textDfmBase);
         this.etDfm_CP = v.findViewById(R.id.etDfm_CP);
-
         this.textDexBase = v.findViewById(R.id.textDexBase);
         this.etDex_CP = v.findViewById(R.id.etDex_CP);
-
         this.textEvaBase = v.findViewById(R.id.textEvaBase);
         this.etEva_CP = v.findViewById(R.id.etEva_CP);
-
         this.textCrtBase = v.findViewById(R.id.textCrtBase);
         this.etCrt_CP = v.findViewById(R.id.etCrt_CP);
-
         this.textAccBase = v.findViewById(R.id.textAccBase);
         this.etAcc_CP = v.findViewById(R.id.etAcc_CP);
 
@@ -166,6 +168,11 @@ public class CrearPersonajeFragment extends Fragment {
                     int vida1 = Integer.parseInt(etVida_CP1.getText().toString());
                     int vida2 = Integer.parseInt(etVida_CP2.getText().toString());
                     int vida3 = Integer.parseInt(etVida_CP3.getText().toString());
+
+                    int energia1 = Integer.parseInt(etEnergia_CP1.getText().toString());
+                    int energia3 = Integer.parseInt(etEnergia_CP2.getText().toString());
+                    int energia2 = Integer.parseInt(etEnergia_CP3.getText().toString());
+
                     int atk = Integer.parseInt(etAtk_CP.getText().toString());
                     int atm = Integer.parseInt(etAtm_CP.getText().toString());
                     int def = Integer.parseInt(etDef_CP.getText().toString());
@@ -175,7 +182,7 @@ public class CrearPersonajeFragment extends Fragment {
                     int crt = Integer.parseInt(etCrt_CP.getText().toString());
                     int acc = Integer.parseInt(etAcc_CP.getText().toString());
 
-                    cpvm.crearPersonaje(nombre, genero, raza, clase, vida1, vida2, vida3, atk, atm, def, dfm, dex, eva, crt, acc);
+                    cpvm.crearPersonaje(nombre, raza, genero, clase, vida1, vida2, vida3, energia1, energia2, energia3, atk, atm, def, dfm, dex, eva, crt, acc);
                 } catch (NumberFormatException ex) {
                     cpvm.getAviso();
                 } catch (Exception ex) {

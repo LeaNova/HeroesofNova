@@ -21,9 +21,9 @@
 
     <TextView
         android:id="@+id/textNombre"
-        android:layout_width="85dp"
+        android:layout_width="100dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
+        android:layout_marginStart="24dp"
         android:layout_marginTop="32dp"
         android:text="Nombre: "
         android:textAlignment="textEnd"
@@ -38,45 +38,18 @@
         android:inputType="textPersonName"
         app:layout_constraintBottom_toBottomOf="@+id/textNombre"
         app:layout_constraintStart_toEndOf="@+id/textNombre"
-        app:layout_constraintTop_toTopOf="@+id/textNombre" />
-
-    <TextView
-        android:id="@+id/textDescripcion"
-        android:layout_width="85dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:text="Descripción: "
-        android:textAlignment="textEnd"
-        app:layout_constraintStart_toStartOf="@+id/textNombre"
-        app:layout_constraintTop_toBottomOf="@+id/textNombre" />
-
-    <EditText
-        android:id="@+id/etDescripcion_CM"
-        android:layout_width="250dp"
-        android:layout_height="52dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        app:layout_constraintBottom_toBottomOf="@+id/textDescripcion"
-        app:layout_constraintStart_toEndOf="@+id/textDescripcion"
-        app:layout_constraintTop_toTopOf="@+id/textDescripcion" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_begin="175dp" />
+        app:layout_constraintTop_toTopOf="@+id/textNombre"
+        app:layout_constraintVertical_bias="0.484" />
 
     <TextView
         android:id="@+id/textPeso"
         android:layout_width="100dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
+        android:layout_marginTop="32dp"
         android:text="Peso máximo: "
         android:textAlignment="textEnd"
-        app:layout_constraintBottom_toTopOf="@+id/guideline2"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/guideline1" />
+        app:layout_constraintStart_toStartOf="@+id/textNombre"
+        app:layout_constraintTop_toBottomOf="@+id/textNombre" />
 
     <EditText
         android:id="@+id/etPesoMax_CM"
@@ -89,6 +62,34 @@
         app:layout_constraintStart_toEndOf="@+id/textPeso"
         app:layout_constraintTop_toTopOf="@+id/textPeso"
         app:layout_constraintVertical_bias="0.484" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="175dp" />
+
+    <TextView
+        android:id="@+id/textDescripcion"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:text="Descripción: "
+        android:textAlignment="textEnd"
+        app:layout_constraintBottom_toTopOf="@+id/guideline2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/guideline1" />
+
+    <EditText
+        android:id="@+id/etDescripcion_CM"
+        android:layout_width="250dp"
+        android:layout_height="52dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        app:layout_constraintBottom_toBottomOf="@+id/textDescripcion"
+        app:layout_constraintStart_toEndOf="@+id/textDescripcion"
+        app:layout_constraintTop_toTopOf="@+id/textDescripcion" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline2"
@@ -116,7 +117,7 @@
         app:layout_constraintGuide_begin="650dp" />
 
     <Button
-        android:id="@+id/btCrear_CM"
+        android:id="@+id/btCrearActualizar_CM"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Crear"

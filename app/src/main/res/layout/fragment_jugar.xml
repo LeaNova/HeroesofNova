@@ -66,6 +66,54 @@
         app:layout_constraintStart_toEndOf="@+id/textDash1" />
 
     <TextView
+        android:id="@+id/textEnergia"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Energia"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/pbVida_JP" />
+
+    <ProgressBar
+        android:id="@+id/pbEnergia_JP"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="350dp"
+        android:layout_height="20dp"
+        android:progressDrawable="@drawable/style_pb_c2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textEnergia" />
+
+    <TextView
+        android:id="@+id/tvEnergia_JP"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="[energia]"
+        android:textAlignment="textEnd"
+        app:layout_constraintBottom_toBottomOf="@+id/textDash3"
+        app:layout_constraintEnd_toStartOf="@+id/textDash3" />
+
+    <TextView
+        android:id="@+id/textDash3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="/"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toBottomOf="@+id/pbEnergia_JP"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/pbEnergia_JP" />
+
+    <TextView
+        android:id="@+id/tvEnergiaT_JP"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="[energiaTop]"
+        app:layout_constraintBottom_toBottomOf="@+id/textDash3"
+        app:layout_constraintStart_toEndOf="@+id/textDash3" />
+
+    <TextView
         android:id="@+id/textExperiencia"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -73,7 +121,7 @@
         android:text="Experiencia"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/pbVida_JP" />
+        app:layout_constraintTop_toBottomOf="@+id/pbEnergia_JP" />
 
     <TextView
         android:id="@+id/tvExp_JP"
@@ -110,16 +158,59 @@
         app:layout_constraintGuide_begin="330dp" />
 
     <EditText
-        android:id="@+id/etDanio_JP"
-        android:layout_width="140dp"
+        android:id="@+id/etRecuperar_JP"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="32dp"
         android:ems="10"
         android:hint="Total"
         android:inputType="number"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/guideline1" />
+
+    <Button
+        android:id="@+id/btCurar_JP"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:text="Recuperar"
+        app:layout_constraintBottom_toBottomOf="@+id/etRecuperar_JP"
+        app:layout_constraintStart_toEndOf="@+id/etRecuperar_JP"
+        app:layout_constraintTop_toTopOf="@+id/etRecuperar_JP" />
+
+    <RadioGroup
+        android:id="@+id/rgRecuperar_JP"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:orientation="horizontal"
+        app:layout_constraintStart_toStartOf="@+id/etRecuperar_JP"
+        app:layout_constraintTop_toBottomOf="@+id/etRecuperar_JP">
+
+        <RadioButton
+            android:id="@+id/rbVida"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:text="Vida" />
+
+        <RadioButton
+            android:id="@+id/rbEnergia"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Energia" />
+    </RadioGroup>
+
+    <EditText
+        android:id="@+id/etDanio_JP"
+        android:layout_width="140dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="8dp"
+        android:ems="10"
+        android:hint="Total"
+        android:inputType="number"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/rgRecuperar_JP" />
 
     <Button
         android:id="@+id/btDanio_JP"
@@ -132,27 +223,6 @@
         app:layout_constraintTop_toTopOf="@+id/etDanio_JP" />
 
     <Button
-        android:id="@+id/btCurar_JP"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:text="Curar"
-        app:layout_constraintBottom_toBottomOf="@+id/btDanio_JP"
-        app:layout_constraintStart_toEndOf="@+id/btDanio_JP"
-        app:layout_constraintTop_toTopOf="@+id/btDanio_JP" />
-
-    <EditText
-        android:id="@+id/etExp_JP"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:ems="10"
-        android:hint="Experiencia"
-        android:inputType="number"
-        app:layout_constraintStart_toStartOf="@+id/rgAtaque_JP"
-        app:layout_constraintTop_toBottomOf="@+id/rgAtaque_JP" />
-
-    <Button
         android:id="@+id/btExp_JP"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -162,12 +232,45 @@
         app:layout_constraintStart_toEndOf="@+id/etExp_JP"
         app:layout_constraintTop_toTopOf="@+id/etExp_JP" />
 
+    <RadioGroup
+        android:id="@+id/rgDanio_JP"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:orientation="horizontal"
+        app:layout_constraintStart_toStartOf="@+id/etDanio_JP"
+        app:layout_constraintTop_toBottomOf="@+id/etDanio_JP">
+
+        <RadioButton
+            android:id="@+id/rbATK"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:text="Fisico" />
+
+        <RadioButton
+            android:id="@+id/rbATM"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Magico" />
+    </RadioGroup>
+
+    <EditText
+        android:id="@+id/etExp_JP"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:ems="10"
+        android:hint="Experiencia"
+        android:inputType="number"
+        app:layout_constraintStart_toStartOf="@+id/rgDanio_JP"
+        app:layout_constraintTop_toBottomOf="@+id/rgDanio_JP" />
+
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_begin="635dp" />
+        app:layout_constraintGuide_begin="650dp" />
 
     <Button
         android:id="@+id/btGuardar_JP"
@@ -178,27 +281,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/guideline2" />
-
-    <RadioGroup
-        android:id="@+id/rgAtaque_JP"
-        android:layout_width="wrap_content"
-        android:layout_height="30dp"
-        android:orientation="horizontal"
-        app:layout_constraintStart_toStartOf="@+id/etDanio_JP"
-        app:layout_constraintTop_toBottomOf="@+id/etDanio_JP">
-
-        <RadioButton
-            android:id="@+id/rbAtaqueFisico_JP"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:checked="true"
-            android:text="Fisico" />
-
-        <RadioButton
-            android:id="@+id/rbAtaqueMagico_JP"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Magico" />
-    </RadioGroup>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
