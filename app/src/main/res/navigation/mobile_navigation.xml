@@ -86,7 +86,7 @@
     </fragment>
     <fragment
         android:id="@+id/jugarFragment"
-        android:name="com.leanova.heroesofnova.ui.personajes.JugarFragment"
+        android:name="com.leanova.heroesofnova.ui.personajes.jugar.JugarFragment"
         android:label="Jugar"
         tools:layout="@layout/fragment_jugar" />
 
@@ -176,4 +176,83 @@
         android:name="com.leanova.heroesofnova.ui.mochilas.CrearMochilaFragment"
         android:label="Crear mochila"
         tools:layout="@layout/fragment_crear_mochila" />
+
+    <fragment
+        android:id="@+id/nav_armas"
+        android:name="com.leanova.heroesofnova.ui.armas.ArmaFragment"
+        android:label="@string/menu_armas"
+        tools:layout="@layout/fragment_arma" >
+        <action
+            android:id="@+id/action_armaFragment_to_detalleArmaFragment"
+            app:destination="@id/detalleArmaFragment" />
+        <action
+            android:id="@+id/action_nav_armas_to_crearArnaFragment"
+            app:destination="@id/crearArnaFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/detalleArmaFragment"
+        android:name="com.leanova.heroesofnova.ui.armas.DetalleArmaFragment"
+        android:label="Detalle arma"
+        tools:layout="@layout/fragment_detalle_arma" >
+        <action
+            android:id="@+id/action_detalleArmaFragment_to_crearArnaFragment"
+            app:destination="@id/crearArnaFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/nav_armaduras"
+        android:name="com.leanova.heroesofnova.ui.armaduras.ArmaduraFragment"
+        android:label="@string/menu_armaduras"
+        tools:layout="@layout/fragment_armadura" >
+        <action
+            android:id="@+id/action_nav_armaduras_to_detalleArmaduraFragment"
+            app:destination="@id/detalleArmaduraFragment" />
+        <action
+            android:id="@+id/action_nav_armaduras_to_crearArmaduraFragment"
+            app:destination="@id/crearArmaduraFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/nav_items"
+        android:name="com.leanova.heroesofnova.ui.items.ItemFragment"
+        android:label="@string/menu_items"
+        tools:layout="@layout/fragment_item" >
+        <action
+            android:id="@+id/action_nav_items_to_detalleItemFragment"
+            app:destination="@id/detalleItemFragment" />
+        <action
+            android:id="@+id/action_nav_items_to_crearItemFragment"
+            app:destination="@id/crearItemFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/crearArmaduraFragment"
+        android:name="com.leanova.heroesofnova.ui.armaduras.CrearArmaduraFragment"
+        android:label="Crear armadura"
+        tools:layout="@layout/fragment_crear_armadura" />
+    <fragment
+        android:id="@+id/crearItemFragment"
+        android:name="com.leanova.heroesofnova.ui.items.CrearItemFragment"
+        android:label="Crear item"
+        tools:layout="@layout/fragment_crear_item" />
+    <fragment
+        android:id="@+id/detalleArmaduraFragment"
+        android:name="com.leanova.heroesofnova.ui.armaduras.DetalleArmaduraFragment"
+        android:label="Detalle armadura"
+        tools:layout="@layout/fragment_detalle_armadura" >
+        <action
+            android:id="@+id/action_detalleArmaduraFragment_to_crearArmaduraFragment"
+            app:destination="@id/crearArmaduraFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/detalleItemFragment"
+        android:name="com.leanova.heroesofnova.ui.items.DetalleItemFragment"
+        android:label="Detalle item"
+        tools:layout="@layout/fragment_detalle_item" >
+        <action
+            android:id="@+id/action_detalleItemFragment_to_crearItemFragment"
+            app:destination="@id/crearItemFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/crearArnaFragment"
+        android:name="com.leanova.heroesofnova.ui.armas.CrearArmaFragment"
+        android:label="Crear arma"
+        tools:layout="@layout/fragment_crear_arma" />
 </navigation>

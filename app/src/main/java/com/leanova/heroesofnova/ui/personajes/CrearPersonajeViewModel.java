@@ -85,7 +85,7 @@ public class CrearPersonajeViewModel extends AndroidViewModel {
         mutableAviso.setValue("* Revise que todos los campos esten llenos correctamente");
     }
 
-    public void crearPersonaje(String nombre, Raza raza, Genero genero, Clase clase, int vida1, int vida2, int vida3, int energia1, int energia2, int energia3, int atk, int atm, int def, int dfm, int dex, int eva, int crt, int acc) {
+    public void crearPersonaje(String nombre, Raza raza, Genero genero, Clase clase, int vida1, int vida2, int vida3, int energia1, int energia2, int energia3, int atk, int atm, int def, int dfm, int dex, int eva, int crt, int acc, String descripcion) {
         boolean ok = true;
         String aviso = "";
         int atkT = atk + raza.getBaseAtk();
@@ -112,6 +112,8 @@ public class CrearPersonajeViewModel extends AndroidViewModel {
             ok = false;
         }
 
+        if(descripcion.equals("")) descripcion = "No me dieron una descripción, estoy triste :(";
+
         if(ok) {
             int vida = (vida1 + vida2 + vida3) / 3;
             int energia = (energia1 + energia2 + energia3) / 3;
@@ -119,12 +121,12 @@ public class CrearPersonajeViewModel extends AndroidViewModel {
 
             vida += raza.getVidaBase();
 
-            Call<Personaje> personajePromesa = ApiRetrofit.getServiceApi().crearPersonaje(nombre, raza.getIdRaza(), genero.getIdGenero(), clase.getIdClase(), 1, 0, vida, energia, atkT, atmT, defT, dfmT, dexT, evaT, crtT, accT, "Carga desde app", 1, true, token);
+            Call<Personaje> personajePromesa = ApiRetrofit.getServiceApi().crearPersonaje(nombre, raza.getIdRaza(), genero.getIdGenero(), clase.getIdClase(), 1, 0, vida, energia, atkT, atmT, defT, dfmT, dexT, evaT, crtT, accT, descripcion, 1, true, token);
             personajePromesa.enqueue(new Callback<Personaje>() {
                 @Override
                 public void onResponse(Call<Personaje> call, Response<Personaje> response) {
                     if(response.isSuccessful()) {
-                        Toast.makeText(context, "Personaje creado correctamente", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(context, "Personaje creado", Toast.LENGTH_SHORT).show();
                     } else {
                         Toast.makeText(context, "Ocurrió un error", Toast.LENGTH_SHORT).show();
                     }

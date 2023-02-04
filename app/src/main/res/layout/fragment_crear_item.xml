@@ -1,0 +1,375 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.items.CrearItemFragment">
+
+    <TextView
+        android:id="@+id/tvNuevaEditar_CArma"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Nueva Arma"
+        android:textAlignment="center"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textNombre"
+        android:layout_width="85dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="32dp"
+        android:text="Nombre: "
+        android:textAlignment="textEnd"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvNuevaEditar_CArma" />
+
+    <EditText
+        android:id="@+id/etNombre_CItem"
+        android:layout_width="264dp"
+        android:layout_height="52dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        app:layout_constraintBottom_toBottomOf="@+id/textNombre"
+        app:layout_constraintStart_toEndOf="@+id/textNombre"
+        app:layout_constraintTop_toTopOf="@+id/textNombre" />
+
+    <TextView
+        android:id="@+id/textCategoria"
+        android:layout_width="85dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="24dp"
+        android:text="Tipo: "
+        android:textAlignment="textEnd"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textNombre" />
+
+    <Spinner
+        android:id="@+id/spTipo_CItem"
+        android:layout_width="264dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@+id/textCategoria"
+        app:layout_constraintStart_toEndOf="@+id/textCategoria"
+        app:layout_constraintTop_toTopOf="@+id/textCategoria" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="155dp" />
+
+    <TextView
+        android:id="@+id/textVida"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="24dp"
+        android:text="Bono vida: "
+        android:textAlignment="textEnd"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/guideline1" />
+
+    <EditText
+        android:id="@+id/etBonoVida_CItem"
+        android:layout_width="50dp"
+        android:layout_height="52dp"
+        android:ems="10"
+        android:inputType="number"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toBottomOf="@+id/textVida"
+        app:layout_constraintStart_toEndOf="@+id/textVida"
+        app:layout_constraintTop_toTopOf="@+id/textVida" />
+
+    <TextView
+        android:id="@+id/textAtk"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="Bono ATK: "
+        android:textAlignment="textEnd"
+        app:layout_constraintStart_toStartOf="@+id/textVida"
+        app:layout_constraintTop_toBottomOf="@+id/textVida" />
+
+    <EditText
+        android:id="@+id/etBonoAtk_CItem"
+        android:layout_width="50dp"
+        android:layout_height="52dp"
+        android:ems="10"
+        android:inputType="number"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toBottomOf="@+id/textAtk"
+        app:layout_constraintStart_toEndOf="@+id/textAtk"
+        app:layout_constraintTop_toTopOf="@+id/textAtk" />
+
+    <TextView
+        android:id="@+id/textAtm"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="Bono ATM: "
+        android:textAlignment="textEnd"
+        app:layout_constraintStart_toStartOf="@+id/textAtk"
+        app:layout_constraintTop_toBottomOf="@+id/textAtk" />
+
+    <EditText
+        android:id="@+id/etBonoAtm_CItem"
+        android:layout_width="50dp"
+        android:layout_height="52dp"
+        android:ems="10"
+        android:inputType="number"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toBottomOf="@+id/textAtm"
+        app:layout_constraintStart_toEndOf="@+id/textAtm"
+        app:layout_constraintTop_toTopOf="@+id/textAtm" />
+
+    <TextView
+        android:id="@+id/textDef"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="Bono DEF: "
+        android:textAlignment="textEnd"
+        app:layout_constraintStart_toStartOf="@+id/textAtm"
+        app:layout_constraintTop_toBottomOf="@+id/textAtm" />
+
+    <EditText
+        android:id="@+id/etBonoDef_CItem"
+        android:layout_width="50dp"
+        android:layout_height="52dp"
+        android:ems="10"
+        android:inputType="number"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toBottomOf="@+id/textDef"
+        app:layout_constraintStart_toEndOf="@+id/textDef"
+        app:layout_constraintTop_toTopOf="@+id/textDef" />
+
+    <TextView
+        android:id="@+id/textDfm"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="Bono DFM: "
+        android:textAlignment="textEnd"
+        app:layout_constraintStart_toStartOf="@+id/textDef"
+        app:layout_constraintTop_toBottomOf="@+id/textDef" />
+
+    <EditText
+        android:id="@+id/etBonoDfm_CItem"
+        android:layout_width="50dp"
+        android:layout_height="52dp"
+        android:ems="10"
+        android:inputType="number"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toBottomOf="@+id/textDfm"
+        app:layout_constraintStart_toEndOf="@+id/textDfm"
+        app:layout_constraintTop_toTopOf="@+id/textDfm" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="205dp" />
+
+    <TextView
+        android:id="@+id/textEnergia"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="24dp"
+        android:text="Bono energía: "
+        android:textAlignment="textEnd"
+        app:layout_constraintStart_toStartOf="@+id/guideline3"
+        app:layout_constraintTop_toTopOf="@+id/guideline1" />
+
+    <EditText
+        android:id="@+id/etBonoEnergia_CItem"
+        android:layout_width="50dp"
+        android:layout_height="52dp"
+        android:ems="10"
+        android:inputType="number"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toBottomOf="@+id/textEnergia"
+        app:layout_constraintStart_toEndOf="@+id/textEnergia"
+        app:layout_constraintTop_toTopOf="@+id/textEnergia" />
+
+    <TextView
+        android:id="@+id/textDex"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="Bono DEX: "
+        android:textAlignment="textEnd"
+        app:layout_constraintStart_toStartOf="@+id/textEnergia"
+        app:layout_constraintTop_toBottomOf="@+id/textEnergia" />
+
+    <EditText
+        android:id="@+id/etBonoDex_CItem"
+        android:layout_width="50dp"
+        android:layout_height="52dp"
+        android:ems="10"
+        android:inputType="number"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toBottomOf="@+id/textDex"
+        app:layout_constraintStart_toEndOf="@+id/textDex"
+        app:layout_constraintTop_toTopOf="@+id/textDex" />
+
+    <TextView
+        android:id="@+id/textEva"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="Bono EVA: "
+        android:textAlignment="textEnd"
+        app:layout_constraintStart_toStartOf="@+id/textDex"
+        app:layout_constraintTop_toBottomOf="@+id/textDex" />
+
+    <EditText
+        android:id="@+id/etBonoEva_CItem"
+        android:layout_width="50dp"
+        android:layout_height="52dp"
+        android:ems="10"
+        android:inputType="number"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toBottomOf="@+id/textEva"
+        app:layout_constraintStart_toEndOf="@+id/textEva"
+        app:layout_constraintTop_toTopOf="@+id/textEva" />
+
+    <TextView
+        android:id="@+id/textCrt"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="Bono CRT: "
+        android:textAlignment="textEnd"
+        app:layout_constraintStart_toStartOf="@+id/textEva"
+        app:layout_constraintTop_toBottomOf="@+id/textEva" />
+
+    <EditText
+        android:id="@+id/etBonoCrt_CItem"
+        android:layout_width="50dp"
+        android:layout_height="52dp"
+        android:ems="10"
+        android:inputType="number"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toBottomOf="@+id/textCrt"
+        app:layout_constraintStart_toEndOf="@+id/textCrt"
+        app:layout_constraintTop_toTopOf="@+id/textCrt" />
+
+    <TextView
+        android:id="@+id/textAcc"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="Bono ACC: "
+        android:textAlignment="textEnd"
+        app:layout_constraintStart_toStartOf="@+id/textCrt"
+        app:layout_constraintTop_toBottomOf="@+id/textCrt" />
+
+    <EditText
+        android:id="@+id/etBonoAcc_CItem"
+        android:layout_width="50dp"
+        android:layout_height="52dp"
+        android:ems="10"
+        android:inputType="number"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toBottomOf="@+id/textAcc"
+        app:layout_constraintStart_toEndOf="@+id/textAcc"
+        app:layout_constraintTop_toTopOf="@+id/textAcc" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="430dp" />
+
+    <TextView
+        android:id="@+id/textPrecio"
+        android:layout_width="55dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="24dp"
+        android:text="Precio: "
+        android:textAlignment="textEnd"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/guideline4" />
+
+    <EditText
+        android:id="@+id/etPrecio_CItem"
+        android:layout_width="100dp"
+        android:layout_height="52dp"
+        android:ems="10"
+        android:inputType="number"
+        app:layout_constraintBottom_toBottomOf="@+id/textPrecio"
+        app:layout_constraintStart_toEndOf="@+id/textPrecio"
+        app:layout_constraintTop_toTopOf="@+id/textPrecio" />
+
+    <TextView
+        android:id="@+id/textPeso"
+        android:layout_width="55dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="24dp"
+        android:text="Peso: "
+        android:textAlignment="textEnd"
+        app:layout_constraintStart_toStartOf="@+id/guideline3"
+        app:layout_constraintTop_toTopOf="@+id/guideline4" />
+
+    <EditText
+        android:id="@+id/etPeso_CItem"
+        android:layout_width="80dp"
+        android:layout_height="52dp"
+        android:ems="10"
+        android:inputType="numberDecimal"
+        app:layout_constraintBottom_toBottomOf="@+id/textPeso"
+        app:layout_constraintStart_toEndOf="@+id/textPeso"
+        app:layout_constraintTop_toTopOf="@+id/textPeso" />
+
+    <TextView
+        android:id="@+id/textDescripcion"
+        android:layout_width="90dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="32dp"
+        android:text="Descripcion: "
+        android:textAlignment="textEnd"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textPrecio" />
+
+    <EditText
+        android:id="@+id/etDescripcion_CItem"
+        android:layout_width="259dp"
+        android:layout_height="52dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        app:layout_constraintBottom_toBottomOf="@+id/textDescripcion"
+        app:layout_constraintStart_toEndOf="@+id/textDescripcion"
+        app:layout_constraintTop_toTopOf="@+id/textDescripcion" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="650dp" />
+
+    <Button
+        android:id="@+id/btCrearActualizar_CItem"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Crear"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/guideline5" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

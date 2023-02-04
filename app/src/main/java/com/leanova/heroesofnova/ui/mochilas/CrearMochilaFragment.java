@@ -3,6 +3,8 @@ package com.leanova.heroesofnova.ui.mochilas;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -26,7 +28,6 @@ public class CrearMochilaFragment extends Fragment {
     private CrearMochilaViewModel cmvm;
 
     private EditText etNombre_CM, etPesoMax_CM, etDescripcion_CM;
-    private TextView tvAviso_CM;
     private Button btCrearActualizar_CM;
 
     @Override
@@ -51,7 +52,15 @@ public class CrearMochilaFragment extends Fragment {
         cmvm.getMutableAviso().observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override
             public void onChanged(String s) {
-                tvAviso_CM.setText(s);
+                new AlertDialog.Builder(getContext())
+                        .setTitle("Error en crear")
+                        .setMessage(s)
+                        .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                //NADA
+                            }
+                        }).show();
             }
         });
         cmvm.getMutableClear().observe(getViewLifecycleOwner(), new Observer<String>() {
@@ -60,7 +69,6 @@ public class CrearMochilaFragment extends Fragment {
                 etNombre_CM.setText(s);
                 etPesoMax_CM.setText(s);
                 etDescripcion_CM.setText(s);
-                tvAviso_CM.setText(s);
             }
         });
 
@@ -71,7 +79,6 @@ public class CrearMochilaFragment extends Fragment {
         this.etNombre_CM = v.findViewById(R.id.etNombre_CM);
         this.etPesoMax_CM = v.findViewById(R.id.etPesoMax_CM);
         this.etDescripcion_CM = v.findViewById(R.id.etDescripcion_CM);
-        this.tvAviso_CM = v.findViewById(R.id.tvAviso_CM);
 
         this.btCrearActualizar_CM = v.findViewById(R.id.btCrearActualizar_CM);
         this.btCrearActualizar_CM.setOnClickListener(new View.OnClickListener() {

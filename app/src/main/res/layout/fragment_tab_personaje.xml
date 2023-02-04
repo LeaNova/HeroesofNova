@@ -1,0 +1,285 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.personajes.jugar.TabPersonajeFragment">
+
+    <TextView
+        android:id="@+id/tvPersonaje_JP"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="[personaje]"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textVida"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Vida"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvPersonaje_JP" />
+
+    <ProgressBar
+        android:id="@+id/pbVida_JP"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="350dp"
+        android:layout_height="20dp"
+        android:progressDrawable="@drawable/style_pb_c1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textVida" />
+
+    <TextView
+        android:id="@+id/tvVida_JP"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="[vida]"
+        android:textAlignment="textEnd"
+        app:layout_constraintBottom_toBottomOf="@+id/textDash1"
+        app:layout_constraintEnd_toStartOf="@+id/textDash1" />
+
+    <TextView
+        android:id="@+id/textDash1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="/"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toBottomOf="@+id/pbVida_JP"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/pbVida_JP" />
+
+    <TextView
+        android:id="@+id/tvVidaT_JP"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="[vidaTop]"
+        app:layout_constraintBottom_toBottomOf="@+id/textDash1"
+        app:layout_constraintStart_toEndOf="@+id/textDash1" />
+
+    <TextView
+        android:id="@+id/textEnergia"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Energia"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/pbVida_JP" />
+
+    <ProgressBar
+        android:id="@+id/pbEnergia_JP"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="350dp"
+        android:layout_height="20dp"
+        android:progressDrawable="@drawable/style_pb_c2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textEnergia" />
+
+    <TextView
+        android:id="@+id/tvEnergia_JP"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="[energia]"
+        android:textAlignment="textEnd"
+        app:layout_constraintBottom_toBottomOf="@+id/textDash3"
+        app:layout_constraintEnd_toStartOf="@+id/textDash3" />
+
+    <TextView
+        android:id="@+id/textDash3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="/"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toBottomOf="@+id/pbEnergia_JP"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/pbEnergia_JP" />
+
+    <TextView
+        android:id="@+id/tvEnergiaT_JP"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="[energiaTop]"
+        app:layout_constraintBottom_toBottomOf="@+id/textDash3"
+        app:layout_constraintStart_toEndOf="@+id/textDash3" />
+
+    <TextView
+        android:id="@+id/textExperiencia"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Experiencia"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/pbEnergia_JP" />
+
+    <TextView
+        android:id="@+id/tvExp_JP"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="[exp]"
+        android:textAlignment="textEnd"
+        app:layout_constraintBottom_toBottomOf="@+id/textDash2"
+        app:layout_constraintEnd_toStartOf="@+id/textDash2" />
+
+    <TextView
+        android:id="@+id/textDash2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="/"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textExperiencia" />
+
+    <TextView
+        android:id="@+id/tvExpT_JP"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="[expTop]"
+        app:layout_constraintBottom_toBottomOf="@+id/textDash2"
+        app:layout_constraintStart_toEndOf="@+id/textDash2" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="330dp" />
+
+    <EditText
+        android:id="@+id/etRecuperar_JP"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:ems="10"
+        android:hint="Total"
+        android:inputType="number"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/guideline1" />
+
+    <Button
+        android:id="@+id/btCurar_JP"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:text="Recuperar"
+        app:layout_constraintBottom_toBottomOf="@+id/etRecuperar_JP"
+        app:layout_constraintStart_toEndOf="@+id/etRecuperar_JP"
+        app:layout_constraintTop_toTopOf="@+id/etRecuperar_JP" />
+
+    <RadioGroup
+        android:id="@+id/rgRecuperar_JP"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:orientation="horizontal"
+        app:layout_constraintStart_toStartOf="@+id/etRecuperar_JP"
+        app:layout_constraintTop_toBottomOf="@+id/etRecuperar_JP">
+
+        <RadioButton
+            android:id="@+id/rbVida"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:text="Vida" />
+
+        <RadioButton
+            android:id="@+id/rbEnergia"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Energia" />
+    </RadioGroup>
+
+    <EditText
+        android:id="@+id/etDanio_JP"
+        android:layout_width="140dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="8dp"
+        android:ems="10"
+        android:hint="Total"
+        android:inputType="number"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/rgRecuperar_JP" />
+
+    <Button
+        android:id="@+id/btDanio_JP"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:text="DAÑO"
+        app:layout_constraintBottom_toBottomOf="@+id/etDanio_JP"
+        app:layout_constraintStart_toEndOf="@+id/etDanio_JP"
+        app:layout_constraintTop_toTopOf="@+id/etDanio_JP" />
+
+    <Button
+        android:id="@+id/btExp_JP"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:text="EXP"
+        app:layout_constraintBottom_toBottomOf="@+id/etExp_JP"
+        app:layout_constraintStart_toEndOf="@+id/etExp_JP"
+        app:layout_constraintTop_toTopOf="@+id/etExp_JP" />
+
+    <RadioGroup
+        android:id="@+id/rgDanio_JP"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:orientation="horizontal"
+        app:layout_constraintStart_toStartOf="@+id/etDanio_JP"
+        app:layout_constraintTop_toBottomOf="@+id/etDanio_JP">
+
+        <RadioButton
+            android:id="@+id/rbATK"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:text="Fisico" />
+
+        <RadioButton
+            android:id="@+id/rbATM"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Magico" />
+    </RadioGroup>
+
+    <EditText
+        android:id="@+id/etExp_JP"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:ems="10"
+        android:hint="Experiencia"
+        android:inputType="number"
+        app:layout_constraintStart_toStartOf="@+id/rgDanio_JP"
+        app:layout_constraintTop_toBottomOf="@+id/rgDanio_JP" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="610dp" />
+
+    <Button
+        android:id="@+id/btFinalizar_JP"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Finalizar"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/guideline2" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

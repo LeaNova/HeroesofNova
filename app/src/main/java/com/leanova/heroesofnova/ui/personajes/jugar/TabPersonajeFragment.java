@@ -1,4 +1,4 @@
-package com.leanova.heroesofnova.ui.personajes;
+package com.leanova.heroesofnova.ui.personajes.jugar;
 
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
@@ -9,7 +9,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,29 +20,31 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import com.leanova.heroesofnova.R;
-import com.leanova.heroesofnova.databinding.FragmentJugarBinding;
+import com.leanova.heroesofnova.databinding.FragmentTabPersonajeBinding;
+import com.leanova.heroesofnova.modelos.Jugar;
 import com.leanova.heroesofnova.modelos.Personaje;
 
-public class JugarFragment extends Fragment {
-    private FragmentJugarBinding binding;
-    private JugarViewModel jvm;
+public class TabPersonajeFragment extends Fragment {
+    private FragmentTabPersonajeBinding binding;
+    private TabPersonajeViewModel tabPersonajeVM;
 
     private TextView tvPersonaje_JP, tvVida_JP, tvVidaT_JP, tvEnergia_JP, tvEnergiaT_JP, tvExp_JP, tvExpT_JP;
+    private ProgressBar pbVida_JP, pbEnergia_JP;
     private EditText etRecuperar_JP, etDanio_JP, etExp_JP;
-    private Button btDanio_JP, btCurar_JP, btExp_JP;
     private RadioGroup rgRecuperar_JP, rgDanio_JP, rgAtaque_JP;
     private RadioButton rbOpcion;
-    private ProgressBar pbVida_JP, pbEnergia_JP;
+    private Button btDanio_JP, btCurar_JP, btExp_JP, btFinalizar_JP;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        binding = FragmentJugarBinding.inflate(inflater, container, false);
+        binding = FragmentTabPersonajeBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-        jvm = new ViewModelProvider(this).get(JugarViewModel.class);
-        jvm.getMutablePersonaje().observe(getViewLifecycleOwner(), new Observer<Personaje>() {
+        tabPersonajeVM = new ViewModelProvider(this).get(TabPersonajeViewModel.class);
+        tabPersonajeVM.getMutablePersonaje().observe(getViewLifecycleOwner(), new Observer<Jugar>() {
             @Override
-            public void onChanged(Personaje personaje) {
+            public void onChanged(Jugar jugar) {
+                Personaje personaje = jugar.getPersonaje();
                 tvPersonaje_JP.setText(personaje.getNombre() + " - Nivel " + personaje.getNivel());
                 tvVida_JP.setText(personaje.getVidaAct()+"");
                 tvVidaT_JP.setText(personaje.getVida()+"");
@@ -58,31 +59,37 @@ public class JugarFragment extends Fragment {
                 pbEnergia_JP.setProgress(personaje.getEnergiaAct());
             }
         });
-        jvm.getMutableClean().observe(getViewLifecycleOwner(), new Observer<String>() {
+        tabPersonajeVM.getMutableClean().observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override
             public void onChanged(String s) {
+                etRecuperar_JP.setText(s);
                 etDanio_JP.setText(s);
                 etExp_JP.setText(s);
             }
         });
 
         inicializarVista(root);
-
-        jvm.obtenerPersonaje(getArguments());
+        tabPersonajeVM.obtenerPersonaje();
 
         return root;
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        tabPersonajeVM.actualizar();
+    }
+
     private void inicializarVista(View v) {
         this.tvPersonaje_JP = v.findViewById(R.id.tvPersonaje_JP);
-        this.pbVida_JP = v.findViewById(R.id.pbVida_JP);
         this.tvVida_JP = v.findViewById(R.id.tvVida_JP);
         this.tvVidaT_JP = v.findViewById(R.id.tvVidaT_JP);
-        this.pbEnergia_JP = v.findViewById(R.id.pbEnergia_JP);
         this.tvEnergia_JP = v.findViewById(R.id.tvEnergia_JP);
         this.tvEnergiaT_JP = v.findViewById(R.id.tvEnergiaT_JP);
         this.tvExp_JP = v.findViewById(R.id.tvExp_JP);
         this.tvExpT_JP = v.findViewById(R.id.tvExpT_JP);
+        this.pbVida_JP = v.findViewById(R.id.pbVida_JP);
+        this.pbEnergia_JP = v.findViewById(R.id.pbEnergia_JP);
 
         this.etRecuperar_JP = v.findViewById(R.id.etRecuperar_JP);
         this.rgRecuperar_JP = v.findViewById(R.id.rgRecuperar_JP);
@@ -97,7 +104,7 @@ public class JugarFragment extends Fragment {
                     rbOpcion = v.findViewById(rbOpcionID);
                     String opcion = rbOpcion.getText().toString();
 
-                    jvm.recuperar(total, opcion);
+                    tabPersonajeVM.recuperar(total, opcion);
                 } catch (NumberFormatException ex) {
                     //Nada
                 }
@@ -117,7 +124,7 @@ public class JugarFragment extends Fragment {
                     rbOpcion = v.findViewById(rbOpcionID);
                     String opcion = rbOpcion.getText().toString();
 
-                    jvm.recibirDanio(danio, opcion);
+                    tabPersonajeVM.recibirDanio(danio, opcion);
                 } catch (NumberFormatException ex) {
                     //Nada
                 }
@@ -131,12 +138,19 @@ public class JugarFragment extends Fragment {
             public void onClick(View view) {
                 try {
                     int exp = Integer.parseInt(etExp_JP.getText().toString());
-                    jvm.getExp(exp);
+                    tabPersonajeVM.getExp(exp);
                 } catch (NumberFormatException ex) {
                     //Nada
                 }
             }
         });
 
+        this.btFinalizar_JP = v.findViewById(R.id.btFinalizar_JP);
+        this.btFinalizar_JP.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                tabPersonajeVM.finalizar(view);
+            }
+        });
     }
 }

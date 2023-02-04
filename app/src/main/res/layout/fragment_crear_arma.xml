@@ -1,0 +1,418 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.armas.CrearArmaFragment">
+
+    <TextView
+        android:id="@+id/tvNuevaEditar_CArma"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Nueva Arma"
+        android:textAlignment="center"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textNombre"
+        android:layout_width="85dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="32dp"
+        android:text="Nombre: "
+        android:textAlignment="textEnd"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvNuevaEditar_CArma" />
+
+    <EditText
+        android:id="@+id/etNombre_CArma"
+        android:layout_width="258dp"
+        android:layout_height="52dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        app:layout_constraintBottom_toBottomOf="@+id/textNombre"
+        app:layout_constraintStart_toEndOf="@+id/textNombre"
+        app:layout_constraintTop_toTopOf="@+id/textNombre" />
+
+    <TextView
+        android:id="@+id/textCategoria"
+        android:layout_width="85dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="24dp"
+        android:text="Categoría: "
+        android:textAlignment="textEnd"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textNombre" />
+
+    <Spinner
+        android:id="@+id/spCategoria_CArma"
+        android:layout_width="258dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@+id/textCategoria"
+        app:layout_constraintStart_toEndOf="@+id/textCategoria"
+        app:layout_constraintTop_toTopOf="@+id/textCategoria" />
+
+    <TextView
+        android:id="@+id/textDanio"
+        android:layout_width="85dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="Daño arma: "
+        android:textAlignment="textEnd"
+        app:layout_constraintStart_toStartOf="@+id/textCategoria"
+        app:layout_constraintTop_toBottomOf="@+id/textCategoria" />
+
+    <EditText
+        android:id="@+id/etDanioArma_CArma"
+        android:layout_width="50dp"
+        android:layout_height="52dp"
+        android:ems="10"
+        android:inputType="number"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toBottomOf="@+id/textDanio"
+        app:layout_constraintStart_toEndOf="@+id/textDanio"
+        app:layout_constraintTop_toTopOf="@+id/textDanio" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="210dp" />
+
+    <TextView
+        android:id="@+id/textBase"
+        android:layout_width="85dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="26dp"
+        android:layout_marginTop="24dp"
+        android:text="Bono arma: "
+        android:textAlignment="textEnd"
+        app:layout_constraintStart_toStartOf="@+id/guideline3"
+        app:layout_constraintTop_toBottomOf="@+id/textCategoria" />
+
+    <EditText
+        android:id="@+id/etBonoArma_CArma"
+        android:layout_width="50dp"
+        android:layout_height="52dp"
+        android:ems="10"
+        android:inputType="number"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toBottomOf="@+id/textBase"
+        app:layout_constraintStart_toEndOf="@+id/textBase"
+        app:layout_constraintTop_toTopOf="@+id/textBase" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="205dp" />
+
+    <TextView
+        android:id="@+id/textAtk"
+        android:layout_width="85dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="24dp"
+        android:text="Bono ATK: "
+        android:textAlignment="textEnd"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/guideline1" />
+
+    <EditText
+        android:id="@+id/etBonoAtk_CArma"
+        android:layout_width="50dp"
+        android:layout_height="52dp"
+        android:ems="10"
+        android:inputType="number"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toBottomOf="@+id/textAtk"
+        app:layout_constraintStart_toEndOf="@+id/textAtk"
+        app:layout_constraintTop_toTopOf="@+id/textAtk" />
+
+    <TextView
+        android:id="@+id/textAtm"
+        android:layout_width="85dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="Bono ATM: "
+        android:textAlignment="textEnd"
+        app:layout_constraintStart_toStartOf="@+id/textAtk"
+        app:layout_constraintTop_toBottomOf="@+id/textAtk" />
+
+    <EditText
+        android:id="@+id/etBonoAtm_CArma"
+        android:layout_width="50dp"
+        android:layout_height="52dp"
+        android:ems="10"
+        android:inputType="number"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toBottomOf="@+id/textAtm"
+        app:layout_constraintStart_toEndOf="@+id/textAtm"
+        app:layout_constraintTop_toTopOf="@+id/textAtm" />
+
+    <TextView
+        android:id="@+id/textDef"
+        android:layout_width="85dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="Bono DEF: "
+        android:textAlignment="textEnd"
+        app:layout_constraintStart_toStartOf="@+id/textAtm"
+        app:layout_constraintTop_toBottomOf="@+id/textAtm" />
+
+    <EditText
+        android:id="@+id/etBonoDef_CArma"
+        android:layout_width="50dp"
+        android:layout_height="52dp"
+        android:ems="10"
+        android:inputType="number"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toBottomOf="@+id/textDef"
+        app:layout_constraintStart_toEndOf="@+id/textDef"
+        app:layout_constraintTop_toTopOf="@+id/textDef" />
+
+    <TextView
+        android:id="@+id/textDfm"
+        android:layout_width="85dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="Bono DFM: "
+        android:textAlignment="textEnd"
+        app:layout_constraintStart_toStartOf="@+id/textDef"
+        app:layout_constraintTop_toBottomOf="@+id/textDef" />
+
+    <EditText
+        android:id="@+id/etBonoDfm_CArma"
+        android:layout_width="50dp"
+        android:layout_height="52dp"
+        android:ems="10"
+        android:inputType="number"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toBottomOf="@+id/textDfm"
+        app:layout_constraintStart_toEndOf="@+id/textDfm"
+        app:layout_constraintTop_toTopOf="@+id/textDfm" />
+
+    <TextView
+        android:id="@+id/textCrt"
+        android:layout_width="85dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="Bono CRT: "
+        android:textAlignment="textEnd"
+        app:layout_constraintStart_toStartOf="@+id/textDfm"
+        app:layout_constraintTop_toBottomOf="@+id/textDfm" />
+
+    <EditText
+        android:id="@+id/etBonoCrt_CArma"
+        android:layout_width="50dp"
+        android:layout_height="52dp"
+        android:ems="10"
+        android:inputType="number"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toBottomOf="@+id/textCrt"
+        app:layout_constraintStart_toEndOf="@+id/textCrt"
+        app:layout_constraintTop_toTopOf="@+id/textCrt" />
+
+    <TextView
+        android:id="@+id/textAcc"
+        android:layout_width="85dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="Bono ACC: "
+        android:textAlignment="textEnd"
+        app:layout_constraintStart_toStartOf="@+id/textCrt"
+        app:layout_constraintTop_toBottomOf="@+id/textCrt" />
+
+    <EditText
+        android:id="@+id/etBonoAcc_CArma"
+        android:layout_width="50dp"
+        android:layout_height="52dp"
+        android:ems="10"
+        android:inputType="number"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toBottomOf="@+id/textAcc"
+        app:layout_constraintStart_toEndOf="@+id/textAcc"
+        app:layout_constraintTop_toTopOf="@+id/textAcc" />
+
+    <TextView
+        android:id="@+id/textModAtk"
+        android:layout_width="125dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="24dp"
+        android:text="Modificador ATK: "
+        android:textAlignment="textEnd"
+        app:layout_constraintStart_toEndOf="@+id/etBonoAtk_CArma"
+        app:layout_constraintTop_toTopOf="@+id/guideline1" />
+
+    <EditText
+        android:id="@+id/etModAtk_CArma"
+        android:layout_width="50dp"
+        android:layout_height="52dp"
+        android:ems="10"
+        android:inputType="number"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toBottomOf="@+id/textModAtk"
+        app:layout_constraintStart_toEndOf="@+id/textModAtk"
+        app:layout_constraintTop_toTopOf="@+id/textModAtk" />
+
+    <TextView
+        android:id="@+id/textModAtm"
+        android:layout_width="125dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="Modificador ATM: "
+        android:textAlignment="textEnd"
+        app:layout_constraintStart_toStartOf="@+id/textModAtk"
+        app:layout_constraintTop_toBottomOf="@+id/textModAtk" />
+
+    <EditText
+        android:id="@+id/etModAtm_CArma"
+        android:layout_width="50dp"
+        android:layout_height="52dp"
+        android:ems="10"
+        android:inputType="number"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toBottomOf="@+id/textModAtm"
+        app:layout_constraintStart_toEndOf="@+id/textModAtm"
+        app:layout_constraintTop_toTopOf="@+id/textModAtm" />
+
+    <TextView
+        android:id="@+id/textModDef"
+        android:layout_width="125dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="Modificador DEF: "
+        android:textAlignment="textEnd"
+        app:layout_constraintStart_toStartOf="@+id/textModAtm"
+        app:layout_constraintTop_toBottomOf="@+id/textModAtm" />
+
+    <EditText
+        android:id="@+id/etModDef_CArma"
+        android:layout_width="50dp"
+        android:layout_height="52dp"
+        android:ems="10"
+        android:inputType="number"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toBottomOf="@+id/textModDef"
+        app:layout_constraintStart_toEndOf="@+id/textModDef"
+        app:layout_constraintTop_toTopOf="@+id/textModDef" />
+
+    <TextView
+        android:id="@+id/textModDfm"
+        android:layout_width="125dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="Modificador DFM: "
+        android:textAlignment="textEnd"
+        app:layout_constraintStart_toStartOf="@+id/textModDef"
+        app:layout_constraintTop_toBottomOf="@+id/textModDef" />
+
+    <EditText
+        android:id="@+id/etModDfm_CArma"
+        android:layout_width="50dp"
+        android:layout_height="52dp"
+        android:ems="10"
+        android:inputType="number"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toBottomOf="@+id/textModDfm"
+        app:layout_constraintStart_toEndOf="@+id/textModDfm"
+        app:layout_constraintTop_toTopOf="@+id/textModDfm" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="535dp" />
+
+    <TextView
+        android:id="@+id/textPrecio"
+        android:layout_width="55dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="24dp"
+        android:text="Precio: "
+        android:textAlignment="textEnd"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/guideline4" />
+
+    <EditText
+        android:id="@+id/etPrecio_CArma"
+        android:layout_width="100dp"
+        android:layout_height="52dp"
+        android:ems="10"
+        android:inputType="number"
+        app:layout_constraintBottom_toBottomOf="@+id/textPrecio"
+        app:layout_constraintStart_toEndOf="@+id/textPrecio"
+        app:layout_constraintTop_toTopOf="@+id/textPrecio" />
+
+    <TextView
+        android:id="@+id/textPeso"
+        android:layout_width="55dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="24dp"
+        android:text="Peso: "
+        android:textAlignment="textEnd"
+        app:layout_constraintStart_toStartOf="@+id/guideline3"
+        app:layout_constraintTop_toTopOf="@+id/guideline4" />
+
+    <EditText
+        android:id="@+id/etPeso_CArma"
+        android:layout_width="80dp"
+        android:layout_height="52dp"
+        android:ems="10"
+        android:inputType="numberDecimal"
+        app:layout_constraintBottom_toBottomOf="@+id/textPeso"
+        app:layout_constraintStart_toEndOf="@+id/textPeso"
+        app:layout_constraintTop_toTopOf="@+id/textPeso" />
+
+    <TextView
+        android:id="@+id/textDescripcion"
+        android:layout_width="90dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="32dp"
+        android:text="Descripcion: "
+        android:textAlignment="textEnd"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textPrecio" />
+
+    <EditText
+        android:id="@+id/etDescripcion_CArma"
+        android:layout_width="259dp"
+        android:layout_height="52dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        app:layout_constraintBottom_toBottomOf="@+id/textDescripcion"
+        app:layout_constraintStart_toEndOf="@+id/textDescripcion"
+        app:layout_constraintTop_toTopOf="@+id/textDescripcion" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="650dp" />
+
+    <Button
+        android:id="@+id/btCrearActualizar_CArma"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Crear"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/guideline5" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -3,6 +3,8 @@ package com.leanova.heroesofnova.ui.personajes;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -34,8 +36,8 @@ public class CrearPersonajeFragment extends Fragment {
     private CrearPersonajeViewModel cpvm;
 
     private Spinner spGenero_CP, spRaza_CP, spClase_CP;
-    private TextView textVidaBase, textEnergiaBase, textAtkBase, textAtmBase, textDefBase, textDfmBase, textDexBase, textEvaBase, textCrtBase, textAccBase, tvAviso_CP;
-    private EditText etNombre_CP, etVida_CP1, etVida_CP2, etVida_CP3, etEnergia_CP1, etEnergia_CP2, etEnergia_CP3, etAtk_CP, etAtm_CP, etDef_CP, etDfm_CP, etDex_CP, etEva_CP, etCrt_CP, etAcc_CP;
+    private TextView textVidaBase, textEnergiaBase, textAtkBase, textAtmBase, textDefBase, textDfmBase, textDexBase, textEvaBase, textCrtBase, textAccBase;
+    private EditText etNombre_CP, etVida_CP1, etVida_CP2, etVida_CP3, etEnergia_CP1, etEnergia_CP2, etEnergia_CP3, etAtk_CP, etAtm_CP, etDef_CP, etDfm_CP, etDex_CP, etEva_CP, etCrt_CP, etAcc_CP, etDescripcion_CP;
     private Button btTirar_CP, btGuardar_CP;
 
     @Override
@@ -84,7 +86,15 @@ public class CrearPersonajeFragment extends Fragment {
         cpvm.getMutableAviso().observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override
             public void onChanged(String s) {
-                tvAviso_CP.setText(s);
+                new AlertDialog.Builder(getContext())
+                        .setTitle("Error en crear")
+                        .setMessage(s)
+                        .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                //NADA
+                            }
+                        }).show();
             }
         });
 
@@ -144,6 +154,7 @@ public class CrearPersonajeFragment extends Fragment {
         this.etCrt_CP = v.findViewById(R.id.etCrt_CP);
         this.textAccBase = v.findViewById(R.id.textAccBase);
         this.etAcc_CP = v.findViewById(R.id.etAcc_CP);
+        this.etDescripcion_CP = v.findViewById(R.id.etDescripcion_CP);
 
         this.btTirar_CP = v.findViewById(R.id.btTirar_CP);
         this.btTirar_CP.setOnClickListener(new View.OnClickListener() {
@@ -182,7 +193,9 @@ public class CrearPersonajeFragment extends Fragment {
                     int crt = Integer.parseInt(etCrt_CP.getText().toString());
                     int acc = Integer.parseInt(etAcc_CP.getText().toString());
 
-                    cpvm.crearPersonaje(nombre, raza, genero, clase, vida1, vida2, vida3, energia1, energia2, energia3, atk, atm, def, dfm, dex, eva, crt, acc);
+                    String descripcion = etDescripcion_CP.getText().toString();
+
+                    cpvm.crearPersonaje(nombre, raza, genero, clase, vida1, vida2, vida3, energia1, energia2, energia3, atk, atm, def, dfm, dex, eva, crt, acc, descripcion);
                 } catch (NumberFormatException ex) {
                     cpvm.getAviso();
                 } catch (Exception ex) {
@@ -190,7 +203,5 @@ public class CrearPersonajeFragment extends Fragment {
                 }
             }
         });
-
-        this.tvAviso_CP = v.findViewById(R.id.tvAviso_CP);
     }
 }

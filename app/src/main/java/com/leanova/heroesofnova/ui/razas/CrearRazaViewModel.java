@@ -63,26 +63,23 @@ public class CrearRazaViewModel extends AndroidViewModel {
         mutableAviso.setValue("* Revise que todos los campos esten llenos correctamente");
     }
 
-    public void setClean() {
-        mutableClean.setValue("");
-    }
-
     public void tomarAccion(String accion, String nombre, int vida, int energia, int atk, int atm, int def, int dfm, int dex, int eva, int crt, int acc, String descripcion) {
         boolean ok = true;
         String aviso = "";
+        final int TOTAL = 68;
 
         if(vida%2!=0 || (vida < 6 || vida > 12)) {
-            aviso += "* La vida debe estar entre 6 y 12.\n";
+            aviso += "* La vida debe ser un dado de 6, 8, 10 o 12 caras.\n";
             ok = false;
         }
 
         if(energia%2!=0 || (vida < 6 || vida > 12)) {
-            aviso += "* La energia debe estar entre 6 y 12.\n";
+            aviso += "* La energia debe ser un dado de 6, 8, 10 o 12 caras.\n";
             ok = false;
         }
 
-        if(atk + atm + def + dfm + dex + eva + crt + acc > 72) {
-            aviso += "* La base total no puede superar los 72 puntos en total.\n";
+        if(atk + atm + def + dfm + dex + eva + crt + acc > TOTAL) {
+            aviso += "* El total de las estadisticas no puede superar los " + TOTAL  + " puntos en total.\n";
             ok = false;
         }
 
@@ -99,7 +96,7 @@ public class CrearRazaViewModel extends AndroidViewModel {
             editarRaza(nombre, vida, energia, atk, atm, def, dfm, dex, eva, crt, acc, descripcion);
         }
 
-        mutableAviso.setValue(aviso);
+        if(!aviso.equals("")) mutableAviso.setValue(aviso);
     }
 
     private void crearRaza(String nombre, int vida, int energia, int atk, int atm, int def, int dfm, int dex, int eva, int crt, int acc, String descripcion) {
@@ -110,8 +107,7 @@ public class CrearRazaViewModel extends AndroidViewModel {
             @Override
             public void onResponse(Call<Raza> call, Response<Raza> response) {
                 if(response.isSuccessful()) {
-                    mutableAviso.postValue("");
-                    setClean();
+                    mutableClean.postValue("");
                     Toast.makeText(context, "Raza creada", Toast.LENGTH_SHORT).show();
                 } else {
                     Toast.makeText(context, "Error en crear raza", Toast.LENGTH_SHORT).show();
@@ -134,7 +130,6 @@ public class CrearRazaViewModel extends AndroidViewModel {
             @Override
             public void onResponse(Call<Raza> call, Response<Raza> response) {
                 if(response.isSuccessful()) {
-                    mutableAviso.postValue("");
                     Toast.makeText(context, "Raza actualizada", Toast.LENGTH_SHORT).show();
                 } else {
                     Toast.makeText(context, "Error en actualizar", Toast.LENGTH_SHORT).show();

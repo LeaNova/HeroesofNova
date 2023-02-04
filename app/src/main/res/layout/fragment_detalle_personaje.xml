@@ -30,7 +30,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
         android:text="Raza: "
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
@@ -48,7 +48,7 @@
         android:id="@+id/textClase"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="4dp"
         android:text="Clase: "
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="@+id/textRaza"
@@ -66,7 +66,7 @@
         android:id="@+id/textVida"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="8dp"
         android:text="Vida: "
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="@+id/textClase"
@@ -84,7 +84,7 @@
         android:id="@+id/textEnergia"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="4dp"
         android:text="Energía: "
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="@+id/textVida"
@@ -110,7 +110,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="8dp"
         android:text="Nivel: "
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="@+id/guideline3"
@@ -128,7 +128,7 @@
         android:id="@+id/textExp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="4dp"
         android:text="EXP: "
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="@+id/textNivel"
@@ -146,7 +146,7 @@
         android:id="@+id/textAtk"
         android:layout_width="40dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="8dp"
         android:text="ATK: "
         android:textAlignment="textEnd"
         android:textStyle="bold"
@@ -223,7 +223,7 @@
         android:id="@+id/textDex"
         android:layout_width="40dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="8dp"
         android:text="DEX: "
         android:textAlignment="textEnd"
         android:textStyle="bold"
@@ -295,40 +295,61 @@
         app:layout_constraintBottom_toBottomOf="@+id/textAcc"
         app:layout_constraintStart_toEndOf="@+id/textAcc" />
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_begin="330dp" />
-
     <TextView
-        android:id="@+id/textMochila"
+        android:id="@+id/textMochilaArmas"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="Mochila"
+        android:layout_marginTop="16dp"
+        android:text="Armas"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/guideline5" />
+        app:layout_constraintTop_toBottomOf="@+id/textDfm" />
 
     <ListView
-        android:id="@+id/lvMochila_DP"
+        android:id="@+id/lvMochilaArma_DP"
         android:layout_width="380dp"
-        android:layout_height="280dp"
-        app:layout_constraintBottom_toTopOf="@+id/guideline6"
+        android:layout_height="85dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textMochila" />
+        app:layout_constraintTop_toBottomOf="@+id/textMochilaArmas" />
 
     <TextView
-        android:id="@+id/textView6"
+        android:id="@+id/textMochilaArmaduras"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="[Aviso]"
-        app:layout_constraintEnd_toEndOf="@+id/lvMochila_DP"
-        app:layout_constraintStart_toStartOf="@+id/lvMochila_DP"
-        app:layout_constraintTop_toTopOf="@+id/lvMochila_DP" />
+        android:layout_marginTop="4dp"
+        android:text="Armaduras"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/lvMochilaArma_DP" />
+
+    <ListView
+        android:id="@+id/lvMochilaArmadura_DP"
+        android:layout_width="380dp"
+        android:layout_height="85dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textMochilaArmaduras" />
+
+    <TextView
+        android:id="@+id/textMochilaItems"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:text="Items"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/lvMochilaArmadura_DP" />
+
+    <ListView
+        android:id="@+id/lvMochilaItem_DP"
+        android:layout_width="380dp"
+        android:layout_height="85dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textMochilaItems">
+
+    </ListView>
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline6"

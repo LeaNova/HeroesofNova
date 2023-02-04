@@ -3,6 +3,8 @@ package com.leanova.heroesofnova.ui.razas;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -26,7 +28,6 @@ public class CrearRazaFragment extends Fragment {
     private CrearRazaViewModel crvm;
 
     private EditText etNombre_CR, etVida_CR, etEnergia_CR, etAtk_CR, etAtm_CR, etDef_CR, etDfm_CR, etDex_CR, etEva_CR, etCrt_CR, etAcc_CR, etDescripcion_CR;
-    private TextView tvAviso_CR;
     private Button btCrearActualizar_CR;
 
     @Override
@@ -60,7 +61,15 @@ public class CrearRazaFragment extends Fragment {
         crvm.getMutableAviso().observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override
             public void onChanged(String s) {
-                tvAviso_CR.setText(s);
+                new AlertDialog.Builder(getContext())
+                        .setTitle("Error en crear")
+                        .setMessage(s)
+                        .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                //NADA
+                            }
+                        }).show();
             }
         });
         crvm.getMutableClear().observe(getViewLifecycleOwner(), new Observer<String>() {
@@ -78,7 +87,6 @@ public class CrearRazaFragment extends Fragment {
                 etEva_CR.setText(s);
                 etCrt_CR.setText(s);
                 etAcc_CR.setText(s);
-                tvAviso_CR.setText(s);
             }
         });
 
@@ -98,7 +106,6 @@ public class CrearRazaFragment extends Fragment {
         this.etCrt_CR = v.findViewById(R.id.etCrt_CR);
         this.etAcc_CR = v.findViewById(R.id.etAcc_CR);
         this.etDescripcion_CR = v.findViewById(R.id.etDescripcion_CR);
-        this.tvAviso_CR = v.findViewById(R.id.tvAviso_CR);
 
         this.btCrearActualizar_CR = v.findViewById(R.id.btCrearActualizar_CR);
         this.btCrearActualizar_CR.setOnClickListener(new View.OnClickListener() {

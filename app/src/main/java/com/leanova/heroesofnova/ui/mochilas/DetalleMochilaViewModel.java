@@ -48,6 +48,12 @@ public class DetalleMochilaViewModel extends AndroidViewModel {
     }
 
     //FUNCIONES
+    public void getMochila(Bundle bMochila) {
+        Mochila m = (Mochila) bMochila.getSerializable("mochila");
+        mutableMochila.setValue(m);
+        obtenerMochila(m.getIdMochila());
+    }
+
     public void setAccess() {
         String access = DefaultValues.getAccess();
 
@@ -56,11 +62,6 @@ public class DetalleMochilaViewModel extends AndroidViewModel {
         } else {
             mutableAccess.setValue(8);
         }
-    }
-
-    public void getMochila(Bundle bMochila) {
-        Mochila m = (Mochila) bMochila.getSerializable("mochila");
-        obtenerMochila(m.getIdMochila());
     }
 
     private void obtenerMochila(int id) {

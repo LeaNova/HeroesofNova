@@ -50,6 +50,7 @@ public class DetalleRazaViewModel extends AndroidViewModel {
     //FUNCIONES
     public void getRaza(Bundle bRaza) {
         Raza r = (Raza) bRaza.getSerializable("raza");
+        mutableRaza.setValue(r);
         obtenerRaza(r.getIdRaza());
     }
 
@@ -77,7 +78,7 @@ public class DetalleRazaViewModel extends AndroidViewModel {
 
             @Override
             public void onFailure(Call<Raza> call, Throwable t) {
-
+                Log.d("APIerror", t.getMessage());
             }
         });
     }

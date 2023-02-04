@@ -63,10 +63,6 @@ public class CrearClaseViewModel extends AndroidViewModel {
         mutableAviso.setValue("* Revise que todos los campos esten llenos correctamente");
     }
 
-    public void setClean() {
-        mutableClean.setValue("");
-    }
-
     public void tomarAccion(String accion, String nombre, float vida, float energia, float atk, float atm, float def, float dfm, float dex, float eva, float crt, float acc, String descripcion) {
         boolean ok = true;
         String aviso = "";
@@ -82,7 +78,7 @@ public class CrearClaseViewModel extends AndroidViewModel {
         }
 
         if((atk < 1.05f || atk > 1.3f) || (atm < 1.05f || atm > 1.3f) || (def < 1.05f || def > 1.3f) || (dfm < 1.05f || dfm > 1.3f) || (dex < 1.05f || dex > 1.3f) || (eva < 1.05f || eva > 1.3f) || (crt < 1.05f || crt > 1.3f) || (acc < 1.05f || acc > 1.3f)) {
-            aviso += "* Lod modificadores deben estar en el rango de 1.05 a 1.3\n";
+            aviso += "* Los modificadores de las estadísticas deben estar en el rango de 1.05 a 1.3\n";
             ok = false;
         }
 
@@ -94,7 +90,7 @@ public class CrearClaseViewModel extends AndroidViewModel {
             editarClase(nombre, vida, energia, atk, atm, def, dfm, dex, eva, crt, acc, descripcion);
         }
 
-        mutableAviso.setValue(aviso);
+        if(!aviso.equals("")) mutableAviso.setValue(aviso);
     }
 
     private void crearClase(String nombre, float vida, float energia, float atk, float atm, float def, float dfm, float dex, float eva, float crt, float acc, String descripcion) {
@@ -105,8 +101,7 @@ public class CrearClaseViewModel extends AndroidViewModel {
             @Override
             public void onResponse(Call<Clase> call, Response<Clase> response) {
                 if(response.isSuccessful()) {
-                    mutableAviso.postValue("");
-                    setClean();
+                    mutableClean.postValue("");
                     Toast.makeText(context, "Clase creada", Toast.LENGTH_SHORT).show();
                 } else {
                     Toast.makeText(context, "Error en crear clase", Toast.LENGTH_SHORT).show();
@@ -129,7 +124,6 @@ public class CrearClaseViewModel extends AndroidViewModel {
             @Override
             public void onResponse(Call<Clase> call, Response<Clase> response) {
                 if(response.isSuccessful()) {
-                    mutableAviso.postValue("");
                     Toast.makeText(context, "Clase actualizada", Toast.LENGTH_SHORT).show();
                 } else {
                     Toast.makeText(context, "Error en actualizar", Toast.LENGTH_SHORT).show();

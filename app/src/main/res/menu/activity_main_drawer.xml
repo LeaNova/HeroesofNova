@@ -22,7 +22,7 @@
 
     <group
         android:checkableBehavior="single"
-        android:id="@+id/creacion">
+        android:id="@+id/basesPersonaje">
         <item
             android:id="@+id/nav_razas"
             android:icon="@drawable/ic_menu_slideshow"
@@ -35,5 +35,22 @@
             android:id="@+id/nav_mochilas"
             android:icon="@drawable/ic_menu_slideshow"
             android:title="@string/menu_mochilas" />
+    </group>
+
+    <group
+        android:checkableBehavior="single"
+        android:id="@+id/combate">
+        <item
+            android:id="@+id/nav_armas"
+            android:icon="@drawable/ic_menu_slideshow"
+            android:title="@string/menu_armas" />
+        <item
+            android:id="@+id/nav_armaduras"
+            android:icon="@drawable/ic_menu_slideshow"
+            android:title="@string/menu_armaduras" />
+        <item
+            android:id="@+id/nav_items"
+            android:icon="@drawable/ic_menu_slideshow"
+            android:title="@string/menu_items" />
     </group>
 </menu>

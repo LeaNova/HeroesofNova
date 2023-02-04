@@ -336,7 +336,12 @@ public class Personaje implements Serializable {
         this.nextExp = (int) (100 * Math.pow(nivel, 2) + 300 * nivel);
     }
 
-    /*******___Funciones___*******/
+    @Override
+    public String toString() {
+        return nombre + " - Nivel" + nivel;
+    }
+
+    /**FUNCIONES**/
     public void setGame() {
         setVidaAct();
         setEnergiaAct();
@@ -438,17 +443,19 @@ public class Personaje implements Serializable {
         }
     }
 
-    /*Funciones de Ataque*/
-    /*
-    public int atacar() {
-        int dadoR = (int) (Math.random()*dado + 1);
-        float atk = personaje.getAtaque() * 0.05f;
-        int danio = (int) Math.round(atk * dadoR);
-    }
-    */
-
-    @Override
-    public String toString() {
-        return nombre + " - Nivel" + nivel;
+    public int getClaseBoost() {
+        if(nivel > 3) {
+            switch (clase.getNombre()) {
+                case "Bárbaro":
+                    return (int) Math.round((ataque * (nivel / 2)) / (nivel - 3));
+                case "Paladín":
+                    return (int) Math.round(atkMagico * 0.25);
+                case "Brujo":
+                    return (int) Math.round(atkMagico * (nivel / 2)) / (nivel - 3);
+                default:
+                    return 0;
+            }
+        }
+        return 0;
     }
 }

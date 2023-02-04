@@ -3,6 +3,8 @@ package com.leanova.heroesofnova.ui.clases;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -26,7 +28,6 @@ public class CrearClaseFragment extends Fragment {
     private CrearClaseViewModel ccvm;
 
     private EditText etNombre_CC, etVida_CC, etEnergia_CC, etAtk_CC, etAtm_CC, etDef_CC, etDfm_CC, etDex_CC, etEva_CC, etCrt_CC, etAcc_CC, etDescripcion_CC;
-    private TextView tvAviso_CC;
     private Button btCrearActualizar_CC;
 
     @Override
@@ -60,7 +61,15 @@ public class CrearClaseFragment extends Fragment {
         ccvm.getMutableAviso().observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override
             public void onChanged(String s) {
-                tvAviso_CC.setText(s);
+                new AlertDialog.Builder(getContext())
+                        .setTitle("Error en crear")
+                        .setMessage(s)
+                        .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                //NADA
+                            }
+                        }).show();
             }
         });
         ccvm.getMutableClear().observe(getViewLifecycleOwner(), new Observer<String>() {
@@ -77,7 +86,6 @@ public class CrearClaseFragment extends Fragment {
                 etEva_CC.setText(s);
                 etCrt_CC.setText(s);
                 etAcc_CC.setText(s);
-                tvAviso_CC.setText(s);
                 etDescripcion_CC.setText(s);
             }
         });
@@ -98,7 +106,6 @@ public class CrearClaseFragment extends Fragment {
         this.etCrt_CC = v.findViewById(R.id.etCrt_CC);
         this.etAcc_CC = v.findViewById(R.id.etAcc_CC);
         this.etDescripcion_CC = v.findViewById(R.id.etDescripcion_CC);
-        this.tvAviso_CC = v.findViewById(R.id.tvAviso_CC);
 
         this.btCrearActualizar_CC = v.findViewById(R.id.btCrearActualizar_CC);
         this.btCrearActualizar_CC.setOnClickListener(new View.OnClickListener() {

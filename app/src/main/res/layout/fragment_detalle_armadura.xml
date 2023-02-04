@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.armaduras.DetalleArmaduraFragment">
+
+    <TextView
+        android:id="@+id/tvNombre_DArmadura"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="[nombre]"
+        android:textAlignment="center"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/guideline1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="75dp" />
+
+    <TextView
+        android:id="@+id/textDef"
+        android:layout_width="85dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="16dp"
+        android:text="Bono DEF: "
+        android:textAlignment="textEnd"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/guideline1" />
+
+    <TextView
+        android:id="@+id/tvDef_DArmadura"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="[mod]"
+        app:layout_constraintBottom_toBottomOf="@+id/textDef"
+        app:layout_constraintStart_toEndOf="@+id/textDef" />
+
+    <TextView
+        android:id="@+id/textDfm"
+        android:layout_width="85dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Bono DFM: "
+        android:textAlignment="textEnd"
+        app:layout_constraintStart_toStartOf="@+id/textDef"
+        app:layout_constraintTop_toBottomOf="@+id/textDef" />
+
+    <TextView
+        android:id="@+id/tvDfm_DArmadura"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="[mod]"
+        app:layout_constraintBottom_toBottomOf="@+id/textDfm"
+        app:layout_constraintStart_toEndOf="@+id/textDfm" />
+
+    <TextView
+        android:id="@+id/textDex"
+        android:layout_width="85dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Bono DEX: "
+        android:textAlignment="textEnd"
+        app:layout_constraintStart_toStartOf="@+id/textDfm"
+        app:layout_constraintTop_toBottomOf="@+id/textDfm" />
+
+    <TextView
+        android:id="@+id/tvDex_DArmadura"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="[mod]"
+        app:layout_constraintBottom_toBottomOf="@+id/textDex"
+        app:layout_constraintStart_toEndOf="@+id/textDex" />
+
+    <TextView
+        android:id="@+id/textEva"
+        android:layout_width="85dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Bono EVA: "
+        android:textAlignment="textEnd"
+        app:layout_constraintStart_toStartOf="@+id/textDex"
+        app:layout_constraintTop_toBottomOf="@+id/textDex" />
+
+    <TextView
+        android:id="@+id/tvEva_DArmadura"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="[mod]"
+        app:layout_constraintBottom_toBottomOf="@+id/textEva"
+        app:layout_constraintStart_toEndOf="@+id/textEva" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="205dp" />
+
+    <TextView
+        android:id="@+id/textModDef"
+        android:layout_width="125dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:text="Modificador DEF: "
+        android:textAlignment="textEnd"
+        app:layout_constraintStart_toStartOf="@+id/guideline4"
+        app:layout_constraintTop_toTopOf="@+id/guideline1" />
+
+    <TextView
+        android:id="@+id/tvModDef_DArmadura"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="[mod]"
+        app:layout_constraintBottom_toBottomOf="@+id/textModDef"
+        app:layout_constraintStart_toEndOf="@+id/textModDef" />
+
+    <TextView
+        android:id="@+id/textModDfm"
+        android:layout_width="125dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Modificador DFM: "
+        android:textAlignment="textEnd"
+        app:layout_constraintStart_toStartOf="@+id/textModDef"
+        app:layout_constraintTop_toBottomOf="@+id/textModDef" />
+
+    <TextView
+        android:id="@+id/tvModDfm_DArmadura"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="[mod]"
+        app:layout_constraintBottom_toBottomOf="@+id/textModDfm"
+        app:layout_constraintStart_toEndOf="@+id/textModDfm" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="230dp" />
+
+    <TextView
+        android:id="@+id/textPrecio"
+        android:layout_width="55dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="16dp"
+        android:text="Precio: "
+        android:textAlignment="textEnd"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/guideline2" />
+
+    <TextView
+        android:id="@+id/tvPrecio_DArmadura"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="[precio]"
+        app:layout_constraintBottom_toBottomOf="@+id/textPrecio"
+        app:layout_constraintStart_toEndOf="@+id/textPrecio" />
+
+    <TextView
+        android:id="@+id/textPeso"
+        android:layout_width="55dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Peso: "
+        android:textAlignment="textEnd"
+        app:layout_constraintStart_toStartOf="@+id/textPrecio"
+        app:layout_constraintTop_toBottomOf="@+id/textPrecio" />
+
+    <TextView
+        android:id="@+id/tvPeso_DArmadura"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="[peso]"
+        app:layout_constraintBottom_toBottomOf="@+id/textPeso"
+        app:layout_constraintStart_toEndOf="@+id/textPeso" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="315dp" />
+
+    <TextView
+        android:id="@+id/tvDetalle_DArmadura"
+        android:layout_width="360dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="[descripción]"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/guideline3" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="650dp" />
+
+    <Button
+        android:id="@+id/btEditar_DArmadura"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Editar"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/guideline6" />
+
+    <Button
+        android:id="@+id/btBorrar_DArmadura"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="#FF4B4B"
+        android:text="Borrar"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/btEditar_DArmadura"
+        app:layout_constraintTop_toTopOf="@+id/guideline6" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

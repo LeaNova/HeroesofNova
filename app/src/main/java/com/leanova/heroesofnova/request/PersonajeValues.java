@@ -5,7 +5,9 @@ import android.util.Log;
 
 import com.leanova.heroesofnova.modelos.Clase;
 import com.leanova.heroesofnova.modelos.Genero;
+import com.leanova.heroesofnova.modelos.Jugar;
 import com.leanova.heroesofnova.modelos.Mochila;
+import com.leanova.heroesofnova.modelos.Personaje;
 import com.leanova.heroesofnova.modelos.Raza;
 
 import java.util.ArrayList;
@@ -20,6 +22,9 @@ public class PersonajeValues {
     private static ArrayList<Clase> listaClases;
     private static ArrayList<Mochila> listaMochilas;
 
+    private static Personaje personaje;
+    private static Jugar jugar;
+
     public PersonajeValues(Context context) {
         this.listaGeneros = new ArrayList<>();
         this.listaRazas = new ArrayList<>();
@@ -29,15 +34,15 @@ public class PersonajeValues {
     }
 
     private void obtenerTodo(Context context) {
-        obtenerGeneros(context);
-        obtenerRazas(context);
-        obtenerClases(context);
-        obtenerMochilas(context);
-    }
-
-    private void obtenerGeneros(Context context) {
         String token = ApiRetrofit.obtenerToken(context);
 
+        obtenerGeneros(token);
+        obtenerRazas(token);
+        obtenerClases(token);
+        obtenerMochilas(token);
+    }
+
+    private void obtenerGeneros(String token) {
         Call<ArrayList<Genero>> listaGeneroPromesa = ApiRetrofit.getServiceApi().obtenerGeneros(token);
         listaGeneroPromesa.enqueue(new Callback<ArrayList<Genero>>() {
             @Override
@@ -54,13 +59,7 @@ public class PersonajeValues {
         });
     }
 
-    public static ArrayList<Genero> getGeneros() {
-        return listaGeneros;
-    }
-
-    private void obtenerRazas(Context context) {
-        String token = ApiRetrofit.obtenerToken(context);
-
+    private void obtenerRazas(String token) {
         Call<ArrayList<Raza>> listaRazasPromesa = ApiRetrofit.getServiceApi().obtenerRazas(token);
         listaRazasPromesa.enqueue(new Callback<ArrayList<Raza>>() {
             @Override
@@ -77,13 +76,7 @@ public class PersonajeValues {
         });
     }
 
-    public static ArrayList<Raza> getRazas() {
-        return listaRazas;
-    }
-
-    private void obtenerClases(Context context) {
-        String token = ApiRetrofit.obtenerToken(context);
-
+    private void obtenerClases(String token) {
         Call<ArrayList<Clase>> listaClasesPromesa = ApiRetrofit.getServiceApi().obtenerClases(token);
         listaClasesPromesa.enqueue(new Callback<ArrayList<Clase>>() {
             @Override
@@ -100,16 +93,53 @@ public class PersonajeValues {
         });
     }
 
+    private void obtenerMochilas(String token) {
+        Call<ArrayList<Mochila>> listaMochilasPromesa = ApiRetrofit.getServiceApi().obtenerMochilas(token);
+        listaMochilasPromesa.enqueue(new Callback<ArrayList<Mochila>>() {
+            @Override
+            public void onResponse(Call<ArrayList<Mochila>> call, Response<ArrayList<Mochila>> response) {
+                if(response.isSuccessful()) {
+                    listaMochilas = response.body();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ArrayList<Mochila>> call, Throwable t) {
+                Log.d("salida", t.getMessage());
+            }
+        });
+    }
+
+    public static ArrayList<Genero> getGeneros() {
+        return listaGeneros;
+    }
+
+    public static ArrayList<Raza> getRazas() {
+        return listaRazas;
+    }
+
     public static ArrayList<Clase> getClases() {
         return listaClases;
     }
 
-    private void obtenerMochilas(Context context) {
-        String token = ApiRetrofit.obtenerToken(context);
-
-    }
-
     public static ArrayList<Mochila> getMochilas() {
         return listaMochilas;
+    }
+
+    /**OTRAS COSAS**/
+    public static Personaje getPersonaje() {
+        return personaje;
+    }
+
+    public static void setPersonaje(Personaje p) {
+        personaje = p;
+    }
+
+    public static Jugar getJugar() {
+        return jugar;
+    }
+
+    public static void setJugar(Jugar j) {
+        jugar = j;
     }
 }

@@ -142,4 +142,6 @@ public class Clase implements Serializable {
     public String toString() {
         return nombre;
     }
+
+    /**FUNCIONES**/
 }

@@ -64,10 +64,6 @@ public class CrearMochilaViewModel extends AndroidViewModel {
         mutableAviso.setValue("* Revise que todos los campos esten llenos correctamente.");
     }
 
-    public void setClean() {
-        mutableClean.setValue("");
-    }
-
     public void tomarAccion(String accion, String nombre, int pesoMax, String descripcion) {
         boolean ok = true;
         String aviso = "";
@@ -90,7 +86,7 @@ public class CrearMochilaViewModel extends AndroidViewModel {
             editarMochila(nombre, pesoMax, descripcion);
         }
 
-        mutableAviso.setValue(aviso);
+        if(!aviso.equals("")) mutableAviso.setValue(aviso);
     }
 
     private void crearMochila(String nombre, int pesoMax, String descripcion) {
@@ -101,8 +97,7 @@ public class CrearMochilaViewModel extends AndroidViewModel {
             @Override
             public void onResponse(Call<Mochila> call, Response<Mochila> response) {
                 if(response.isSuccessful()) {
-                    mutableAviso.postValue("");
-                    setClean();
+                    mutableClean.postValue("");
                     Toast.makeText(context, "Mochila creada", Toast.LENGTH_SHORT).show();
                 } else {
                     Toast.makeText(context, "Error en crear mochila", Toast.LENGTH_SHORT).show();
@@ -125,7 +120,6 @@ public class CrearMochilaViewModel extends AndroidViewModel {
             @Override
             public void onResponse(Call<Mochila> call, Response<Mochila> response) {
                 if(response.isSuccessful()) {
-                    mutableAviso.postValue("");
                     Toast.makeText(context, "Mochila actualizada", Toast.LENGTH_SHORT).show();
                 } else {
                     Toast.makeText(context, "Error en actualizar", Toast.LENGTH_SHORT).show();

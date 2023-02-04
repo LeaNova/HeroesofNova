@@ -2,32 +2,29 @@ package com.leanova.heroesofnova.request;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.util.Log;
-import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.leanova.heroesofnova.modelos.Arma;
+import com.leanova.heroesofnova.modelos.Armadura;
+import com.leanova.heroesofnova.modelos.Categoria;
 import com.leanova.heroesofnova.modelos.Clase;
 import com.leanova.heroesofnova.modelos.Genero;
 import com.leanova.heroesofnova.modelos.Grupo;
+import com.leanova.heroesofnova.modelos.InvArmadura;
+import com.leanova.heroesofnova.modelos.InvArma;
+import com.leanova.heroesofnova.modelos.InvItem;
+import com.leanova.heroesofnova.modelos.Item;
 import com.leanova.heroesofnova.modelos.Mochila;
 import com.leanova.heroesofnova.modelos.Participante;
 import com.leanova.heroesofnova.modelos.Personaje;
 import com.leanova.heroesofnova.modelos.Raza;
 import com.leanova.heroesofnova.modelos.Rol;
+import com.leanova.heroesofnova.modelos.Tipo;
 import com.leanova.heroesofnova.modelos.Usuario;
 
-import java.net.Inet4Address;
-import java.net.InetAddress;
-import java.net.NetworkInterface;
-import java.text.DateFormat;
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Date;
-import java.util.List;
-import java.util.Locale;
 
-import okhttp3.OkHttpClient;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Retrofit;
@@ -37,8 +34,8 @@ import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
-import retrofit2.http.PATCH;
 import retrofit2.http.POST;
+import retrofit2.http.PUT;
 import retrofit2.http.Path;
 
 public class ApiRetrofit {
@@ -140,7 +137,7 @@ public class ApiRetrofit {
                 @Header("Authorization") String token);
 
         @FormUrlEncoded
-        @POST("raza/modificar/{id}")
+        @PUT("raza/modificar/{id}")
         Call<Raza> editarRaza(
                 @Path("id") int id,
                 @Field("nombre") String nombre,
@@ -189,7 +186,7 @@ public class ApiRetrofit {
                 @Header("Authorization") String token);
 
         @FormUrlEncoded
-        @POST("clase/modificar/{id}")
+        @PUT("clase/modificar/{id}")
         Call<Clase> editarClase(
                 @Path("id") int id,
                 @Field("nombre") String nombre,
@@ -229,7 +226,7 @@ public class ApiRetrofit {
                 @Header("Authorization") String token);
 
         @FormUrlEncoded
-        @POST("mochila/modificar/{id}")
+        @PUT("mochila/modificar/{id}")
         Call<Mochila> editarMochila(
                 @Path("id") int id,
                 @Field("nombre") String nombre,
@@ -270,6 +267,35 @@ public class ApiRetrofit {
                 @Field("disponible") boolean disponible,
                 @Header("Authorization") String token);
 
+        @DELETE("personaje/borrar/{id}")
+        Call<ResponseBody> borrarPersonaje(
+                @Path("id") int id,
+                @Header("Authorization") String token);
+
+        @PUT("personaje/baja/{id}")
+        Call<Personaje> baja(
+                @Path("id") int id,
+                @Header("Authorization") String token);
+
+        @FormUrlEncoded
+        @PUT("personaje/finalizar/{idPersonaje}")
+        Call<Personaje> finalizar(
+                @Path("idPersonaje") int idPersonaje,
+                @Field("nivel") int nivel,
+                @Field("experiencia") int exp,
+                @Field("vida") int vida,
+                @Field("energia") int energia,
+                @Field("ataque") int atk,
+                @Field("atkMagico") int atm,
+                @Field("defensa") int def,
+                @Field("defMagico") int dfm,
+                @Field("agilidad") int dex,
+                @Field("evasion") int eva,
+                @Field("critico") int crt,
+                @Field("precision") int acc,
+                @Field("mochilaId") int mochilaId,
+                @Header("Authorization") String token);
+
         @GET("personaje/get")
         Call<ArrayList<Personaje>> obtenerPersonajes(@Header("Authorization") String token);
 
@@ -284,7 +310,7 @@ public class ApiRetrofit {
                 @Header("Authorization") String token);
 
         @FormUrlEncoded
-        @POST("grupo/modificar/{id}")
+        @PUT("grupo/modificar/{id}")
         Call<Grupo> editarGrupo(
                 @Path("id") int id,
                 @Field("nombre") String nombre,
@@ -335,6 +361,187 @@ public class ApiRetrofit {
         @GET("participante/get/grupo/{id}")
         Call<ArrayList<Participante>> obtenerParticipantes(
                 @Path("id") int id,
+                @Header("Authorization") String token);
+
+        //ARMAS
+        @FormUrlEncoded
+        @POST("arma/crear")
+        Call<Arma> crearArma(
+                @Field("nombre") String nombre,
+                @Field("categoriaId") int categoriaId,
+                @Field("danioArma") int danioArma,
+                @Field("bonoArma") int bonoArma,
+                @Field("bonoAtk") int bonoAtk,
+                @Field("bonoAtm") int bonoAtm,
+                @Field("bonoDef") int bonoDef,
+                @Field("bonoDfm") int bonoDfm,
+                @Field("bonoCrt") int bonoCrt,
+                @Field("bonoAcc") int bonoAcc,
+                @Field("modAtk") float modAtk,
+                @Field("modAtm") float modAtm,
+                @Field("modDef") float modDef,
+                @Field("modDfm") float modDfm,
+                @Field("precio") int precio,
+                @Field("peso") float peso,
+                @Field("descripcion") String descripcion,
+                @Header("Authorization") String token);
+
+        @DELETE("arma/borrar/{id}")
+        Call<ResponseBody> borrarArma(
+                @Path("id") int id,
+                @Header("Authorization") String token);
+
+        @FormUrlEncoded
+        @PUT("arma/modificar/{id}")
+        Call<Arma> editarArma(
+                @Path("id") int id,
+                @Field("nombre") String nombre,
+                @Field("categoriaId") int categoriaId,
+                @Field("danioArma") int danioArma,
+                @Field("bonoArma") int bonoArma,
+                @Field("bonoAtk") int bonoAtk,
+                @Field("bonoAtm") int bonoAtm,
+                @Field("bonoDef") int bonoDef,
+                @Field("bonoDfm") int bonoDfm,
+                @Field("bonoCrt") int bonoCrt,
+                @Field("bonoAcc") int bonoAcc,
+                @Field("modAtk") float modAtk,
+                @Field("modAtm") float modAtm,
+                @Field("modDef") float modDef,
+                @Field("modDfm") float modDfm,
+                @Field("precio") int precio,
+                @Field("peso") float peso,
+                @Field("descripcion") String descripcion,
+                @Header("Authorization") String token);
+
+        @GET("arma/get")
+        Call<ArrayList<Arma>> obtenerArmas(@Header("Authorization") String token);
+
+        @GET("arma/get/{id}")
+        Call<Arma> obtenerArma(
+                @Path("id") int id,
+                @Header("Authorization") String token);
+
+        @GET("categoria/get")
+        Call<ArrayList<Categoria>> obtenerCategorias(@Header("Authorization") String token);
+
+        //ARMADURAS
+        @FormUrlEncoded
+        @POST("armadura/crear")
+        Call<Armadura> crearArmadura(
+                @Field("nombre") String nombre,
+                @Field("bonoDef") int bonoDef,
+                @Field("bonoDfm") int bonoDfm,
+                @Field("bonoDex") int bonoDex,
+                @Field("bonoEva")int bonoEva,
+                @Field("modDef") float modDef,
+                @Field("modDfm") float modDfm,
+                @Field("precio") int precio,
+                @Field("peso") float peso,
+                @Field("descripcion") String descripcion,
+                @Header("Authorization") String token);
+
+        @DELETE("armadura/borrar/{id}")
+        Call<ResponseBody> borrarArmadura(
+                @Path("id") int id,
+                @Header("Authorization") String token);
+
+        @FormUrlEncoded
+        @PUT("armadura/modificar/{id}")
+        Call<Armadura> editarArmadura(
+                @Path("id") int id,
+                @Field("nombre") String nombre,
+                @Field("bonoDef") int bonoDef,
+                @Field("bonoDfm") int bonoDfm,
+                @Field("bonoDex") int bonoDex,
+                @Field("bonoEva")int bonoEva,
+                @Field("modDef") float modDef,
+                @Field("modDfm") float modDfm,
+                @Field("precio") int precio,
+                @Field("peso") float peso,
+                @Field("descripcion") String descripcion,
+                @Header("Authorization") String token);
+
+        @GET("armadura/get")
+        Call<ArrayList<Armadura>> obtenerArmaduras(@Header("Authorization") String token);
+
+        @GET("armadura/get/{id}")
+        Call<Armadura> obtenerArmadura(
+                @Path("id") int id,
+                @Header("Authorization") String token);
+
+        //ITEMS
+        @FormUrlEncoded
+        @POST("item/crear")
+        Call<Item> crearItem(
+                @Field("nombre") String nombre,
+                @Field("tipoId") int tipoId,
+                @Field("bonoVida") int bonoVida,
+                @Field("bonoEnergia") int bonoEnergia,
+                @Field("bonoAtk") int bonoAtk,
+                @Field("bonoAtm") int bonoAtm,
+                @Field("bonoDef") int bonoDef,
+                @Field("bonoDfm") int bonoDfm,
+                @Field("bonoDex") int bonoDex,
+                @Field("bonoEva") int bonoEva,
+                @Field("bonoCrt") int bonoCrt,
+                @Field("bonoAcc") int bonoAcc,
+                @Field("precio") int precio,
+                @Field("peso") float peso,
+                @Field("descripcion") String descripcion,
+                @Header("Authorization") String token);
+
+        @DELETE("item/borrar/{id}")
+        Call<ResponseBody> borrarItem(
+                @Path("id") int id,
+                @Header("Authorization") String token);
+
+        @FormUrlEncoded
+        @PUT("item/modificar/{id}")
+        Call<Item> editarItem(
+                @Path("id") int id,
+                @Field("nombre") String nombre,
+                @Field("tipoId") int tipoId,
+                @Field("bonoVida") int bonoVida,
+                @Field("bonoEnergia") int bonoEnergia,
+                @Field("bonoAtk") int bonoAtk,
+                @Field("bonoAtm") int bonoAtm,
+                @Field("bonoDef") int bonoDef,
+                @Field("bonoDfm") int bonoDfm,
+                @Field("bonoDex") int bonoDex,
+                @Field("bonoEva") int bonoEva,
+                @Field("bonoCrt") int bonoCrt,
+                @Field("bonoAcc") int bonoAcc,
+                @Field("precio") int precio,
+                @Field("peso") float peso,
+                @Field("descripcion") String descripcion,
+                @Header("Authorization") String token);
+
+        @GET("item/get")
+        Call<ArrayList<Item>> obtenerItems(@Header("Authorization") String token);
+
+        @GET("item/get/{id}")
+        Call<Item> obtenerItem(
+                @Path("id") int id,
+                @Header("Authorization") String token);
+
+        @GET("tipo/get")
+        Call<ArrayList<Tipo>> obtenerTipos(@Header("Authorization") String token);
+
+        //INVENTARIOS
+        @GET("inventario/arma/get/personaje={personajeId}")
+        Call<ArrayList<InvArma>> obtenerMisArmas(
+                @Path("personajeId") int id,
+                @Header("Authorization") String token);
+
+        @GET("inventario/armadura/get/personaje={personajeId}")
+        Call<ArrayList<InvArmadura>> obtenerMisArmaduras(
+                @Path("personajeId") int id,
+                @Header("Authorization") String token);
+
+        @GET("inventario/item/get/personaje={personajeId}")
+        Call<ArrayList<InvItem>> obtenerMisItems(
+                @Path("personajeId") int id,
                 @Header("Authorization") String token);
     }
 }

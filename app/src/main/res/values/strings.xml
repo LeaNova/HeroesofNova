@@ -13,4 +13,7 @@
     <string name="menu_razas">Razas</string>
     <string name="menu_clases">Clases</string>
     <string name="menu_mochilas">Mochilas</string>
+    <string name="menu_armas">Armas</string>
+    <string name="menu_armaduras">Armaduras</string>
+    <string name="menu_items">Items</string>
 </resources>

@@ -442,25 +442,6 @@
         app:layout_constraintStart_toEndOf="@+id/textAccBase"
         app:layout_constraintTop_toTopOf="@+id/textAccBase" />
 
-    <Button
-        android:id="@+id/btTirar_CP"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Tirar"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/guideline8" />
-
-    <Button
-        android:id="@+id/btGuardar_CP"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Guardar"
-        app:layout_constraintBottom_toBottomOf="@+id/btTirar_CP"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/btTirar_CP" />
-
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline2"
         android:layout_width="wrap_content"
@@ -480,18 +461,27 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_begin="570dp" />
+        app:layout_constraintGuide_begin="545dp" />
 
     <TextView
-        android:id="@+id/tvAviso_CP"
-        android:layout_width="350dp"
+        android:id="@+id/textDescripcion"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="8dp"
-        android:text=""
-        android:textColor="#FF0000"
+        android:layout_marginTop="20dp"
+        android:text="Descripción: "
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/guideline7" />
+
+    <EditText
+        android:id="@+id/etDescripcion_CP"
+        android:layout_width="265dp"
+        android:layout_height="52dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        app:layout_constraintBottom_toBottomOf="@+id/textDescripcion"
+        app:layout_constraintStart_toEndOf="@+id/textDescripcion"
+        app:layout_constraintTop_toTopOf="@+id/textDescripcion" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline8"
@@ -499,5 +489,24 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layout_constraintGuide_begin="650dp" />
+
+    <Button
+        android:id="@+id/btTirar_CP"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Tirar"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/guideline8" />
+
+    <Button
+        android:id="@+id/btGuardar_CP"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Guardar"
+        app:layout_constraintBottom_toBottomOf="@+id/btTirar_CP"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/btTirar_CP" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

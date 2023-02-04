@@ -1,0 +1,369 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.armas.DetalleArmaFragment">
+
+    <TextView
+        android:id="@+id/tvNombre_DArma"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="[nombre]"
+        android:textAlignment="center"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/guideline1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="75dp" />
+
+    <TextView
+        android:id="@+id/textCategoria"
+        android:layout_width="85dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="16dp"
+        android:text="Categoria: "
+        android:textAlignment="textEnd"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/guideline1" />
+
+    <TextView
+        android:id="@+id/tvCategoria_DArma"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="[cat]"
+        app:layout_constraintBottom_toBottomOf="@+id/textCategoria"
+        app:layout_constraintStart_toEndOf="@+id/textCategoria" />
+
+    <TextView
+        android:id="@+id/textDanio"
+        android:layout_width="85dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Daño: "
+        android:textAlignment="textEnd"
+        app:layout_constraintStart_toStartOf="@+id/textCategoria"
+        app:layout_constraintTop_toBottomOf="@+id/textCategoria" />
+
+    <TextView
+        android:id="@+id/tvDanio_DArma"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="[d]"
+        app:layout_constraintBottom_toBottomOf="@+id/textDanio"
+        app:layout_constraintStart_toEndOf="@+id/textDanio" />
+
+    <TextView
+        android:id="@+id/textBono"
+        android:layout_width="85dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Bono: "
+        android:textAlignment="textEnd"
+        app:layout_constraintStart_toStartOf="@+id/textDanio"
+        app:layout_constraintTop_toBottomOf="@+id/textDanio" />
+
+    <TextView
+        android:id="@+id/tvBono_DArma"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="[mod]"
+        app:layout_constraintBottom_toBottomOf="@+id/textBono"
+        app:layout_constraintStart_toEndOf="@+id/textBono" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="195dp" />
+
+    <TextView
+        android:id="@+id/textAtk"
+        android:layout_width="85dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="16dp"
+        android:text="Bono ATK: "
+        android:textAlignment="textEnd"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/guideline2" />
+
+    <TextView
+        android:id="@+id/tvAtk_DArma"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="[mod]"
+        app:layout_constraintBottom_toBottomOf="@+id/textAtk"
+        app:layout_constraintStart_toEndOf="@+id/textAtk" />
+
+    <TextView
+        android:id="@+id/textAtm"
+        android:layout_width="85dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Bono ATM: "
+        android:textAlignment="textEnd"
+        app:layout_constraintStart_toStartOf="@+id/textAtk"
+        app:layout_constraintTop_toBottomOf="@+id/textAtk" />
+
+    <TextView
+        android:id="@+id/tvAtm_DArma"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="[mod]"
+        app:layout_constraintBottom_toBottomOf="@+id/textAtm"
+        app:layout_constraintStart_toEndOf="@+id/textAtm" />
+
+    <TextView
+        android:id="@+id/textDef"
+        android:layout_width="85dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Bono DEF: "
+        android:textAlignment="textEnd"
+        app:layout_constraintStart_toStartOf="@+id/textAtm"
+        app:layout_constraintTop_toBottomOf="@+id/textAtm" />
+
+    <TextView
+        android:id="@+id/tvDef_DArma"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="[mod]"
+        app:layout_constraintBottom_toBottomOf="@+id/textDef"
+        app:layout_constraintStart_toEndOf="@+id/textDef" />
+
+    <TextView
+        android:id="@+id/textDfm"
+        android:layout_width="85dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Bono DFM: "
+        android:textAlignment="textEnd"
+        app:layout_constraintStart_toStartOf="@+id/textDef"
+        app:layout_constraintTop_toBottomOf="@+id/textDef" />
+
+    <TextView
+        android:id="@+id/tvDfm_DArma"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="[mod]"
+        app:layout_constraintBottom_toBottomOf="@+id/textDfm"
+        app:layout_constraintStart_toEndOf="@+id/textDfm" />
+
+    <TextView
+        android:id="@+id/textCrt"
+        android:layout_width="85dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Bono CRT: "
+        android:textAlignment="textEnd"
+        app:layout_constraintStart_toStartOf="@+id/textDfm"
+        app:layout_constraintTop_toBottomOf="@+id/textDfm" />
+
+    <TextView
+        android:id="@+id/tvCrt_DArma"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="[mod]"
+        app:layout_constraintBottom_toBottomOf="@+id/textCrt"
+        app:layout_constraintStart_toEndOf="@+id/textCrt" />
+
+    <TextView
+        android:id="@+id/textAcc"
+        android:layout_width="85dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Bono ACC: "
+        android:textAlignment="textEnd"
+        app:layout_constraintStart_toStartOf="@+id/textCrt"
+        app:layout_constraintTop_toBottomOf="@+id/textCrt" />
+
+    <TextView
+        android:id="@+id/tvAcc_DArma"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="[mod]"
+        app:layout_constraintBottom_toBottomOf="@+id/textAcc"
+        app:layout_constraintStart_toEndOf="@+id/textAcc" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="205dp" />
+
+    <TextView
+        android:id="@+id/textModAtk"
+        android:layout_width="125dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:text="Modificador ATK: "
+        android:textAlignment="textEnd"
+        app:layout_constraintStart_toStartOf="@+id/guideline4"
+        app:layout_constraintTop_toTopOf="@+id/guideline2" />
+
+    <TextView
+        android:id="@+id/tvModAtk_DArma"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="[mod]"
+        app:layout_constraintBottom_toBottomOf="@+id/textModAtk"
+        app:layout_constraintStart_toEndOf="@+id/textModAtk" />
+
+    <TextView
+        android:id="@+id/textModAtm"
+        android:layout_width="125dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Modificador ATM: "
+        android:textAlignment="textEnd"
+        app:layout_constraintStart_toStartOf="@+id/textModAtk"
+        app:layout_constraintTop_toBottomOf="@+id/textModAtk" />
+
+    <TextView
+        android:id="@+id/tvModAtm_DArma"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="[mod]"
+        app:layout_constraintBottom_toBottomOf="@+id/textModAtm"
+        app:layout_constraintStart_toEndOf="@+id/textModAtm" />
+
+    <TextView
+        android:id="@+id/textModDef"
+        android:layout_width="125dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Modificador DEF: "
+        android:textAlignment="textEnd"
+        app:layout_constraintStart_toStartOf="@+id/textModAtm"
+        app:layout_constraintTop_toBottomOf="@+id/textModAtm" />
+
+    <TextView
+        android:id="@+id/tvModDef_DArma"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="[mod]"
+        app:layout_constraintBottom_toBottomOf="@+id/textModDef"
+        app:layout_constraintStart_toEndOf="@+id/textModDef" />
+
+    <TextView
+        android:id="@+id/textModDfm"
+        android:layout_width="125dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Modificador DFM: "
+        android:textAlignment="textEnd"
+        app:layout_constraintStart_toStartOf="@+id/textModDef"
+        app:layout_constraintTop_toBottomOf="@+id/textModDef" />
+
+    <TextView
+        android:id="@+id/tvModDfm_DArma"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="[mod]"
+        app:layout_constraintBottom_toBottomOf="@+id/textModDfm"
+        app:layout_constraintStart_toEndOf="@+id/textModDfm" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="420dp" />
+
+    <TextView
+        android:id="@+id/textPrecio"
+        android:layout_width="55dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="16dp"
+        android:text="Precio: "
+        android:textAlignment="textEnd"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/guideline3" />
+
+    <TextView
+        android:id="@+id/tvPrecio_DArma"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="[precio]"
+        app:layout_constraintBottom_toBottomOf="@+id/textPrecio"
+        app:layout_constraintStart_toEndOf="@+id/textPrecio" />
+
+    <TextView
+        android:id="@+id/textPeso"
+        android:layout_width="55dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Peso: "
+        android:textAlignment="textEnd"
+        app:layout_constraintStart_toStartOf="@+id/textPrecio"
+        app:layout_constraintTop_toBottomOf="@+id/textPrecio" />
+
+    <TextView
+        android:id="@+id/tvPeso_DArma"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="[peso]"
+        app:layout_constraintBottom_toBottomOf="@+id/textPeso"
+        app:layout_constraintStart_toEndOf="@+id/textPeso" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="505dp" />
+
+    <TextView
+        android:id="@+id/tvDetalle_DArma"
+        android:layout_width="360dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="[descripción]"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/guideline5" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="650dp" />
+
+    <Button
+        android:id="@+id/btEditar_DArma"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Editar"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/guideline6" />
+
+    <Button
+        android:id="@+id/btBorrar_DArma"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="#FF4B4B"
+        android:text="Borrar"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/btEditar_DArma"
+        app:layout_constraintTop_toTopOf="@+id/guideline6" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

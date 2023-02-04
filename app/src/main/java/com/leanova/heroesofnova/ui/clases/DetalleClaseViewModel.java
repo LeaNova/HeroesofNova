@@ -48,19 +48,20 @@ public class DetalleClaseViewModel extends AndroidViewModel {
     }
 
     //FUNCIONES
+    public void getClase(Bundle bClase) {
+        Clase c = (Clase) bClase.getSerializable("clase");
+        mutableClase.setValue(c);
+        obtenerClase(c.getIdClase());
+    }
+
     public void setAccess() {
         String access = DefaultValues.getAccess();
 
-        if(access.equals("Master")) {
+        if(access.equals("Admin")) {
             mutableAccess.setValue(0);
         } else {
             mutableAccess.setValue(8);
         }
-    }
-
-    public void getClase(Bundle bClase) {
-        Clase c = (Clase) bClase.getSerializable("clase");
-        obtenerClase(c.getIdClase());
     }
 
     private void obtenerClase(int id) {

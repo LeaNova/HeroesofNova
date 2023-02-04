@@ -1,0 +1,471 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.personajes.jugar.TabArsenalFragment" >
+
+    <TextView
+        android:id="@+id/tvPersonaje_JP"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="[personaje]"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textVida"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="16dp"
+        android:text="Vida: "
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvPersonaje_JP" />
+
+    <TextView
+        android:id="@+id/tvVida_JP"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="[Vida]"
+        app:layout_constraintBottom_toBottomOf="@+id/textVida"
+        app:layout_constraintStart_toEndOf="@+id/textVida" />
+
+    <TextView
+        android:id="@+id/textEnergia"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:text="Energía: "
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@+id/textVida"
+        app:layout_constraintTop_toBottomOf="@+id/textVida" />
+
+    <TextView
+        android:id="@+id/tvEnergia_JP"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="[Energia]"
+        app:layout_constraintBottom_toBottomOf="@+id/textEnergia"
+        app:layout_constraintStart_toEndOf="@+id/textEnergia" />
+
+    <TextView
+        android:id="@+id/textAtk"
+        android:layout_width="40dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="ATK: "
+        android:textAlignment="textEnd"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@+id/textVida"
+        app:layout_constraintTop_toBottomOf="@+id/textEnergia" />
+
+    <TextView
+        android:id="@+id/tvAtk_JP"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="[ATK]"
+        app:layout_constraintBottom_toBottomOf="@+id/textAtk"
+        app:layout_constraintStart_toEndOf="@+id/textAtk" />
+
+    <TextView
+        android:id="@+id/tvAtkAdd_JP"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=""
+        app:layout_constraintBottom_toBottomOf="@+id/tvAtk_JP"
+        app:layout_constraintStart_toEndOf="@+id/tvAtk_JP" />
+
+    <TextView
+        android:id="@+id/textAtm"
+        android:layout_width="40dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:text="ATM: "
+        android:textAlignment="textEnd"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@+id/textAtk"
+        app:layout_constraintTop_toBottomOf="@+id/textAtk" />
+
+    <TextView
+        android:id="@+id/tvAtm_JP"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="[ATM]"
+        app:layout_constraintBottom_toBottomOf="@+id/textAtm"
+        app:layout_constraintStart_toEndOf="@+id/textAtm" />
+
+    <TextView
+        android:id="@+id/tvAtmAdd_JP"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=""
+        app:layout_constraintBottom_toBottomOf="@+id/tvAtm_JP"
+        app:layout_constraintStart_toEndOf="@+id/tvAtm_JP" />
+
+    <TextView
+        android:id="@+id/textDef"
+        android:layout_width="40dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:text="DEF: "
+        android:textAlignment="textEnd"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@+id/textAtm"
+        app:layout_constraintTop_toBottomOf="@+id/textAtm" />
+
+    <TextView
+        android:id="@+id/tvDef_JP"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="[DEF]"
+        app:layout_constraintBottom_toBottomOf="@+id/textDef"
+        app:layout_constraintStart_toEndOf="@+id/textDef" />
+
+    <TextView
+        android:id="@+id/tvDefAdd_JP"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=""
+        app:layout_constraintBottom_toBottomOf="@+id/tvDef_JP"
+        app:layout_constraintStart_toEndOf="@+id/tvDef_JP" />
+
+    <TextView
+        android:id="@+id/textDfm"
+        android:layout_width="40dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:text="DFM: "
+        android:textAlignment="textEnd"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@+id/textDef"
+        app:layout_constraintTop_toBottomOf="@+id/textDef" />
+
+    <TextView
+        android:id="@+id/tvDfm_JP"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="[DFM]"
+        app:layout_constraintBottom_toBottomOf="@+id/textDfm"
+        app:layout_constraintStart_toEndOf="@+id/textDfm" />
+
+    <TextView
+        android:id="@+id/tvDfmAdd_JP"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=""
+        app:layout_constraintBottom_toBottomOf="@+id/tvDfm_JP"
+        app:layout_constraintStart_toEndOf="@+id/tvDfm_JP" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="205dp" />
+
+    <TextView
+        android:id="@+id/textDex"
+        android:layout_width="40dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:text="DEX: "
+        android:textAlignment="textEnd"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@+id/guideline3"
+        app:layout_constraintTop_toTopOf="@+id/textAtk" />
+
+    <TextView
+        android:id="@+id/tvDex_JP"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="[DEX]"
+        app:layout_constraintBottom_toBottomOf="@+id/textDex"
+        app:layout_constraintStart_toEndOf="@+id/textDex" />
+
+    <TextView
+        android:id="@+id/tvDexAdd_JP"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=""
+        app:layout_constraintBottom_toBottomOf="@+id/tvDex_JP"
+        app:layout_constraintStart_toEndOf="@+id/tvDex_JP" />
+
+    <TextView
+        android:id="@+id/textEva"
+        android:layout_width="40dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:text="EVA: "
+        android:textAlignment="textEnd"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@+id/textDex"
+        app:layout_constraintTop_toBottomOf="@+id/textDex" />
+
+    <TextView
+        android:id="@+id/tvEva_JP"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="[EVA]"
+        app:layout_constraintBottom_toBottomOf="@+id/textEva"
+        app:layout_constraintStart_toEndOf="@+id/textEva" />
+
+    <TextView
+        android:id="@+id/tvEvaAdd_JP"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=""
+        app:layout_constraintBottom_toBottomOf="@+id/tvEva_JP"
+        app:layout_constraintStart_toEndOf="@+id/tvEva_JP" />
+
+    <TextView
+        android:id="@+id/textCrt"
+        android:layout_width="40dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:text="CRT: "
+        android:textAlignment="textEnd"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@+id/textEva"
+        app:layout_constraintTop_toBottomOf="@+id/textEva" />
+
+    <TextView
+        android:id="@+id/tvCrt_JP"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="[CRT]"
+        app:layout_constraintBottom_toBottomOf="@+id/textCrt"
+        app:layout_constraintStart_toEndOf="@+id/textCrt" />
+
+    <TextView
+        android:id="@+id/tvCrtAdd_JP"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=""
+        app:layout_constraintBottom_toBottomOf="@+id/tvCrt_JP"
+        app:layout_constraintStart_toEndOf="@+id/tvCrt_JP" />
+
+    <TextView
+        android:id="@+id/textAcc"
+        android:layout_width="40dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:text="ACC: "
+        android:textAlignment="textEnd"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@+id/textCrt"
+        app:layout_constraintTop_toBottomOf="@+id/textCrt" />
+
+    <TextView
+        android:id="@+id/tvAcc_JP"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="[ACC]"
+        app:layout_constraintBottom_toBottomOf="@+id/textAcc"
+        app:layout_constraintStart_toEndOf="@+id/textAcc" />
+
+    <TextView
+        android:id="@+id/tvAccAdd_JP"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=""
+        app:layout_constraintBottom_toBottomOf="@+id/tvAcc_JP"
+        app:layout_constraintStart_toEndOf="@+id/tvAcc_JP" />
+
+    <TextView
+        android:id="@+id/textArmadura"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="Armadura: "
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@+id/textDfm"
+        app:layout_constraintTop_toBottomOf="@+id/textDfm" />
+
+    <TextView
+        android:id="@+id/tvArmadura_JP"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="[Armadura]"
+        android:textStyle="italic"
+        app:layout_constraintBottom_toBottomOf="@+id/textArmadura"
+        app:layout_constraintStart_toEndOf="@+id/textArmadura"
+        app:layout_constraintTop_toTopOf="@+id/textArmadura" />
+
+    <Spinner
+        android:id="@+id/spArmaduras_JP"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textArmadura" />
+
+    <TextView
+        android:id="@+id/textArma"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Arma: "
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@+id/textArmadura"
+        app:layout_constraintTop_toBottomOf="@+id/spArmaduras_JP" />
+
+    <TextView
+        android:id="@+id/tvArma_JP"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="[Arma]"
+        android:textStyle="italic"
+        app:layout_constraintBottom_toBottomOf="@+id/textArma"
+        app:layout_constraintStart_toEndOf="@+id/textArma"
+        app:layout_constraintTop_toTopOf="@+id/textArma" />
+
+    <Spinner
+        android:id="@+id/spArmas_JP"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textArma" />
+
+    <TextView
+        android:id="@+id/textCorona"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Corona: "
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@+id/textArma"
+        app:layout_constraintTop_toBottomOf="@+id/spArmas_JP" />
+
+    <TextView
+        android:id="@+id/tvCorona_JP"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="[Corona]"
+        android:textStyle="italic"
+        app:layout_constraintBottom_toBottomOf="@+id/textCorona"
+        app:layout_constraintStart_toEndOf="@+id/textCorona"
+        app:layout_constraintTop_toTopOf="@+id/textCorona" />
+
+    <Spinner
+        android:id="@+id/spCoronas_JP"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvCorona_JP" />
+
+    <TextView
+        android:id="@+id/textIzquierda"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Izquierda: "
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@+id/textCorona"
+        app:layout_constraintTop_toBottomOf="@+id/spCoronas_JP" />
+
+    <TextView
+        android:id="@+id/tvIzquierda_JP"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="[Izquierda]"
+        android:textStyle="italic"
+        app:layout_constraintBottom_toBottomOf="@+id/textIzquierda"
+        app:layout_constraintStart_toEndOf="@+id/textIzquierda"
+        app:layout_constraintTop_toTopOf="@+id/textIzquierda" />
+
+    <Spinner
+        android:id="@+id/spIzquierda_JP"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvIzquierda_JP" />
+
+    <TextView
+        android:id="@+id/textDerecha"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Derecha: "
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@+id/textIzquierda"
+        app:layout_constraintTop_toBottomOf="@+id/spIzquierda_JP" />
+
+    <TextView
+        android:id="@+id/tvDerecha_JP"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="[Derecha]"
+        android:textStyle="italic"
+        app:layout_constraintBottom_toBottomOf="@+id/textDerecha"
+        app:layout_constraintStart_toEndOf="@+id/textDerecha"
+        app:layout_constraintTop_toTopOf="@+id/textDerecha" />
+
+    <Spinner
+        android:id="@+id/spDerechas_JP"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvDerecha_JP" />
+
+    <TextView
+        android:id="@+id/textTorse"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Arma: "
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@+id/textDerecha"
+        app:layout_constraintTop_toBottomOf="@+id/spDerechas_JP" />
+
+    <TextView
+        android:id="@+id/tvTorso_JP"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="[Arma]"
+        android:textStyle="italic"
+        app:layout_constraintBottom_toBottomOf="@+id/textTorse"
+        app:layout_constraintStart_toEndOf="@+id/textTorse"
+        app:layout_constraintTop_toTopOf="@+id/textTorse" />
+
+    <Spinner
+        android:id="@+id/spTorsos_JP"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvTorso_JP" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="610dp" />
+
+    <Button
+        android:id="@+id/btEquipar_JP"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Equipar"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/guideline2" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
