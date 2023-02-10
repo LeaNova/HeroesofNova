@@ -7,11 +7,11 @@
     tools:context=".ui.items.CrearItemFragment">
 
     <TextView
-        android:id="@+id/tvNuevaEditar_CArma"
+        android:id="@+id/tvNuevaEditar_CItem"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:text="Nueva Arma"
+        android:text="Nuevo Item"
         android:textAlignment="center"
         android:textSize="24sp"
         android:textStyle="bold"
@@ -28,7 +28,7 @@
         android:text="Nombre: "
         android:textAlignment="textEnd"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvNuevaEditar_CArma" />
+        app:layout_constraintTop_toBottomOf="@+id/tvNuevaEditar_CItem" />
 
     <EditText
         android:id="@+id/etNombre_CItem"
@@ -41,7 +41,7 @@
         app:layout_constraintTop_toTopOf="@+id/textNombre" />
 
     <TextView
-        android:id="@+id/textCategoria"
+        android:id="@+id/textTipo"
         android:layout_width="85dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
@@ -55,9 +55,19 @@
         android:id="@+id/spTipo_CItem"
         android:layout_width="264dp"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="@+id/textCategoria"
-        app:layout_constraintStart_toEndOf="@+id/textCategoria"
-        app:layout_constraintTop_toTopOf="@+id/textCategoria" />
+        app:layout_constraintBottom_toBottomOf="@+id/textTipo"
+        app:layout_constraintStart_toEndOf="@+id/textTipo"
+        app:layout_constraintTop_toTopOf="@+id/textTipo" />
+
+    <TextView
+        android:id="@+id/tvTipo_CTipo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="[tipo]"
+        app:layout_constraintBottom_toBottomOf="@+id/textTipo"
+        app:layout_constraintStart_toEndOf="@+id/textTipo"
+        app:layout_constraintTop_toTopOf="@+id/textTipo" />
+
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline1"
@@ -216,7 +226,7 @@
         android:layout_width="50dp"
         android:layout_height="52dp"
         android:ems="10"
-        android:inputType="number"
+        android:inputType="numberDecimal"
         android:textAlignment="center"
         app:layout_constraintBottom_toBottomOf="@+id/textDex"
         app:layout_constraintStart_toEndOf="@+id/textDex"
@@ -237,7 +247,7 @@
         android:layout_width="50dp"
         android:layout_height="52dp"
         android:ems="10"
-        android:inputType="number"
+        android:inputType="numberDecimal"
         android:textAlignment="center"
         app:layout_constraintBottom_toBottomOf="@+id/textEva"
         app:layout_constraintStart_toEndOf="@+id/textEva"
@@ -258,7 +268,7 @@
         android:layout_width="50dp"
         android:layout_height="52dp"
         android:ems="10"
-        android:inputType="number"
+        android:inputType="numberDecimal"
         android:textAlignment="center"
         app:layout_constraintBottom_toBottomOf="@+id/textCrt"
         app:layout_constraintStart_toEndOf="@+id/textCrt"
@@ -279,7 +289,7 @@
         android:layout_width="50dp"
         android:layout_height="52dp"
         android:ems="10"
-        android:inputType="number"
+        android:inputType="numberDecimal"
         android:textAlignment="center"
         app:layout_constraintBottom_toBottomOf="@+id/textAcc"
         app:layout_constraintStart_toEndOf="@+id/textAcc"

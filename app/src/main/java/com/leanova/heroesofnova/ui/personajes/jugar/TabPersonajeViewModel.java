@@ -3,6 +3,7 @@ package com.leanova.heroesofnova.ui.personajes.jugar;
 import android.app.Application;
 import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
@@ -108,7 +109,7 @@ public class TabPersonajeViewModel extends AndroidViewModel {
 
             @Override
             public void onFailure(Call<Personaje> call, Throwable t) {
-
+                Log.d("APIerror", t.getMessage());
             }
         });
     }

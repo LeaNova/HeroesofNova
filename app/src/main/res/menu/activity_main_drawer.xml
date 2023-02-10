@@ -5,18 +5,18 @@
 
     <item
         android:id="@+id/nav_home"
-        android:icon="@drawable/ic_menu_camera"
+        android:icon="@drawable/ic_home"
         android:title="@string/menu_home" />
 
     <group android:checkableBehavior="single"
         android:id="@+id/jugar">
         <item
             android:id="@+id/nav_grupos"
-            android:icon="@drawable/ic_menu_slideshow"
+            android:icon="@drawable/ic_group"
             android:title="@string/menu_grupos" />
         <item
             android:id="@+id/nav_personajes"
-            android:icon="@drawable/ic_menu_gallery"
+            android:icon="@drawable/ic_character"
             android:title="@string/menu_personajes" />
     </group>
 
@@ -25,15 +25,15 @@
         android:id="@+id/basesPersonaje">
         <item
             android:id="@+id/nav_razas"
-            android:icon="@drawable/ic_menu_slideshow"
+            android:icon="@drawable/ic_races"
             android:title="@string/menu_razas" />
         <item
             android:id="@+id/nav_clases"
-            android:icon="@drawable/ic_menu_slideshow"
+            android:icon="@drawable/ic_class"
             android:title="@string/menu_clases" />
         <item
             android:id="@+id/nav_mochilas"
-            android:icon="@drawable/ic_menu_slideshow"
+            android:icon="@drawable/ic_backpack"
             android:title="@string/menu_mochilas" />
     </group>
 
@@ -42,15 +42,19 @@
         android:id="@+id/combate">
         <item
             android:id="@+id/nav_armas"
-            android:icon="@drawable/ic_menu_slideshow"
+            android:icon="@drawable/ic_sword"
             android:title="@string/menu_armas" />
         <item
             android:id="@+id/nav_armaduras"
-            android:icon="@drawable/ic_menu_slideshow"
+            android:icon="@drawable/ic_armor"
             android:title="@string/menu_armaduras" />
         <item
             android:id="@+id/nav_items"
-            android:icon="@drawable/ic_menu_slideshow"
+            android:icon="@drawable/ic_potion"
             android:title="@string/menu_items" />
+        <item
+            android:id="@+id/nav_artefactos"
+            android:icon="@drawable/ic_gears"
+            android:title="@string/menu_artefactos" />
     </group>
 </menu>

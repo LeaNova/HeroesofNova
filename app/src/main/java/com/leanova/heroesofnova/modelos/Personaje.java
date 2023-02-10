@@ -35,10 +35,20 @@ public class Personaje implements Serializable {
     private Genero genero;
     private Clase clase;
     private Mochila mochila;
-    //OTROS
+
+    /**OTROS**/
     private int vidaAct;
     private int energiaAct;
     private int nextExp;
+    //Add-ons
+    private int auxAtaque = 0;
+    private int auxAtkMagico = 0;
+    private int auxDefensa = 0;
+    private int auxDefMagico = 0;
+    private int auxAgilidad = 0;
+    private int auxEvasion = 0;
+    private int auxCritico = 0;
+    private int auxPrecision = 0;
 
     public Personaje() { }
     public Personaje(int idPersonaje,
@@ -312,6 +322,7 @@ public class Personaje implements Serializable {
         this.mochila = mochila;
     }
 
+    /**OTROS**/
     public int getVidaAct() {
         return vidaAct;
     }
@@ -328,6 +339,82 @@ public class Personaje implements Serializable {
         this.energiaAct = energia;
     }
 
+    /**Add-ons**/
+    public int getAuxAtaque() {
+        return auxAtaque;
+    }
+
+    public void setAuxAtaque(int auxAtaque) {
+        this.auxAtaque = auxAtaque;
+    }
+
+    public int getAuxAtkMagico() {
+        return auxAtkMagico;
+    }
+
+    public void setAuxAtkMagico(int auxAtkMagico) {
+        this.auxAtkMagico = auxAtkMagico;
+    }
+
+    public int getAuxDefensa() {
+        return auxDefensa;
+    }
+
+    public void setAuxDefensa(int auxDefensa) {
+        this.auxDefensa = auxDefensa;
+    }
+
+    public int getAuxDefMagico() {
+        return auxDefMagico;
+    }
+
+    public void setAuxDefMagico(int auxDefMagico) {
+        this.auxDefMagico = auxDefMagico;
+    }
+
+    public int getAuxAgilidad() {
+        return auxAgilidad;
+    }
+
+    public void setAuxAgilidad(int auxAgilidad) {
+        this.auxAgilidad = auxAgilidad;
+    }
+
+    public int getAuxEvasion() {
+        return auxEvasion;
+    }
+
+    public void setAuxEvasion(int auxEvasion) {
+        this.auxEvasion = auxEvasion;
+    }
+
+    public int getAuxCritico() {
+        return auxCritico;
+    }
+
+    public void setAuxCritico(int auxCritico) {
+        this.auxCritico = auxCritico;
+    }
+
+    public int getAuxPrecision() {
+        return auxPrecision;
+    }
+
+    public void setAuxPrecision(int auxPrecision) {
+        this.auxPrecision = auxPrecision;
+    }
+
+    public void cleanAux() {
+        auxAtaque = 0;
+        auxAtkMagico = 0;
+        auxDefensa = 0;
+        auxDefMagico = 0;
+        auxAgilidad = 0;
+        auxEvasion = 0;
+        auxCritico = 0;
+        auxPrecision = 0;
+    }
+    //EXP
     public int getNextExp() {
         return nextExp;
     }
@@ -396,7 +483,8 @@ public class Personaje implements Serializable {
         }
     }
 
-    /*Funciones de Vida*/
+    /*Funciones de Vida y Energía*/
+    //Recibir daño
     public void recibirDanioFisico(int danio) {
         if(vidaAct > 0) {
             int danioT = danio - Math.round(defensa * 0.5f);
@@ -423,6 +511,23 @@ public class Personaje implements Serializable {
         }
     }
 
+    //Recuperar vida y/o energía
+    public void recuperar(Item item) {
+        if(vidaAct < vida || energiaAct < energia) {
+            vidaAct += item.getBonoVida();
+            energiaAct += item.getBonoEnergia();
+
+            if (vidaAct > vida || energiaAct > energia) {
+                vidaAct = vida;
+                energiaAct = energia;
+            }
+        }
+
+        if(item.getBonoAtk() + item.getBonoAtm() + item.getBonoDef() + item.getBonoDfm() + item.getBonoDex() + item.getBonoEva() + item.getBonoCrt() + item.getBonoAcc() > 0) {
+            agregarExtras(item);
+        }
+    }
+
     public void recuperarVida(int heal) {
         if(vidaAct < vida) {
             vidaAct += heal;
@@ -434,13 +539,25 @@ public class Personaje implements Serializable {
     }
 
     public void recuperarEnergia(int gain) {
-        if(vidaAct < vida) {
-            vidaAct += gain;
+        if(energiaAct < energia) {
+            energiaAct += gain;
 
-            if (vidaAct > vida) {
-                vidaAct = vida;
+            if (energiaAct > energia) {
+                energiaAct = energia;
             }
         }
+    }
+
+    /*Add-on*/
+    private void agregarExtras(Item item) {
+        auxAtaque = item.getBonoAtk();
+        auxAtkMagico = item.getBonoAtm();
+        auxDefensa = item.getBonoDef();
+        auxDefMagico = item.getBonoDfm();
+        auxAgilidad = item.getBonoDex();
+        auxEvasion = item.getBonoEva();
+        auxCritico = item.getBonoCrt();
+        auxPrecision = item.getBonoAcc();
     }
 
     public int getClaseBoost() {

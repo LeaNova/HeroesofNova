@@ -32,7 +32,7 @@ public class CrearItemFragment extends Fragment {
     private FragmentCrearItemBinding binding;
     private CrearItemViewModel crearItemVM;
 
-    private TextView tvNuevaEditar_CArma;
+    private TextView tvNuevaEditar_CItem, tvTipo_CTipo;
     private EditText etNombre_CItem, etBonoVida_CItem, etBonoEnergia_CItem, etBonoAtk_CItem, etBonoAtm_CItem, etBonoDef_CItem, etBonoDfm_CItem, etBonoDex_CItem, etBonoEva_CItem, etBonoCrt_CItem, etBonoAcc_CItem, etPrecio_CItem, etPeso_CItem, etDescripcion_CItem;
     private Spinner spTipo_CItem;
     private Button btCrearActualizar_CItem;
@@ -55,6 +55,9 @@ public class CrearItemFragment extends Fragment {
             @Override
             public void onChanged(Item item) {
                 etNombre_CItem.setText(item.getNombre());
+                spTipo_CItem.setVisibility(View.GONE);
+                tvTipo_CTipo.setText(item.getTipo().getNombre());
+                tvTipo_CTipo.setVisibility(View.VISIBLE);
                 etBonoVida_CItem.setText(item.getBonoVida()+"");
                 etBonoEnergia_CItem.setText(item.getBonoEnergia()+"");
                 etBonoAtk_CItem.setText(item.getBonoAtk()+"");
@@ -69,7 +72,7 @@ public class CrearItemFragment extends Fragment {
                 etPeso_CItem.setText(item.getPeso()+"");
                 etDescripcion_CItem.setText(item.getDescripcion());
 
-                tvNuevaEditar_CArma.setText("Editar Item");
+                tvNuevaEditar_CItem.setText("Editar Item");
                 btCrearActualizar_CItem.setText("Actualizar");
             }
         });
@@ -114,9 +117,12 @@ public class CrearItemFragment extends Fragment {
     }
 
     private void inicializarVista(View v) {
-        this.tvNuevaEditar_CArma = v.findViewById(R.id.tvNuevaEditar_CArma);
+        this.tvNuevaEditar_CItem = v.findViewById(R.id.tvNuevaEditar_CItem);
         this.etNombre_CItem = v.findViewById(R.id.etNombre_CItem);
         this.spTipo_CItem = v.findViewById(R.id.spTipo_CItem);
+        this.tvTipo_CTipo = v.findViewById(R.id.tvTipo_CTipo);
+        this.tvTipo_CTipo.setText("");
+        this.tvTipo_CTipo.setVisibility(View.GONE);
         this.etBonoVida_CItem = v.findViewById(R.id.etBonoVida_CItem);
         this.etBonoEnergia_CItem = v.findViewById(R.id.etBonoEnergia_CItem);
         this.etBonoAtk_CItem = v.findViewById(R.id.etBonoAtk_CItem);

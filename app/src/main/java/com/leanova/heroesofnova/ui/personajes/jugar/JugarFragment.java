@@ -7,7 +7,6 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.Lifecycle;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 import androidx.viewpager2.widget.ViewPager2;
@@ -19,12 +18,10 @@ import android.view.ViewGroup;
 import com.google.android.material.tabs.TabLayout;
 import com.leanova.heroesofnova.R;
 import com.leanova.heroesofnova.databinding.FragmentJugarBinding;
-import com.leanova.heroesofnova.modelos.Personaje;
-import com.leanova.heroesofnova.request.PersonajeValues;
 
 public class JugarFragment extends Fragment {
     private FragmentJugarBinding binding;
-    private JugarViewModel jvm;
+    private JugarViewModel jugarVM;
 
     private TabLayout tlJugar_JP;
     private ViewPager2 vp2Jugar_JP;
@@ -34,8 +31,8 @@ public class JugarFragment extends Fragment {
         binding = FragmentJugarBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-        jvm = new ViewModelProvider(this).get(JugarViewModel.class);
-        jvm.obtenerPersonaje(getArguments());
+        jugarVM = new ViewModelProvider(this).get(JugarViewModel.class);
+        jugarVM.obtenerPersonaje(getArguments());
 
         inicializarVista(root);
 
@@ -44,8 +41,8 @@ public class JugarFragment extends Fragment {
 
     private void inicializarVista(View v) {
         this.tlJugar_JP = v.findViewById(R.id.tlJugar_JP);
-        this.vp2Jugar_JP = v.findViewById(R.id.vp2Jugar_JP);
 
+        this.vp2Jugar_JP = v.findViewById(R.id.vp2Jugar_JP);
         this.vp2Jugar_JP.setAdapter(new FragmentAdapter(getChildFragmentManager(), getLifecycle()));
         this.vp2Jugar_JP.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
             @Override
@@ -84,7 +81,7 @@ public class JugarFragment extends Fragment {
             switch(position) {
                 case 0: return new TabPersonajeFragment();
                 case 1: return new TabArsenalFragment();
-                case 2: return new TabInventarioFragment();
+                case 2: return new TabItemFragment();
                 default: return null;
             }
         }

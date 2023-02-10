@@ -4,7 +4,7 @@
     android:id="@+id/personaje_item"
     android:layout_width="match_parent"
     android:layout_height="140dp"
-    app:cardBackgroundColor="#FFBF61"
+    app:cardBackgroundColor="#97BAFF"
     app:cardCornerRadius="10dp"
     app:cardUseCompatPadding="true"
     app:contentPadding="5dp">
@@ -20,6 +20,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
             android:text="Nombre: "
+            android:textColor="#000000"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -29,6 +30,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="[Nombre]"
+            android:textColor="#000000"
             app:layout_constraintBottom_toBottomOf="@+id/textNombre"
             app:layout_constraintStart_toEndOf="@+id/textNombre" />
 
@@ -38,6 +40,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
             android:text="Raza: "
+            android:textColor="#000000"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="@+id/textNombre"
             app:layout_constraintTop_toBottomOf="@+id/textNombre" />
@@ -47,6 +50,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="[Raza]"
+            android:textColor="#000000"
             app:layout_constraintBottom_toBottomOf="@+id/textRaza"
             app:layout_constraintStart_toEndOf="@+id/textRaza" />
 
@@ -56,6 +60,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
             android:text="Clase: "
+            android:textColor="#000000"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="@+id/textRaza"
             app:layout_constraintTop_toBottomOf="@+id/textRaza" />
@@ -65,6 +70,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="[Clase]"
+            android:textColor="#000000"
             app:layout_constraintBottom_toBottomOf="@+id/textClase"
             app:layout_constraintStart_toEndOf="@+id/textClase" />
 
@@ -82,6 +88,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="4dp"
             android:text="Vida: "
+            android:textColor="#000000"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/guideline1" />
@@ -91,6 +98,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="[Vida]"
+            android:textColor="#000000"
             app:layout_constraintBottom_toBottomOf="@+id/textVida"
             app:layout_constraintStart_toEndOf="@+id/textVida" />
 
@@ -108,6 +116,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="4dp"
             android:text="Nivel: "
+            android:textColor="#000000"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="@+id/guideline2"
             app:layout_constraintTop_toTopOf="@+id/guideline1" />
@@ -117,6 +126,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="[Nivel]"
+            android:textColor="#000000"
             app:layout_constraintBottom_toBottomOf="@+id/textNivel"
             app:layout_constraintStart_toEndOf="@+id/textNivel" />
 

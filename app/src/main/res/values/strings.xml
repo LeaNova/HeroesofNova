@@ -16,4 +16,5 @@
     <string name="menu_armas">Armas</string>
     <string name="menu_armaduras">Armaduras</string>
     <string name="menu_items">Items</string>
+    <string name="menu_artefactos">Artefactos</string>
 </resources>

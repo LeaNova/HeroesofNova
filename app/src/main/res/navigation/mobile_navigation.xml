@@ -67,8 +67,8 @@
             android:id="@+id/action_nav_personajes_to_crearPersonaje"
             app:destination="@id/crearPersonajeFragment" />
         <action
-            android:id="@+id/action_nav_personajes_to_detallePersonajeFragment"
-            app:destination="@id/detallePersonajeFragment" />
+            android:id="@+id/action_nav_personajes_to_detalleFragment"
+            app:destination="@id/detalleFragment" />
     </fragment>
     <fragment
         android:id="@+id/crearPersonajeFragment"
@@ -77,9 +77,9 @@
         tools:layout="@layout/fragment_crear_personaje" />
     <fragment
         android:id="@+id/detallePersonajeFragment"
-        android:name="com.leanova.heroesofnova.ui.personajes.DetallePersonajeFragment"
+        android:name="com.leanova.heroesofnova.ui.personajes.detalle.TabDetallePersonajeFragment"
         android:label="Detalle personaje"
-        tools:layout="@layout/fragment_detalle_personaje" >
+        tools:layout="@layout/fragment_tab_detalle_personaje" >
         <action
             android:id="@+id/action_detallePersonajeFragment_to_jugarFragment"
             app:destination="@id/jugarFragment" />
@@ -255,4 +255,58 @@
         android:name="com.leanova.heroesofnova.ui.armas.CrearArmaFragment"
         android:label="Crear arma"
         tools:layout="@layout/fragment_crear_arma" />
+    <fragment
+        android:id="@+id/detalleFragment"
+        android:name="com.leanova.heroesofnova.ui.personajes.detalle.DetalleFragment"
+        android:label="Detalle"
+        tools:layout="@layout/fragment_detalle" />
+    <fragment
+        android:id="@+id/tabInventarioPersonajeFragment"
+        android:name="com.leanova.heroesofnova.ui.personajes.detalle.TabInventarioPersonajeFragment"
+        android:label="fragment_tab_inventario_personaje"
+        tools:layout="@layout/fragment_tab_inventario_personaje" >
+        <action
+            android:id="@+id/action_tabInventarioPersonajeFragment_to_agregarInventarioFragment"
+            app:destination="@id/agregarInventarioFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/agregarInventarioFragment"
+        android:name="com.leanova.heroesofnova.ui.personajes.detalle.AgregarInventarioFragment"
+        android:label="Agregar"
+        tools:layout="@layout/fragment_agregar_inventario" />
+    <fragment
+        android:id="@+id/tabItemFragment"
+        android:name="com.leanova.heroesofnova.ui.personajes.jugar.TabItemFragment"
+        android:label="fragment_tab_item"
+        tools:layout="@layout/fragment_tab_item" >
+        <action
+            android:id="@+id/action_tabItemFragment_to_agregarInventarioFragment"
+            app:destination="@id/agregarInventarioFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/nav_artefactos"
+        android:name="com.leanova.heroesofnova.ui.artefactos.ArtefactoFragment"
+        android:label="@string/menu_artefactos"
+        tools:layout="@layout/fragment_artefacto" >
+        <action
+            android:id="@+id/action_artefactoFragment_to_crearArtefactoFragment"
+            app:destination="@id/crearArtefactoFragment" />
+        <action
+            android:id="@+id/action_artefactoFragment_to_detalleArtefactoFragment"
+            app:destination="@id/detalleArtefactoFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/crearArtefactoFragment"
+        android:name="com.leanova.heroesofnova.ui.artefactos.CrearArtefactoFragment"
+        android:label="Crear artefacto"
+        tools:layout="@layout/fragment_crear_artefacto" />
+    <fragment
+        android:id="@+id/detalleArtefactoFragment"
+        android:name="com.leanova.heroesofnova.ui.artefactos.DetalleArtefactoFragment"
+        android:label="Detalle artefacto"
+        tools:layout="@layout/fragment_detalle_artefacto" >
+        <action
+            android:id="@+id/action_detalleArtefactoFragment_to_crearArtefactoFragment"
+            app:destination="@id/crearArtefactoFragment" />
+    </fragment>
 </navigation>

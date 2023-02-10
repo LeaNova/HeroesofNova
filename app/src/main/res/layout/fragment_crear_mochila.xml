@@ -57,7 +57,6 @@
         android:layout_height="52dp"
         android:ems="10"
         android:inputType="numberDecimal"
-        android:textAlignment="center"
         app:layout_constraintBottom_toBottomOf="@+id/textPeso"
         app:layout_constraintStart_toEndOf="@+id/textPeso"
         app:layout_constraintTop_toTopOf="@+id/textPeso"

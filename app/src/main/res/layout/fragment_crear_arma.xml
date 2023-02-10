@@ -60,6 +60,15 @@
         app:layout_constraintTop_toTopOf="@+id/textCategoria" />
 
     <TextView
+        android:id="@+id/tvCategoria_CArma"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="[categoria]"
+        app:layout_constraintBottom_toBottomOf="@+id/textCategoria"
+        app:layout_constraintStart_toEndOf="@+id/textCategoria"
+        app:layout_constraintTop_toTopOf="@+id/textCategoria" />
+
+    <TextView
         android:id="@+id/textDanio"
         android:layout_width="85dp"
         android:layout_height="wrap_content"
@@ -259,7 +268,7 @@
         android:layout_width="50dp"
         android:layout_height="52dp"
         android:ems="10"
-        android:inputType="number"
+        android:inputType="numberDecimal"
         android:textAlignment="center"
         app:layout_constraintBottom_toBottomOf="@+id/textModAtk"
         app:layout_constraintStart_toEndOf="@+id/textModAtk"
@@ -280,7 +289,7 @@
         android:layout_width="50dp"
         android:layout_height="52dp"
         android:ems="10"
-        android:inputType="number"
+        android:inputType="numberDecimal"
         android:textAlignment="center"
         app:layout_constraintBottom_toBottomOf="@+id/textModAtm"
         app:layout_constraintStart_toEndOf="@+id/textModAtm"
@@ -301,7 +310,7 @@
         android:layout_width="50dp"
         android:layout_height="52dp"
         android:ems="10"
-        android:inputType="number"
+        android:inputType="numberDecimal"
         android:textAlignment="center"
         app:layout_constraintBottom_toBottomOf="@+id/textModDef"
         app:layout_constraintStart_toEndOf="@+id/textModDef"
@@ -322,7 +331,7 @@
         android:layout_width="50dp"
         android:layout_height="52dp"
         android:ems="10"
-        android:inputType="number"
+        android:inputType="numberDecimal"
         android:textAlignment="center"
         app:layout_constraintBottom_toBottomOf="@+id/textModDfm"
         app:layout_constraintStart_toEndOf="@+id/textModDfm"

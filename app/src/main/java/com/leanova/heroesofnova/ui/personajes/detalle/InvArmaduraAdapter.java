@@ -1,4 +1,4 @@
-package com.leanova.heroesofnova.ui.personajes;
+package com.leanova.heroesofnova.ui.personajes.detalle;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -11,18 +11,18 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.leanova.heroesofnova.R;
-import com.leanova.heroesofnova.modelos.InvArma;
+import com.leanova.heroesofnova.modelos.InvArmadura;
 
 import java.util.List;
 
-public class InvArmaAdapter extends ArrayAdapter<InvArma> {
+public class InvArmaduraAdapter extends ArrayAdapter<InvArmadura> {
     private LayoutInflater lInflater;
-    private List<InvArma> listaInvArmas;
+    private List<InvArmadura> listaInvArmaduras;
 
-    public InvArmaAdapter(@NonNull Context context, int resource, @NonNull List<InvArma> objects) {
+    public InvArmaduraAdapter(@NonNull Context context, int resource, @NonNull List<InvArmadura> objects) {
         super(context, resource, objects);
         this.lInflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        this.listaInvArmas = objects;
+        this.listaInvArmaduras = objects;
     }
 
     @NonNull
@@ -31,13 +31,13 @@ public class InvArmaAdapter extends ArrayAdapter<InvArma> {
         View itemView = convertView;
 
         if(itemView == null) {
-            itemView = lInflater.inflate(R.layout.item_inv_arma, parent, false);
+            itemView = lInflater.inflate(R.layout.item_inv_armadura, parent, false);
         }
 
-        InvArma invArma = listaInvArmas.get(position);
+        InvArmadura invArmadura = listaInvArmaduras.get(position);
 
-        TextView tvNombre_InvArma = itemView.findViewById(R.id.tvNombre_InvArma);
-        tvNombre_InvArma.setText(invArma.getArma().getNombre() + " x" + invArma.getCantidad());
+        TextView tvNombre_InvArmadura = itemView.findViewById(R.id.tvNombre_InvArmadura);
+        tvNombre_InvArmadura.setText(invArmadura.getArmadura().getNombre() + " x" + invArmadura.getCantidad());
 
         return itemView;
     }

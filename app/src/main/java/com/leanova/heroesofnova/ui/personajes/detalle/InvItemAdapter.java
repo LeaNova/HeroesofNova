@@ -1,4 +1,4 @@
-package com.leanova.heroesofnova.ui.personajes;
+package com.leanova.heroesofnova.ui.personajes.detalle;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -12,6 +12,7 @@ import androidx.annotation.Nullable;
 
 import com.leanova.heroesofnova.R;
 import com.leanova.heroesofnova.modelos.InvItem;
+import com.leanova.heroesofnova.modelos.Item;
 
 import java.util.List;
 
@@ -35,9 +36,13 @@ public class InvItemAdapter extends ArrayAdapter<InvItem> {
         }
 
         InvItem invItem = listaInvItems.get(position);
+        Item item = invItem.getItem();
 
+        TextView tvTipo_InvItem = itemView.findViewById(R.id.tvTipo_InvItem);
         TextView tvNombre_InvItem = itemView.findViewById(R.id.tvNombre_InvItem);
-        tvNombre_InvItem.setText(invItem.getItem().getNombre() + " x" + invItem.getCantidad());
+
+        tvTipo_InvItem.setText("(" + item.getTipo().getNombre() + ") ");
+        tvNombre_InvItem.setText(item.getNombre() + " x" + invItem.getCantidad());
 
         return itemView;
     }

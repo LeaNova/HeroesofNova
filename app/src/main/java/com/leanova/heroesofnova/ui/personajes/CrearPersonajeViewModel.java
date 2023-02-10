@@ -120,6 +120,7 @@ public class CrearPersonajeViewModel extends AndroidViewModel {
             String token = ApiRetrofit.obtenerToken(context);
 
             vida += raza.getVidaBase();
+            energia += raza.getEnergiaBase();
 
             Call<Personaje> personajePromesa = ApiRetrofit.getServiceApi().crearPersonaje(nombre, raza.getIdRaza(), genero.getIdGenero(), clase.getIdClase(), 1, 0, vida, energia, atkT, atmT, defT, dfmT, dexT, evaT, crtT, accT, descripcion, 1, true, token);
             personajePromesa.enqueue(new Callback<Personaje>() {

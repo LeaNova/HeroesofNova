@@ -107,7 +107,7 @@ public class CrearItemViewModel extends AndroidViewModel {
         }
 
         if(ok && accion.equals("Actualizar")) {
-            editarItem(nombre, tipo, bonoVida, bonoEnergia, bonoAtk, bonoAtm, bonoDef, bonoDfm, bonoDex, bonoEva, bonoCrt, bonoAcc, precio, peso, descripcion);
+            editarItem(nombre, bonoVida, bonoEnergia, bonoAtk, bonoAtm, bonoDef, bonoDfm, bonoDex, bonoEva, bonoCrt, bonoAcc, precio, peso, descripcion);
         }
 
         if(!aviso.equals("")) mutableAviso.setValue(aviso);
@@ -135,11 +135,11 @@ public class CrearItemViewModel extends AndroidViewModel {
         });
     }
 
-    private void editarItem(String nombre, Tipo tipo, int bonoVida, int bonoEnergia, int bonoAtk, int bonoAtm, int bonoDef, int bonoDfm, int bonoDex, int bonoEva, int bonoCrt, int bonoAcc, int precio, float peso, String descripcion) {
+    private void editarItem(String nombre, int bonoVida, int bonoEnergia, int bonoAtk, int bonoAtm, int bonoDef, int bonoDfm, int bonoDex, int bonoEva, int bonoCrt, int bonoAcc, int precio, float peso, String descripcion) {
         Item i = mutableItem.getValue();
         String token = ApiRetrofit.obtenerToken(context);
 
-        Call<Item> itemPromesa = ApiRetrofit.getServiceApi().editarItem(i.getIdItem(), nombre, tipo.getIdTipo(), bonoVida, bonoEnergia, bonoAtk, bonoAtm, bonoDef, bonoDfm, bonoDex, bonoEva, bonoCrt, bonoAcc, precio, peso, descripcion, token);
+        Call<Item> itemPromesa = ApiRetrofit.getServiceApi().editarItem(i.getIdItem(), nombre, bonoVida, bonoEnergia, bonoAtk, bonoAtm, bonoDef, bonoDfm, bonoDex, bonoEva, bonoCrt, bonoAcc, precio, peso, descripcion, token);
         itemPromesa.enqueue(new Callback<Item>() {
             @Override
             public void onResponse(Call<Item> call, Response<Item> response) {

@@ -32,7 +32,7 @@ public class CrearArmaFragment extends Fragment {
     private FragmentCrearArmaBinding binding;
     private CrearArmaViewModel crearArnaVM;
 
-    private TextView tvNuevaEditar_CArma;
+    private TextView tvNuevaEditar_CArma, tvCategoria_CArma;
     private EditText etNombre_CArma, etDanioArma_CArma, etBonoArma_CArma, etBonoAtk_CArma, etBonoAtm_CArma, etBonoDef_CArma, etBonoDfm_CArma, etBonoCrt_CArma, etBonoAcc_CArma, etModAtk_CArma, etModAtm_CArma, etModDef_CArma, etModDfm_CArma, etPrecio_CArma, etPeso_CArma, etDescripcion_CArma;
     private Spinner spCategoria_CArma;
     private Button btCrearActualizar_CArma;
@@ -55,6 +55,9 @@ public class CrearArmaFragment extends Fragment {
             @Override
             public void onChanged(Arma arma) {
                 etNombre_CArma.setText(arma.getNombre());
+                spCategoria_CArma.setVisibility(View.GONE);
+                tvCategoria_CArma.setText(arma.getCategoria().getNombre());
+                tvCategoria_CArma.setVisibility(View.VISIBLE);
                 etDanioArma_CArma.setText(arma.getDanioArma()+"");
                 etBonoArma_CArma.setText(arma.getBonoArma()+"");
                 etBonoAtk_CArma.setText(arma.getBonoAtk()+"");
@@ -121,6 +124,9 @@ public class CrearArmaFragment extends Fragment {
         this.tvNuevaEditar_CArma = v.findViewById(R.id.tvNuevaEditar_CArma);
         this.etNombre_CArma = v.findViewById(R.id.etNombre_CArma);
         this.spCategoria_CArma = v.findViewById(R.id.spCategoria_CArma);
+        this.tvCategoria_CArma = v.findViewById(R.id.tvCategoria_CArma);
+        this.tvCategoria_CArma.setText("");
+        this.tvCategoria_CArma.setVisibility(View.GONE);
         this.etDanioArma_CArma = v.findViewById(R.id.etDanioArma_CArma);
         this.etBonoArma_CArma = v.findViewById(R.id.etBonoArma_CArma);
         this.etBonoAtk_CArma = v.findViewById(R.id.etBonoAtk_CArma);

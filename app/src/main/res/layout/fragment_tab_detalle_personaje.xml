@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.personajes.DetallePersonajeFragment">
+    tools:context=".ui.personajes.detalle.TabDetallePersonajeFragment">
 
     <TextView
         android:id="@+id/tvNombre_DP"
@@ -30,7 +30,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="8dp"
         android:text="Raza: "
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
@@ -66,7 +65,7 @@
         android:id="@+id/textVida"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="16dp"
         android:text="Vida: "
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="@+id/textClase"
@@ -110,11 +109,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="8dp"
         android:text="Nivel: "
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="@+id/guideline3"
-        app:layout_constraintTop_toBottomOf="@+id/textClase" />
+        app:layout_constraintTop_toTopOf="@+id/textVida" />
 
     <TextView
         android:id="@+id/tvNivel_DP"
@@ -146,7 +144,7 @@
         android:id="@+id/textAtk"
         android:layout_width="40dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="16dp"
         android:text="ATK: "
         android:textAlignment="textEnd"
         android:textStyle="bold"
@@ -223,12 +221,11 @@
         android:id="@+id/textDex"
         android:layout_width="40dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
         android:text="DEX: "
         android:textAlignment="textEnd"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="@+id/textExp"
-        app:layout_constraintTop_toBottomOf="@+id/textExp" />
+        app:layout_constraintTop_toTopOf="@+id/textAtk" />
 
     <TextView
         android:id="@+id/tvDex_DP"
@@ -296,67 +293,30 @@
         app:layout_constraintStart_toEndOf="@+id/textAcc" />
 
     <TextView
-        android:id="@+id/textMochilaArmas"
+        android:id="@+id/textDescripcion"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:text="Armas"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        android:text="Descripción:"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@+id/textDfm"
         app:layout_constraintTop_toBottomOf="@+id/textDfm" />
 
-    <ListView
-        android:id="@+id/lvMochilaArma_DP"
-        android:layout_width="380dp"
-        android:layout_height="85dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textMochilaArmas" />
-
     <TextView
-        android:id="@+id/textMochilaArmaduras"
-        android:layout_width="wrap_content"
+        android:id="@+id/tvDescripcion_DP"
+        android:layout_width="320dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
-        android:text="Armaduras"
+        android:text="[Descripción]"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/lvMochilaArma_DP" />
-
-    <ListView
-        android:id="@+id/lvMochilaArmadura_DP"
-        android:layout_width="380dp"
-        android:layout_height="85dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textMochilaArmaduras" />
-
-    <TextView
-        android:id="@+id/textMochilaItems"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
-        android:text="Items"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/lvMochilaArmadura_DP" />
-
-    <ListView
-        android:id="@+id/lvMochilaItem_DP"
-        android:layout_width="380dp"
-        android:layout_height="85dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textMochilaItems">
-
-    </ListView>
+        app:layout_constraintTop_toBottomOf="@+id/textDescripcion" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline6"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_begin="650dp" />
+        app:layout_constraintGuide_begin="610dp" />
 
     <Button
         android:id="@+id/btJugar_DP"

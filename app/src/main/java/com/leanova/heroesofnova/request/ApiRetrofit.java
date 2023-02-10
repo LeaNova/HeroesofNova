@@ -7,12 +7,14 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.leanova.heroesofnova.modelos.Arma;
 import com.leanova.heroesofnova.modelos.Armadura;
+import com.leanova.heroesofnova.modelos.Artefacto;
 import com.leanova.heroesofnova.modelos.Categoria;
 import com.leanova.heroesofnova.modelos.Clase;
 import com.leanova.heroesofnova.modelos.Genero;
 import com.leanova.heroesofnova.modelos.Grupo;
 import com.leanova.heroesofnova.modelos.InvArmadura;
 import com.leanova.heroesofnova.modelos.InvArma;
+import com.leanova.heroesofnova.modelos.InvArtefacto;
 import com.leanova.heroesofnova.modelos.InvItem;
 import com.leanova.heroesofnova.modelos.Item;
 import com.leanova.heroesofnova.modelos.Mochila;
@@ -20,6 +22,7 @@ import com.leanova.heroesofnova.modelos.Participante;
 import com.leanova.heroesofnova.modelos.Personaje;
 import com.leanova.heroesofnova.modelos.Raza;
 import com.leanova.heroesofnova.modelos.Rol;
+import com.leanova.heroesofnova.modelos.Seccion;
 import com.leanova.heroesofnova.modelos.Tipo;
 import com.leanova.heroesofnova.modelos.Usuario;
 
@@ -296,8 +299,20 @@ public class ApiRetrofit {
                 @Field("mochilaId") int mochilaId,
                 @Header("Authorization") String token);
 
+        @FormUrlEncoded
+        @PUT("cambiar_mochila/{idPersonaje}")
+        Call<Personaje> cambiarMochila(
+                @Path("idPersonaje") int idPersonaje,
+                @Field("mochilaId") int mochilaId,
+                @Header("Authorization") String token);
+
         @GET("personaje/get")
         Call<ArrayList<Personaje>> obtenerPersonajes(@Header("Authorization") String token);
+
+        @GET("personaje/get/{id}")
+        Call<Personaje> obtenerPersonaje(
+                @Path("id") int id,
+                @Header("Authorization") String token);
 
         //GRUPO
         @FormUrlEncoded
@@ -396,7 +411,6 @@ public class ApiRetrofit {
         Call<Arma> editarArma(
                 @Path("id") int id,
                 @Field("nombre") String nombre,
-                @Field("categoriaId") int categoriaId,
                 @Field("danioArma") int danioArma,
                 @Field("bonoArma") int bonoArma,
                 @Field("bonoAtk") int bonoAtk,
@@ -420,6 +434,11 @@ public class ApiRetrofit {
         @GET("arma/get/{id}")
         Call<Arma> obtenerArma(
                 @Path("id") int id,
+                @Header("Authorization") String token);
+
+        @GET("arma/search/{nombre}")
+        Call<ArrayList<Arma>> buscarArmas(
+                @Path("nombre") String nombre,
                 @Header("Authorization") String token);
 
         @GET("categoria/get")
@@ -470,6 +489,11 @@ public class ApiRetrofit {
                 @Path("id") int id,
                 @Header("Authorization") String token);
 
+        @GET("armadura/search/{nombre}")
+        Call<ArrayList<Armadura>> buscarArmaduras(
+                @Path("nombre") String nombre,
+                @Header("Authorization") String token);
+
         //ITEMS
         @FormUrlEncoded
         @POST("item/crear")
@@ -501,7 +525,6 @@ public class ApiRetrofit {
         Call<Item> editarItem(
                 @Path("id") int id,
                 @Field("nombre") String nombre,
-                @Field("tipoId") int tipoId,
                 @Field("bonoVida") int bonoVida,
                 @Field("bonoEnergia") int bonoEnergia,
                 @Field("bonoAtk") int bonoAtk,
@@ -528,19 +551,172 @@ public class ApiRetrofit {
         @GET("tipo/get")
         Call<ArrayList<Tipo>> obtenerTipos(@Header("Authorization") String token);
 
+        @GET("item/search/{nombre}")
+        Call<ArrayList<Item>> buscarItems(
+                @Path("nombre") String nombre,
+                @Header("Authorization") String token);
+
+        //ARTEFACTOS
+        @FormUrlEncoded
+        @POST("artefacto/crear")
+        Call<Artefacto> crearArtefacto(
+                @Field("nombre") String nombre,
+                @Field("seccionId") int seccionId,
+                @Field("bonoVida") int bonoVida,
+                @Field("bonoEnergia") int bonoEnergia,
+                @Field("bonoAtk") int bonoAtk,
+                @Field("bonoAtm") int bonoAtm,
+                @Field("bonoDef") int bonoDef,
+                @Field("bonoDfm") int bonoDfm,
+                @Field("bonoDex") int bonoDex,
+                @Field("bonoEva") int bonoEva,
+                @Field("bonoCrt") int bonoCrt,
+                @Field("bonoAcc") int bonoAcc,
+                @Field("precio") int precio,
+                @Field("peso") float peso,
+                @Field("descripcion") String descripcion,
+                @Header("Authorization") String token);
+
+        @DELETE("artefacto/borrar/{id}")
+        Call<ResponseBody> borrarArtefacto(
+                @Path("id") int id,
+                @Header("Authorization") String token);
+
+        @FormUrlEncoded
+        @PUT("artefacto/modificar/{id}")
+        Call<Artefacto> editarArtefacto(
+                @Path("id") int id,
+                @Field("nombre") String nombre,
+                @Field("bonoVida") int bonoVida,
+                @Field("bonoEnergia") int bonoEnergia,
+                @Field("bonoAtk") int bonoAtk,
+                @Field("bonoAtm") int bonoAtm,
+                @Field("bonoDef") int bonoDef,
+                @Field("bonoDfm") int bonoDfm,
+                @Field("bonoDex") int bonoDex,
+                @Field("bonoEva") int bonoEva,
+                @Field("bonoCrt") int bonoCrt,
+                @Field("bonoAcc") int bonoAcc,
+                @Field("precio") int precio,
+                @Field("peso") float peso,
+                @Field("descripcion") String descripcion,
+                @Header("Authorization") String token);
+
+        @GET("artefacto/get")
+        Call<ArrayList<Artefacto>> obtenerArtefactos(@Header("Authorization") String token);
+
+        @GET("artefacto/get/{id}")
+        Call<Artefacto> obtenerArtefacto(
+                @Path("id") int id,
+                @Header("Authorization") String token);
+
+        @GET("seccion/get")
+        Call<ArrayList<Seccion>> obtenerSecciones(@Header("Authorization") String token);
+
+        @GET("artefacto/search/{nombre}")
+        Call<ArrayList<Artefacto>> buscarArtefactos(
+                @Path("nombre") String nombre,
+                @Header("Authorization") String token);
+
         //INVENTARIOS
-        @GET("inventario/arma/get/personaje={personajeId}")
-        Call<ArrayList<InvArma>> obtenerMisArmas(
-                @Path("personajeId") int id,
+        /**Armaduras**/
+        @FormUrlEncoded
+        @POST("inventario/armadura/crear")
+        Call<ResponseBody> agregarArmadura(
+                @Field("mochilaId") int mochilaId,
+                @Field("personajeId") int personajeId,
+                @Field("armaduraId") int armaId,
+                @Field("cantidad") int cantidad,
                 @Header("Authorization") String token);
 
-        @GET("inventario/armadura/get/personaje={personajeId}")
+        @GET("inventario/armadura/get/mochila={mochilaId}/personaje={personajeId}")
         Call<ArrayList<InvArmadura>> obtenerMisArmaduras(
+                @Path("mochilaId") int mochilaId,
+                @Path("personajeId") int personajeId,
+                @Header("Authorization") String token);
+
+        /**Armas**/
+        @FormUrlEncoded
+        @POST("inventario/arma/crear")
+        Call<ResponseBody> agregarArma(
+                @Field("mochilaId") int mochilaId,
+                @Field("personajeId") int personajeId,
+                @Field("armaId") int armaId,
+                @Field("cantidad") int cantidad,
+                @Header("Authorization") String token);
+
+        @GET("inventario/arma/get/mochila={mochilaId}/personaje={personajeId}")
+        Call<ArrayList<InvArma>> obtenerMisArmas(
+                @Path("mochilaId") int mochilaId,
+                @Path("personajeId") int personajeId,
+                @Header("Authorization") String token);
+
+        /**Items**/
+        @FormUrlEncoded
+        @POST("inventario/item/crear")
+        Call<ResponseBody> agregarItem(
+                @Field("mochilaId") int mochilaId,
+                @Field("personajeId") int personajeId,
+                @Field("itemId") int itemId,
+                @Field("cantidad") int cantidad,
+                @Header("Authorization") String token);
+
+        @PUT("inventario/item/modificar/{mochilaId}/{personajeId}/{itemId}")
+        Call<InvItem> usarItem(
+                @Path("mochilaId") int mochilaId,
+                @Path("personajeId") int personajeId,
+                @Path("itemId") int itemId,
+                @Header("Authorization") String token);
+
+        @GET("inventario/item/get/mochila={mochilaId}/personaje={personajeId}")
+        Call<ArrayList<InvItem>> obtenerMisItems(
+                @Path("mochilaId") int mochilaId,
+                @Path("personajeId") int personajeId,
+                @Header("Authorization") String token);
+
+        @GET("inventario/item/get/consumibles/mochila={mochilaId}/personaje={personajeId}")
+        Call<ArrayList<InvItem>> obtenerConsumibles(
+                @Path("mochilaId") int mochilaId,
                 @Path("personajeId") int id,
                 @Header("Authorization") String token);
 
-        @GET("inventario/item/get/personaje={personajeId}")
-        Call<ArrayList<InvItem>> obtenerMisItems(
+        /**Artefacto**/
+        @FormUrlEncoded
+        @POST("inventario/artefacto/crear")
+        Call<ResponseBody> agregarArtefacto(
+                @Field("mochilaId") int mochilaId,
+                @Field("personajeId") int personajeId,
+                @Field("artefactoId") int artefactoId,
+                @Field("cantidad") int cantidad,
+                @Header("Authorization") String token);
+
+        @GET("inventario/artefacto/get/mochila={mochilaId}/personaje={personajeId}")
+        Call<ArrayList<InvArtefacto>> obtenerMisArtefactos(
+                @Path("mochilaId") int mochilaId,
+                @Path("personajeId") int personajeId,
+                @Header("Authorization") String token);
+
+        @GET("inventario/artefacto/get/corona/mochila={mochilaId}/personaje={personajeId}")
+        Call<ArrayList<InvArtefacto>> obtenerCoronas(
+                @Path("mochilaId") int mochilaId,
+                @Path("personajeId") int id,
+                @Header("Authorization") String token);
+
+        @GET("inventario/artefacto/get/izquierda/mochila={mochilaId}/personaje={personajeId}")
+        Call<ArrayList<InvArtefacto>> obtenerIzquierda(
+                @Path("mochilaId") int mochilaId,
+                @Path("personajeId") int id,
+                @Header("Authorization") String token);
+
+        @GET("inventario/artefacto/get/derecha/mochila={mochilaId}/personaje={personajeId}")
+        Call<ArrayList<InvArtefacto>> obtenerDerechas(
+                @Path("mochilaId") int mochilaId,
+                @Path("personajeId") int id,
+                @Header("Authorization") String token);
+
+        @GET("inventario/artefacto/get/adorno/mochila={mochilaId}/personaje={personajeId}")
+        Call<ArrayList<InvArtefacto>> obtenerAdornos(
+                @Path("mochilaId") int mochilaId,
                 @Path("personajeId") int id,
                 @Header("Authorization") String token);
     }

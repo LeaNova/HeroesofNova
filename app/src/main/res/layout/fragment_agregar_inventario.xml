@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.personajes.detalle.AgregarInventarioFragment">
+
+    <EditText
+        android:id="@+id/etBuscar_AInv"
+        android:layout_width="265dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:ems="10"
+        android:hint="Buscar..."
+        android:inputType="textPersonName"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/btBuscar_AInv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Buscar"
+        app:layout_constraintBottom_toBottomOf="@+id/etBuscar_AInv"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/etBuscar_AInv"
+        app:layout_constraintTop_toTopOf="@+id/etBuscar_AInv" />
+
+    <RadioGroup
+        android:id="@+id/rgSeleccion_AInv"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etBuscar_AInv">
+
+        <RadioButton
+            android:id="@+id/rbArmadura"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:text="Armadura" />
+
+        <RadioButton
+            android:id="@+id/rbArma"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Arma" />
+
+        <RadioButton
+            android:id="@+id/rbItem"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Item" />
+
+        <RadioButton
+            android:id="@+id/rbArtefacto"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Artefacto" />
+    </RadioGroup>
+
+    <ListView
+        android:id="@+id/lvResultados_AInv"
+        android:layout_width="360dp"
+        android:layout_height="590dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/rgSeleccion_AInv" />
+
+    <TextView
+        android:id="@+id/tvAviso_AInv"
+        android:layout_width="260dp"
+        android:layout_height="wrap_content"
+        android:text="[aviso]"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="@+id/lvResultados_AInv"
+        app:layout_constraintStart_toStartOf="@+id/lvResultados_AInv"
+        app:layout_constraintTop_toTopOf="@+id/lvResultados_AInv" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,4 +1,4 @@
-package com.leanova.heroesofnova.ui.personajes;
+package com.leanova.heroesofnova.ui.personajes.detalle;
 
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
@@ -20,7 +20,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.leanova.heroesofnova.R;
-import com.leanova.heroesofnova.databinding.FragmentDetallePersonajeBinding;
+import com.leanova.heroesofnova.databinding.FragmentTabDetallePersonajeBinding;
 import com.leanova.heroesofnova.modelos.InvArma;
 import com.leanova.heroesofnova.modelos.InvArmadura;
 import com.leanova.heroesofnova.modelos.InvItem;
@@ -28,21 +28,20 @@ import com.leanova.heroesofnova.modelos.Personaje;
 
 import java.util.ArrayList;
 
-public class DetallePersonajeFragment extends Fragment {
-    private FragmentDetallePersonajeBinding binding;
-    private DetallePersonajeViewModel detallePersonajeVM;
+public class TabDetallePersonajeFragment extends Fragment {
+    private FragmentTabDetallePersonajeBinding binding;
+    private TabDetallePersonajeViewModel detallePersonajeVM;
 
     private Personaje personaje;
-    private TextView tvNombre_DP, tvRaza_DP, tvClase_DP, tvVida_DP, tvEnergia_DP, tvNivel_DP, tvExp_DP, tvAtk_DP, tvAtm_DP, tvDef_DP, tvDfm_DP, tvDex_DP, tvEva_DP, tvCrt_DP, tvAcc_DP;
-    private ListView lvMochilaArma_DP, lvMochilaArmadura_DP, lvMochilaItem_DP;
+    private TextView tvNombre_DP, tvRaza_DP, tvClase_DP, tvVida_DP, tvEnergia_DP, tvNivel_DP, tvExp_DP, tvAtk_DP, tvAtm_DP, tvDef_DP, tvDfm_DP, tvDex_DP, tvEva_DP, tvCrt_DP, tvAcc_DP, tvDescripcion_DP;
     private Button btJugar_DP, btBorrar_DP;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        binding = FragmentDetallePersonajeBinding.inflate(inflater, container, false);
+        binding = FragmentTabDetallePersonajeBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-        detallePersonajeVM = new ViewModelProvider(this).get(DetallePersonajeViewModel.class);
+        detallePersonajeVM = new ViewModelProvider(this).get(TabDetallePersonajeViewModel.class);
         detallePersonajeVM.getMutablePersonaje().observe(getViewLifecycleOwner(), new Observer<Personaje>() {
             @Override
             public void onChanged(Personaje p) {
@@ -50,7 +49,7 @@ public class DetallePersonajeFragment extends Fragment {
                 personaje.setGame();
 
                 tvNombre_DP.setText(personaje.getNombre());
-                tvRaza_DP.setText(personaje.getRaza().getNombre());
+                tvRaza_DP.setText(personaje.getRaza().getNombre() + " (" +personaje.getGenero().getNombre() + ")");
                 tvClase_DP.setText(personaje.getClase().getNombre());
                 tvVida_DP.setText(personaje.getVida()+"");
                 tvEnergia_DP.setText(personaje.getEnergia()+"");
@@ -65,33 +64,13 @@ public class DetallePersonajeFragment extends Fragment {
                 tvEva_DP.setText(personaje.getEvasion()+"%");
                 tvCrt_DP.setText(personaje.getCritico()+"%");
                 tvAcc_DP.setText(personaje.getPrecision()+"%");
+
+                tvDescripcion_DP.setText(personaje.getDescripcion());
             }
         });
-        detallePersonajeVM.obtenerPersonaje(getArguments());
 
         inicializarVista(root);
-        detallePersonajeVM.getMutableArmas().observe(getViewLifecycleOwner(), new Observer<ArrayList<InvArma>>() {
-            @Override
-            public void onChanged(ArrayList<InvArma> invArmas) {
-                InvArmaAdapter iaa = new InvArmaAdapter(getContext(), R.layout.item_inv_arma, invArmas);
-                lvMochilaArma_DP.setAdapter(iaa);
-            }
-        });
-        detallePersonajeVM.getMutableArmaduras().observe(getViewLifecycleOwner(), new Observer<ArrayList<InvArmadura>>() {
-            @Override
-            public void onChanged(ArrayList<InvArmadura> invArmaduras) {
-                InvArmaduraAdapter iaa = new InvArmaduraAdapter(getContext(), R.layout.item_inv_armadura, invArmaduras);
-                lvMochilaArmadura_DP.setAdapter(iaa);
-            }
-        });
-        detallePersonajeVM.getMutableItems().observe(getViewLifecycleOwner(), new Observer<ArrayList<InvItem>>() {
-            @Override
-            public void onChanged(ArrayList<InvItem> invItems) {
-                InvItemAdapter iia = new InvItemAdapter(getContext(), R.layout.item_inv_item, invItems);
-                lvMochilaItem_DP.setAdapter(iia);
-            }
-        });
-        detallePersonajeVM.obtenerTodo();
+        detallePersonajeVM.getPersonaje();
 
         return root;
     }
@@ -112,10 +91,7 @@ public class DetallePersonajeFragment extends Fragment {
         this.tvEva_DP = v.findViewById(R.id.tvEva_DP);
         this.tvCrt_DP = v.findViewById(R.id.tvCrt_DP);
         this.tvAcc_DP = v.findViewById(R.id.tvAcc_DP);
-
-        this.lvMochilaArma_DP = v.findViewById(R.id.lvMochilaArma_DP);
-        this.lvMochilaArmadura_DP = v.findViewById(R.id.lvMochilaArmadura_DP);
-        this.lvMochilaItem_DP = v.findViewById(R.id.lvMochilaItem_DP);
+        this.tvDescripcion_DP = v.findViewById(R.id.tvDescripcion_DP);
 
         this.btJugar_DP = v.findViewById(R.id.btJugar_DP);
         this.btJugar_DP.setOnClickListener(new View.OnClickListener() {

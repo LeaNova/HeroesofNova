@@ -220,18 +220,19 @@ public class Arma implements Serializable {
     public String toString() {
         return nombre;
     }
+
     /**FUNCIONES**/
     public int ataque(Personaje personaje, String tipo) {
         int dadoR = (int) ((Math.random()*danioArma + 1) + bonoArma);
 
         float atk;
         if(tipo.equals("Físico")) {
-            atk = personaje.getAtaque() * 0.05f;
+            atk = (personaje.getAtaque() + personaje.getAuxAtaque()) * 0.05f;
         } else {
-            atk = personaje.getAtkMagico() * 0.05f;
+            atk = (personaje.getAtkMagico() + personaje.getAuxAtkMagico()) * 0.05f;
         }
 
-        return (int) Math.round(atk * dadoR);
+        return Math.round(atk * dadoR);
     }
 
     public int ataqueEspecial(Personaje personaje, String tipo) {

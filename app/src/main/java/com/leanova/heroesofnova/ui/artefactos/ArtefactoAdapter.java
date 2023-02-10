@@ -1,4 +1,4 @@
-package com.leanova.heroesofnova.ui.personajes;
+package com.leanova.heroesofnova.ui.artefactos;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -11,18 +11,18 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.leanova.heroesofnova.R;
-import com.leanova.heroesofnova.modelos.InvArmadura;
+import com.leanova.heroesofnova.modelos.Artefacto;
 
 import java.util.List;
 
-public class InvArmaduraAdapter extends ArrayAdapter<InvArmadura> {
+public class ArtefactoAdapter extends ArrayAdapter<Artefacto> {
     private LayoutInflater lInflater;
-    private List<InvArmadura> listaInvArmaduras;
+    private List<Artefacto> listaArtefactos;
 
-    public InvArmaduraAdapter(@NonNull Context context, int resource, @NonNull List<InvArmadura> objects) {
+    public ArtefactoAdapter(@NonNull Context context, int resource, @NonNull List<Artefacto> objects) {
         super(context, resource, objects);
         this.lInflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        this.listaInvArmaduras = objects;
+        this.listaArtefactos = objects;
     }
 
     @NonNull
@@ -31,13 +31,13 @@ public class InvArmaduraAdapter extends ArrayAdapter<InvArmadura> {
         View itemView = convertView;
 
         if(itemView == null) {
-            itemView = lInflater.inflate(R.layout.item_inv_armadura, parent, false);
+            itemView = lInflater.inflate(R.layout.item_artefacto, parent, false);
         }
 
-        InvArmadura invArmadura = listaInvArmaduras.get(position);
+        Artefacto a = listaArtefactos.get(position);
 
-        TextView tvNombre_InvArmadura = itemView.findViewById(R.id.tvNombre_InvArmadura);
-        tvNombre_InvArmadura.setText(invArmadura.getArmadura().getNombre() + " x" + invArmadura.getCantidad());
+        TextView tvNombre_IArtefacto = itemView.findViewById(R.id.tvNombre_IArtefacto);
+        tvNombre_IArtefacto.setText(a.getNombre());
 
         return itemView;
     }

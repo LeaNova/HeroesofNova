@@ -45,7 +45,7 @@ public class PersonajeAdapter extends RecyclerView.Adapter<PersonajeAdapter.View
         Clase clase = p.getClase();
 
         holder.tvNombre_PI.setText(p.getNombre());
-        holder.tvRaza_PI.setText(raza.getNombre());
+        holder.tvRaza_PI.setText(raza.getNombre() + " (" +  p.getGenero().getNombre() + ")");
         holder.tvClase_PI.setText(clase.getNombre());
         holder.tvVida_PI.setText(p.getVida()+"");
         holder.tvNivel_PI.setText(p.getNivel()+"");
@@ -55,7 +55,7 @@ public class PersonajeAdapter extends RecyclerView.Adapter<PersonajeAdapter.View
             public void onClick(View view) {
                 Bundle bPersonaje = new Bundle();
                 bPersonaje.putSerializable("personaje", p);
-                Navigation.findNavController(view).navigate(R.id.detallePersonajeFragment, bPersonaje);
+                Navigation.findNavController(view).navigate(R.id.detalleFragment, bPersonaje);
             }
         });
     }

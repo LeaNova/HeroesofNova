@@ -1,47 +1,40 @@
-package com.leanova.heroesofnova.ui.personajes;
+package com.leanova.heroesofnova.ui.personajes.detalle;
 
 import android.app.Application;
 import android.content.Context;
-import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
-import androidx.navigation.Navigation;
 
 import com.leanova.heroesofnova.modelos.InvArma;
 import com.leanova.heroesofnova.modelos.InvArmadura;
+import com.leanova.heroesofnova.modelos.InvArtefacto;
 import com.leanova.heroesofnova.modelos.InvItem;
 import com.leanova.heroesofnova.modelos.Personaje;
 import com.leanova.heroesofnova.request.ApiRetrofit;
+import com.leanova.heroesofnova.request.PersonajeValues;
 
 import java.util.ArrayList;
 
-import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class DetallePersonajeViewModel extends AndroidViewModel {
+public class TabInventarioPersonajeViewModel extends AndroidViewModel {
     private Context context;
+    private Personaje personaje;
     private MutableLiveData<Personaje> mutablePersonaje;
-    private ArrayList<InvArma> listaArmas;
-    private ArrayList<InvArmadura> listaArmaduras;
-    private ArrayList<InvItem> listaItems;
     private MutableLiveData<ArrayList<InvArma>> mutableArmas;
     private MutableLiveData<ArrayList<InvArmadura>> mutableArmaduras;
     private MutableLiveData<ArrayList<InvItem>> mutableItems;
+    private MutableLiveData<ArrayList<InvArtefacto>> mutableArtefactos;
 
-    public DetallePersonajeViewModel(@NonNull Application application) {
+    public TabInventarioPersonajeViewModel(@NonNull Application application) {
         super(application);
         this.context = application.getApplicationContext();
-        this.listaArmas = new ArrayList<>();
-        this.listaArmaduras = new ArrayList<>();
-        this.listaItems = new ArrayList<>();
     }
 
     //MUTABLES
@@ -73,42 +66,35 @@ public class DetallePersonajeViewModel extends AndroidViewModel {
         return mutableItems;
     }
 
+    public LiveData<ArrayList<InvArtefacto>> getMutableArtefactos() {
+        if(mutableArtefactos == null) {
+            mutableArtefactos = new MutableLiveData<>();
+        }
+        return mutableArtefactos;
+    }
+
     //FUNCIONES
-    public void obtenerPersonaje(Bundle bPersonaje) {
-        Personaje p = (Personaje) bPersonaje.getSerializable("personaje");
-        mutablePersonaje.setValue(p);
-    }
+    public void getPersonaje() {
+        personaje = PersonajeValues.getPersonaje();
 
-    public ArrayList<InvArma> getListaArmas() {
-        return listaArmas;
-    }
-
-    public ArrayList<InvArmadura> getListaArmaduras() {
-        return listaArmaduras;
-    }
-
-    public ArrayList<InvItem> getListaItems() {
-        return listaItems;
-    }
-
-    public void obtenerTodo() {
-        Personaje p = mutablePersonaje.getValue();
         String token = ApiRetrofit.obtenerToken(context);
 
-        obtenerArmas(p.getIdPersonaje(), token);
-        obtenerArmaduras(p.getIdPersonaje(), token);
-        obtenerItems(p.getIdPersonaje(), token);
+        obtenerArmas(personaje.getMochilaId(), personaje.getIdPersonaje(), token);
+        obtenerArmaduras(personaje.getMochilaId(), personaje.getIdPersonaje(), token);
+        obtenerItems(personaje.getMochilaId(), personaje.getIdPersonaje(), token);
+        obtenerArtefactos(personaje.getMochilaId(), personaje.getIdPersonaje(), token);
     }
 
-    private void obtenerArmas(int id, String token) {
-        Call<ArrayList<InvArma>> armasPromesa = ApiRetrofit.getServiceApi().obtenerMisArmas(id, token);
+    private void obtenerArmas(int mochilaId, int personajeId, String token) {
+        Call<ArrayList<InvArma>> armasPromesa = ApiRetrofit.getServiceApi().obtenerMisArmas(mochilaId, personajeId, token);
         armasPromesa.enqueue(new Callback<ArrayList<InvArma>>() {
             @Override
             public void onResponse(Call<ArrayList<InvArma>> call, Response<ArrayList<InvArma>> response) {
                 if(response.isSuccessful()) {
-                    listaArmas = response.body();
+                    mutableArmas.postValue(response.body());
+                } else {
+                    mutableArmas.postValue(new ArrayList<>());
                 }
-                mutableArmas.postValue(listaArmas);
             }
 
             @Override
@@ -118,15 +104,16 @@ public class DetallePersonajeViewModel extends AndroidViewModel {
         });
     }
 
-    private void obtenerArmaduras(int id, String token) {
-        Call<ArrayList<InvArmadura>> armadurasPromesa = ApiRetrofit.getServiceApi().obtenerMisArmaduras(id, token);
+    private void obtenerArmaduras(int mochilaId, int personajeId, String token) {
+        Call<ArrayList<InvArmadura>> armadurasPromesa = ApiRetrofit.getServiceApi().obtenerMisArmaduras(mochilaId, personajeId, token);
         armadurasPromesa.enqueue(new Callback<ArrayList<InvArmadura>>() {
             @Override
             public void onResponse(Call<ArrayList<InvArmadura>> call, Response<ArrayList<InvArmadura>> response) {
                 if(response.isSuccessful()) {
-                    listaArmaduras = response.body();
+                    mutableArmaduras.postValue(response.body());
+                } else {
+                    mutableArmaduras.postValue(new ArrayList<>());
                 }
-                mutableArmaduras.postValue(listaArmaduras);
             }
 
             @Override
@@ -136,15 +123,16 @@ public class DetallePersonajeViewModel extends AndroidViewModel {
         });
     }
 
-    private void obtenerItems(int id, String token) {
-        Call<ArrayList<InvItem>> itemsPromesa = ApiRetrofit.getServiceApi().obtenerMisItems(id, token);
+    private void obtenerItems(int mochilaId, int personajeId, String token) {
+        Call<ArrayList<InvItem>> itemsPromesa = ApiRetrofit.getServiceApi().obtenerMisItems(mochilaId, personajeId, token);
         itemsPromesa.enqueue(new Callback<ArrayList<InvItem>>() {
             @Override
             public void onResponse(Call<ArrayList<InvItem>> call, Response<ArrayList<InvItem>> response) {
                 if(response.isSuccessful()) {
-                    listaItems = response.body();
+                    mutableItems.postValue(response.body());
+                } else {
+                    mutableItems.postValue(new ArrayList<>());
                 }
-                mutableItems.postValue(listaItems);
             }
 
             @Override
@@ -154,24 +142,21 @@ public class DetallePersonajeViewModel extends AndroidViewModel {
         });
     }
 
-    public void borrarPersonaje(int id, View view) {
-        String token = ApiRetrofit.obtenerToken(context);
-
-        Call<ResponseBody> okPromesa = ApiRetrofit.getServiceApi().borrarPersonaje(id, token);
-        okPromesa.enqueue(new Callback<ResponseBody>() {
+    private void obtenerArtefactos(int mochilaId, int personajeId, String token) {
+        Call<ArrayList<InvArtefacto>> artefactosPromesa = ApiRetrofit.getServiceApi().obtenerMisArtefactos(mochilaId, personajeId, token);
+        artefactosPromesa.enqueue(new Callback<ArrayList<InvArtefacto>>() {
             @Override
-            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+            public void onResponse(Call<ArrayList<InvArtefacto>> call, Response<ArrayList<InvArtefacto>> response) {
                 if(response.isSuccessful()) {
-                    Toast.makeText(context, "Personaje borrado", Toast.LENGTH_SHORT).show();
-                    Navigation.findNavController(view).popBackStack();
+                    mutableArtefactos.postValue(response.body());
                 } else {
-                    Toast.makeText(context, "No se pudo borrar", Toast.LENGTH_SHORT).show();
+                    mutableArtefactos.postValue(new ArrayList<>());
                 }
             }
 
             @Override
-            public void onFailure(Call<ResponseBody> call, Throwable t) {
-                Log.d("APIerror", t.getMessage());
+            public void onFailure(Call<ArrayList<InvArtefacto>> call, Throwable t) {
+                Log.d("salida", t.getMessage());
             }
         });
     }

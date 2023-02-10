@@ -423,33 +423,33 @@
         app:layout_constraintTop_toBottomOf="@+id/tvDerecha_JP" />
 
     <TextView
-        android:id="@+id/textTorse"
+        android:id="@+id/textAdorno"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:text="Arma: "
+        android:text="Adorno: "
         android:textSize="16sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="@+id/textDerecha"
         app:layout_constraintTop_toBottomOf="@+id/spDerechas_JP" />
 
     <TextView
-        android:id="@+id/tvTorso_JP"
+        android:id="@+id/tvAdorno_JP"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="[Arma]"
+        android:text="[Adorno]"
         android:textStyle="italic"
-        app:layout_constraintBottom_toBottomOf="@+id/textTorse"
-        app:layout_constraintStart_toEndOf="@+id/textTorse"
-        app:layout_constraintTop_toTopOf="@+id/textTorse" />
+        app:layout_constraintBottom_toBottomOf="@+id/textAdorno"
+        app:layout_constraintStart_toEndOf="@+id/textAdorno"
+        app:layout_constraintTop_toTopOf="@+id/textAdorno" />
 
     <Spinner
-        android:id="@+id/spTorsos_JP"
+        android:id="@+id/spAdornos_JP"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvTorso_JP" />
+        app:layout_constraintTop_toBottomOf="@+id/tvAdorno_JP" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline2"
