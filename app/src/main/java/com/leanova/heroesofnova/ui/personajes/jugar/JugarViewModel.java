@@ -45,6 +45,7 @@ public class JugarViewModel extends AndroidViewModel {
         }
 
         jugar = new Jugar(personaje, arma, armadura, corona, izquierda, derecha, adorno);
+        jugar.setGame();
         PersonajeValues.setJugar(jugar);
     }
 }

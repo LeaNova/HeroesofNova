@@ -1,8 +1,9 @@
 package com.leanova.heroesofnova.modelos;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class Usuario {
+public class Usuario implements Serializable {
     private int idUsuario;
     private String nombre;
     private String apellido;

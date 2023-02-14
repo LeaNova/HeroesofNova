@@ -93,6 +93,7 @@ public class TabArsenalViewModel extends AndroidViewModel {
         }
         return mutableCoronas;
     }
+
     public LiveData<ArrayList<Artefacto>> getMutableIzquierdas() {
         if(mutableIzquierdas == null) {
             mutableIzquierdas = new MutableLiveData<>();
@@ -113,6 +114,7 @@ public class TabArsenalViewModel extends AndroidViewModel {
         }
         return mutableAdornos;
     }
+
     //FUNCIONES
     public void obtenerPersonaje() {
         jugar = PersonajeValues.getJugar();
@@ -335,6 +337,7 @@ public class TabArsenalViewModel extends AndroidViewModel {
         jugar.setIzquierda(izquierda);
         jugar.setDerecha(derecha);
         jugar.setAdorno(adorno);
+        jugar.setGame();
         actualizar();
     }
 
@@ -343,6 +346,8 @@ public class TabArsenalViewModel extends AndroidViewModel {
         ArrayList<String> listaStats = new ArrayList<>();
         ArrayList<String> listaColor = new ArrayList<>();
 
+        listaNumeros.add(aux.getVida() - jugar.getVida());
+        listaNumeros.add(aux.getEnergia() - jugar.getEnergia());
         listaNumeros.add(aux.getAtaque() - jugar.getAtaque());
         listaNumeros.add(aux.getAtkMagico() - jugar.getAtkMagico());
         listaNumeros.add(aux.getDefensa() - jugar.getDefensa());

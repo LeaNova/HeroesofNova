@@ -13,6 +13,8 @@
         android:layout_marginTop="24dp"
         android:text="[personaje]"
         android:textAlignment="center"
+        android:textSize="16sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -37,6 +39,14 @@
         app:layout_constraintStart_toEndOf="@+id/textVida" />
 
     <TextView
+        android:id="@+id/tvVidaAdd_JP"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=""
+        app:layout_constraintBottom_toBottomOf="@+id/tvVida_JP"
+        app:layout_constraintStart_toEndOf="@+id/tvVida_JP" />
+
+    <TextView
         android:id="@+id/textEnergia"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -53,6 +63,14 @@
         android:text="[Energia]"
         app:layout_constraintBottom_toBottomOf="@+id/textEnergia"
         app:layout_constraintStart_toEndOf="@+id/textEnergia" />
+
+    <TextView
+        android:id="@+id/tvEnergiaAdd_JP"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=""
+        app:layout_constraintBottom_toBottomOf="@+id/tvEnergia_JP"
+        app:layout_constraintStart_toEndOf="@+id/tvEnergia_JP" />
 
     <TextView
         android:id="@+id/textAtk"
@@ -300,9 +318,10 @@
 
     <Spinner
         android:id="@+id/spArmaduras_JP"
-        android:layout_width="300dp"
+        android:layout_width="340dp"
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.491"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textArmadura" />
 
@@ -329,7 +348,7 @@
 
     <Spinner
         android:id="@+id/spArmas_JP"
-        android:layout_width="300dp"
+        android:layout_width="340dp"
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -358,7 +377,7 @@
 
     <Spinner
         android:id="@+id/spCoronas_JP"
-        android:layout_width="300dp"
+        android:layout_width="340dp"
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -387,7 +406,7 @@
 
     <Spinner
         android:id="@+id/spIzquierda_JP"
-        android:layout_width="300dp"
+        android:layout_width="340dp"
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -416,7 +435,7 @@
 
     <Spinner
         android:id="@+id/spDerechas_JP"
-        android:layout_width="300dp"
+        android:layout_width="340dp"
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -445,7 +464,7 @@
 
     <Spinner
         android:id="@+id/spAdornos_JP"
-        android:layout_width="300dp"
+        android:layout_width="340dp"
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

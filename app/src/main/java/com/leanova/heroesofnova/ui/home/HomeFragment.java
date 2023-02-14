@@ -1,9 +1,12 @@
 package com.leanova.heroesofnova.ui.home;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -19,16 +22,17 @@ import java.util.Date;
 
 public class HomeFragment extends Fragment {
     private FragmentHomeBinding binding;
-    private HomeViewModel hvm;
+    private HomeViewModel homeVM;
     private TextView tvNombre_H, tvApellido_H, tvMail_H, tvRol_H, tvFecha_H;
+    private Button btCerrar_H;
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         binding = FragmentHomeBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-        hvm = new ViewModelProvider(this).get(HomeViewModel.class);
+        homeVM = new ViewModelProvider(this).get(HomeViewModel.class);
 
-        hvm.getMutableUsuario().observe(getViewLifecycleOwner(), new Observer<Usuario>() {
+        homeVM.getMutableUsuario().observe(getViewLifecycleOwner(), new Observer<Usuario>() {
             @Override
             public void onChanged(Usuario usuario) {
                 tvNombre_H.setText(usuario.getNombre());
@@ -42,7 +46,7 @@ public class HomeFragment extends Fragment {
                 tvFecha_H.setText(dia+"/"+mes+"/"+año);
             }
         });
-        hvm.getUsuario();
+        homeVM.getUsuario();
 
         inicializarVista(root);
 
@@ -55,11 +59,33 @@ public class HomeFragment extends Fragment {
         binding = null;
     }
 
-    private void inicializarVista(View view) {
-        this.tvNombre_H = view.findViewById(R.id.tvNombre_H);
-        this.tvApellido_H = view.findViewById(R.id.tvApellido_H);
-        this.tvMail_H = view.findViewById(R.id.tvMail_H);
-        this.tvRol_H = view.findViewById(R.id.tvRol_H);
-        this.tvFecha_H = view.findViewById(R.id.tvFecha_H);
+    private void inicializarVista(View v) {
+        this.tvNombre_H = v.findViewById(R.id.tvNombre_H);
+        this.tvApellido_H = v.findViewById(R.id.tvApellido_H);
+        this.tvMail_H = v.findViewById(R.id.tvMail_H);
+        this.tvRol_H = v.findViewById(R.id.tvRol_H);
+        this.tvFecha_H = v.findViewById(R.id.tvFecha_H);
+
+        this.btCerrar_H = v.findViewById(R.id.btCerrar_H);
+        this.btCerrar_H.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                new AlertDialog.Builder(getContext())
+                        .setTitle("¿Cerrar sesión?")
+                        .setMessage("¿Desea cerrar su sesión?")
+                        .setPositiveButton("Si", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                System.exit(0);
+                            }
+                        })
+                        .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                //Nada
+                            }
+                        }).show();
+            }
+        });
     }
 }

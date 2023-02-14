@@ -6,7 +6,6 @@ public class Jugar {
     private Armadura armadura;
     private Artefacto corona, izquierda, derecha, adorno;
 
-    public Jugar() {}
     public Jugar(Personaje personaje, Arma arma, Armadura armadura, Artefacto corona, Artefacto izquierda, Artefacto derecha, Artefacto adorno) {
         this.personaje = personaje;
         if(arma == null) arma = new Arma(0, "Sin arma", 12, 1, 0, 0, 0, 0, 0, 0, 0,1, 1, 1, 1, 1, 0, "A puño libre", null);
@@ -79,7 +78,68 @@ public class Jugar {
         this.adorno = adorno;
     }
 
-    /**GETTERS PERSONAJE**/
+    /**SET GAME**/
+    public void setGame() {
+        personaje.setVidaMax(getVida());
+        personaje.setEnergiaMax(getEnergia());
+    }
+
+    /**FUNCIONES DE VIDA Y ENERGIA**/
+    public void recuperar(String opcion, int total) {
+        if(opcion.equals("Vida")) {
+            personaje.recuperarVida(total);
+        } else {
+            personaje.recuperarEnergia(total);
+        }
+    }
+
+    public void recibirDanio(String opcion, int danio) {
+        if(opcion.equals("Fisico")) {
+            personaje.recibirDanioFisico(danio, getDefensa());
+        } else {
+            personaje.recibirDanioMagico(danio, getDefMagico());
+        }
+    }
+
+    /**FUNCIONES DE ATAQUE**/
+    public int atacar(String opcion, int nivel, int dado, boolean especial) {
+        int gastarEspecial = Math.round(5 * (personaje.getNivel()/2));
+         //Verificar si el ataque es especial y luego hace la devolucion dependiendo del tipo.
+         if(especial && personaje.tengoEnergia(gastarEspecial)) {
+             if(opcion.equals("Fisico")) {
+                 personaje.gastarEnergia(gastarEspecial);
+                 return arma.ataqueFisicoEspecial(dado, getAtaque());
+             }
+
+             if(opcion.equals("Magico")) {
+                 personaje.gastarEnergia(gastarEspecial);
+                 return arma.ataqueMagicoEspecial(dado, getAtkMagico());
+             }
+         }
+
+         //Si no es especial devuelve el respectivo ataque.
+         if(opcion.equals("Fisico")) {
+             return arma.ataqueFisico(dado, getAtaque());
+         }
+
+         if(opcion.equals("Magico")) {
+             return arma.ataqueMagico(dado, getAtkMagico());
+         }
+
+         //Si es hechizo entra aca.
+         if(opcion.equals("Hechizo")) {
+             int gastar = (nivel+1) * (personaje.getNivel() / 3) * 10;
+             if(personaje.tengoEnergia(gastar)) {
+                 personaje.gastarEnergia(gastar);
+                 return personaje.ataqueHechizo(dado, nivel, getAtkMagico());
+             }
+         }
+
+         //Return 0 por si pasa algo no esperado.
+         return 0;
+    }
+
+    /**GETTERS STATS PERSONAJE**/
     public int getVida() {
         int vida = personaje.getVida();
         int vidaAux = corona.getBonoVida() + izquierda.getBonoVida() + derecha.getBonoVida() + adorno.getBonoVida();
@@ -102,7 +162,7 @@ public class Jugar {
     public int getAtkMagico() {
         int atkMagico = personaje.getAtkMagico() + personaje.getAuxAtkMagico();
         int atkMagicoAux1 = Math.round(atkMagico * (arma.getModAtm() - 1)) + arma.getBonoAtm();
-        int atkMagicoAux2 = corona.getBonoAtm() + izquierda.getBonoAtm() + derecha.getBonoAtm() + adorno.getBonoAtk();
+        int atkMagicoAux2 = corona.getBonoAtm() + izquierda.getBonoAtm() + derecha.getBonoAtm() + adorno.getBonoAtm();
         return atkMagico + atkMagicoAux1 + atkMagicoAux2;
     }
 

@@ -37,7 +37,9 @@ public class Personaje implements Serializable {
     private Mochila mochila;
 
     /**OTROS**/
+    private int vidaMax;
     private int vidaAct;
+    private int energiaMax;
     private int energiaAct;
     private int nextExp;
     //Add-ons
@@ -323,20 +325,36 @@ public class Personaje implements Serializable {
     }
 
     /**OTROS**/
+    public void setVidaMax(int vidaMax) {
+        this.vidaMax = vidaMax;
+        this.vidaAct = vidaMax;
+    }
+
     public int getVidaAct() {
         return vidaAct;
     }
 
-    public void setVidaAct() {
-        this.vidaAct = vida;
+    public void setVidaGame() {
+        if(vidaMax == 0) {
+            vidaMax = vida;
+        }
+        this.vidaAct = vidaMax;
+    }
+
+    public void setEnergiaMax(int energiaMax) {
+        this.energiaMax = energiaMax;
+        this.energiaAct = energiaMax;
     }
 
     public int getEnergiaAct() {
         return energiaAct;
     }
 
-    public void setEnergiaAct() {
-        this.energiaAct = energia;
+    public void setEnergiaGame() {
+        if(energiaMax == 0) {
+            energiaMax = energia;
+        }
+        this.energiaAct = energiaMax;
     }
 
     /**Add-ons**/
@@ -428,13 +446,14 @@ public class Personaje implements Serializable {
         return nombre + " - Nivel" + nivel;
     }
 
-    /**FUNCIONES**/
+    /**SET GAME**/
     public void setGame() {
-        setVidaAct();
-        setEnergiaAct();
+        setVidaGame();
+        setEnergiaGame();
         setNextExp();
     }
-    /*Funciones para subir nivel*/
+
+    /**FUNCIONES DE NIVELES**/
     public void subirHasta(int hasta) {
         if(nivel < 60 && (hasta <= 60 && hasta > 1)) {
             for (int desde = nivel; desde < hasta; desde++) {
@@ -462,8 +481,8 @@ public class Personaje implements Serializable {
             if((nivel+1) % 3 == 0) {
                 vida = Math.round(clase.getModVida() * vida);
                 energia = Math.round(clase.getModEnergia() * energia);
-                setVidaAct();
-                setEnergiaAct();
+                setVidaGame();
+                setEnergiaGame();
             }
         }
     }
@@ -483,11 +502,10 @@ public class Personaje implements Serializable {
         }
     }
 
-    /*Funciones de Vida y Energía*/
-    //Recibir daño
-    public void recibirDanioFisico(int danio) {
+    /**FUNCIONES DE VIDA Y ENERGIA**/
+    public void recibirDanioFisico(int danio, int defensaFisica) {
         if(vidaAct > 0) {
-            int danioT = danio - Math.round(defensa * 0.5f);
+            int danioT = danio - Math.round(defensaFisica * 0.5f);
             if(danioT > 0) {
                 vidaAct -= danioT;
             }
@@ -498,9 +516,9 @@ public class Personaje implements Serializable {
         }
     }
 
-    public void recibirDanioMagico(int danio) {
+    public void recibirDanioMagico(int danio, int defensaMagica) {
         if(vidaAct > 0) {
-            int danioT = danio - Math.round(defMagico * 0.5f);
+            int danioT = danio - Math.round(defensaMagica * 0.5f);
             if(danioT > 0) {
                 vidaAct -= danioT;
             }
@@ -512,14 +530,42 @@ public class Personaje implements Serializable {
     }
 
     //Recuperar vida y/o energía
+    public void recuperarVida(int heal) {
+        if(vidaAct < vidaMax) {
+            vidaAct += heal;
+
+            if (vidaAct > vidaMax) {
+                vidaAct = vidaMax;
+            }
+        }
+    }
+    public boolean tengoEnergia(int gastar) {
+        return gastar < energiaAct;
+    }
+
+    public void gastarEnergia(int gastar) {
+        energiaAct -= gastar;
+    }
+
+
+    public void recuperarEnergia(int gain) {
+        if(energiaAct < energiaMax) {
+            energiaAct += gain;
+
+            if (energiaAct > energiaMax) {
+                energiaAct = energiaMax;
+            }
+        }
+    }
+
     public void recuperar(Item item) {
-        if(vidaAct < vida || energiaAct < energia) {
+        if(vidaAct < vidaMax || energiaAct < energiaMax) {
             vidaAct += item.getBonoVida();
             energiaAct += item.getBonoEnergia();
 
-            if (vidaAct > vida || energiaAct > energia) {
-                vidaAct = vida;
-                energiaAct = energia;
+            if (vidaAct > vidaMax || energiaAct > energiaMax) {
+                vidaAct = vidaMax;
+                energiaAct = energiaMax;
             }
         }
 
@@ -528,27 +574,7 @@ public class Personaje implements Serializable {
         }
     }
 
-    public void recuperarVida(int heal) {
-        if(vidaAct < vida) {
-            vidaAct += heal;
-
-            if (vidaAct > vida) {
-                vidaAct = vida;
-            }
-        }
-    }
-
-    public void recuperarEnergia(int gain) {
-        if(energiaAct < energia) {
-            energiaAct += gain;
-
-            if (energiaAct > energia) {
-                energiaAct = energia;
-            }
-        }
-    }
-
-    /*Add-on*/
+    /**Add-on**/
     private void agregarExtras(Item item) {
         auxAtaque = item.getBonoAtk();
         auxAtkMagico = item.getBonoAtm();
@@ -560,19 +586,12 @@ public class Personaje implements Serializable {
         auxPrecision = item.getBonoAcc();
     }
 
-    public int getClaseBoost() {
-        if(nivel > 3) {
-            switch (clase.getNombre()) {
-                case "Bárbaro":
-                    return (int) Math.round((ataque * (nivel / 2)) / (nivel - 3));
-                case "Paladín":
-                    return (int) Math.round(atkMagico * 0.25);
-                case "Brujo":
-                    return (int) Math.round(atkMagico * (nivel / 2)) / (nivel - 3);
-                default:
-                    return 0;
-            }
-        }
-        return 0;
+    /**ATAQUE HECHIZO**/
+    public int ataqueHechizo(int dado, int nivelHechizo, int base) {
+        int dadoTotal = dado + nivelHechizo;
+
+        float total = base * 0.15f;
+
+        return Math.round(total * dadoTotal);
     }
 }

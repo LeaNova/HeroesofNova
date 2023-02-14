@@ -1,6 +1,8 @@
 package com.leanova.heroesofnova.modelos;
 
-public class Rol {
+import java.io.Serializable;
+
+public class Rol implements Serializable {
     private int idRol;
     private String nombre;
 

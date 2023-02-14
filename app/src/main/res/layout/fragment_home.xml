@@ -56,4 +56,14 @@
         android:textAlignment="center"
         app:layout_constraintStart_toStartOf="@+id/tvRol_H"
         app:layout_constraintTop_toBottomOf="@+id/tvRol_H" />
+
+    <Button
+        android:id="@+id/btCerrar_H"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="32dp"
+        android:text="Cerrar sesión"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

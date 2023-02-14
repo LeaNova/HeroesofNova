@@ -70,6 +70,12 @@ public class PersonajeFragment extends Fragment {
         binding = null;
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        if(PersonajeValues.getJugar() != null) PersonajeValues.setJugar(null);
+    }
+
     public void inicializarVista(View v) {
         this.rvPersonajes_P = v.findViewById(R.id.rvPersonajes_P);
         GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(), 1, GridLayoutManager.VERTICAL, false);

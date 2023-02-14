@@ -13,6 +13,8 @@
         android:layout_marginTop="24dp"
         android:text="[personaje]"
         android:textAlignment="center"
+        android:textSize="16sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -57,10 +59,10 @@
         app:layout_constraintTop_toTopOf="@+id/pbVida_JP" />
 
     <TextView
-        android:id="@+id/tvVidaT_JP"
+        android:id="@+id/tvVidaMax_JP"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="[vidaTop]"
+        android:text="[vidaMax]"
         app:layout_constraintBottom_toBottomOf="@+id/textDash1"
         app:layout_constraintStart_toEndOf="@+id/textDash1" />
 
@@ -104,10 +106,10 @@
         app:layout_constraintTop_toTopOf="@+id/pbEnergia_JP" />
 
     <TextView
-        android:id="@+id/tvEnergiaT_JP"
+        android:id="@+id/tvEnergiaMax_JP"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="[energiaTop]"
+        android:text="[energiaMax]"
         app:layout_constraintBottom_toBottomOf="@+id/textDash3"
         app:layout_constraintStart_toEndOf="@+id/textDash3" />
 
@@ -148,30 +150,36 @@
         app:layout_constraintBottom_toBottomOf="@+id/textDash2"
         app:layout_constraintStart_toEndOf="@+id/textDash2" />
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_begin="330dp" />
-
     <EditText
         android:id="@+id/etRecuperar_JP"
-        android:layout_width="200dp"
+        android:layout_width="180dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="16dp"
         android:ems="10"
-        android:hint="Total"
+        android:hint="Recuperar"
         android:inputType="number"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/guideline1" />
-
+        app:layout_constraintTop_toBottomOf="@+id/tvResultado_JP" />
+    <!--
     <Button
         android:id="@+id/btCurar_JP"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:text="Recuperar"
+        app:layout_constraintBottom_toBottomOf="@+id/etRecuperar_JP"
+        app:layout_constraintStart_toEndOf="@+id/etRecuperar_JP"
+        app:layout_constraintTop_toTopOf="@+id/etRecuperar_JP" />
+    -->
+    <ImageButton
+        android:id="@+id/btCurar_JP"
+        android:layout_width="70dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="16dp"
+        android:padding="8dp"
+        android:scaleType="fitCenter"
+        android:src="@drawable/ic_healing"
         app:layout_constraintBottom_toBottomOf="@+id/etRecuperar_JP"
         app:layout_constraintStart_toEndOf="@+id/etRecuperar_JP"
         app:layout_constraintTop_toTopOf="@+id/etRecuperar_JP" />
@@ -200,35 +208,25 @@
 
     <EditText
         android:id="@+id/etDanio_JP"
-        android:layout_width="140dp"
+        android:layout_width="180dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
         android:layout_marginTop="8dp"
         android:ems="10"
-        android:hint="Total"
+        android:hint="Recibir daño"
         android:inputType="number"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/rgRecuperar_JP"
         app:layout_constraintTop_toBottomOf="@+id/rgRecuperar_JP" />
 
     <Button
         android:id="@+id/btDanio_JP"
-        android:layout_width="wrap_content"
+        android:layout_width="70dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
+        android:padding="5dp"
         android:text="DAÑO"
         app:layout_constraintBottom_toBottomOf="@+id/etDanio_JP"
         app:layout_constraintStart_toEndOf="@+id/etDanio_JP"
         app:layout_constraintTop_toTopOf="@+id/etDanio_JP" />
-
-    <Button
-        android:id="@+id/btExp_JP"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:text="EXP"
-        app:layout_constraintBottom_toBottomOf="@+id/etExp_JP"
-        app:layout_constraintStart_toEndOf="@+id/etExp_JP"
-        app:layout_constraintTop_toTopOf="@+id/etExp_JP" />
 
     <RadioGroup
         android:id="@+id/rgDanio_JP"
@@ -254,7 +252,7 @@
 
     <EditText
         android:id="@+id/etExp_JP"
-        android:layout_width="wrap_content"
+        android:layout_width="180dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:ems="10"
@@ -262,6 +260,117 @@
         android:inputType="number"
         app:layout_constraintStart_toStartOf="@+id/rgDanio_JP"
         app:layout_constraintTop_toBottomOf="@+id/rgDanio_JP" />
+
+    <Button
+        android:id="@+id/btExp_JP"
+        android:layout_width="70dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:padding="5dp"
+        android:text="EXP"
+        app:layout_constraintBottom_toBottomOf="@+id/etExp_JP"
+        app:layout_constraintStart_toEndOf="@+id/etExp_JP"
+        app:layout_constraintTop_toTopOf="@+id/etExp_JP" />
+
+    <TextView
+        android:id="@+id/textArma"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="16dp"
+        android:text="Arma: "
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textDash2" />
+
+    <TextView
+        android:id="@+id/tvArma_JP"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="[arma]"
+        android:textStyle="italic"
+        app:layout_constraintBottom_toBottomOf="@+id/textArma"
+        app:layout_constraintStart_toEndOf="@+id/textArma" />
+
+    <ImageView
+        android:id="@+id/ivTip_JP"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        app:layout_constraintBottom_toBottomOf="@+id/etAtaque_JP"
+        app:layout_constraintEnd_toStartOf="@+id/etAtaque_JP"
+        app:layout_constraintTop_toTopOf="@+id/etAtaque_JP"
+        tools:src="@drawable/ic_question_mark" />
+
+    <EditText
+        android:id="@+id/etAtaque_JP"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Nivel, total, especial?"
+        android:inputType="textPersonName"
+        app:layout_constraintStart_toStartOf="@+id/textArma"
+        app:layout_constraintTop_toBottomOf="@+id/textArma" />
+
+    <Button
+        android:id="@+id/btAtaque_JP"
+        android:layout_width="80dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:padding="5dp"
+        android:text="ATACAR"
+        app:layout_constraintBottom_toBottomOf="@+id/etAtaque_JP"
+        app:layout_constraintStart_toEndOf="@+id/etAtaque_JP"
+        app:layout_constraintTop_toTopOf="@+id/etAtaque_JP" />
+
+    <ImageButton
+        android:id="@+id/btTirar_JP"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:padding="8dp"
+        android:scaleType="fitCenter"
+        android:src="@drawable/ic_dices"
+        app:layout_constraintBottom_toBottomOf="@+id/btAtaque_JP"
+        app:layout_constraintStart_toEndOf="@+id/btAtaque_JP"
+        app:layout_constraintTop_toTopOf="@+id/btAtaque_JP" />
+
+    <RadioGroup
+        android:id="@+id/rgAtaque_JP"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:orientation="horizontal"
+        app:layout_constraintStart_toStartOf="@+id/etAtaque_JP"
+        app:layout_constraintTop_toBottomOf="@+id/etAtaque_JP">
+
+        <RadioButton
+            android:id="@+id/rbFisico"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:text="Fisico" />
+
+        <RadioButton
+            android:id="@+id/rbMagico"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Magico" />
+
+        <RadioButton
+            android:id="@+id/rbHechizo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Hechizo" />
+    </RadioGroup>
+
+    <TextView
+        android:id="@+id/tvResultado_JP"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="[resultado]"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/rgAtaque_JP" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline2"

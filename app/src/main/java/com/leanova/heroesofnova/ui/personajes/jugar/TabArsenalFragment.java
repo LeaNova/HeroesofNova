@@ -34,7 +34,7 @@ public class TabArsenalFragment extends Fragment {
     private TabArsenalViewModel tabArsenalVM;
 
     private TextView tvPersonaje_JP, tvVida_JP, tvEnergia_JP, tvAtk_JP, tvAtm_JP, tvDef_JP, tvDfm_JP, tvDex_JP, tvEva_JP, tvCrt_JP, tvAcc_JP, tvArmadura_JP, tvArma_JP;
-    private TextView tvAtkAdd_JP, tvAtmAdd_JP, tvDefAdd_JP, tvDfmAdd_JP, tvDexAdd_JP, tvEvaAdd_JP, tvCrtAdd_JP, tvAccAdd_JP, tvCorona_JP, tvIzquierda_JP, tvDerecha_JP, tvAdorno_JP;
+    private TextView tvVidaAdd_JP, tvEnergiaAdd_JP, tvAtkAdd_JP, tvAtmAdd_JP, tvDefAdd_JP, tvDfmAdd_JP, tvDexAdd_JP, tvEvaAdd_JP, tvCrtAdd_JP, tvAccAdd_JP, tvCorona_JP, tvIzquierda_JP, tvDerecha_JP, tvAdorno_JP;
     private Spinner spArmaduras_JP, spArmas_JP, spCoronas_JP, spIzquierda_JP, spDerechas_JP, spAdornos_JP;
     private Button btEquipar_JP;
 
@@ -69,14 +69,16 @@ public class TabArsenalFragment extends Fragment {
         tabArsenalVM.getMutableAdd().observe(getViewLifecycleOwner(), new Observer<ArrayList<String>>() {
             @Override
             public void onChanged(ArrayList<String> strings) {
-                tvAtkAdd_JP.setText(strings.get(0));
-                tvAtmAdd_JP.setText(strings.get(1));
-                tvDefAdd_JP.setText(strings.get(2));
-                tvDfmAdd_JP.setText(strings.get(3));
-                tvDexAdd_JP.setText(strings.get(4));
-                tvEvaAdd_JP.setText(strings.get(5));
-                tvCrtAdd_JP.setText(strings.get(6));
-                tvAccAdd_JP.setText(strings.get(7));
+                tvVidaAdd_JP.setText(strings.get(0));
+                tvEnergiaAdd_JP.setText(strings.get(1));
+                tvAtkAdd_JP.setText(strings.get(2));
+                tvAtmAdd_JP.setText(strings.get(3));
+                tvDefAdd_JP.setText(strings.get(4));
+                tvDfmAdd_JP.setText(strings.get(5));
+                tvDexAdd_JP.setText(strings.get(6));
+                tvEvaAdd_JP.setText(strings.get(7));
+                tvCrtAdd_JP.setText(strings.get(8));
+                tvAccAdd_JP.setText(strings.get(9));
             }
         });
         tabArsenalVM.getMutableCambio().observe(getViewLifecycleOwner(), new Observer<ArrayList<String>>() {
@@ -95,14 +97,16 @@ public class TabArsenalFragment extends Fragment {
         tabArsenalVM.getMutableColor().observe(getViewLifecycleOwner(), new Observer<ArrayList<String>>() {
             @Override
             public void onChanged(ArrayList<String> strings) {
-                tvAtkAdd_JP.setTextColor(Color.parseColor(strings.get(0)));
-                tvAtmAdd_JP.setTextColor(Color.parseColor(strings.get(1)));
-                tvDefAdd_JP.setTextColor(Color.parseColor(strings.get(2)));
-                tvDfmAdd_JP.setTextColor(Color.parseColor(strings.get(3)));
-                tvDexAdd_JP.setTextColor(Color.parseColor(strings.get(4)));
-                tvEvaAdd_JP.setTextColor(Color.parseColor(strings.get(5)));
-                tvCrtAdd_JP.setTextColor(Color.parseColor(strings.get(6)));
-                tvAccAdd_JP.setTextColor(Color.parseColor(strings.get(7)));
+                tvVidaAdd_JP.setTextColor(Color.parseColor(strings.get(0)));
+                tvEnergiaAdd_JP.setTextColor(Color.parseColor(strings.get(1)));
+                tvAtkAdd_JP.setTextColor(Color.parseColor(strings.get(2)));
+                tvAtmAdd_JP.setTextColor(Color.parseColor(strings.get(3)));
+                tvDefAdd_JP.setTextColor(Color.parseColor(strings.get(4)));
+                tvDfmAdd_JP.setTextColor(Color.parseColor(strings.get(5)));
+                tvDexAdd_JP.setTextColor(Color.parseColor(strings.get(6)));
+                tvEvaAdd_JP.setTextColor(Color.parseColor(strings.get(7)));
+                tvCrtAdd_JP.setTextColor(Color.parseColor(strings.get(8)));
+                tvAccAdd_JP.setTextColor(Color.parseColor(strings.get(9)));
             }
         });
         tabArsenalVM.getMutableArmaduras().observe(getViewLifecycleOwner(), new Observer<ArrayList<Armadura>>() {
@@ -172,6 +176,8 @@ public class TabArsenalFragment extends Fragment {
         this.tvEva_JP = v.findViewById(R.id.tvEva_JP);
         this.tvCrt_JP = v.findViewById(R.id.tvCrt_JP);
         this.tvAcc_JP = v.findViewById(R.id.tvAcc_JP);
+        this.tvVidaAdd_JP = v.findViewById(R.id.tvVidaAdd_JP);
+        this.tvEnergiaAdd_JP = v.findViewById(R.id.tvEnergiaAdd_JP);
         this.tvAtkAdd_JP = v.findViewById(R.id.tvAtkAdd_JP);
         this.tvAtmAdd_JP = v.findViewById(R.id.tvAtmAdd_JP);
         this.tvDefAdd_JP = v.findViewById(R.id.tvDefAdd_JP);
@@ -224,7 +230,7 @@ public class TabArsenalFragment extends Fragment {
         spIzquierda_JP.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                Artefacto artefacto = (Artefacto) spCoronas_JP.getSelectedItem();
+                Artefacto artefacto = (Artefacto) spIzquierda_JP.getSelectedItem();
                 tabArsenalVM.setIzquierda(artefacto);
             }
 
@@ -235,7 +241,7 @@ public class TabArsenalFragment extends Fragment {
         spDerechas_JP.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                Artefacto artefacto = (Artefacto) spCoronas_JP.getSelectedItem();
+                Artefacto artefacto = (Artefacto) spDerechas_JP.getSelectedItem();
                 tabArsenalVM.setDerecha(artefacto);
             }
 
@@ -246,7 +252,7 @@ public class TabArsenalFragment extends Fragment {
         spAdornos_JP.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                Artefacto artefacto = (Artefacto) spCoronas_JP.getSelectedItem();
+                Artefacto artefacto = (Artefacto) spAdornos_JP.getSelectedItem();
                 tabArsenalVM.setAdorno(artefacto);
             }
 

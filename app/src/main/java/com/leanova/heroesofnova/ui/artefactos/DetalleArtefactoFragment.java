@@ -67,6 +67,7 @@ public class DetalleArtefactoFragment extends Fragment {
                 btBorrar_DArtefacto.setVisibility(integer);
             }
         });
+        detalleArtefactoVM.setAccess();
 
         return root;
     }

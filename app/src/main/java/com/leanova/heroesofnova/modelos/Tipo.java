@@ -1,6 +1,8 @@
 package com.leanova.heroesofnova.modelos;
 
-public class Tipo {
+import java.io.Serializable;
+
+public class Tipo implements Serializable {
     private int idTipo;
     private String nombre;
     private String descripcion;

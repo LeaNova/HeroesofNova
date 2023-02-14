@@ -1,6 +1,8 @@
 package com.leanova.heroesofnova.modelos;
 
-public class Seccion {
+import java.io.Serializable;
+
+public class Seccion implements Serializable {
     private int idSeccion;
     private String nombre;
     private String descripcion;

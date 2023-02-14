@@ -29,7 +29,7 @@ public class TabItemFragment extends Fragment {
     private FragmentTabItemBinding binding;
     private TabItemViewModel tabInventarioVM;
 
-    private TextView tvPersonaje_JP, tvVida_JP, tvVidaT_JP, tvEnergia_JP, tvEnergiaT_JP;
+    private TextView tvPersonaje_JP, tvVida_JP, tvVidaMax_JP, tvEnergia_JP, tvEnergiaMax_JP;
     private ListView lvConsumibles_JP;
     private Button btAgregar_JP;
 
@@ -45,9 +45,9 @@ public class TabItemFragment extends Fragment {
                 Personaje personaje = jugar.getPersonaje();
                 tvPersonaje_JP.setText(jugar.getPersonaje().getNombre() + " - Nivel " + jugar.getPersonaje().getNivel());
                 tvVida_JP.setText(personaje.getVidaAct()+"");
-                tvVidaT_JP.setText(personaje.getVida()+"");
+                tvVidaMax_JP.setText(jugar.getVida()+"");
                 tvEnergia_JP.setText(personaje.getEnergiaAct()+"");
-                tvEnergiaT_JP.setText(personaje.getEnergia()+"");
+                tvEnergiaMax_JP.setText(jugar.getEnergia()+"");
             }
         });
         tabInventarioVM.getMutableConsumibles().observe(getViewLifecycleOwner(), new Observer<ArrayList<InvItem>>() {
@@ -75,9 +75,9 @@ public class TabItemFragment extends Fragment {
     private void inicializarVista(View v) {
         this.tvPersonaje_JP  = v.findViewById(R.id.tvPersonaje_JP);
         this.tvVida_JP = v.findViewById(R.id.tvVida_JP);
-        this.tvVidaT_JP = v.findViewById(R.id.tvVidaT_JP);
+        this.tvVidaMax_JP = v.findViewById(R.id.tvVidaMax_JP);
         this.tvEnergia_JP = v.findViewById(R.id.tvEnergia_JP);
-        this.tvEnergiaT_JP = v.findViewById(R.id.tvEnergiaT_JP);
+        this.tvEnergiaMax_JP = v.findViewById(R.id.tvEnergiaMax_JP);
         this.lvConsumibles_JP  = v.findViewById(R.id.lvConsumibles_JP);
 
         this.btAgregar_JP  = v.findViewById(R.id.btAgregar_JP);

@@ -222,29 +222,35 @@ public class Arma implements Serializable {
     }
 
     /**FUNCIONES**/
-    public int ataque(Personaje personaje, String tipo) {
-        int dadoR = (int) ((Math.random()*danioArma + 1) + bonoArma);
+    public int ataqueFisico(int dado, int base) {
+        int dadoTotal = dado + bonoArma;
 
-        float atk;
-        if(tipo.equals("Físico")) {
-            atk = (personaje.getAtaque() + personaje.getAuxAtaque()) * 0.05f;
-        } else {
-            atk = (personaje.getAtkMagico() + personaje.getAuxAtkMagico()) * 0.05f;
-        }
+        float total = base * 0.075f;
 
-        return Math.round(atk * dadoR);
+        return Math.round(total * dadoTotal);
     }
 
-    public int ataqueEspecial(Personaje personaje, String tipo) {
-        int dadoR = (int) ((Math.random()*danioArma + 1) + bonoArma);
+    public int ataqueFisicoEspecial(int dado, int base) {
+        int dadoTotal = dado + bonoArma;
 
-        float atk;
-        if(tipo.equals("Físico")) {
-            atk = personaje.getAtaque() * 0.10f + personaje.getClaseBoost();
-        } else {
-            atk = personaje.getAtkMagico() * 0.10f + personaje.getClaseBoost();
-        }
+        float total = base * 0.10f;
 
-        return (int) Math.round(atk * dadoR);
+        return Math.round(total * dadoTotal);
+    }
+
+    public int ataqueMagico(int dado, int base) {
+        int dadoTotal = dado + bonoArma;
+
+        float total = base * 0.075f;
+
+        return Math.round(total * dadoTotal);
+    }
+
+    public int ataqueMagicoEspecial(int dado, int base) {
+        int dadoTotal = dado + bonoArma;
+
+        float total = base * 0.10f;
+
+        return Math.round(total * dadoTotal);
     }
 }

@@ -1,6 +1,8 @@
 package com.leanova.heroesofnova.modelos;
 
-public class InvArma {
+import java.io.Serializable;
+
+public class InvArma implements Serializable {
     private int mochilaId;
     private int personajeId;
     private int armaId;

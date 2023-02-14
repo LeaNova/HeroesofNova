@@ -2,7 +2,6 @@ package com.leanova.heroesofnova.ui.personajes.jugar;
 
 import android.app.Application;
 import android.content.Context;
-import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
@@ -26,6 +25,10 @@ public class TabPersonajeViewModel extends AndroidViewModel {
     private Context context;
     private Jugar jugar;
     private MutableLiveData<Jugar> mutablePersonaje;
+    private MutableLiveData<Integer> mutableDado;
+    private MutableLiveData<String> mutableResultado;
+    private MutableLiveData<String> mutableAviso;
+    private MutableLiveData<String> mutableTip;
     private MutableLiveData<String> mutableClean;
 
     public TabPersonajeViewModel(@NonNull Application application) {
@@ -39,6 +42,34 @@ public class TabPersonajeViewModel extends AndroidViewModel {
             mutablePersonaje = new MutableLiveData<>();
         }
         return mutablePersonaje;
+    }
+
+    public LiveData<Integer> getMutableDado() {
+        if(mutableDado == null) {
+            mutableDado = new MutableLiveData<>();
+        }
+        return mutableDado;
+    }
+
+    public LiveData<String> getMutableResultado() {
+        if(mutableResultado == null) {
+            mutableResultado = new MutableLiveData<>();
+        }
+        return mutableResultado;
+    }
+
+    public LiveData<String> getMutableAviso() {
+        if(mutableAviso == null) {
+            mutableAviso = new MutableLiveData<>();
+        }
+        return mutableAviso;
+    }
+
+    public LiveData<String> getMutableTip() {
+        if(mutableTip == null) {
+            mutableTip = new MutableLiveData<>();
+        }
+        return mutableTip;
     }
 
     public LiveData<String> getMutableClean() {
@@ -55,35 +86,48 @@ public class TabPersonajeViewModel extends AndroidViewModel {
     }
 
     public void recuperar(int total, String opcion) {
-        if (opcion.equals("Vida")) {
-            jugar.getPersonaje().recuperarVida(total);
-        } else {
-            jugar.getPersonaje().recuperarEnergia(total);
-        }
+        jugar.recuperar(opcion, total);
         actualizar();
     }
 
     public void recibirDanio(int danio, String opcion) {
-        if (opcion.equals("Fisico")) {
-            jugar.getPersonaje().recibirDanioFisico(danio);
-        } else {
-            jugar.getPersonaje().recibirDanioMagico(danio);
-        }
+        jugar.recibirDanio(opcion, danio);
         actualizar();
     }
 
-    /*
-    public void hacerDanio(int danio, String opcion) {
-        if(opcion.equals("Fisico")) {
-            personaje.recibirDanioFisico(danio);
-        } else {
-            personaje.recibirDanioMagico(danio);
-        }
-        actualizar();
-    }*/
+    public void hacerAtaque(String danio, String opcion) {
+        try {
+            danio = danio.replace(",", "");
+            String[] accion = danio.split(" ");
 
-    public void getExp(int exp) {
+            int nivel = Integer.parseInt(accion[0]);
+            int dado = Integer.parseInt(accion[1]);
+            boolean especial = accion[2].equals("si");
+
+            mutableResultado.setValue("Daño total: " + jugar.atacar(opcion, nivel, dado, especial));
+            if(opcion.equals("Hechizo") || accion[2].equals("si")) actualizar();
+        } catch (Exception ex) {
+            mutableAviso.setValue("El formato para atacar debe estar separado con espacios o comas.\nEjemplo: 1, 5, no");
+            Log.d("error", ex.getMessage());
+        }
+    }
+
+    public void hacerTiro(int dadoArma) {
+        int resultado = (int) (Math.random()*dadoArma + 1);
+        mutableDado.setValue(resultado);
+    }
+
+    public void getTip() {
+        mutableTip.setValue(
+                "Para declarar una ataque se debe declarar \"nivel, total, especial?\":\n" +
+                "Nivel: 0 para ataque con el arma. 1-9 para declarar nivel del hechizo.\n" +
+                "Total: el resultado del dado.\n" +
+                "Especial?: \"si\" o \"no\" para declarar si es espacial o no.");
+    }
+
+    public void getExp(int exp, int necesaria) {
         jugar.getPersonaje().subirExp(exp);
+        if(exp >= necesaria) jugar.setGame();
         actualizar();
     }
 
