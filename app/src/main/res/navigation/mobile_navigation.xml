@@ -9,7 +9,11 @@
         android:id="@+id/nav_home"
         android:name="com.leanova.heroesofnova.ui.home.HomeFragment"
         android:label="@string/menu_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_nav_home_to_editarPerfilFragment"
+            app:destination="@id/editarPerfilFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/nav_grupos"
@@ -309,4 +313,9 @@
             android:id="@+id/action_detalleArtefactoFragment_to_crearArtefactoFragment"
             app:destination="@id/crearArtefactoFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/editarPerfilFragment"
+        android:name="com.leanova.heroesofnova.ui.home.EditarPerfilFragment"
+        android:label="Editar perfil"
+        tools:layout="@layout/fragment_editar_perfil" />
 </navigation>

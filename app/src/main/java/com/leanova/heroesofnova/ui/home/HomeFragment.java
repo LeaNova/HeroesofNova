@@ -13,6 +13,7 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.Navigation;
 
 import com.leanova.heroesofnova.R;
 import com.leanova.heroesofnova.databinding.FragmentHomeBinding;
@@ -23,8 +24,10 @@ import java.util.Date;
 public class HomeFragment extends Fragment {
     private FragmentHomeBinding binding;
     private HomeViewModel homeVM;
+
+    private Usuario usuario;
     private TextView tvNombre_H, tvApellido_H, tvMail_H, tvRol_H, tvFecha_H;
-    private Button btCerrar_H;
+    private Button btEditar_H, btCerrar_H;
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         binding = FragmentHomeBinding.inflate(inflater, container, false);
@@ -34,7 +37,8 @@ public class HomeFragment extends Fragment {
 
         homeVM.getMutableUsuario().observe(getViewLifecycleOwner(), new Observer<Usuario>() {
             @Override
-            public void onChanged(Usuario usuario) {
+            public void onChanged(Usuario u) {
+                usuario = u;
                 tvNombre_H.setText(usuario.getNombre());
                 tvApellido_H.setText(usuario.getApellido());
                 tvMail_H.setText(usuario.getMail());
@@ -54,6 +58,12 @@ public class HomeFragment extends Fragment {
     }
 
     @Override
+    public void onResume() {
+        super.onResume();
+        homeVM.getUsuario();
+    }
+
+    @Override
     public void onDestroyView() {
         super.onDestroyView();
         binding = null;
@@ -65,6 +75,15 @@ public class HomeFragment extends Fragment {
         this.tvMail_H = v.findViewById(R.id.tvMail_H);
         this.tvRol_H = v.findViewById(R.id.tvRol_H);
         this.tvFecha_H = v.findViewById(R.id.tvFecha_H);
+        this.btEditar_H = v.findViewById(R.id.btEditar_H);
+        this.btEditar_H.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Bundle bUsuario = new Bundle();
+                bUsuario.putSerializable("usuarioEdit", usuario);
+                Navigation.findNavController(view).navigate(R.id.editarPerfilFragment, bUsuario);
+            }
+        });
 
         this.btCerrar_H = v.findViewById(R.id.btCerrar_H);
         this.btCerrar_H.setOnClickListener(new View.OnClickListener() {

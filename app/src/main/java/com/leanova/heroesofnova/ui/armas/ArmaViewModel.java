@@ -23,6 +23,7 @@ public class ArmaViewModel extends AndroidViewModel {
     private Context context;
     private ArrayList<Arma> listaArmas;
     private MutableLiveData<ArrayList<Arma>> mutableArmas;
+    private MutableLiveData<String> mutableResultado;
     private MutableLiveData<Integer> mutableAccess;
 
     public ArmaViewModel(@NonNull Application application) {
@@ -37,6 +38,13 @@ public class ArmaViewModel extends AndroidViewModel {
             mutableArmas = new MutableLiveData<>();
         }
         return mutableArmas;
+    }
+
+    public LiveData<String> getMutableResultado() {
+        if(mutableResultado == null) {
+            mutableResultado = new MutableLiveData<>();
+        }
+        return mutableResultado;
     }
 
     public LiveData<Integer> getMutableAccess() {
@@ -71,6 +79,9 @@ public class ArmaViewModel extends AndroidViewModel {
                 if(response.isSuccessful()) {
                     listaArmas = response.body();
                     mutableArmas.postValue(listaArmas);
+                    mutableResultado.postValue("");
+                } else {
+                    mutableResultado.postValue("No hay armas cargadas.");
                 }
             }
 
@@ -79,5 +90,33 @@ public class ArmaViewModel extends AndroidViewModel {
                 Log.d("APIerror", t.getMessage());
             }
         });
+    }
+
+    public void obtenerPorNombre(String nombre) {
+        if(!nombre.equals("")) {
+            String token = ApiRetrofit.obtenerToken(context);
+
+            Call<ArrayList<Arma>> armasPromesa = ApiRetrofit.getServiceApi().buscarArmas(nombre, token);
+            armasPromesa.enqueue(new Callback<ArrayList<Arma>>() {
+                @Override
+                public void onResponse(Call<ArrayList<Arma>> call, Response<ArrayList<Arma>> response) {
+                    if (response.isSuccessful()) {
+                        listaArmas = response.body();
+                        mutableArmas.postValue(listaArmas);
+                        mutableResultado.postValue("");
+                    } else {
+                        mutableArmas.postValue(new ArrayList<>());
+                        mutableResultado.postValue("Sin resultados.");
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<ArrayList<Arma>> call, Throwable t) {
+                    Log.d("APIerror", t.getMessage());
+                }
+            });
+        } else  {
+            obtenerArmas();
+        }
     }
 }

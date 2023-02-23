@@ -104,4 +104,24 @@ public class DetalleClaseViewModel extends AndroidViewModel {
             }
         });
     }
+
+    public void cambiarDisponibilidad(int id) {
+        String token = ApiRetrofit.obtenerToken(context);
+
+        Call<Clase> clasePromesa = ApiRetrofit.getServiceApi().bajaClase(id, token);
+        clasePromesa.enqueue(new Callback<Clase>() {
+            @Override
+            public void onResponse(Call<Clase> call, Response<Clase> response) {
+                if(response.isSuccessful()) {
+                    Clase c = response.body();
+                    Toast.makeText(context, c.isDisponible() ? "Activado" : "Desactivado", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Clase> call, Throwable t) {
+                Log.d("APIerror", t.getMessage());
+            }
+        });
+    }
 }

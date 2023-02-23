@@ -16,9 +16,10 @@ public class Clase implements Serializable {
     private float modCrt;
     private float modAcc;
     private String descripcion;
+    private boolean disponible;
 
     public Clase() { }
-    public Clase(int idClase, String nombre, float modVida, float modEnergia, float modAtk, float modAtm, float modDef, float modDfm, float modDex, float modEva, float modCrt, float modAcc, String descripcion) {
+    public Clase(int idClase, String nombre, float modVida, float modEnergia, float modAtk, float modAtm, float modDef, float modDfm, float modDex, float modEva, float modCrt, float modAcc, String descripcion, boolean disponible) {
         this.idClase = idClase;
         this.nombre = nombre;
         this.modVida = modVida;
@@ -32,6 +33,7 @@ public class Clase implements Serializable {
         this.modCrt = modCrt;
         this.modAcc = modAcc;
         this.descripcion = descripcion;
+        this.disponible = disponible;
     }
 
     public int getIdClase() {
@@ -136,6 +138,14 @@ public class Clase implements Serializable {
 
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
+    }
+
+    public boolean isDisponible() {
+        return disponible;
+    }
+
+    public void setDisponible(boolean disponible) {
+        this.disponible = disponible;
     }
 
     @Override

@@ -104,4 +104,24 @@ public class DetalleArtefactoViewModel extends AndroidViewModel {
             }
         });
     }
+
+    public void cambiarDisponibilidad(int id) {
+        String token = ApiRetrofit.obtenerToken(context);
+
+        Call<Artefacto> artefactoPromesa = ApiRetrofit.getServiceApi().bajaArtefacto(id, token);
+        artefactoPromesa.enqueue(new Callback<Artefacto>() {
+            @Override
+            public void onResponse(Call<Artefacto> call, Response<Artefacto> response) {
+                if(response.isSuccessful()) {
+                    Artefacto a = response.body();
+                    Toast.makeText(context, a.isDisponible() ? "Activado" : "Desactivado", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Artefacto> call, Throwable t) {
+                Log.d("APIerror", t.getMessage());
+            }
+        });
+    }
 }

@@ -104,4 +104,24 @@ public class DetalleRazaViewModel extends AndroidViewModel {
             }
         });
     }
+
+    public void cambiarDisponibilidad(int id) {
+        String token = ApiRetrofit.obtenerToken(context);
+
+        Call<Raza> razaPromesa = ApiRetrofit.getServiceApi().bajaRaza(id, token);
+        razaPromesa.enqueue(new Callback<Raza>() {
+            @Override
+            public void onResponse(Call<Raza> call, Response<Raza> response) {
+                if(response.isSuccessful()) {
+                    Raza r = response.body();
+                    Toast.makeText(context, r.isDisponible() ? "Activado" : "Desactivado", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Raza> call, Throwable t) {
+                Log.d("APIerror", t.getMessage());
+            }
+        });
+    }
 }

@@ -14,6 +14,7 @@ public class Armadura implements Serializable {
     private int precio;
     private float peso;
     private String descripcion;
+    private boolean disponible;
 
     public Armadura() { }
     public Armadura(int idArmadura,
@@ -26,7 +27,8 @@ public class Armadura implements Serializable {
                     float modDfm,
                     int precio,
                     float peso,
-                    String descripcion) {
+                    String descripcion,
+                    boolean disponible) {
         this.idArmadura = idArmadura;
         this.nombre = nombre;
         this.bonoDef = bonoDef;
@@ -38,6 +40,7 @@ public class Armadura implements Serializable {
         this.precio = precio;
         this.peso = peso;
         this.descripcion = descripcion;
+        this.disponible = disponible;
     }
 
     public int getIdArmadura() {
@@ -126,6 +129,24 @@ public class Armadura implements Serializable {
 
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
+    }
+
+    public boolean isDisponible() {
+        return disponible;
+    }
+
+    public void setDisponible(boolean disponible) {
+        this.disponible = disponible;
+    }
+
+    public Armadura getArmadura() {
+        Armadura armadura = new Armadura(
+                0, "Sin armadura",
+                0, 0, 0, 0,
+                1, 1,
+                0, 0, "Sin armadura a todo gas.", true);
+
+        return armadura;
     }
 
     @Override

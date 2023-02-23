@@ -2,6 +2,7 @@ package com.leanova.heroesofnova.ui.personajes.jugar;
 
 import android.app.Application;
 import android.content.Context;
+import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
@@ -28,6 +29,14 @@ import retrofit2.Response;
 public class TabArsenalViewModel extends AndroidViewModel {
     private Context context;
     private Jugar jugar, aux;
+
+    private ArrayList<Armadura> listaArmaduras = new ArrayList<>();
+    private ArrayList<Arma> listaArmas = new ArrayList<>();
+    private ArrayList<Artefacto> listaCoronas = new ArrayList<>();
+    private ArrayList<Artefacto> listaIzquierdas = new ArrayList<>();
+    private ArrayList<Artefacto> listaDerechas = new ArrayList<>();
+    private ArrayList<Artefacto> listaAdornos = new ArrayList<>();
+
     private MutableLiveData<Jugar> mutablePersonaje;
     private MutableLiveData<ArrayList<String>> mutableCambio;
     private MutableLiveData<ArrayList<String>> mutableAdd;
@@ -42,6 +51,12 @@ public class TabArsenalViewModel extends AndroidViewModel {
     public TabArsenalViewModel(@NonNull Application application) {
         super(application);
         this.context = application.getApplicationContext();
+        this.listaArmaduras.add(new Armadura().getArmadura());
+        this.listaArmas.add(new Arma().getArma());
+        this.listaCoronas.add(new Artefacto().getCorona());
+        this.listaIzquierdas.add(new Artefacto().getIzquierda());
+        this.listaDerechas.add(new Artefacto().getDerecha());
+        this.listaAdornos.add(new Artefacto().getAdorno());
     }
 
     //MUTABLES
@@ -157,12 +172,14 @@ public class TabArsenalViewModel extends AndroidViewModel {
             public void onResponse(Call<ArrayList<InvArmadura>> call, Response<ArrayList<InvArmadura>> response) {
                 if(response.isSuccessful()) {
                     parseArmadura(response.body());
+                } else {
+                    mutableArmaduras.postValue(listaArmaduras);
                 }
             }
 
             @Override
             public void onFailure(Call<ArrayList<InvArmadura>> call, Throwable t) {
-
+                Log.d("APIerror", t.getMessage());
             }
         });
     }
@@ -174,12 +191,14 @@ public class TabArsenalViewModel extends AndroidViewModel {
             public void onResponse(Call<ArrayList<InvArma>> call, Response<ArrayList<InvArma>> response) {
                 if(response.isSuccessful()) {
                     parseArma(response.body());
+                } else {
+                    mutableArmas.postValue(listaArmas);
                 }
             }
 
             @Override
             public void onFailure(Call<ArrayList<InvArma>> call, Throwable t) {
-
+                Log.d("APIerror", t.getMessage());
             }
         });
     }
@@ -191,12 +210,14 @@ public class TabArsenalViewModel extends AndroidViewModel {
             public void onResponse(Call<ArrayList<InvArtefacto>> call, Response<ArrayList<InvArtefacto>> response) {
                 if(response.isSuccessful()) {
                     parseCorona(response.body());
+                } else {
+                    mutableCoronas.postValue(listaCoronas);
                 }
             }
 
             @Override
             public void onFailure(Call<ArrayList<InvArtefacto>> call, Throwable t) {
-
+                Log.d("APIerror", t.getMessage());
             }
         });
     }
@@ -208,12 +229,14 @@ public class TabArsenalViewModel extends AndroidViewModel {
             public void onResponse(Call<ArrayList<InvArtefacto>> call, Response<ArrayList<InvArtefacto>> response) {
                 if(response.isSuccessful()) {
                     parseIzquierda(response.body());
+                } else {
+                    mutableIzquierdas.postValue(listaIzquierdas);
                 }
             }
 
             @Override
             public void onFailure(Call<ArrayList<InvArtefacto>> call, Throwable t) {
-
+                Log.d("APIerror", t.getMessage());
             }
         });
     }
@@ -225,12 +248,14 @@ public class TabArsenalViewModel extends AndroidViewModel {
             public void onResponse(Call<ArrayList<InvArtefacto>> call, Response<ArrayList<InvArtefacto>> response) {
                 if(response.isSuccessful()) {
                     parseDerecha(response.body());
+                } else {
+                    mutableDerechas.postValue(listaDerechas);
                 }
             }
 
             @Override
             public void onFailure(Call<ArrayList<InvArtefacto>> call, Throwable t) {
-
+                Log.d("APIerror", t.getMessage());
             }
         });
     }
@@ -242,18 +267,19 @@ public class TabArsenalViewModel extends AndroidViewModel {
             public void onResponse(Call<ArrayList<InvArtefacto>> call, Response<ArrayList<InvArtefacto>> response) {
                 if(response.isSuccessful()) {
                     parseAdorno(response.body());
+                } else {
+                    mutableAdornos.postValue(listaAdornos);
                 }
             }
 
             @Override
             public void onFailure(Call<ArrayList<InvArtefacto>> call, Throwable t) {
-
+                Log.d("APIerror", t.getMessage());
             }
         });
     }
 
     private void parseArmadura(ArrayList<InvArmadura> body) {
-        ArrayList<Armadura> listaArmaduras = new ArrayList<>();
         for(InvArmadura x: body) {
             listaArmaduras.add(x.getArmadura());
         }
@@ -261,7 +287,6 @@ public class TabArsenalViewModel extends AndroidViewModel {
     }
 
     private void parseArma(ArrayList<InvArma> body) {
-        ArrayList<Arma> listaArmas = new ArrayList<>();
         for(InvArma x: body) {
             listaArmas.add(x.getArma());
         }
@@ -269,35 +294,31 @@ public class TabArsenalViewModel extends AndroidViewModel {
     }
 
     private void parseCorona(ArrayList<InvArtefacto> body) {
-        ArrayList<Artefacto> listaArtefactos = new ArrayList<>();
         for(InvArtefacto x: body) {
-            listaArtefactos.add(x.getArtefacto());
+            listaCoronas.add(x.getArtefacto());
         }
-        mutableCoronas.setValue(listaArtefactos);
+        mutableCoronas.setValue(listaCoronas);
     }
 
     private void parseIzquierda(ArrayList<InvArtefacto> body) {
-        ArrayList<Artefacto> listaArtefactos = new ArrayList<>();
         for(InvArtefacto x: body) {
-            listaArtefactos.add(x.getArtefacto());
+            listaIzquierdas.add(x.getArtefacto());
         }
-        mutableIzquierdas.setValue(listaArtefactos);
+        mutableIzquierdas.setValue(listaIzquierdas);
     }
 
     private void parseDerecha(ArrayList<InvArtefacto> body) {
-        ArrayList<Artefacto> listaArtefactos = new ArrayList<>();
         for(InvArtefacto x: body) {
-            listaArtefactos.add(x.getArtefacto());
+            listaDerechas.add(x.getArtefacto());
         }
-        mutableDerechas.setValue(listaArtefactos);
+        mutableDerechas.setValue(listaDerechas);
     }
 
     private void parseAdorno(ArrayList<InvArtefacto> body) {
-        ArrayList<Artefacto> listaArtefactos = new ArrayList<>();
         for(InvArtefacto x: body) {
-            listaArtefactos.add(x.getArtefacto());
+            listaAdornos.add(x.getArtefacto());
         }
-        mutableAdornos.setValue(listaArtefactos);
+        mutableAdornos.setValue(listaAdornos);
     }
 
     public void setArmadura(Armadura armadura) {

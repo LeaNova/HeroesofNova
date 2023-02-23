@@ -21,6 +21,7 @@ public class Arma implements Serializable {
     private int precio;
     private float peso;
     private String descripcion;
+    private boolean disponible;
     private Categoria categoria;
 
     public Arma() { }
@@ -42,6 +43,7 @@ public class Arma implements Serializable {
                 int precio,
                 float peso,
                 String descripcion,
+                boolean disponible,
                 Categoria categoria) {
         this.idArma = idArma;
         this.nombre = nombre;
@@ -61,6 +63,7 @@ public class Arma implements Serializable {
         this.precio = precio;
         this.peso = peso;
         this.descripcion = descripcion;
+        this.disponible = disponible;
         this.categoria = categoria;
     }
 
@@ -208,12 +211,32 @@ public class Arma implements Serializable {
         this.descripcion = descripcion;
     }
 
+    public boolean isDisponible() {
+        return disponible;
+    }
+
+    public void setDisponible(boolean disponible) {
+        this.disponible = disponible;
+    }
+
     public Categoria getCategoria() {
         return categoria;
     }
 
     public void setCategoria(Categoria categoria) {
         this.categoria = categoria;
+    }
+
+    public Arma getArma() {
+        Arma arma = new Arma(
+                0, "Sin arma", 0,
+                1, 0, 0, 0,
+                0, 0, 0, 0,
+                1, 1, 1, 1,
+                0, 0, "A puño limpio.",
+                true, new Categoria(0, "Unico", ""));
+
+        return arma;
     }
 
     @Override

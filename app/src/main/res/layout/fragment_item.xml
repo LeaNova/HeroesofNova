@@ -18,23 +18,44 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <ListView
-        android:id="@+id/lvItem"
-        android:layout_width="380dp"
-        android:layout_height="580dp"
-        android:layout_marginTop="16dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textItem" />
-
     <Button
         android:id="@+id/btNuevo_Item"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
         android:text="Nuevo"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toBottomOf="@+id/textItem"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/textItem" />
+
+    <EditText
+        android:id="@+id/etBuscar_Item"
+        android:layout_width="280dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:hint="Buscar..."
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/lvItem" />
+        app:layout_constraintTop_toBottomOf="@+id/textItem" />
+
+    <ListView
+        android:id="@+id/lvItem"
+        android:layout_width="380dp"
+        android:layout_height="600dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etBuscar_Item" />
+
+    <TextView
+        android:id="@+id/tvAviso_Item"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="[Aviso]"
+        app:layout_constraintEnd_toEndOf="@+id/lvItem"
+        app:layout_constraintStart_toStartOf="@+id/lvItem"
+        app:layout_constraintTop_toTopOf="@+id/lvItem" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

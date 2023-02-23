@@ -10,12 +10,16 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.leanova.heroesofnova.R;
 import com.leanova.heroesofnova.databinding.FragmentArmaBinding;
@@ -27,8 +31,10 @@ public class ArmaFragment extends Fragment {
     private FragmentArmaBinding binding;
     private ArmaViewModel armaVM;
 
-    private ListView lvArma;
     private Button btNuevo_Arma;
+    private EditText etBuscar_Arma;
+    private ListView lvArma;
+    private TextView tvAviso_Arma;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -36,6 +42,12 @@ public class ArmaFragment extends Fragment {
         View root = binding.getRoot();
 
         armaVM = new ViewModelProvider(this).get(ArmaViewModel.class);
+        armaVM.getMutableResultado().observe(getViewLifecycleOwner(), new Observer<String>() {
+            @Override
+            public void onChanged(String s) {
+                tvAviso_Arma.setText(s);
+            }
+        });
 
         inicializarVista(root);
         armaVM.getMutableArmas().observe(getViewLifecycleOwner(), new Observer<ArrayList<Arma>>() {
@@ -58,6 +70,29 @@ public class ArmaFragment extends Fragment {
     }
 
     private void inicializarVista(View v) {
+        this.btNuevo_Arma = v.findViewById(R.id.btNuevo_Arma);
+        this.btNuevo_Arma.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Navigation.findNavController(view).navigate(R.id.crearArnaFragment);
+            }
+        });
+
+        this.etBuscar_Arma = v.findViewById(R.id.etBuscar_Arma);
+        this.etBuscar_Arma.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) { }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                String nombre = etBuscar_Arma.getText().toString();
+                armaVM.obtenerPorNombre(nombre);
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) { }
+        });
+
         this.lvArma = v.findViewById(R.id.lvArma);
         this.lvArma.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -70,12 +105,7 @@ public class ArmaFragment extends Fragment {
             }
         });
 
-        this.btNuevo_Arma = v.findViewById(R.id.btNuevo_Arma);
-        this.btNuevo_Arma.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Navigation.findNavController(view).navigate(R.id.crearArnaFragment);
-            }
-        });
+        this.tvAviso_Arma = v.findViewById(R.id.tvAviso_Arma);
+        this.tvAviso_Arma.setText("");
     }
 }

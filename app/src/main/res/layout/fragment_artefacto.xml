@@ -21,20 +21,41 @@
     <ListView
         android:id="@+id/lvArtefacto"
         android:layout_width="380dp"
-        android:layout_height="580dp"
+        android:layout_height="600dp"
         android:layout_marginTop="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textArtefactos" />
+        app:layout_constraintTop_toBottomOf="@+id/etBuscar_Artefacto" />
 
     <Button
         android:id="@+id/btNuevo_Artefacto"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
         android:text="Nuevo"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toBottomOf="@+id/textArtefactos"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/textArtefactos" />
+
+    <TextView
+        android:id="@+id/tvAviso_Artefacto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="[Aviso]"
+        app:layout_constraintEnd_toEndOf="@+id/lvArtefacto"
+        app:layout_constraintStart_toStartOf="@+id/lvArtefacto"
+        app:layout_constraintTop_toTopOf="@+id/lvArtefacto" />
+
+    <EditText
+        android:id="@+id/etBuscar_Artefacto"
+        android:layout_width="280dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:hint="Buscar..."
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/lvArtefacto" />
+        app:layout_constraintTop_toBottomOf="@+id/textArtefactos" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

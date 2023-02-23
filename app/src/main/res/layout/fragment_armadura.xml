@@ -18,23 +18,44 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <ListView
-        android:id="@+id/lvArmadura"
-        android:layout_width="380dp"
-        android:layout_height="580dp"
-        android:layout_marginTop="16dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textArmadura" />
-
     <Button
         android:id="@+id/btNuevo_Armadura"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
         android:text="Nuevo"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toBottomOf="@+id/textArmadura"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/textArmadura" />
+
+    <EditText
+        android:id="@+id/etBuscar_Armadura"
+        android:layout_width="280dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:hint="Buscar..."
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/lvArmadura" />
+        app:layout_constraintTop_toBottomOf="@+id/textArmadura" />
+
+    <ListView
+        android:id="@+id/lvArmadura"
+        android:layout_width="380dp"
+        android:layout_height="600dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etBuscar_Armadura" />
+
+    <TextView
+        android:id="@+id/tvAviso_Armadura"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="[Aviso]"
+        app:layout_constraintEnd_toEndOf="@+id/lvArmadura"
+        app:layout_constraintStart_toStartOf="@+id/lvArmadura"
+        app:layout_constraintTop_toTopOf="@+id/lvArmadura" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

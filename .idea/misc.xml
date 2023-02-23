@@ -14,9 +14,9 @@
         <entry key="..\:/Users/LeaNova/AndroidStudioProjects/HeroesofNova/app/src/main/res/layout/clase_item.xml" value="0.37083333333333335" />
         <entry key="..\:/Users/LeaNova/AndroidStudioProjects/HeroesofNova/app/src/main/res/layout/content_main.xml" value="0.35190217391304346" />
         <entry key="..\:/Users/LeaNova/AndroidStudioProjects/HeroesofNova/app/src/main/res/layout/fragment_agregar_inventario.xml" value="0.371875" />
-        <entry key="..\:/Users/LeaNova/AndroidStudioProjects/HeroesofNova/app/src/main/res/layout/fragment_arma.xml" value="0.371875" />
+        <entry key="..\:/Users/LeaNova/AndroidStudioProjects/HeroesofNova/app/src/main/res/layout/fragment_arma.xml" value="0.3828125" />
         <entry key="..\:/Users/LeaNova/AndroidStudioProjects/HeroesofNova/app/src/main/res/layout/fragment_armadura.xml" value="0.3828125" />
-        <entry key="..\:/Users/LeaNova/AndroidStudioProjects/HeroesofNova/app/src/main/res/layout/fragment_artefacto.xml" value="0.371875" />
+        <entry key="..\:/Users/LeaNova/AndroidStudioProjects/HeroesofNova/app/src/main/res/layout/fragment_artefacto.xml" value="0.3828125" />
         <entry key="..\:/Users/LeaNova/AndroidStudioProjects/HeroesofNova/app/src/main/res/layout/fragment_buscar_grupo.xml" value="0.371875" />
         <entry key="..\:/Users/LeaNova/AndroidStudioProjects/HeroesofNova/app/src/main/res/layout/fragment_clases.xml" value="0.32472826086956524" />
         <entry key="..\:/Users/LeaNova/AndroidStudioProjects/HeroesofNova/app/src/main/res/layout/fragment_crear_arma.xml" value="0.37083333333333335" />
@@ -40,10 +40,11 @@
         <entry key="..\:/Users/LeaNova/AndroidStudioProjects/HeroesofNova/app/src/main/res/layout/fragment_detalle_mochila.xml" value="0.371875" />
         <entry key="..\:/Users/LeaNova/AndroidStudioProjects/HeroesofNova/app/src/main/res/layout/fragment_detalle_personaje.xml" value="0.3828125" />
         <entry key="..\:/Users/LeaNova/AndroidStudioProjects/HeroesofNova/app/src/main/res/layout/fragment_detalle_raza.xml" value="0.371875" />
+        <entry key="..\:/Users/LeaNova/AndroidStudioProjects/HeroesofNova/app/src/main/res/layout/fragment_editar_perfil.xml" value="0.371875" />
         <entry key="..\:/Users/LeaNova/AndroidStudioProjects/HeroesofNova/app/src/main/res/layout/fragment_gallery.xml" value="0.371875" />
         <entry key="..\:/Users/LeaNova/AndroidStudioProjects/HeroesofNova/app/src/main/res/layout/fragment_grupo.xml" value="0.3211050724637681" />
         <entry key="..\:/Users/LeaNova/AndroidStudioProjects/HeroesofNova/app/src/main/res/layout/fragment_home.xml" value="0.371875" />
-        <entry key="..\:/Users/LeaNova/AndroidStudioProjects/HeroesofNova/app/src/main/res/layout/fragment_item.xml" value="0.3578125" />
+        <entry key="..\:/Users/LeaNova/AndroidStudioProjects/HeroesofNova/app/src/main/res/layout/fragment_item.xml" value="0.3828125" />
         <entry key="..\:/Users/LeaNova/AndroidStudioProjects/HeroesofNova/app/src/main/res/layout/fragment_jugar.xml" value="0.3828125" />
         <entry key="..\:/Users/LeaNova/AndroidStudioProjects/HeroesofNova/app/src/main/res/layout/fragment_mochila.xml" value="0.3211050724637681" />
         <entry key="..\:/Users/LeaNova/AndroidStudioProjects/HeroesofNova/app/src/main/res/layout/fragment_personaje.xml" value="0.3211050724637681" />

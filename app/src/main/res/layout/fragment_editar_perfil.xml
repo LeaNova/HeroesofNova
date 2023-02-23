@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.home.EditarPerfilFragment">
+
+    <TextView
+        android:id="@+id/textEditar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="Editar perfil"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/etNombre_EPerfil"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:hint="Nombre"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textEditar" />
+
+    <EditText
+        android:id="@+id/etApellido_EPerfil"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:hint="Apellido"
+        app:layout_constraintStart_toStartOf="@+id/etNombre_EPerfil"
+        app:layout_constraintTop_toBottomOf="@+id/etNombre_EPerfil" />
+
+    <EditText
+        android:id="@+id/etUsuario_EPerfil"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:ems="10"
+        android:hint="Usuario"
+        android:inputType="textPersonName"
+        app:layout_constraintStart_toStartOf="@+id/etApellido_EPerfil"
+        app:layout_constraintTop_toBottomOf="@+id/etApellido_EPerfil" />
+
+    <TextView
+        android:id="@+id/tvAvisoUsuario_EPerfil"
+        android:layout_width="wrap_content"
+        android:layout_height="16dp"
+        android:text=""
+        android:textColor="#00FF00"
+        android:textSize="12sp"
+        app:layout_constraintStart_toStartOf="@+id/etUsuario_EPerfil"
+        app:layout_constraintTop_toBottomOf="@+id/etUsuario_EPerfil" />
+
+    <Button
+        android:id="@+id/btActualizar_EPerfil"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="28dp"
+        android:text="Actualizar perfil"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etUsuario_EPerfil" />
+
+    <TextView
+        android:id="@+id/textCambiar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="48dp"
+        android:text="Cambiar Contraseña"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btActualizar_EPerfil" />
+
+    <EditText
+        android:id="@+id/etContraseniaAct_EPerfil"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:ems="10"
+        android:hint="Contraseña actual"
+        android:inputType="textPassword"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textCambiar" />
+
+    <EditText
+        android:id="@+id/etContraseniaNueva_EPerfil"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:ems="10"
+        android:hint="Contraseña nueva"
+        android:inputType="textPassword"
+        app:layout_constraintStart_toStartOf="@+id/etContraseniaAct_EPerfil"
+        app:layout_constraintTop_toBottomOf="@+id/etContraseniaAct_EPerfil" />
+
+    <Button
+        android:id="@+id/btCambiarContra_EPerfil"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="Actualizar contraseña"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etContraseniaNueva_EPerfil" />
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -19,6 +19,7 @@ public class Item implements Serializable {
     private int precio;
     private float peso;
     private String descripcion;
+    private boolean disponible;
     private Tipo tipo;
 
     public Item() { }
@@ -38,6 +39,7 @@ public class Item implements Serializable {
                 int precio,
                 float peso,
                 String descripcion,
+                boolean disponible,
                 Tipo tipo) {
         this.idItem = idItem;
         this.nombre = nombre;
@@ -55,6 +57,7 @@ public class Item implements Serializable {
         this.precio = precio;
         this.peso = peso;
         this.descripcion = descripcion;
+        this.disponible = disponible;
         this.tipo = tipo;
     }
 
@@ -184,6 +187,14 @@ public class Item implements Serializable {
 
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
+    }
+
+    public boolean isDisponible() {
+        return disponible;
+    }
+
+    public void setDisponible(boolean disponible) {
+        this.disponible = disponible;
     }
 
     public Tipo getTipo() {

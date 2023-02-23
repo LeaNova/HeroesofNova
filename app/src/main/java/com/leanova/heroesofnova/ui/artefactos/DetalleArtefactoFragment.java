@@ -16,6 +16,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.TextView;
 
 import com.leanova.heroesofnova.R;
@@ -28,6 +29,7 @@ public class DetalleArtefactoFragment extends Fragment {
 
     private Artefacto artefacto;
     private TextView tvNombre_DArtefacto, tvSeccion_DArtefacto, tvVida_DArtefacto, tvEnergia_DArtefacto, tvAtk_DArtefacto, tvAtm_DArtefacto, tvDef_DArtefacto, tvDfm_DArtefacto, tvDex_DArtefacto, tvEva_DArtefacto, tvCrt_DArtefacto, tvAcc_DArtefacto, tvPrecio_DArtefacto, tvPeso_DArtefacto, tvDetalle_DArtefacto;
+    private CheckBox cbDisponible_DArtefacto;
     private Button btEditar_DArtefacto, btBorrar_DArtefacto;
 
     @Override
@@ -41,6 +43,7 @@ public class DetalleArtefactoFragment extends Fragment {
             public void onChanged(Artefacto a) {
                 artefacto = a;
                 tvNombre_DArtefacto.setText(artefacto.getNombre());
+                cbDisponible_DArtefacto.setChecked(a.isDisponible());
                 tvSeccion_DArtefacto.setText(artefacto.getSeccion().getNombre());
                 tvVida_DArtefacto.setText("+ " + artefacto.getBonoVida());
                 tvEnergia_DArtefacto.setText("+ " + artefacto.getBonoEnergia());
@@ -63,6 +66,7 @@ public class DetalleArtefactoFragment extends Fragment {
         detalleArtefactoVM.getMutableAccess().observe(getViewLifecycleOwner(), new Observer<Integer>() {
             @Override
             public void onChanged(Integer integer) {
+                cbDisponible_DArtefacto.setVisibility(integer);
                 btEditar_DArtefacto.setVisibility(integer);
                 btBorrar_DArtefacto.setVisibility(integer);
             }
@@ -88,6 +92,13 @@ public class DetalleArtefactoFragment extends Fragment {
         this.tvPrecio_DArtefacto = v.findViewById(R.id.tvPrecio_DArtefacto);
         this.tvPeso_DArtefacto = v.findViewById(R.id.tvPeso_DArtefacto);
         this.tvDetalle_DArtefacto = v.findViewById(R.id.tvDetalle_DArtefacto);
+        this.cbDisponible_DArtefacto = v.findViewById(R.id.cbDisponible_DArtefacto);
+        this.cbDisponible_DArtefacto.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                detalleArtefactoVM.cambiarDisponibilidad(artefacto.getIdArtefacto());
+            }
+        });
 
         this.btEditar_DArtefacto = v.findViewById(R.id.btEditar_DArtefacto);
         this.btEditar_DArtefacto.setOnClickListener(new View.OnClickListener() {

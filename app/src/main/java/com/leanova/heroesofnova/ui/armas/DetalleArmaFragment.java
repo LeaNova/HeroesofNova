@@ -16,6 +16,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.TextView;
 
 import com.leanova.heroesofnova.R;
@@ -28,6 +29,7 @@ public class DetalleArmaFragment extends Fragment {
 
     private Arma arma;
     private TextView tvNombre_DArma, tvCategoria_DArma, tvDanio_DArma, tvBono_DArma, tvAtk_DArma, tvAtm_DArma, tvDef_DArma, tvDfm_DArma, tvCrt_DArma, tvAcc_DArma, tvModAtk_DArma, tvModAtm_DArma, tvModDef_DArma, tvModDfm_DArma, tvPrecio_DArma, tvPeso_DArma, tvDetalle_DArma;
+    private CheckBox cbDisponible_DArma;
     private Button btEditar_DArma, btBorrar_DArma;
 
     @Override
@@ -41,6 +43,7 @@ public class DetalleArmaFragment extends Fragment {
             public void onChanged(Arma a) {
                 arma = a;
                 tvNombre_DArma.setText(arma.getNombre());
+                cbDisponible_DArma.setChecked(a.isDisponible());
                 tvCategoria_DArma.setText(arma.getCategoria().getNombre());
                 tvDanio_DArma.setText("1d" + arma.getDanioArma());
                 tvBono_DArma.setText("+" + arma.getBonoArma());
@@ -65,6 +68,7 @@ public class DetalleArmaFragment extends Fragment {
         detalleArmaVM.getMutableAccess().observe(getViewLifecycleOwner(), new Observer<Integer>() {
             @Override
             public void onChanged(Integer integer) {
+                cbDisponible_DArma.setVisibility(integer);
                 btEditar_DArma.setVisibility(integer);
                 btBorrar_DArma.setVisibility(integer);
             }
@@ -92,6 +96,13 @@ public class DetalleArmaFragment extends Fragment {
         this.tvPrecio_DArma = v.findViewById(R.id.tvPrecio_DArma);
         this.tvPeso_DArma = v.findViewById(R.id.tvPeso_DArma);
         this.tvDetalle_DArma = v.findViewById(R.id.tvDetalle_DArma);
+        this.cbDisponible_DArma = v.findViewById(R.id.cbDisponible_DArma);
+        this.cbDisponible_DArma.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                detalleArmaVM.cambiarDisponibilidad(arma.getIdArma());
+            }
+        });
 
         this.btEditar_DArma = v.findViewById(R.id.btEditar_DArma);
         this.btEditar_DArma.setOnClickListener(new View.OnClickListener() {

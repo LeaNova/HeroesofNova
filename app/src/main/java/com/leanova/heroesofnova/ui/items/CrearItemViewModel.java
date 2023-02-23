@@ -116,7 +116,7 @@ public class CrearItemViewModel extends AndroidViewModel {
     private void crearItem(String nombre, Tipo tipo, int bonoVida, int bonoEnergia, int bonoAtk, int bonoAtm, int bonoDef, int bonoDfm, int bonoDex, int bonoEva, int bonoCrt, int bonoAcc, int precio, float peso, String descripcion) {
         String token = ApiRetrofit.obtenerToken(context);
 
-        Call<Item> itemPromesa = ApiRetrofit.getServiceApi().crearItem(nombre, tipo.getIdTipo(), bonoVida, bonoEnergia, bonoAtk, bonoAtm, bonoDef, bonoDfm, bonoDex, bonoEva, bonoCrt, bonoAcc, precio, peso, descripcion, token);
+        Call<Item> itemPromesa = ApiRetrofit.getServiceApi().crearItem(nombre, tipo.getIdTipo(), bonoVida, bonoEnergia, bonoAtk, bonoAtm, bonoDef, bonoDfm, bonoDex, bonoEva, bonoCrt, bonoAcc, precio, peso, descripcion, true, token);
         itemPromesa.enqueue(new Callback<Item>() {
             @Override
             public void onResponse(Call<Item> call, Response<Item> response) {
@@ -139,7 +139,7 @@ public class CrearItemViewModel extends AndroidViewModel {
         Item i = mutableItem.getValue();
         String token = ApiRetrofit.obtenerToken(context);
 
-        Call<Item> itemPromesa = ApiRetrofit.getServiceApi().editarItem(i.getIdItem(), nombre, bonoVida, bonoEnergia, bonoAtk, bonoAtm, bonoDef, bonoDfm, bonoDex, bonoEva, bonoCrt, bonoAcc, precio, peso, descripcion, token);
+        Call<Item> itemPromesa = ApiRetrofit.getServiceApi().editarItem(i.getIdItem(), nombre, bonoVida, bonoEnergia, bonoAtk, bonoAtm, bonoDef, bonoDfm, bonoDex, bonoEva, bonoCrt, bonoAcc, precio, peso, descripcion, true, token);
         itemPromesa.enqueue(new Callback<Item>() {
             @Override
             public void onResponse(Call<Item> call, Response<Item> response) {

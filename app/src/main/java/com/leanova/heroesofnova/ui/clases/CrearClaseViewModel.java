@@ -96,7 +96,7 @@ public class CrearClaseViewModel extends AndroidViewModel {
     private void crearClase(String nombre, float vida, float energia, float atk, float atm, float def, float dfm, float dex, float eva, float crt, float acc, String descripcion) {
         String token = ApiRetrofit.obtenerToken(context);
 
-        Call<Clase> clasePromesa = ApiRetrofit.getServiceApi().crearClase(nombre, vida, energia, atk, atm, def, dfm, dex, eva, crt, acc, descripcion, token);
+        Call<Clase> clasePromesa = ApiRetrofit.getServiceApi().crearClase(nombre, vida, energia, atk, atm, def, dfm, dex, eva, crt, acc, descripcion, true, token);
         clasePromesa.enqueue(new Callback<Clase>() {
             @Override
             public void onResponse(Call<Clase> call, Response<Clase> response) {
@@ -119,7 +119,7 @@ public class CrearClaseViewModel extends AndroidViewModel {
         Clase c = mutableClase.getValue();
         String token = ApiRetrofit.obtenerToken(context);
 
-        Call<Clase> clasePromesa = ApiRetrofit.getServiceApi().editarClase(c.getIdClase(), nombre, vida, energia, atk, atm, def, dfm, dex, eva, crt, acc, descripcion, token);
+        Call<Clase> clasePromesa = ApiRetrofit.getServiceApi().editarClase(c.getIdClase(), nombre, vida, energia, atk, atm, def, dfm, dex, eva, crt, acc, descripcion, true, token);
         clasePromesa.enqueue(new Callback<Clase>() {
             @Override
             public void onResponse(Call<Clase> call, Response<Clase> response) {

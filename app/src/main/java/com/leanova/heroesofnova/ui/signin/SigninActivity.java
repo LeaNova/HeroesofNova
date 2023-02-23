@@ -5,6 +5,8 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -58,24 +60,36 @@ public class SigninActivity extends AppCompatActivity {
         this.etSNombre = findViewById(R.id.etSNombre);
         this.etSApellido = findViewById(R.id.etSApellido);
         this.etSMail = findViewById(R.id.etSMail);
-        etSMail.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+        this.etSMail.addTextChangedListener(new TextWatcher() {
             @Override
-            public void onFocusChange(View view, boolean b) {
-                if(!b) {
-                    svm.checkMail(etSMail.getText().toString());
-                }
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) { }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                String mail = etSMail.getText().toString();
+                svm.checkMail(mail);
             }
+
+            @Override
+            public void afterTextChanged(Editable editable) { }
         });
+
         this.tvSAvisoMail = findViewById(R.id.tvSAvisoMail);
         this.etSUsuario = findViewById(R.id.etSUsuario);
-        etSUsuario.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+        this.etSUsuario.addTextChangedListener(new TextWatcher() {
             @Override
-            public void onFocusChange(View view, boolean b) {
-                if(!b) {
-                    svm.checUsuario(etSUsuario.getText().toString());
-                }
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) { }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                String usuario = etSUsuario.getText().toString();
+                svm.checUsuario(usuario);
             }
+
+            @Override
+            public void afterTextChanged(Editable editable) { }
         });
+
         this.tvSAvisoUsuario = findViewById(R.id.tvSAvisoUsuario);
         this.etSPass1 = findViewById(R.id.etSPass1);
         this.etSPass2 = findViewById(R.id.etSPass2);

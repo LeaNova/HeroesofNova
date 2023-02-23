@@ -16,6 +16,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.TextView;
 
 import com.leanova.heroesofnova.R;
@@ -28,6 +29,7 @@ public class DetalleArmaduraFragment extends Fragment {
 
     private Armadura armadura;
     private TextView tvNombre_DArmadura, tvDef_DArmadura, tvDfm_DArmadura, tvDex_DArmadura, tvEva_DArmadura, tvModDef_DArmadura, tvModDfm_DArmadura, tvPrecio_DArmadura, tvPeso_DArmadura, tvDetalle_DArmadura;
+    private CheckBox cbDisponible_DArmadura;
     private Button btEditar_DArmadura, btBorrar_DArmadura;
 
     @Override
@@ -58,6 +60,7 @@ public class DetalleArmaduraFragment extends Fragment {
         detalleArmaduraVM.getMutableAccess().observe(getViewLifecycleOwner(), new Observer<Integer>() {
             @Override
             public void onChanged(Integer integer) {
+                cbDisponible_DArmadura.setVisibility(integer);
                 btEditar_DArmadura.setVisibility(integer);
                 btBorrar_DArmadura.setVisibility(integer);
             }
@@ -78,6 +81,13 @@ public class DetalleArmaduraFragment extends Fragment {
         this.tvPrecio_DArmadura = v.findViewById(R.id.tvPrecio_DArmadura);
         this.tvPeso_DArmadura = v.findViewById(R.id.tvPeso_DArmadura);
         this.tvDetalle_DArmadura = v.findViewById(R.id.tvDetalle_DArmadura);
+        this.cbDisponible_DArmadura = v.findViewById(R.id.cbDisponible_DArmadura);
+        this.cbDisponible_DArmadura.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                detalleArmaduraVM.cambiarDisponibilidad(armadura.getIdArmadura());
+            }
+        });
 
         this.btEditar_DArmadura = v.findViewById(R.id.btEditar_DArmadura);
         this.btEditar_DArmadura.setOnClickListener(new View.OnClickListener() {

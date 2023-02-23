@@ -86,7 +86,7 @@ public class CrearArmaduraViewModel extends AndroidViewModel {
     private void crearArmadura(String nombre, int bonoDef, int bonoDfm, int bonoDex, int bonoEva, float modDef, float modDfm, int precio, float peso, String descripcion) {
         String token = ApiRetrofit.obtenerToken(context);
 
-        Call<Armadura> armaduraPromesa = ApiRetrofit.getServiceApi().crearArmadura(nombre, bonoDef, bonoDfm, bonoDex, bonoEva, modDef, modDfm, precio, peso, descripcion, token);
+        Call<Armadura> armaduraPromesa = ApiRetrofit.getServiceApi().crearArmadura(nombre, bonoDef, bonoDfm, bonoDex, bonoEva, modDef, modDfm, precio, peso, descripcion, true, token);
         armaduraPromesa.enqueue(new Callback<Armadura>() {
             @Override
             public void onResponse(Call<Armadura> call, Response<Armadura> response) {
@@ -109,7 +109,7 @@ public class CrearArmaduraViewModel extends AndroidViewModel {
         Armadura a = mutableArmadura.getValue();
         String token = ApiRetrofit.obtenerToken(context);
 
-        Call<Armadura> armaduraPromesa = ApiRetrofit.getServiceApi().editarArmadura(a.getIdArmadura(), nombre, bonoDef, bonoDfm, bonoDex, bonoEva, modDef, modDfm, precio, peso, descripcion, token);
+        Call<Armadura> armaduraPromesa = ApiRetrofit.getServiceApi().editarArmadura(a.getIdArmadura(), nombre, bonoDef, bonoDfm, bonoDex, bonoEva, modDef, modDfm, precio, peso, descripcion, true, token);
         armaduraPromesa.enqueue(new Callback<Armadura>() {
             @Override
             public void onResponse(Call<Armadura> call, Response<Armadura> response) {

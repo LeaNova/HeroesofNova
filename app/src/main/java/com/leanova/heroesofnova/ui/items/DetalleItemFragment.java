@@ -16,6 +16,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.TextView;
 
 import com.leanova.heroesofnova.R;
@@ -28,6 +29,7 @@ public class DetalleItemFragment extends Fragment {
 
     private Item item;
     private TextView tvNombre_DItem, tvTipo_DItem, tvVida_DItem, tvEnergia_DItem, tvAtk_DItem, tvAtm_DItem, tvDef_DItem, tvDfm_DItem, tvDex_DItem, tvEva_DItem, tvCrt_DItem, tvAcc_DItem, tvPrecio_DItem, tvPeso_DItem, tvDetalle_DItem;
+    private CheckBox cbDisponible_DItem;
     private Button btEditar_DItem, btBorrar_DItem;
 
     @Override
@@ -41,6 +43,7 @@ public class DetalleItemFragment extends Fragment {
             public void onChanged(Item i) {
                 item = i;
                 tvNombre_DItem.setText(item.getNombre());
+                cbDisponible_DItem.setChecked(i.isDisponible());
                 tvTipo_DItem.setText(item.getTipo().getNombre());
                 tvVida_DItem.setText("+" + item.getBonoVida());
                 tvEnergia_DItem.setText("+" + item.getBonoEnergia());
@@ -63,6 +66,7 @@ public class DetalleItemFragment extends Fragment {
         detalleItemVM.getMutableAccess().observe(getViewLifecycleOwner(), new Observer<Integer>() {
             @Override
             public void onChanged(Integer integer) {
+                cbDisponible_DItem.setVisibility(integer);
                 btEditar_DItem.setVisibility(integer);
                 btBorrar_DItem.setVisibility(integer);
             }
@@ -88,6 +92,13 @@ public class DetalleItemFragment extends Fragment {
         this.tvPrecio_DItem = v.findViewById(R.id.tvPrecio_DItem);
         this.tvPeso_DItem = v.findViewById(R.id.tvPeso_DItem);
         this.tvDetalle_DItem = v.findViewById(R.id.tvDetalle_DItem);
+        this.cbDisponible_DItem = v.findViewById(R.id.cbDisponible_DItem);
+        this.cbDisponible_DItem.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                detalleItemVM.cambiarDisponibilidad(item.getIdItem());
+            }
+        });
 
         this.btEditar_DItem = v.findViewById(R.id.btEditar_DItem);
         this.btEditar_DItem.setOnClickListener(new View.OnClickListener() {

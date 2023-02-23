@@ -16,6 +16,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.TextView;
 
 import com.leanova.heroesofnova.R;
@@ -24,10 +25,11 @@ import com.leanova.heroesofnova.modelos.Raza;
 
 public class DetalleRazaFragment extends Fragment {
     private FragmentDetalleRazaBinding binding;
-    private DetalleRazaViewModel drvm;
+    private DetalleRazaViewModel detalleRazaVM;
 
     private Raza raza;
     private TextView tvNombre_DR, tvVidaBase_DR, tvEnergiaBase_DR, tvAtkBase_DR, tvAtmBase_DR, tvDefBase_DR, tvDfmBase_DR, tvDexBase_DR, tvEvaBase_DR, tvCrtBase_DR, tvAccBase_DR, tvDetalle_DR;
+    private CheckBox cbDisponible_DR;
     private Button btEditar_DR, btBorrar_DR;
 
     @Override
@@ -35,12 +37,13 @@ public class DetalleRazaFragment extends Fragment {
         binding = FragmentDetalleRazaBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-        drvm = new ViewModelProvider(this).get(DetalleRazaViewModel.class);
-        drvm.getMutableRaza().observe(getViewLifecycleOwner(), new Observer<Raza>() {
+        detalleRazaVM = new ViewModelProvider(this).get(DetalleRazaViewModel.class);
+        detalleRazaVM.getMutableRaza().observe(getViewLifecycleOwner(), new Observer<Raza>() {
             @Override
             public void onChanged(Raza r) {
                 raza = r;
                 tvNombre_DR.setText(raza.getNombre());
+                cbDisponible_DR.setChecked(r.isDisponible());
                 tvVidaBase_DR.setText(raza.getVidaBase()+"");
                 tvEnergiaBase_DR.setText(raza.getEnergiaBase()+"");
                 tvAtkBase_DR.setText(raza.getBaseAtk()+"");
@@ -54,17 +57,18 @@ public class DetalleRazaFragment extends Fragment {
                 tvDetalle_DR.setText(raza.getDescripcion());
             }
         });
-        drvm.getRaza(getArguments());
+        detalleRazaVM.getRaza(getArguments());
 
         inicializarVista(root);
-        drvm.getMutableAccess().observe(getViewLifecycleOwner(), new Observer<Integer>() {
+        detalleRazaVM.getMutableAccess().observe(getViewLifecycleOwner(), new Observer<Integer>() {
             @Override
             public void onChanged(Integer integer) {
+                cbDisponible_DR.setVisibility(integer);
                 btEditar_DR.setVisibility(integer);
                 btBorrar_DR.setVisibility(integer);
             }
         });
-        drvm.setAccess();
+        detalleRazaVM.setAccess();
 
         return root;
     }
@@ -82,6 +86,13 @@ public class DetalleRazaFragment extends Fragment {
         this.tvCrtBase_DR = v.findViewById(R.id.tvCrtBase_DR);
         this.tvAccBase_DR = v.findViewById(R.id.tvAccBase_DR);
         this.tvDetalle_DR = v.findViewById(R.id.tvDetalle_DR);
+        this.cbDisponible_DR = v.findViewById(R.id.cbDisponible_DR);
+        this.cbDisponible_DR.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                detalleRazaVM.cambiarDisponibilidad(raza.getIdRaza());
+            }
+        });
 
         this.btEditar_DR = v.findViewById(R.id.btEditar_DR);
         this.btEditar_DR.setOnClickListener(new View.OnClickListener() {
@@ -103,7 +114,7 @@ public class DetalleRazaFragment extends Fragment {
                         .setPositiveButton("Si", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
-                                drvm.borrarRaza(raza.getIdRaza(), view);
+                                detalleRazaVM.borrarRaza(raza.getIdRaza(), view);
                             }
                         })
                         .setNegativeButton("No", new DialogInterface.OnClickListener() {

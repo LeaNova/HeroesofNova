@@ -127,7 +127,7 @@ public class CrearArtefactoViewModel extends AndroidViewModel {
     private void crearArtefacto(String nombre, Seccion seccion, int bonoVida, int bonoEnergia, int bonoAtk, int bonoAtm, int bonoDef, int bonoDfm, int bonoDex, int bonoEva, int bonoCrt, int bonoAcc, int precio, float peso, String descripcion) {
         String token = ApiRetrofit.obtenerToken(context);
 
-        Call<Artefacto> artefactoPromesa = ApiRetrofit.getServiceApi().crearArtefacto(nombre, seccion.getIdSeccion(), bonoVida, bonoEnergia, bonoAtk, bonoAtm, bonoDef, bonoDfm, bonoDex, bonoEva, bonoCrt, bonoAcc, precio, peso, descripcion, token);
+        Call<Artefacto> artefactoPromesa = ApiRetrofit.getServiceApi().crearArtefacto(nombre, seccion.getIdSeccion(), bonoVida, bonoEnergia, bonoAtk, bonoAtm, bonoDef, bonoDfm, bonoDex, bonoEva, bonoCrt, bonoAcc, precio, peso, descripcion, true, token);
         artefactoPromesa.enqueue(new Callback<Artefacto>() {
             @Override
             public void onResponse(Call<Artefacto> call, Response<Artefacto> response) {
@@ -150,7 +150,7 @@ public class CrearArtefactoViewModel extends AndroidViewModel {
         Artefacto a = mutableArtefacto.getValue();
         String token = ApiRetrofit.obtenerToken(context);
 
-        Call<Artefacto> artefactoPromesa = ApiRetrofit.getServiceApi().editarArtefacto(a.getIdArtefacto(), nombre, bonoVida, bonoEnergia, bonoAtk, bonoAtm, bonoDef, bonoDfm, bonoDex, bonoEva, bonoCrt, bonoAcc, precio, peso, descripcion, token);
+        Call<Artefacto> artefactoPromesa = ApiRetrofit.getServiceApi().editarArtefacto(a.getIdArtefacto(), nombre, bonoVida, bonoEnergia, bonoAtk, bonoAtm, bonoDef, bonoDfm, bonoDex, bonoEva, bonoCrt, bonoAcc, precio, peso, descripcion, true, token);
         artefactoPromesa.enqueue(new Callback<Artefacto>() {
             @Override
             public void onResponse(Call<Artefacto> call, Response<Artefacto> response) {

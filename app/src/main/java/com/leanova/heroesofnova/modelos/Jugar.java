@@ -6,19 +6,26 @@ public class Jugar {
     private Armadura armadura;
     private Artefacto corona, izquierda, derecha, adorno;
 
+    //public Jugar() { }
     public Jugar(Personaje personaje, Arma arma, Armadura armadura, Artefacto corona, Artefacto izquierda, Artefacto derecha, Artefacto adorno) {
         this.personaje = personaje;
-        if(arma == null) arma = new Arma(0, "Sin arma", 12, 1, 0, 0, 0, 0, 0, 0, 0,1, 1, 1, 1, 1, 0, "A puño libre", null);
+
+        if(arma == null) arma = new Arma().getArma();
         this.arma = arma;
-        if(armadura == null) armadura = new Armadura(0, "Sin armadura", 0, 0, 0, 0, 1, 1, 0, 0, "Sin armadura a todo gas");
+
+        if(armadura == null) armadura = new Armadura().getArmadura();
         this.armadura = armadura;
-        if(corona == null) corona = new Artefacto(0, "Sin corona", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "Sin corona", null);
+
+        if(corona == null) corona = new Artefacto().getCorona();
         this.corona = corona;
-        if(izquierda == null) izquierda = new Artefacto(0, "Sin izquierda", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "Sin corona", null);
+
+        if(izquierda == null) izquierda = new Artefacto().getIzquierda();
         this.izquierda = izquierda;
-        if(derecha == null) derecha = new Artefacto(0, "Sin derecha", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "Sin corona", null);
+
+        if(derecha == null) derecha = new Artefacto().getDerecha();
         this.derecha = derecha;
-        if(adorno == null) adorno = new Artefacto(0, "Sin adorno", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "Sin corona", null);
+
+        if(adorno == null) adorno = new Artefacto().getAdorno();
         this.adorno = adorno;
     }
 

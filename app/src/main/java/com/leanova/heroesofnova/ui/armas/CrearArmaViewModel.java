@@ -140,7 +140,7 @@ public class CrearArmaViewModel extends AndroidViewModel {
     private void crearArma(String nombre, Categoria categoria, int danio, int base, int bonoAtk, int bonoAtm, int bonoDef, int bonoDfm, int bonoCrt, int bonoAcc, float modAtk, float modAtm, float modDef, float modDfm, int precio, float peso, String descripcion) {
         String token = ApiRetrofit.obtenerToken(context);
 
-        Call<Arma> armaPromesa = ApiRetrofit.getServiceApi().crearArma(nombre, categoria.getIdCategoria(), danio, base, bonoAtk, bonoAtm, bonoDef, bonoDfm, bonoCrt, bonoAcc, modAtk, modAtm, modDef, modDfm, precio, peso, descripcion, token);
+        Call<Arma> armaPromesa = ApiRetrofit.getServiceApi().crearArma(nombre, categoria.getIdCategoria(), danio, base, bonoAtk, bonoAtm, bonoDef, bonoDfm, bonoCrt, bonoAcc, modAtk, modAtm, modDef, modDfm, precio, peso, descripcion, true, token);
         armaPromesa.enqueue(new Callback<Arma>() {
             @Override
             public void onResponse(Call<Arma> call, Response<Arma> response) {
@@ -163,7 +163,7 @@ public class CrearArmaViewModel extends AndroidViewModel {
         Arma a = mutableArma.getValue();
         String token = ApiRetrofit.obtenerToken(context);
 
-        Call<Arma> armaPromesa = ApiRetrofit.getServiceApi().editarArma(a.getIdArma(), nombre, danio, base, bonoAtk, bonoAtm, bonoDef, bonoDfm, bonoCrt, bonoAcc, modAtk, modAtm, modDef, modDfm, precio, peso, descripcion, token);
+        Call<Arma> armaPromesa = ApiRetrofit.getServiceApi().editarArma(a.getIdArma(), nombre, danio, base, bonoAtk, bonoAtm, bonoDef, bonoDfm, bonoCrt, bonoAcc, modAtk, modAtm, modDef, modDfm, precio, peso, descripcion, true, token);
         armaPromesa.enqueue(new Callback<Arma>() {
             @Override
             public void onResponse(Call<Arma> call, Response<Arma> response) {

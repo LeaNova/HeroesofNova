@@ -10,12 +10,16 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.leanova.heroesofnova.R;
 import com.leanova.heroesofnova.databinding.FragmentItemBinding;
@@ -27,8 +31,10 @@ public class ItemFragment extends Fragment {
     private FragmentItemBinding binding;
     private ItemViewModel itemVM;
 
-    private ListView lvItem;
     private Button btNuevo_Item;
+    private EditText etBuscar_Item;
+    private ListView lvItem;
+    private TextView tvAviso_Item;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -36,6 +42,12 @@ public class ItemFragment extends Fragment {
         View root = binding.getRoot();
 
         itemVM = new ViewModelProvider(this).get(ItemViewModel.class);
+        itemVM.getMutableResultado().observe(getViewLifecycleOwner(), new Observer<String>() {
+            @Override
+            public void onChanged(String s) {
+                tvAviso_Item.setText(s);
+            }
+        });
 
         inicializarVista(root);
         itemVM.getMutableItems().observe(getViewLifecycleOwner(), new Observer<ArrayList<Item>>() {
@@ -58,6 +70,29 @@ public class ItemFragment extends Fragment {
     }
 
     private void inicializarVista(View v) {
+        this.btNuevo_Item = v.findViewById(R.id.btNuevo_Item);
+        this.btNuevo_Item.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Navigation.findNavController(view).navigate(R.id.crearItemFragment);
+            }
+        });
+
+        this.etBuscar_Item = v.findViewById(R.id.etBuscar_Item);
+        this.etBuscar_Item.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) { }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                String nombre = etBuscar_Item.getText().toString();
+                itemVM.obtenerNombre(nombre);
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) { }
+        });
+
         this.lvItem = v.findViewById(R.id.lvItem);
         this.lvItem.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -70,12 +105,7 @@ public class ItemFragment extends Fragment {
             }
         });
 
-        this.btNuevo_Item = v.findViewById(R.id.btNuevo_Item);
-        this.btNuevo_Item.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Navigation.findNavController(view).navigate(R.id.crearItemFragment);
-            }
-        });
+        this.tvAviso_Item = v.findViewById(R.id.tvAviso_Item);
+        this.tvAviso_Item.setText("");
     }
 }

@@ -104,4 +104,24 @@ public class DetalleArmaViewModel extends AndroidViewModel {
             }
         });
     }
+
+    public void cambiarDisponibilidad(int id) {
+        String token = ApiRetrofit.obtenerToken(context);
+
+        Call<Arma> armaPromesa = ApiRetrofit.getServiceApi().bajaArma(id, token);
+        armaPromesa.enqueue(new Callback<Arma>() {
+            @Override
+            public void onResponse(Call<Arma> call, Response<Arma> response) {
+                if(response.isSuccessful()) {
+                    Arma a = response.body();
+                    Toast.makeText(context, a.isDisponible() ? "Activado" : "Desactivado", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Arma> call, Throwable t) {
+                Log.d("APIerror", t.getMessage());
+            }
+        });
+    }
 }

@@ -23,6 +23,7 @@ public class ItemViewModel extends AndroidViewModel {
     private Context context;
     private ArrayList<Item> listaItems;
     private MutableLiveData<ArrayList<Item>> mutableItems;
+    private MutableLiveData<String> mutableResultado;
     private MutableLiveData<Integer> mutableAccess;
 
     public ItemViewModel(@NonNull Application application) {
@@ -37,6 +38,13 @@ public class ItemViewModel extends AndroidViewModel {
             mutableItems = new MutableLiveData<>();
         }
         return mutableItems;
+    }
+
+    public LiveData<String> getMutableResultado() {
+        if(mutableResultado == null) {
+            mutableResultado = new MutableLiveData<>();
+        }
+        return mutableResultado;
     }
 
     public LiveData<Integer> getMutableAccess() {
@@ -71,6 +79,9 @@ public class ItemViewModel extends AndroidViewModel {
                 if(response.isSuccessful()) {
                     listaItems = response.body();
                     mutableItems.postValue(listaItems);
+                    mutableResultado.postValue("");
+                } else {
+                    mutableResultado.postValue("No hay armas cargadas.");
                 }
             }
 
@@ -79,5 +90,33 @@ public class ItemViewModel extends AndroidViewModel {
                 Log.d("APIerror", t.getMessage());
             }
         });
+    }
+
+    public void obtenerNombre(String nombre) {
+        if(!nombre.equals("")) {
+            String token = ApiRetrofit.obtenerToken(context);
+
+            Call<ArrayList<Item>> itemsPromesa = ApiRetrofit.getServiceApi().buscarItems(nombre, token);
+            itemsPromesa.enqueue(new Callback<ArrayList<Item>>() {
+                @Override
+                public void onResponse(Call<ArrayList<Item>> call, Response<ArrayList<Item>> response) {
+                    if(response.isSuccessful()) {
+                        listaItems = response.body();
+                        mutableItems.postValue(listaItems);
+                        mutableResultado.postValue("");
+                    } else  {
+                        mutableItems.postValue(new ArrayList<>());
+                        mutableResultado.postValue("Sin resultados.");
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<ArrayList<Item>> call, Throwable t) {
+                    Log.d("APIerror", t.getMessage());
+                }
+            });
+        } else {
+            obtenerItems();
+        }
     }
 }

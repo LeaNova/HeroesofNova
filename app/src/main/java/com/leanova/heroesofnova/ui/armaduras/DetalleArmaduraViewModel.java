@@ -104,4 +104,24 @@ public class DetalleArmaduraViewModel extends AndroidViewModel {
             }
         });
     }
+
+    public void cambiarDisponibilidad(int id) {
+        String token = ApiRetrofit.obtenerToken(context);
+
+        Call<Armadura> armaduraPromesa = ApiRetrofit.getServiceApi().bajaArmadura(id, token);
+        armaduraPromesa.enqueue(new Callback<Armadura>() {
+            @Override
+            public void onResponse(Call<Armadura> call, Response<Armadura> response) {
+                if(response.isSuccessful()) {
+                    Armadura a = response.body();
+                    Toast.makeText(context, a.isDisponible() ? "Activado" : "Desactivado", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Armadura> call, Throwable t) {
+                Log.d("APIerror", t.getMessage());
+            }
+        });
+    }
 }

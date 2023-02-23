@@ -16,9 +16,10 @@ public class Raza implements Serializable {
     private int baseCrt;
     private int baseAcc;
     private String descripcion;
+    private boolean disponible;
 
     public Raza() { }
-    public Raza(int idRaza, String nombre, int vidaBase, int energiaBase, int baseAtk, int baseAtm, int baseDef, int baseDfm, int baseDex, int baseEva, int baseCrt, int baseAcc, String descripcion) {
+    public Raza(int idRaza, String nombre, int vidaBase, int energiaBase, int baseAtk, int baseAtm, int baseDef, int baseDfm, int baseDex, int baseEva, int baseCrt, int baseAcc, String descripcion, boolean disponible) {
         this.idRaza = idRaza;
         this.nombre = nombre;
         this.vidaBase = vidaBase;
@@ -32,6 +33,7 @@ public class Raza implements Serializable {
         this.baseCrt = baseCrt;
         this.baseAcc = baseAcc;
         this.descripcion = descripcion;
+        this.disponible = disponible;
     }
 
     public int getIdRaza() {
@@ -136,6 +138,14 @@ public class Raza implements Serializable {
 
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
+    }
+
+    public boolean isDisponible() {
+        return disponible;
+    }
+
+    public void setDisponible(boolean disponible) {
+        this.disponible = disponible;
     }
 
     @Override

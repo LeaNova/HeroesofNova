@@ -25,7 +25,7 @@ public class SigninViewModel extends AndroidViewModel {
     private Context context;
     private ArrayList<Rol> listaRoles;
     private MutableLiveData<String> mutableAvisoMail;
-    private MutableLiveData<String> mutableAvisoUsuaio;
+    private MutableLiveData<String> mutableAvisoUsuario;
     private MutableLiveData<String> mutableAvisoPass;
 
     public SigninViewModel(@NonNull Application application) {
@@ -44,10 +44,10 @@ public class SigninViewModel extends AndroidViewModel {
     }
 
     public LiveData<String> getMutableAvisoUsuario() {
-        if(mutableAvisoUsuaio == null) {
-            mutableAvisoUsuaio = new MutableLiveData<>();
+        if(mutableAvisoUsuario == null) {
+            mutableAvisoUsuario = new MutableLiveData<>();
         }
-        return mutableAvisoUsuaio;
+        return mutableAvisoUsuario;
     }
 
     public LiveData<String> getMutableAvisoPass() {
@@ -102,21 +102,25 @@ public class SigninViewModel extends AndroidViewModel {
     }
 
     public void checUsuario(String usuario) {
-        Call<Usuario> usuarioPromesa = ApiRetrofit.getServiceApi().obtenerUsuario(usuario);
-        usuarioPromesa.enqueue(new Callback<Usuario>() {
-            @Override
-            public void onResponse(Call<Usuario> call, Response<Usuario> response) {
-                if(response.isSuccessful()) {
-                    mutableAvisoUsuaio.postValue("*Nombre de usuario no disponible");
-                } else {
-                    mutableAvisoUsuaio.postValue("");
+        if(usuario.length() > 5) {
+            Call<Usuario> usuarioPromesa = ApiRetrofit.getServiceApi().obtenerUsuario(usuario);
+            usuarioPromesa.enqueue(new Callback<Usuario>() {
+                @Override
+                public void onResponse(Call<Usuario> call, Response<Usuario> response) {
+                    if (response.isSuccessful()) {
+                        mutableAvisoUsuario.postValue("*Nombre de usuario no disponible");
+                    } else {
+                        mutableAvisoUsuario.postValue("");
+                    }
                 }
-            }
 
-            @Override
-            public void onFailure(Call<Usuario> call, Throwable t) {
-                Log.d("APIerror", t.getMessage());
-            }
-        });
+                @Override
+                public void onFailure(Call<Usuario> call, Throwable t) {
+                    Log.d("APIerror", t.getMessage());
+                }
+            });
+        } else {
+            mutableAvisoUsuario.setValue("*Usuario debe tener 5 o mas carácteres");
+        }
     }
 }

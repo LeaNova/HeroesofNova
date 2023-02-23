@@ -102,7 +102,7 @@ public class CrearRazaViewModel extends AndroidViewModel {
     private void crearRaza(String nombre, int vida, int energia, int atk, int atm, int def, int dfm, int dex, int eva, int crt, int acc, String descripcion) {
         String token = ApiRetrofit.obtenerToken(context);
 
-        Call<Raza> razaPromesa = ApiRetrofit.getServiceApi().crearRaza(nombre, descripcion, vida, energia, atk, atm, def, dfm, dex, eva, crt, acc, token);
+        Call<Raza> razaPromesa = ApiRetrofit.getServiceApi().crearRaza(nombre, vida, energia, atk, atm, def, dfm, dex, eva, crt, acc, descripcion, true, token);
         razaPromesa.enqueue(new Callback<Raza>() {
             @Override
             public void onResponse(Call<Raza> call, Response<Raza> response) {
@@ -125,7 +125,7 @@ public class CrearRazaViewModel extends AndroidViewModel {
         Raza r = mutableRaza.getValue();
         String token = ApiRetrofit.obtenerToken(context);
 
-        Call<Raza> razaPromesa = ApiRetrofit.getServiceApi().editarRaza(r.getIdRaza(), nombre, descripcion, vida, energia, atk, atm, def, dfm, dex, eva, crt, acc, token);
+        Call<Raza> razaPromesa = ApiRetrofit.getServiceApi().editarRaza(r.getIdRaza(), nombre, vida, energia, atk, atm, def, dfm, dex, eva, crt, acc, descripcion, true, token);
         razaPromesa.enqueue(new Callback<Raza>() {
             @Override
             public void onResponse(Call<Raza> call, Response<Raza> response) {

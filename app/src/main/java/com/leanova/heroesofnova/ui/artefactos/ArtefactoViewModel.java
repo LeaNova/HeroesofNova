@@ -9,6 +9,7 @@ import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
+import com.leanova.heroesofnova.modelos.Arma;
 import com.leanova.heroesofnova.modelos.Artefacto;
 import com.leanova.heroesofnova.request.ApiRetrofit;
 import com.leanova.heroesofnova.request.DefaultValues;
@@ -23,6 +24,7 @@ public class ArtefactoViewModel extends AndroidViewModel {
     private Context context;
     private ArrayList<Artefacto> listaArtefactos;
     private MutableLiveData<ArrayList<Artefacto>> mutableArtefactos;
+    private MutableLiveData<String> mutableResultado;
     private MutableLiveData<Integer> mutableAccess;
 
     public ArtefactoViewModel(@NonNull Application application) {
@@ -37,6 +39,13 @@ public class ArtefactoViewModel extends AndroidViewModel {
             mutableArtefactos = new MutableLiveData<>();
         }
         return mutableArtefactos;
+    }
+
+    public LiveData<String> getMutableResultado() {
+        if(mutableResultado == null) {
+            mutableResultado = new MutableLiveData<>();
+        }
+        return mutableResultado;
     }
 
     public LiveData<Integer> getMutableAccess() {
@@ -71,6 +80,9 @@ public class ArtefactoViewModel extends AndroidViewModel {
                 if(response.isSuccessful()) {
                     listaArtefactos = response.body();
                     mutableArtefactos.postValue(listaArtefactos);
+                    mutableResultado.postValue("");
+                } else {
+                    mutableResultado.postValue("No hay armas cargadas.");
                 }
             }
 
@@ -79,5 +91,33 @@ public class ArtefactoViewModel extends AndroidViewModel {
                 Log.d("APIerror", t.getMessage());
             }
         });
+    }
+
+    public void obtenerPorNombre(String nombre) {
+        if(!nombre.equals("")) {
+            String token = ApiRetrofit.obtenerToken(context);
+
+            Call<ArrayList<Artefacto>> artefactosPromesa = ApiRetrofit.getServiceApi().buscarArtefactos(nombre, token);
+            artefactosPromesa.enqueue(new Callback<ArrayList<Artefacto>>() {
+                @Override
+                public void onResponse(Call<ArrayList<Artefacto>> call, Response<ArrayList<Artefacto>> response) {
+                    if (response.isSuccessful()) {
+                        listaArtefactos = response.body();
+                        mutableArtefactos.postValue(listaArtefactos);
+                        mutableResultado.postValue("");
+                    } else {
+                        mutableArtefactos.postValue(new ArrayList<>());
+                        mutableResultado.postValue("Sin resultados.");
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<ArrayList<Artefacto>> call, Throwable t) {
+                    Log.d("APIerror", t.getMessage());
+                }
+            });
+        } else  {
+            obtenerArtefactos();
+        }
     }
 }

@@ -16,6 +16,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.TextView;
 
 import com.leanova.heroesofnova.R;
@@ -24,10 +25,11 @@ import com.leanova.heroesofnova.modelos.Clase;
 
 public class DetalleClaseFragment extends Fragment {
     private FragmentDetalleClaseBinding binding;
-    private DetalleClaseViewModel dcvm;
+    private DetalleClaseViewModel detalleClaseVM;
 
     private Clase clase;
     private TextView tvNombre_DC, tvModVida_DC, tvModEnergia_DC, tvModAtk_DC, tvModAtm_DC, tvModDef_DC, tvModDfm_DC, tvModDex_DC, tvModEva_DC, tvModCrt_DC, tvModAcc_DC, tvDetalle_DC;
+    private CheckBox cbDisponible_DC;
     private Button btEditar_DC, btBorrar_DC;
 
     @Override
@@ -35,12 +37,13 @@ public class DetalleClaseFragment extends Fragment {
         binding = FragmentDetalleClaseBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-        dcvm = new ViewModelProvider(this).get(DetalleClaseViewModel.class);
-        dcvm.getMutableClase().observe(getViewLifecycleOwner(), new Observer<Clase>() {
+        detalleClaseVM = new ViewModelProvider(this).get(DetalleClaseViewModel.class);
+        detalleClaseVM.getMutableClase().observe(getViewLifecycleOwner(), new Observer<Clase>() {
             @Override
             public void onChanged(Clase c) {
                 clase = c;
                 tvNombre_DC.setText(clase.getNombre());
+                cbDisponible_DC.setChecked(c.isDisponible());
                 tvModVida_DC.setText(" x" + clase.getModVida());
                 tvModEnergia_DC.setText(" x" + clase.getModEnergia());
                 tvModAtk_DC.setText(" x" + clase.getModAtk());
@@ -54,17 +57,18 @@ public class DetalleClaseFragment extends Fragment {
                 tvDetalle_DC.setText(clase.getDescripcion());
             }
         });
-        dcvm.getClase(getArguments());
+        detalleClaseVM.getClase(getArguments());
 
         inicializarVista(root);
-        dcvm.getMutableAccess().observe(getViewLifecycleOwner(), new Observer<Integer>() {
+        detalleClaseVM.getMutableAccess().observe(getViewLifecycleOwner(), new Observer<Integer>() {
             @Override
             public void onChanged(Integer integer) {
+                cbDisponible_DC.setVisibility(integer);
                 btEditar_DC.setVisibility(integer);
                 btBorrar_DC.setVisibility(integer);
             }
         });
-        dcvm.setAccess();
+        detalleClaseVM.setAccess();
 
         return root;
     }
@@ -82,6 +86,13 @@ public class DetalleClaseFragment extends Fragment {
         this.tvModCrt_DC = v.findViewById(R.id.tvModCrt_DC);
         this.tvModAcc_DC = v.findViewById(R.id.tvModAcc_DC);
         this.tvDetalle_DC = v.findViewById(R.id.tvDetalle_DC);
+        this.cbDisponible_DC = v.findViewById(R.id.cbDisponible_DC);
+        this.cbDisponible_DC.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                detalleClaseVM.cambiarDisponibilidad(clase.getIdClase());
+            }
+        });
 
         this.btEditar_DC = v.findViewById(R.id.btEditar_DC);
         this.btEditar_DC.setOnClickListener(new View.OnClickListener() {
@@ -103,7 +114,7 @@ public class DetalleClaseFragment extends Fragment {
                         .setPositiveButton("Si", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
-                                dcvm.borrarClase(clase.getIdClase(), view);
+                                detalleClaseVM.borrarClase(clase.getIdClase(), view);
                             }
                         })
                         .setNegativeButton("No", new DialogInterface.OnClickListener() {

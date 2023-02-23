@@ -19,6 +19,7 @@ public class Artefacto implements Serializable {
     private int precio;
     private float peso;
     private String descripcion;
+    private boolean disponible;
     private Seccion seccion;
 
     public Artefacto() { }
@@ -38,6 +39,7 @@ public class Artefacto implements Serializable {
                      int precio,
                      float peso,
                      String descripcion,
+                     boolean disponible,
                      Seccion seccion) {
         this.idArtefacto = idArtefacto;
         this.nombre = nombre;
@@ -55,6 +57,7 @@ public class Artefacto implements Serializable {
         this.precio = precio;
         this.peso = peso;
         this.descripcion = descripcion;
+        this.disponible = disponible;
         this.seccion = seccion;
     }
 
@@ -186,12 +189,68 @@ public class Artefacto implements Serializable {
         this.descripcion = descripcion;
     }
 
+    public boolean isDisponible() {
+        return disponible;
+    }
+
+    public void setDisponible(boolean disponible) {
+        this.disponible = disponible;
+    }
+
     public Seccion getSeccion() {
         return seccion;
     }
 
     public void setSeccion(Seccion seccion) {
         this.seccion = seccion;
+    }
+
+    public Artefacto getCorona() {
+        Artefacto corona = new Artefacto(
+                0, "Sin corona",
+                0, 0, 0,
+                0, 0, 0, 0,
+                0, 0, 0, 0,
+                0, 0, "Sin corona",
+                true, new Seccion(0, "Especial", ""));
+
+        return corona;
+    }
+
+    public Artefacto getIzquierda() {
+        Artefacto izquierda = new Artefacto(
+                0, "Sin izquierda",
+                0, 0, 0,
+                0, 0, 0, 0,
+                0, 0, 0, 0,
+                0, 0, "Sin izquierda",
+                true, new Seccion(0, "Especial", ""));
+
+        return izquierda;
+    }
+
+    public Artefacto getDerecha() {
+        Artefacto derecha = new Artefacto(
+                0, "Sin derecha",
+                0, 0, 0,
+                0, 0, 0, 0,
+                0, 0, 0, 0,
+                0, 0, "Sin derecha",
+                true, new Seccion(0, "Especial", ""));
+
+        return derecha;
+    }
+
+    public Artefacto getAdorno() {
+        Artefacto adorno = new Artefacto(
+                0, "Sin adorno",
+                0, 0, 0,
+                0, 0, 0, 0,
+                0, 0, 0, 0,
+                0, 0, "Sin adorno",
+                true, new Seccion(0, "Especial", ""));
+
+        return adorno;
     }
 
     @Override
