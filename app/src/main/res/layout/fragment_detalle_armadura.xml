@@ -8,7 +8,7 @@
 
     <TextView
         android:id="@+id/tvNombre_DArmadura"
-        android:layout_width="wrap_content"
+        android:layout_width="280dp"
         android:layout_height="wrap_content"
         android:text="[nombre]"
         android:textAlignment="center"
@@ -37,15 +37,33 @@
         app:layout_constraintGuide_begin="75dp" />
 
     <TextView
-        android:id="@+id/textDef"
-        android:layout_width="85dp"
+        android:id="@+id/textRareza"
+        android:layout_width="60dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginTop="16dp"
-        android:text="Bono DEF: "
+        android:text="Rareza: "
         android:textAlignment="textEnd"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/guideline1" />
+
+    <TextView
+        android:id="@+id/tvRareza_DArmadura"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="[rareza]"
+        app:layout_constraintBottom_toBottomOf="@+id/textRareza"
+        app:layout_constraintStart_toEndOf="@+id/textRareza" />
+
+    <TextView
+        android:id="@+id/textDef"
+        android:layout_width="85dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="Bono DEF: "
+        android:textAlignment="textEnd"
+        app:layout_constraintStart_toStartOf="@+id/textRareza"
+        app:layout_constraintTop_toBottomOf="@+id/textRareza" />
 
     <TextView
         android:id="@+id/tvDef_DArmadura"
@@ -121,11 +139,10 @@
         android:layout_width="125dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="16dp"
         android:text="Modificador DEF: "
         android:textAlignment="textEnd"
-        app:layout_constraintStart_toStartOf="@+id/guideline4"
-        app:layout_constraintTop_toTopOf="@+id/guideline1" />
+        app:layout_constraintBottom_toBottomOf="@+id/textDef"
+        app:layout_constraintStart_toStartOf="@+id/guideline4" />
 
     <TextView
         android:id="@+id/tvModDef_DArmadura"
@@ -153,23 +170,16 @@
         app:layout_constraintBottom_toBottomOf="@+id/textModDfm"
         app:layout_constraintStart_toEndOf="@+id/textModDfm" />
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_begin="230dp" />
-
     <TextView
         android:id="@+id/textPrecio"
         android:layout_width="55dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="32dp"
         android:text="Precio: "
         android:textAlignment="textEnd"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/guideline2" />
+        app:layout_constraintTop_toBottomOf="@+id/textEva" />
 
     <TextView
         android:id="@+id/tvPrecio_DArmadura"
@@ -197,22 +207,15 @@
         app:layout_constraintBottom_toBottomOf="@+id/textPeso"
         app:layout_constraintStart_toEndOf="@+id/textPeso" />
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_begin="315dp" />
-
     <TextView
         android:id="@+id/tvDetalle_DArmadura"
         android:layout_width="360dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="32dp"
         android:text="[descripción]"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/guideline3" />
+        app:layout_constraintTop_toBottomOf="@+id/textPeso" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline6"

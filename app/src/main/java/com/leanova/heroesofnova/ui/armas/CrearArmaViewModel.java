@@ -13,6 +13,7 @@ import androidx.lifecycle.MutableLiveData;
 
 import com.leanova.heroesofnova.modelos.Arma;
 import com.leanova.heroesofnova.modelos.Categoria;
+import com.leanova.heroesofnova.modelos.Rareza;
 import com.leanova.heroesofnova.request.ApiRetrofit;
 
 import java.util.ArrayList;
@@ -25,6 +26,7 @@ public class CrearArmaViewModel extends AndroidViewModel {
     private Context context;
     private MutableLiveData<Arma> mutableArma;
     private MutableLiveData<ArrayList<Categoria>> mutableCategorias;
+    private MutableLiveData<ArrayList<Rareza>> mutableRarezas;
     private MutableLiveData<String> mutableAviso;
     private MutableLiveData<String> mutableClean;
 
@@ -46,6 +48,13 @@ public class CrearArmaViewModel extends AndroidViewModel {
             mutableCategorias = new MutableLiveData<>();
         }
         return mutableCategorias;
+    }
+
+    public LiveData<ArrayList<Rareza>> getMutableRarezas() {
+        if(mutableRarezas == null) {
+            mutableRarezas = new MutableLiveData<>();
+        }
+        return mutableRarezas;
     }
 
     public LiveData<String> getMutableAviso() {
@@ -70,9 +79,14 @@ public class CrearArmaViewModel extends AndroidViewModel {
         }
     }
 
-    public void obtenerCategorias() {
+    public void obtenerCategoriasRarezas() {
         String token = ApiRetrofit.obtenerToken(context);
 
+        obtenerCategorias(token);
+        obtenerRarezas(token);
+    }
+
+    private void obtenerCategorias(String token) {
         Call<ArrayList<Categoria>> categoriasPromesa = ApiRetrofit.getServiceApi().obtenerCategorias(token);
         categoriasPromesa.enqueue(new Callback<ArrayList<Categoria>>() {
             @Override
@@ -89,11 +103,28 @@ public class CrearArmaViewModel extends AndroidViewModel {
         });
     }
 
+    private void obtenerRarezas(String token) {
+        Call<ArrayList<Rareza>> rarezasPromesa = ApiRetrofit.getServiceApi().obtenerRarezas(token);
+        rarezasPromesa.enqueue(new Callback<ArrayList<Rareza>>() {
+            @Override
+            public void onResponse(Call<ArrayList<Rareza>> call, Response<ArrayList<Rareza>> response) {
+                if(response.isSuccessful()) {
+                    mutableRarezas.postValue(response.body());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ArrayList<Rareza>> call, Throwable t) {
+                Log.d("APIerror", t.getMessage());
+            }
+        });
+    }
+
     public void getAviso() {
         mutableAviso.setValue("Revise que todos los campos esten llenos.");
     }
 
-    public void tomarAccion(String accion, String nombre, Categoria categoria, int danio, int base, int bonoAtk, int bonoAtm, int bonoDef, int bonoDfm, int bonoCrt, int bonoAcc, float modAtk, float modAtm, float modDef, float modDfm, int precio, float peso, String descripcion) {
+    public void tomarAccion(String accion, String nombre, Categoria categoria, Rareza rareza, int danio, int base, int bonoAtk, int bonoAtm, int bonoDef, int bonoDfm, int bonoCrt, int bonoAcc, float modAtk, float modAtm, float modDef, float modDfm, int precio, float peso, String descripcion) {
         boolean ok = true;
         String aviso = "";
 
@@ -127,7 +158,7 @@ public class CrearArmaViewModel extends AndroidViewModel {
         }
 
         if(ok && accion.equals("Crear")) {
-            crearArma(nombre, categoria, danio, base, bonoAtk, bonoAtm, bonoDef, bonoDfm, bonoCrt, bonoAcc, modAtk, modAtm, modDef, modDfm, precio, peso, descripcion);
+            crearArma(nombre, categoria, rareza, danio, base, bonoAtk, bonoAtm, bonoDef, bonoDfm, bonoCrt, bonoAcc, modAtk, modAtm, modDef, modDfm, precio, peso, descripcion);
         }
 
         if(ok && accion.equals("Actualizar")) {
@@ -137,10 +168,10 @@ public class CrearArmaViewModel extends AndroidViewModel {
         if(!aviso.equals("")) mutableAviso.setValue(aviso);
     }
 
-    private void crearArma(String nombre, Categoria categoria, int danio, int base, int bonoAtk, int bonoAtm, int bonoDef, int bonoDfm, int bonoCrt, int bonoAcc, float modAtk, float modAtm, float modDef, float modDfm, int precio, float peso, String descripcion) {
+    private void crearArma(String nombre, Categoria categoria, Rareza rareza, int danio, int base, int bonoAtk, int bonoAtm, int bonoDef, int bonoDfm, int bonoCrt, int bonoAcc, float modAtk, float modAtm, float modDef, float modDfm, int precio, float peso, String descripcion) {
         String token = ApiRetrofit.obtenerToken(context);
 
-        Call<Arma> armaPromesa = ApiRetrofit.getServiceApi().crearArma(nombre, categoria.getIdCategoria(), danio, base, bonoAtk, bonoAtm, bonoDef, bonoDfm, bonoCrt, bonoAcc, modAtk, modAtm, modDef, modDfm, precio, peso, descripcion, true, token);
+        Call<Arma> armaPromesa = ApiRetrofit.getServiceApi().crearArma(nombre, categoria.getIdCategoria(), rareza.getIdRareza(), danio, base, bonoAtk, bonoAtm, bonoDef, bonoDfm, bonoCrt, bonoAcc, modAtk, modAtm, modDef, modDfm, precio, peso, descripcion, true, token);
         armaPromesa.enqueue(new Callback<Arma>() {
             @Override
             public void onResponse(Call<Arma> call, Response<Arma> response) {

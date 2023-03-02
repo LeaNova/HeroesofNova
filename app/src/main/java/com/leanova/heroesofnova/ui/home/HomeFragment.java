@@ -58,12 +58,6 @@ public class HomeFragment extends Fragment {
     }
 
     @Override
-    public void onResume() {
-        super.onResume();
-        homeVM.getUsuario();
-    }
-
-    @Override
     public void onDestroyView() {
         super.onDestroyView();
         binding = null;

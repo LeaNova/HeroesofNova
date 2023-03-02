@@ -7,6 +7,7 @@ public class Seccion implements Serializable {
     private String nombre;
     private String descripcion;
 
+    public Seccion() { }
     public Seccion(int idSeccion, String nombre, String descripcion) {
         this.idSeccion = idSeccion;
         this.nombre = nombre;

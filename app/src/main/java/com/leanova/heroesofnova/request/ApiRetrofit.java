@@ -20,6 +20,7 @@ import com.leanova.heroesofnova.modelos.Item;
 import com.leanova.heroesofnova.modelos.Mochila;
 import com.leanova.heroesofnova.modelos.Participante;
 import com.leanova.heroesofnova.modelos.Personaje;
+import com.leanova.heroesofnova.modelos.Rareza;
 import com.leanova.heroesofnova.modelos.Raza;
 import com.leanova.heroesofnova.modelos.Rol;
 import com.leanova.heroesofnova.modelos.Seccion;
@@ -412,12 +413,17 @@ public class ApiRetrofit {
                 @Path("id") int id,
                 @Header("Authorization") String token);
 
+        //RAREZAS
+        @GET("rareza/get")
+        Call<ArrayList<Rareza>> obtenerRarezas(@Header("Authorization") String token);
+
         //ARMAS
         @FormUrlEncoded
         @POST("arma/crear")
         Call<Arma> crearArma(
                 @Field("nombre") String nombre,
                 @Field("categoriaId") int categoriaId,
+                @Field("rarezaId") int rarezaId,
                 @Field("danioArma") int danioArma,
                 @Field("bonoArma") int bonoArma,
                 @Field("bonoAtk") int bonoAtk,
@@ -490,6 +496,7 @@ public class ApiRetrofit {
         @POST("armadura/crear")
         Call<Armadura> crearArmadura(
                 @Field("nombre") String nombre,
+                @Field("rarezaId") int rarezaId,
                 @Field("bonoDef") int bonoDef,
                 @Field("bonoDfm") int bonoDfm,
                 @Field("bonoDex") int bonoDex,
@@ -548,6 +555,7 @@ public class ApiRetrofit {
         Call<Item> crearItem(
                 @Field("nombre") String nombre,
                 @Field("tipoId") int tipoId,
+                @Field("rarezaId") int rarezaId,
                 @Field("bonoVida") int bonoVida,
                 @Field("bonoEnergia") int bonoEnergia,
                 @Field("bonoAtk") int bonoAtk,
@@ -617,6 +625,7 @@ public class ApiRetrofit {
         Call<Artefacto> crearArtefacto(
                 @Field("nombre") String nombre,
                 @Field("seccionId") int seccionId,
+                @Field("rarezaId") int rarezaId,
                 @Field("bonoVida") int bonoVida,
                 @Field("bonoEnergia") int bonoEnergia,
                 @Field("bonoAtk") int bonoAtk,

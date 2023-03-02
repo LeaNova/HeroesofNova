@@ -25,6 +25,8 @@ import com.leanova.heroesofnova.R;
 import com.leanova.heroesofnova.databinding.FragmentCrearArmaBinding;
 import com.leanova.heroesofnova.modelos.Arma;
 import com.leanova.heroesofnova.modelos.Categoria;
+import com.leanova.heroesofnova.modelos.Rareza;
+import com.leanova.heroesofnova.request.DefaultValues;
 
 import java.util.ArrayList;
 
@@ -32,9 +34,9 @@ public class CrearArmaFragment extends Fragment {
     private FragmentCrearArmaBinding binding;
     private CrearArmaViewModel crearArnaVM;
 
-    private TextView tvNuevaEditar_CArma, tvCategoria_CArma;
+    private TextView tvNuevaEditar_CArma, tvCategoria_CArma, tvRareza_CArma;
     private EditText etNombre_CArma, etDanioArma_CArma, etBonoArma_CArma, etBonoAtk_CArma, etBonoAtm_CArma, etBonoDef_CArma, etBonoDfm_CArma, etBonoCrt_CArma, etBonoAcc_CArma, etModAtk_CArma, etModAtm_CArma, etModDef_CArma, etModDfm_CArma, etPrecio_CArma, etPeso_CArma, etDescripcion_CArma;
-    private Spinner spCategoria_CArma;
+    private Spinner spCategoria_CArma, spRareza_CArma;
     private Button btCrearActualizar_CArma;
 
     @Override
@@ -50,14 +52,18 @@ public class CrearArmaFragment extends Fragment {
                 spCategoria_CArma.setAdapter(spinnerCategoria);
             }
         });
-        crearArnaVM.obtenerCategorias();
+        crearArnaVM.getMutableRarezas().observe(getViewLifecycleOwner(), new Observer<ArrayList<Rareza>>() {
+            @Override
+            public void onChanged(ArrayList<Rareza> rarezas) {
+                ArrayAdapter<Rareza> spinnerRareza = new ArrayAdapter<>(getContext(), R.layout.style_sp_c1, rarezas);
+                spRareza_CArma.setAdapter(spinnerRareza);
+            }
+        });
+        crearArnaVM.obtenerCategoriasRarezas();
         crearArnaVM.getMutableArma().observe(getViewLifecycleOwner(), new Observer<Arma>() {
             @Override
             public void onChanged(Arma arma) {
                 etNombre_CArma.setText(arma.getNombre());
-                spCategoria_CArma.setVisibility(View.GONE);
-                tvCategoria_CArma.setText(arma.getCategoria().getNombre());
-                tvCategoria_CArma.setVisibility(View.VISIBLE);
                 etDanioArma_CArma.setText(arma.getDanioArma()+"");
                 etBonoArma_CArma.setText(arma.getBonoArma()+"");
                 etBonoAtk_CArma.setText(arma.getBonoAtk()+"");
@@ -124,9 +130,7 @@ public class CrearArmaFragment extends Fragment {
         this.tvNuevaEditar_CArma = v.findViewById(R.id.tvNuevaEditar_CArma);
         this.etNombre_CArma = v.findViewById(R.id.etNombre_CArma);
         this.spCategoria_CArma = v.findViewById(R.id.spCategoria_CArma);
-        this.tvCategoria_CArma = v.findViewById(R.id.tvCategoria_CArma);
-        this.tvCategoria_CArma.setText("");
-        this.tvCategoria_CArma.setVisibility(View.GONE);
+        this.spRareza_CArma = v.findViewById(R.id.spRareza_CArma);
         this.etDanioArma_CArma = v.findViewById(R.id.etDanioArma_CArma);
         this.etBonoArma_CArma = v.findViewById(R.id.etBonoArma_CArma);
         this.etBonoAtk_CArma = v.findViewById(R.id.etBonoAtk_CArma);
@@ -152,6 +156,7 @@ public class CrearArmaFragment extends Fragment {
 
                     String nombre = etNombre_CArma.getText().toString();
                     Categoria categoria = (Categoria) spCategoria_CArma.getSelectedItem();
+                    Rareza rareza = (Rareza) spRareza_CArma.getSelectedItem();
                     int danio = Integer.parseInt(etDanioArma_CArma.getText().toString());
                     int base = Integer.parseInt(etBonoArma_CArma.getText().toString());
                     int bonoAtk = Integer.parseInt(etBonoAtk_CArma.getText().toString());
@@ -168,7 +173,7 @@ public class CrearArmaFragment extends Fragment {
                     float peso = Float.parseFloat(etPeso_CArma.getText().toString());
                     String descripcion = etDescripcion_CArma.getText().toString();
 
-                    crearArnaVM.tomarAccion(action, nombre, categoria, danio, base, bonoAtk, bonoAtm, bonoDef, bonoDfm, bonoCrt, bonoAcc, modAtk, modAtm, modDef, modDfm, precio, peso, descripcion);
+                    crearArnaVM.tomarAccion(action, nombre, categoria, rareza, danio, base, bonoAtk, bonoAtm, bonoDef, bonoDfm, bonoCrt, bonoAcc, modAtk, modAtm, modDef, modDfm, precio, peso, descripcion);
                 } catch (NumberFormatException ex) {
                     crearArnaVM.getAviso();
                 } catch (Exception ex) {

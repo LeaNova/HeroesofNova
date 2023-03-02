@@ -28,7 +28,7 @@ public class DetalleItemFragment extends Fragment {
     private DetalleItemViewModel detalleItemVM;
 
     private Item item;
-    private TextView tvNombre_DItem, tvTipo_DItem, tvVida_DItem, tvEnergia_DItem, tvAtk_DItem, tvAtm_DItem, tvDef_DItem, tvDfm_DItem, tvDex_DItem, tvEva_DItem, tvCrt_DItem, tvAcc_DItem, tvPrecio_DItem, tvPeso_DItem, tvDetalle_DItem;
+    private TextView tvNombre_DItem, tvTipo_DItem, tvRareza_DItem, tvVida_DItem, tvEnergia_DItem, tvAtk_DItem, tvAtm_DItem, tvDef_DItem, tvDfm_DItem, tvDex_DItem, tvEva_DItem, tvCrt_DItem, tvAcc_DItem, tvPrecio_DItem, tvPeso_DItem, tvDetalle_DItem;
     private CheckBox cbDisponible_DItem;
     private Button btEditar_DItem, btBorrar_DItem;
 
@@ -43,8 +43,9 @@ public class DetalleItemFragment extends Fragment {
             public void onChanged(Item i) {
                 item = i;
                 tvNombre_DItem.setText(item.getNombre());
-                cbDisponible_DItem.setChecked(i.isDisponible());
+                cbDisponible_DItem.setChecked(item.isDisponible());
                 tvTipo_DItem.setText(item.getTipo().getNombre());
+                tvRareza_DItem.setText(item.getRareza().getNombre());
                 tvVida_DItem.setText("+" + item.getBonoVida());
                 tvEnergia_DItem.setText("+" + item.getBonoEnergia());
                 tvAtk_DItem.setText("+" + item.getBonoAtk());
@@ -79,6 +80,7 @@ public class DetalleItemFragment extends Fragment {
     private void inicializarVista(View v) {
         this.tvNombre_DItem = v.findViewById(R.id.tvNombre_DItem);
         this.tvTipo_DItem = v.findViewById(R.id.tvTipo_DItem);
+        this.tvRareza_DItem = v.findViewById(R.id.tvRareza_DItem);
         this.tvVida_DItem = v.findViewById(R.id.tvVida_DItem);
         this.tvEnergia_DItem = v.findViewById(R.id.tvEnergia_DItem);
         this.tvAtk_DItem = v.findViewById(R.id.tvAtk_DItem);

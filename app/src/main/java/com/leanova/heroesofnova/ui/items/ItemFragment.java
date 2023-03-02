@@ -53,8 +53,20 @@ public class ItemFragment extends Fragment {
         itemVM.getMutableItems().observe(getViewLifecycleOwner(), new Observer<ArrayList<Item>>() {
             @Override
             public void onChanged(ArrayList<Item> items) {
-                ItemAdapter ia = new ItemAdapter(getContext(), R.layout.item_item, items);
-                lvItem.setAdapter(ia);
+                ItemAdapter adapter = new ItemAdapter(getContext(), R.layout.item_item, items);
+                lvItem.setAdapter(adapter);
+                etBuscar_Item.addTextChangedListener(new TextWatcher() {
+                    @Override
+                    public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) { }
+
+                    @Override
+                    public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                        adapter.getFilter().filter(charSequence);
+                    }
+
+                    @Override
+                    public void afterTextChanged(Editable editable) { }
+                });
             }
         });
         itemVM.obtenerItems();
@@ -79,20 +91,6 @@ public class ItemFragment extends Fragment {
         });
 
         this.etBuscar_Item = v.findViewById(R.id.etBuscar_Item);
-        this.etBuscar_Item.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) { }
-
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                String nombre = etBuscar_Item.getText().toString();
-                itemVM.obtenerNombre(nombre);
-            }
-
-            @Override
-            public void afterTextChanged(Editable editable) { }
-        });
-
         this.lvItem = v.findViewById(R.id.lvItem);
         this.lvItem.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override

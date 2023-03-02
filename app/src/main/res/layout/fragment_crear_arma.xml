@@ -60,13 +60,22 @@
         app:layout_constraintTop_toTopOf="@+id/textCategoria" />
 
     <TextView
-        android:id="@+id/tvCategoria_CArma"
-        android:layout_width="wrap_content"
+        android:id="@+id/textRareza"
+        android:layout_width="85dp"
         android:layout_height="wrap_content"
-        android:text="[categoria]"
-        app:layout_constraintBottom_toBottomOf="@+id/textCategoria"
-        app:layout_constraintStart_toEndOf="@+id/textCategoria"
-        app:layout_constraintTop_toTopOf="@+id/textCategoria" />
+        android:layout_marginTop="16dp"
+        android:text="Rareza: "
+        android:textAlignment="textEnd"
+        app:layout_constraintStart_toStartOf="@+id/textCategoria"
+        app:layout_constraintTop_toBottomOf="@+id/textCategoria" />
+
+    <Spinner
+        android:id="@+id/spRareza_CArma"
+        android:layout_width="258dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@+id/textRareza"
+        app:layout_constraintStart_toEndOf="@+id/textRareza"
+        app:layout_constraintTop_toTopOf="@+id/textRareza" />
 
     <TextView
         android:id="@+id/textDanio"
@@ -75,8 +84,8 @@
         android:layout_marginTop="24dp"
         android:text="Daño arma: "
         android:textAlignment="textEnd"
-        app:layout_constraintStart_toStartOf="@+id/textCategoria"
-        app:layout_constraintTop_toBottomOf="@+id/textCategoria" />
+        app:layout_constraintStart_toStartOf="@+id/textRareza"
+        app:layout_constraintTop_toBottomOf="@+id/textRareza" />
 
     <EditText
         android:id="@+id/etDanioArma_CArma"
@@ -89,23 +98,15 @@
         app:layout_constraintStart_toEndOf="@+id/textDanio"
         app:layout_constraintTop_toTopOf="@+id/textDanio" />
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_begin="210dp" />
-
     <TextView
         android:id="@+id/textBase"
         android:layout_width="85dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="26dp"
-        android:layout_marginTop="24dp"
         android:text="Bono arma: "
         android:textAlignment="textEnd"
-        app:layout_constraintStart_toStartOf="@+id/guideline3"
-        app:layout_constraintTop_toBottomOf="@+id/textCategoria" />
+        app:layout_constraintBottom_toBottomOf="@+id/textDanio"
+        app:layout_constraintStart_toStartOf="@+id/guideline3" />
 
     <EditText
         android:id="@+id/etBonoArma_CArma"
@@ -129,12 +130,11 @@
         android:id="@+id/textAtk"
         android:layout_width="85dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="32dp"
         android:text="Bono ATK: "
         android:textAlignment="textEnd"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/guideline1" />
+        app:layout_constraintStart_toStartOf="@+id/textDanio"
+        app:layout_constraintTop_toBottomOf="@+id/textDanio" />
 
     <EditText
         android:id="@+id/etBonoAtk_CArma"
@@ -257,11 +257,10 @@
         android:layout_width="125dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="24dp"
         android:text="Modificador ATK: "
         android:textAlignment="textEnd"
-        app:layout_constraintStart_toEndOf="@+id/etBonoAtk_CArma"
-        app:layout_constraintTop_toTopOf="@+id/guideline1" />
+        app:layout_constraintBottom_toBottomOf="@+id/textAtk"
+        app:layout_constraintStart_toEndOf="@+id/etBonoAtk_CArma" />
 
     <EditText
         android:id="@+id/etModAtk_CArma"
@@ -337,23 +336,15 @@
         app:layout_constraintStart_toEndOf="@+id/textModDfm"
         app:layout_constraintTop_toTopOf="@+id/textModDfm" />
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_begin="535dp" />
-
     <TextView
         android:id="@+id/textPrecio"
         android:layout_width="55dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="32dp"
         android:text="Precio: "
         android:textAlignment="textEnd"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/guideline4" />
+        app:layout_constraintStart_toStartOf="@+id/textAcc"
+        app:layout_constraintTop_toBottomOf="@+id/textAcc" />
 
     <EditText
         android:id="@+id/etPrecio_CArma"
@@ -370,11 +361,10 @@
         android:layout_width="55dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="24dp"
         android:text="Peso: "
         android:textAlignment="textEnd"
-        app:layout_constraintStart_toStartOf="@+id/guideline3"
-        app:layout_constraintTop_toTopOf="@+id/guideline4" />
+        app:layout_constraintBottom_toBottomOf="@+id/textPrecio"
+        app:layout_constraintStart_toStartOf="@+id/guideline3" />
 
     <EditText
         android:id="@+id/etPeso_CArma"
@@ -405,7 +395,8 @@
         android:inputType="textPersonName"
         app:layout_constraintBottom_toBottomOf="@+id/textDescripcion"
         app:layout_constraintStart_toEndOf="@+id/textDescripcion"
-        app:layout_constraintTop_toTopOf="@+id/textDescripcion" />
+        app:layout_constraintTop_toTopOf="@+id/textDescripcion"
+        app:layout_constraintVertical_bias="0.484" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline5"

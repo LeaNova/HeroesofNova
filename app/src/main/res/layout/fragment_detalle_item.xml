@@ -8,7 +8,7 @@
 
     <TextView
         android:id="@+id/tvNombre_DItem"
-        android:layout_width="wrap_content"
+        android:layout_width="280dp"
         android:layout_height="wrap_content"
         android:text="[nombre]"
         android:textAlignment="center"
@@ -38,7 +38,7 @@
 
     <TextView
         android:id="@+id/textTipo"
-        android:layout_width="50dp"
+        android:layout_width="60dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginTop="16dp"
@@ -55,23 +55,33 @@
         app:layout_constraintBottom_toBottomOf="@+id/textTipo"
         app:layout_constraintStart_toEndOf="@+id/textTipo" />
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline2"
+    <TextView
+        android:id="@+id/textRareza"
+        android:layout_width="60dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Rareza: "
+        android:textAlignment="textEnd"
+        app:layout_constraintStart_toStartOf="@+id/textTipo"
+        app:layout_constraintTop_toBottomOf="@+id/textTipo" />
+
+    <TextView
+        android:id="@+id/tvRareza_DItem"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_begin="130dp" />
+        android:text="[rareza]"
+        app:layout_constraintBottom_toBottomOf="@+id/textRareza"
+        app:layout_constraintStart_toEndOf="@+id/textRareza" />
 
     <TextView
         android:id="@+id/textVida"
         android:layout_width="175dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="32dp"
         android:text="Recuperacion de vida: "
         android:textAlignment="textEnd"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/guideline2" />
+        app:layout_constraintStart_toStartOf="@+id/textRareza"
+        app:layout_constraintTop_toBottomOf="@+id/textRareza" />
 
     <TextView
         android:id="@+id/tvVida_DItem"
@@ -99,23 +109,16 @@
         app:layout_constraintBottom_toBottomOf="@+id/textEnergia"
         app:layout_constraintStart_toEndOf="@+id/textEnergia" />
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_begin="220dp" />
-
     <TextView
         android:id="@+id/textAtk"
         android:layout_width="85dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="32dp"
         android:text="Bono ATK: "
         android:textAlignment="textEnd"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/guideline3" />
+        app:layout_constraintTop_toBottomOf="@+id/textEnergia" />
 
     <TextView
         android:id="@+id/tvAtk_DItem"
@@ -184,11 +187,10 @@
         android:layout_width="85dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
         android:text="Bono DEX: "
         android:textAlignment="textEnd"
-        app:layout_constraintStart_toStartOf="@+id/guideline4"
-        app:layout_constraintTop_toTopOf="@+id/guideline3" />
+        app:layout_constraintBottom_toBottomOf="@+id/textAtk"
+        app:layout_constraintStart_toStartOf="@+id/guideline4" />
 
     <TextView
         android:id="@+id/tvDex_DItem"
@@ -259,23 +261,16 @@
         android:orientation="vertical"
         app:layout_constraintGuide_begin="205dp" />
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_begin="380dp" />
-
     <TextView
         android:id="@+id/textPrecio"
         android:layout_width="55dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="32dp"
         android:text="Precio: "
         android:textAlignment="textEnd"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/guideline5" />
+        app:layout_constraintTop_toBottomOf="@+id/textDfm" />
 
     <TextView
         android:id="@+id/tvPrecio_DItem"
@@ -303,22 +298,15 @@
         app:layout_constraintBottom_toBottomOf="@+id/textPeso"
         app:layout_constraintStart_toEndOf="@+id/textPeso" />
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline6"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_begin="465dp" />
-
     <TextView
         android:id="@+id/tvDetalle_DItem"
         android:layout_width="360dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="32dp"
         android:text="[descripción]"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/guideline6" />
+        app:layout_constraintTop_toBottomOf="@+id/textPeso" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline7"

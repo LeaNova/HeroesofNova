@@ -12,6 +12,7 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
 import com.leanova.heroesofnova.modelos.Artefacto;
+import com.leanova.heroesofnova.modelos.Rareza;
 import com.leanova.heroesofnova.modelos.Seccion;
 import com.leanova.heroesofnova.modelos.Tipo;
 import com.leanova.heroesofnova.request.ApiRetrofit;
@@ -26,6 +27,7 @@ public class CrearArtefactoViewModel extends AndroidViewModel {
     private Context context;
     private MutableLiveData<Artefacto> mutableArtefacto;
     private MutableLiveData<ArrayList<Seccion>> mutableSecciones;
+    private MutableLiveData<ArrayList<Rareza>> mutableRarezas;
     private MutableLiveData<String> mutableAviso;
     private MutableLiveData<String> mutableClean;
 
@@ -47,6 +49,13 @@ public class CrearArtefactoViewModel extends AndroidViewModel {
             mutableSecciones = new MutableLiveData<>();
         }
         return mutableSecciones;
+    }
+
+    public LiveData<ArrayList<Rareza>> getMutableRarezas() {
+        if(mutableRarezas == null) {
+            mutableRarezas = new MutableLiveData<>();
+        }
+        return mutableRarezas;
     }
 
     public LiveData<String> getMutableAviso() {
@@ -71,9 +80,14 @@ public class CrearArtefactoViewModel extends AndroidViewModel {
         }
     }
 
-    public void obtenerSecciones() {
+    public void obtenerSeccionesRarezas() {
         String token = ApiRetrofit.obtenerToken(context);
 
+        obtenerSecciones(token);
+        obtenerRarezas(token);
+    }
+
+    private void obtenerSecciones(String token) {
         Call<ArrayList<Seccion>> seccionesPromesa = ApiRetrofit.getServiceApi().obtenerSecciones(token);
         seccionesPromesa.enqueue(new Callback<ArrayList<Seccion>>() {
             @Override
@@ -90,11 +104,28 @@ public class CrearArtefactoViewModel extends AndroidViewModel {
         });
     }
 
+    private void obtenerRarezas(String token) {
+        Call<ArrayList<Rareza>> rarezasPromesa = ApiRetrofit.getServiceApi().obtenerRarezas(token);
+        rarezasPromesa.enqueue(new Callback<ArrayList<Rareza>>() {
+            @Override
+            public void onResponse(Call<ArrayList<Rareza>> call, Response<ArrayList<Rareza>> response) {
+                if(response.isSuccessful()) {
+                    mutableRarezas.postValue(response.body());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ArrayList<Rareza>> call, Throwable t) {
+                Log.d("APIerror", t.getMessage());
+            }
+        });
+    }
+
     public void getAviso() {
         mutableAviso.setValue("Revise que todos los campos esten llenos.");
     }
 
-    public void tomarAccion(String accion, String nombre, Seccion seccion, int bonoVida, int bonoEnergia, int bonoAtk, int bonoAtm, int bonoDef, int bonoDfm, int bonoDex, int bonoEva, int bonoCrt, int bonoAcc, int precio, float peso, String descripcion) {
+    public void tomarAccion(String accion, String nombre, Seccion seccion, Rareza rareza, int bonoVida, int bonoEnergia, int bonoAtk, int bonoAtm, int bonoDef, int bonoDfm, int bonoDex, int bonoEva, int bonoCrt, int bonoAcc, int precio, float peso, String descripcion) {
         boolean ok = true;
         String aviso = "";
 
@@ -114,7 +145,7 @@ public class CrearArtefactoViewModel extends AndroidViewModel {
         }
 
         if(ok && accion.equals("Crear")) {
-            crearArtefacto(nombre, seccion, bonoVida, bonoEnergia, bonoAtk, bonoAtm, bonoDef, bonoDfm, bonoDex, bonoEva, bonoCrt, bonoAcc, precio, peso, descripcion);
+            crearArtefacto(nombre, seccion, rareza, bonoVida, bonoEnergia, bonoAtk, bonoAtm, bonoDef, bonoDfm, bonoDex, bonoEva, bonoCrt, bonoAcc, precio, peso, descripcion);
         }
 
         if(ok && accion.equals("Actualizar")) {
@@ -124,10 +155,10 @@ public class CrearArtefactoViewModel extends AndroidViewModel {
         if(!aviso.equals("")) mutableAviso.setValue(aviso);
     }
 
-    private void crearArtefacto(String nombre, Seccion seccion, int bonoVida, int bonoEnergia, int bonoAtk, int bonoAtm, int bonoDef, int bonoDfm, int bonoDex, int bonoEva, int bonoCrt, int bonoAcc, int precio, float peso, String descripcion) {
+    private void crearArtefacto(String nombre, Seccion seccion, Rareza rareza, int bonoVida, int bonoEnergia, int bonoAtk, int bonoAtm, int bonoDef, int bonoDfm, int bonoDex, int bonoEva, int bonoCrt, int bonoAcc, int precio, float peso, String descripcion) {
         String token = ApiRetrofit.obtenerToken(context);
 
-        Call<Artefacto> artefactoPromesa = ApiRetrofit.getServiceApi().crearArtefacto(nombre, seccion.getIdSeccion(), bonoVida, bonoEnergia, bonoAtk, bonoAtm, bonoDef, bonoDfm, bonoDex, bonoEva, bonoCrt, bonoAcc, precio, peso, descripcion, true, token);
+        Call<Artefacto> artefactoPromesa = ApiRetrofit.getServiceApi().crearArtefacto(nombre, seccion.getIdSeccion(), rareza.getIdRareza(), bonoVida, bonoEnergia, bonoAtk, bonoAtm, bonoDef, bonoDfm, bonoDex, bonoEva, bonoCrt, bonoAcc, precio, peso, descripcion, true, token);
         artefactoPromesa.enqueue(new Callback<Artefacto>() {
             @Override
             public void onResponse(Call<Artefacto> call, Response<Artefacto> response) {

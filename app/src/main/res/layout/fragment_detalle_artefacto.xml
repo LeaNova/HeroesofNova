@@ -8,16 +8,16 @@
 
     <TextView
         android:id="@+id/tvNombre_DArtefacto"
-        app:layout_constraintBottom_toTopOf="@+id/guideline1"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_width="wrap_content"
+        android:layout_width="280dp"
         android:layout_height="wrap_content"
         android:text="[nombre]"
         android:textAlignment="center"
         android:textSize="24sp"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/guideline1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <CheckBox
         android:id="@+id/cbDisponible_DArtefacto"
@@ -38,40 +38,51 @@
 
     <TextView
         android:id="@+id/textSeccion"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/guideline1"
         android:layout_width="70dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginTop="16dp"
         android:text="Seccion: "
-        android:textAlignment="textEnd" />
+        android:textAlignment="textEnd"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/guideline1" />
 
     <TextView
         android:id="@+id/tvSeccion_DArtefacto"
+        android:layout_height="wrap_content"
+        android:text="[seccion]"
         app:layout_constraintBottom_toBottomOf="@+id/textSeccion"
         app:layout_constraintStart_toEndOf="@+id/textSeccion"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="" />
+        android:layout_width="wrap_content" />
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline2"
-        app:layout_constraintGuide_begin="130dp"
+    <TextView
+        android:id="@+id/textRareza"
+        android:layout_width="70dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Rareza: "
+        android:textAlignment="textEnd"
+        app:layout_constraintStart_toStartOf="@+id/textSeccion"
+        app:layout_constraintTop_toBottomOf="@+id/textSeccion" />
+
+    <TextView
+        android:id="@+id/tvRareza_DArtefacto"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal" />
+        android:text="[rareza]"
+        app:layout_constraintBottom_toBottomOf="@+id/textRareza"
+        app:layout_constraintStart_toEndOf="@+id/textRareza" />
 
     <TextView
         android:id="@+id/textVida"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/guideline2"
         android:layout_width="100dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="32dp"
         android:text="Bono vida: "
-        android:textAlignment="textEnd" />
+        android:textAlignment="textEnd"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textRareza" />
 
     <TextView
         android:id="@+id/tvVida_DArtefacto"
@@ -79,7 +90,7 @@
         app:layout_constraintStart_toEndOf="@+id/textVida"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="" />
+        android:text="[bono]" />
 
     <TextView
         android:id="@+id/textEnergia"
@@ -97,25 +108,18 @@
         app:layout_constraintStart_toEndOf="@+id/textEnergia"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline3"
-        app:layout_constraintGuide_begin="220dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal" />
+        android:text="[bono]" />
 
     <TextView
         android:id="@+id/textAtk"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/guideline3"
         android:layout_width="85dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="32dp"
         android:text="Bono ATK: "
-        android:textAlignment="textEnd" />
+        android:textAlignment="textEnd"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textEnergia" />
 
     <TextView
         android:id="@+id/tvAtk_DArtefacto"
@@ -123,7 +127,7 @@
         app:layout_constraintStart_toEndOf="@+id/textAtk"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="" />
+        android:text="[bono]" />
 
     <TextView
         android:id="@+id/textAtm"
@@ -141,7 +145,7 @@
         app:layout_constraintStart_toEndOf="@+id/textAtm"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="" />
+        android:text="[bono]" />
 
     <TextView
         android:id="@+id/textDef"
@@ -159,7 +163,7 @@
         app:layout_constraintStart_toEndOf="@+id/textDef"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="" />
+        android:text="[bono]" />
 
     <TextView
         android:id="@+id/textDfm"
@@ -177,18 +181,17 @@
         app:layout_constraintStart_toEndOf="@+id/textDfm"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="[mod]" />
+        android:text="[bono]" />
 
     <TextView
         android:id="@+id/textDex"
-        app:layout_constraintStart_toStartOf="@+id/guideline4"
-        app:layout_constraintTop_toTopOf="@+id/guideline3"
         android:layout_width="85dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
         android:text="Bono DEX: "
-        android:textAlignment="textEnd" />
+        android:textAlignment="textEnd"
+        app:layout_constraintBottom_toBottomOf="@+id/textAtk"
+        app:layout_constraintStart_toStartOf="@+id/guideline4" />
 
     <TextView
         android:id="@+id/tvDex_DArtefacto"
@@ -196,7 +199,7 @@
         app:layout_constraintStart_toEndOf="@+id/textDex"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="[mod]" />
+        android:text="[bono]" />
 
     <TextView
         android:id="@+id/textEva"
@@ -214,7 +217,7 @@
         app:layout_constraintStart_toEndOf="@+id/textEva"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="[mod]" />
+        android:text="[bono]" />
 
     <TextView
         android:id="@+id/textCrt"
@@ -232,7 +235,7 @@
         app:layout_constraintStart_toEndOf="@+id/textCrt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="[mod]" />
+        android:text="[bono]" />
 
     <TextView
         android:id="@+id/textAcc"
@@ -250,7 +253,7 @@
         app:layout_constraintStart_toEndOf="@+id/textAcc"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="[mod]" />
+        android:text="[bono]" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline4"
@@ -259,23 +262,16 @@
         android:layout_height="wrap_content"
         android:orientation="vertical" />
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline5"
-        app:layout_constraintGuide_begin="380dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal" />
-
     <TextView
         android:id="@+id/textPrecio"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/guideline5"
         android:layout_width="55dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="32dp"
         android:text="Precio: "
-        android:textAlignment="textEnd" />
+        android:textAlignment="textEnd"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textDfm" />
 
     <TextView
         android:id="@+id/tvPrecio_DArtefacto"
@@ -303,22 +299,15 @@
         android:layout_height="wrap_content"
         android:text="[peso]" />
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline6"
-        app:layout_constraintGuide_begin="465dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal" />
-
     <TextView
         android:id="@+id/tvDetalle_DArtefacto"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/guideline6"
         android:layout_width="360dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="[descripción]" />
+        android:layout_marginTop="32dp"
+        android:text="[descripción]"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textPeso" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline7"

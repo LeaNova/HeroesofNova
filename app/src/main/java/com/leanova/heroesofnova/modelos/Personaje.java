@@ -558,7 +558,7 @@ public class Personaje implements Serializable {
         }
     }
 
-    public void recuperar(Item item) {
+    public void usarItem(Item item) {
         if(vidaAct < vidaMax || energiaAct < energiaMax) {
             vidaAct += item.getBonoVida();
             energiaAct += item.getBonoEnergia();
@@ -584,6 +584,17 @@ public class Personaje implements Serializable {
         auxEvasion = item.getBonoEva();
         auxCritico = item.getBonoCrt();
         auxPrecision = item.getBonoAcc();
+    }
+
+    public void quitarExtras() {
+        auxAtaque = 0;
+        auxAtkMagico = 0;
+        auxDefensa = 0;
+        auxDefMagico = 0;
+        auxAgilidad = 0;
+        auxEvasion = 0;
+        auxCritico = 0;
+        auxPrecision = 0;
     }
 
     /**ATAQUE HECHIZO**/

@@ -3,6 +3,7 @@ package com.leanova.heroesofnova.ui.personajes.jugar;
 import android.app.Application;
 import android.content.Context;
 import android.util.Log;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
@@ -141,14 +142,14 @@ public class TabArsenalViewModel extends AndroidViewModel {
     private void modificarVista(Personaje personaje) {
         ArrayList<String> cambio = new ArrayList<>();
 
-        cambio.add(personaje.getAuxAtaque() > 0 ? "#F9FF80" : "#FFFFFF");
-        cambio.add(personaje.getAuxAtkMagico() > 0 ? "#F9FF80" : "#FFFFFF");
-        cambio.add(personaje.getAuxDefensa() > 0 ? "#F9FF80" : "#FFFFFF");
-        cambio.add(personaje.getAuxDefMagico() > 0 ? "#F9FF80" : "#FFFFFF");
-        cambio.add(personaje.getAuxAgilidad() > 0 ? "#F9FF80" : "#FFFFFF");
-        cambio.add(personaje.getAuxEvasion() > 0 ? "#F9FF80" : "#FFFFFF");
-        cambio.add(personaje.getAuxCritico() > 0 ? "#F9FF80" : "#FFFFFF");
-        cambio.add(personaje.getAuxPrecision() > 0 ? "#F9FF80" : "#FFFFFF");
+        cambio.add(personaje.getAuxAtaque() > 0 ? "#cbcf00" : "#9b9b9b");
+        cambio.add(personaje.getAuxAtkMagico() > 0 ? "#cbcf00" : "#9b9b9b");
+        cambio.add(personaje.getAuxDefensa() > 0 ? "#cbcf00" : "#9b9b9b");
+        cambio.add(personaje.getAuxDefMagico() > 0 ? "#cbcf00" : "#9b9b9b");
+        cambio.add(personaje.getAuxAgilidad() > 0 ? "#cbcf00" : "#9b9b9b");
+        cambio.add(personaje.getAuxEvasion() > 0 ? "#cbcf00" : "#9b9b9b");
+        cambio.add(personaje.getAuxCritico() > 0 ? "#cbcf00" : "#9b9b9b");
+        cambio.add(personaje.getAuxPrecision() > 0 ? "#cbcf00" : "#9b9b9b");
 
         mutableCambio.setValue(cambio);
     }
@@ -359,6 +360,12 @@ public class TabArsenalViewModel extends AndroidViewModel {
         jugar.setDerecha(derecha);
         jugar.setAdorno(adorno);
         jugar.setGame();
+        actualizar();
+    }
+
+    public void terminarEfecto() {
+        jugar.getPersonaje().quitarExtras();
+        Toast.makeText(context, "Efecto terminado", Toast.LENGTH_SHORT).show();
         actualizar();
     }
 

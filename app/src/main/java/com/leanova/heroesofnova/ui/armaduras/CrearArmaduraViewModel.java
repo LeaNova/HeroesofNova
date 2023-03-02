@@ -12,7 +12,10 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
 import com.leanova.heroesofnova.modelos.Armadura;
+import com.leanova.heroesofnova.modelos.Rareza;
 import com.leanova.heroesofnova.request.ApiRetrofit;
+
+import java.util.ArrayList;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -21,6 +24,7 @@ import retrofit2.Response;
 public class CrearArmaduraViewModel extends AndroidViewModel {
     private Context context;
     private MutableLiveData<Armadura> mutableArmadura;
+    private MutableLiveData<ArrayList<Rareza>> mutableRarezas;
     private MutableLiveData<String> mutableAviso;
     private MutableLiveData<String> mutableClean;
 
@@ -35,6 +39,13 @@ public class CrearArmaduraViewModel extends AndroidViewModel {
             mutableArmadura = new MutableLiveData<>();
         }
         return mutableArmadura;
+    }
+
+    public LiveData<ArrayList<Rareza>> getMutableRarezas() {
+        if(mutableRarezas == null) {
+            mutableRarezas = new MutableLiveData<>();
+        }
+        return mutableRarezas;
     }
 
     public LiveData<String> getMutableAviso() {
@@ -59,11 +70,30 @@ public class CrearArmaduraViewModel extends AndroidViewModel {
         }
     }
 
+    public void obtenerRarezas() {
+        String token = ApiRetrofit.obtenerToken(context);
+
+        Call<ArrayList<Rareza>> rarezasPromesa = ApiRetrofit.getServiceApi().obtenerRarezas(token);
+        rarezasPromesa.enqueue(new Callback<ArrayList<Rareza>>() {
+            @Override
+            public void onResponse(Call<ArrayList<Rareza>> call, Response<ArrayList<Rareza>> response) {
+                if(response.isSuccessful()) {
+                    mutableRarezas.postValue(response.body());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ArrayList<Rareza>> call, Throwable t) {
+                Log.d("APIerror", t.getMessage());
+            }
+        });
+    }
+
     public void getAviso() {
         mutableAviso.setValue("Revise que todos los campos esten llenos.");
     }
 
-    public void tomarAccion(String accion, String nombre, int bonoDef, int bonoDfm, int bonoDex, int bonoEva, float modDef, float modDfm, int precio, float peso, String descripcion) {
+    public void tomarAccion(String accion, String nombre, Rareza rareza, int bonoDef, int bonoDfm, int bonoDex, int bonoEva, float modDef, float modDfm, int precio, float peso, String descripcion) {
         boolean ok = true;
         String aviso = "";
 
@@ -73,7 +103,7 @@ public class CrearArmaduraViewModel extends AndroidViewModel {
         }
 
         if(ok && accion.equals("Crear")) {
-            crearArmadura(nombre, bonoDef, bonoDfm, bonoDex, bonoEva, modDef, modDfm, precio, peso, descripcion);
+            crearArmadura(nombre, rareza, bonoDef, bonoDfm, bonoDex, bonoEva, modDef, modDfm, precio, peso, descripcion);
         }
 
         if(ok && accion.equals("Actualizar")) {
@@ -83,10 +113,10 @@ public class CrearArmaduraViewModel extends AndroidViewModel {
         if(!aviso.equals("")) mutableAviso.setValue(aviso);
     }
 
-    private void crearArmadura(String nombre, int bonoDef, int bonoDfm, int bonoDex, int bonoEva, float modDef, float modDfm, int precio, float peso, String descripcion) {
+    private void crearArmadura(String nombre, Rareza rareza, int bonoDef, int bonoDfm, int bonoDex, int bonoEva, float modDef, float modDfm, int precio, float peso, String descripcion) {
         String token = ApiRetrofit.obtenerToken(context);
 
-        Call<Armadura> armaduraPromesa = ApiRetrofit.getServiceApi().crearArmadura(nombre, bonoDef, bonoDfm, bonoDex, bonoEva, modDef, modDfm, precio, peso, descripcion, true, token);
+        Call<Armadura> armaduraPromesa = ApiRetrofit.getServiceApi().crearArmadura(nombre, rareza.getIdRareza(), bonoDef, bonoDfm, bonoDex, bonoEva, modDef, modDfm, precio, peso, descripcion, true, token);
         armaduraPromesa.enqueue(new Callback<Armadura>() {
             @Override
             public void onResponse(Call<Armadura> call, Response<Armadura> response) {

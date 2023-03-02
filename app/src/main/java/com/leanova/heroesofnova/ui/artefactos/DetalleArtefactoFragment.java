@@ -28,7 +28,7 @@ public class DetalleArtefactoFragment extends Fragment {
     private DetalleArtefactoViewModel detalleArtefactoVM;
 
     private Artefacto artefacto;
-    private TextView tvNombre_DArtefacto, tvSeccion_DArtefacto, tvVida_DArtefacto, tvEnergia_DArtefacto, tvAtk_DArtefacto, tvAtm_DArtefacto, tvDef_DArtefacto, tvDfm_DArtefacto, tvDex_DArtefacto, tvEva_DArtefacto, tvCrt_DArtefacto, tvAcc_DArtefacto, tvPrecio_DArtefacto, tvPeso_DArtefacto, tvDetalle_DArtefacto;
+    private TextView tvNombre_DArtefacto, tvSeccion_DArtefacto, tvRareza_DArtefacto, tvVida_DArtefacto, tvEnergia_DArtefacto, tvAtk_DArtefacto, tvAtm_DArtefacto, tvDef_DArtefacto, tvDfm_DArtefacto, tvDex_DArtefacto, tvEva_DArtefacto, tvCrt_DArtefacto, tvAcc_DArtefacto, tvPrecio_DArtefacto, tvPeso_DArtefacto, tvDetalle_DArtefacto;
     private CheckBox cbDisponible_DArtefacto;
     private Button btEditar_DArtefacto, btBorrar_DArtefacto;
 
@@ -45,6 +45,7 @@ public class DetalleArtefactoFragment extends Fragment {
                 tvNombre_DArtefacto.setText(artefacto.getNombre());
                 cbDisponible_DArtefacto.setChecked(a.isDisponible());
                 tvSeccion_DArtefacto.setText(artefacto.getSeccion().getNombre());
+                tvRareza_DArtefacto.setText(artefacto.getRareza().getNombre());
                 tvVida_DArtefacto.setText("+ " + artefacto.getBonoVida());
                 tvEnergia_DArtefacto.setText("+ " + artefacto.getBonoEnergia());
                 tvAtk_DArtefacto.setText("+" + artefacto.getBonoAtk());
@@ -79,6 +80,7 @@ public class DetalleArtefactoFragment extends Fragment {
     private void inicializarVista(View v) {
         this.tvNombre_DArtefacto = v.findViewById(R.id.tvNombre_DArtefacto);
         this.tvSeccion_DArtefacto = v.findViewById(R.id.tvSeccion_DArtefacto);
+        this.tvRareza_DArtefacto = v.findViewById(R.id.tvRareza_DArtefacto);
         this.tvVida_DArtefacto = v.findViewById(R.id.tvVida_DArtefacto);
         this.tvEnergia_DArtefacto = v.findViewById(R.id.tvEnergia_DArtefacto);
         this.tvAtk_DArtefacto = v.findViewById(R.id.tvAtk_DArtefacto);

@@ -487,4 +487,13 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/guideline2" />
 
+    <Button
+        android:id="@+id/btLimpiar_JP"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Limpiar"
+        app:layout_constraintBottom_toBottomOf="@+id/btEquipar_JP"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/btEquipar_JP" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

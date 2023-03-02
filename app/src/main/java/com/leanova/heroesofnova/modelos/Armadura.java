@@ -1,10 +1,12 @@
 package com.leanova.heroesofnova.modelos;
 
 import java.io.Serializable;
+import java.util.Objects;
 
 public class Armadura implements Serializable {
     private int idArmadura;
     private String nombre;
+    private int rarezaId;
     private int bonoDef;
     private int bonoDfm;
     private int bonoDex;
@@ -15,10 +17,12 @@ public class Armadura implements Serializable {
     private float peso;
     private String descripcion;
     private boolean disponible;
+    private Rareza rareza;
 
     public Armadura() { }
     public Armadura(int idArmadura,
                     String nombre,
+                    int rarezaId,
                     int bonoDef,
                     int bonoDfm,
                     int bonoDex,
@@ -28,9 +32,11 @@ public class Armadura implements Serializable {
                     int precio,
                     float peso,
                     String descripcion,
-                    boolean disponible) {
+                    boolean disponible,
+                    Rareza rareza) {
         this.idArmadura = idArmadura;
         this.nombre = nombre;
+        this.rarezaId = rarezaId;
         this.bonoDef = bonoDef;
         this.bonoDfm = bonoDfm;
         this.bonoDex = bonoDex;
@@ -41,6 +47,7 @@ public class Armadura implements Serializable {
         this.peso = peso;
         this.descripcion = descripcion;
         this.disponible = disponible;
+        this.rareza = rareza;
     }
 
     public int getIdArmadura() {
@@ -57,6 +64,14 @@ public class Armadura implements Serializable {
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
+    }
+
+    public int getRarezaId() {
+        return rarezaId;
+    }
+
+    public void setRarezaId(int rarezaId) {
+        this.rarezaId = rarezaId;
     }
 
     public int getBonoDef() {
@@ -139,14 +154,36 @@ public class Armadura implements Serializable {
         this.disponible = disponible;
     }
 
+    public Rareza getRareza() {
+        return rareza;
+    }
+
+    public void setRareza(Rareza rareza) {
+        this.rareza = rareza;
+    }
+
     public Armadura getArmadura() {
         Armadura armadura = new Armadura(
-                0, "Sin armadura",
+                0, "Sin armadura", 0,
                 0, 0, 0, 0,
                 1, 1,
-                0, 0, "Sin armadura a todo gas.", true);
+                0, 0, "Sin armadura a todo gas.", true,
+                new Rareza().getRareza());
 
         return armadura;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Armadura armadura = (Armadura) o;
+        return getIdArmadura() == armadura.getIdArmadura();
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(idArmadura);
     }
 
     @Override

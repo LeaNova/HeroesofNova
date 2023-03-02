@@ -24,6 +24,7 @@ import android.widget.TextView;
 import com.leanova.heroesofnova.R;
 import com.leanova.heroesofnova.databinding.FragmentCrearArtefactoBinding;
 import com.leanova.heroesofnova.modelos.Artefacto;
+import com.leanova.heroesofnova.modelos.Rareza;
 import com.leanova.heroesofnova.modelos.Seccion;
 
 import java.util.ArrayList;
@@ -32,9 +33,9 @@ public class CrearArtefactoFragment extends Fragment {
     private FragmentCrearArtefactoBinding binding;
     private CrearArtefactoViewModel crearArtefactoVM;
 
-    private TextView tvNuevaEditar_CArtefacto, tvSeccion_CArtefacto;
+    private TextView tvNuevaEditar_CArtefacto;
     private EditText etNombre_CArtefacto, etBonoVida_CArtefacto, etBonoEnergia_CArtefacto, etBonoAtk_CArtefacto, etBonoAtm_CArtefacto, etBonoDef_CArtefacto, etBonoDfm_CArtefacto, etBonoDex_CArtefacto, etBonoEva_CArtefacto, etBonoCrt_CArtefacto, etBonoAcc_CArtefacto, etPrecio_CArtefacto, etPeso_CArtefacto, etDescripcion_CArtefacto;
-    private Spinner spSeccion_CArtefacto;
+    private Spinner spSeccion_CArtefacto, spRareza_CArtefacto;
     private Button btCrearActualizar_CArtefacto;
 
     @Override
@@ -50,14 +51,18 @@ public class CrearArtefactoFragment extends Fragment {
                 spSeccion_CArtefacto.setAdapter(spinnerSeccion);
             }
         });
-        crearArtefactoVM.obtenerSecciones();
+        crearArtefactoVM.getMutableRarezas().observe(getViewLifecycleOwner(), new Observer<ArrayList<Rareza>>() {
+            @Override
+            public void onChanged(ArrayList<Rareza> rarezas) {
+                ArrayAdapter<Rareza> spinnerRareza = new ArrayAdapter<>(getContext(), R.layout.style_sp_c1, rarezas);
+                spRareza_CArtefacto.setAdapter(spinnerRareza);
+            }
+        });
+        crearArtefactoVM.obtenerSeccionesRarezas();
         crearArtefactoVM.getMutableArtefacto().observe(getViewLifecycleOwner(), new Observer<Artefacto>() {
             @Override
             public void onChanged(Artefacto artefacto) {
                 etNombre_CArtefacto.setText(artefacto.getNombre());
-                spSeccion_CArtefacto.setVisibility(View.GONE);
-                tvSeccion_CArtefacto.setText(artefacto.getSeccion().getNombre());
-                tvSeccion_CArtefacto.setVisibility(View.VISIBLE);
                 etBonoVida_CArtefacto.setText(artefacto.getBonoVida()+"");
                 etBonoEnergia_CArtefacto.setText(artefacto.getBonoEnergia()+"");
                 etBonoAtk_CArtefacto.setText(artefacto.getBonoAtk()+"");
@@ -120,9 +125,7 @@ public class CrearArtefactoFragment extends Fragment {
         this.tvNuevaEditar_CArtefacto = v.findViewById(R.id.tvNuevaEditar_CArtefacto);
         this.etNombre_CArtefacto = v.findViewById(R.id.etNombre_CArtefacto);
         this.spSeccion_CArtefacto = v.findViewById(R.id.spSeccion_CArtefacto);
-        this.tvSeccion_CArtefacto = v.findViewById(R.id.tvSeccion_CArtefacto);
-        this.tvSeccion_CArtefacto.setText("");
-        this.tvSeccion_CArtefacto.setVisibility(View.GONE);
+        this.spRareza_CArtefacto = v.findViewById(R.id.spRareza_CArtefacto);
         this.etBonoVida_CArtefacto = v.findViewById(R.id.etBonoVida_CArtefacto);
         this.etBonoEnergia_CArtefacto = v.findViewById(R.id.etBonoEnergia_CArtefacto);
         this.etBonoAtk_CArtefacto = v.findViewById(R.id.etBonoAtk_CArtefacto);
@@ -146,6 +149,7 @@ public class CrearArtefactoFragment extends Fragment {
 
                     String nombre = etNombre_CArtefacto.getText().toString();
                     Seccion seccion = (Seccion) spSeccion_CArtefacto.getSelectedItem();
+                    Rareza rareza = (Rareza) spRareza_CArtefacto.getSelectedItem();
                     int bonoVida = Integer.parseInt(etBonoVida_CArtefacto.getText().toString());
                     int bonoEnergia = Integer.parseInt(etBonoEnergia_CArtefacto.getText().toString());
                     int bonoAtk = Integer.parseInt(etBonoAtk_CArtefacto.getText().toString());
@@ -160,7 +164,7 @@ public class CrearArtefactoFragment extends Fragment {
                     float peso = Float.parseFloat(etPeso_CArtefacto.getText().toString());
                     String descripcion = etDescripcion_CArtefacto.getText().toString();
 
-                    crearArtefactoVM.tomarAccion(action, nombre, seccion, bonoVida, bonoEnergia, bonoAtk, bonoAtm, bonoDef, bonoDfm, bonoDex, bonoEva, bonoCrt, bonoAcc, precio, peso, descripcion);
+                    crearArtefactoVM.tomarAccion(action, nombre, seccion, rareza, bonoVida, bonoEnergia, bonoAtk, bonoAtm, bonoDef, bonoDfm, bonoDex, bonoEva, bonoCrt, bonoAcc, precio, peso, descripcion);
                 } catch (NumberFormatException ex) {
                     crearArtefactoVM.getAviso();
                 } catch (Exception ex) {

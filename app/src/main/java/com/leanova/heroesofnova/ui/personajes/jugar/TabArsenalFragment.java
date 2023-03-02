@@ -36,7 +36,7 @@ public class TabArsenalFragment extends Fragment {
     private TextView tvPersonaje_JP, tvVida_JP, tvEnergia_JP, tvAtk_JP, tvAtm_JP, tvDef_JP, tvDfm_JP, tvDex_JP, tvEva_JP, tvCrt_JP, tvAcc_JP, tvArmadura_JP, tvArma_JP;
     private TextView tvVidaAdd_JP, tvEnergiaAdd_JP, tvAtkAdd_JP, tvAtmAdd_JP, tvDefAdd_JP, tvDfmAdd_JP, tvDexAdd_JP, tvEvaAdd_JP, tvCrtAdd_JP, tvAccAdd_JP, tvCorona_JP, tvIzquierda_JP, tvDerecha_JP, tvAdorno_JP;
     private Spinner spArmaduras_JP, spArmas_JP, spCoronas_JP, spIzquierda_JP, spDerechas_JP, spAdornos_JP;
-    private Button btEquipar_JP;
+    private Button btEquipar_JP, btLimpiar_JP;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -276,6 +276,14 @@ public class TabArsenalFragment extends Fragment {
                 } catch (Exception ex) {
                     Log.d("error", ex.getMessage());
                 }
+            }
+        });
+
+        this.btLimpiar_JP = v.findViewById(R.id.btLimpiar_JP);
+        this.btLimpiar_JP.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                tabArsenalVM.terminarEfecto();
             }
         });
     }

@@ -6,6 +6,7 @@ public class Item implements Serializable {
     private int idItem;
     private String nombre;
     private int tipoId;
+    private int rarezaId;
     private int bonoVida;
     private int bonoEnergia;
     private int bonoAtk;
@@ -21,11 +22,13 @@ public class Item implements Serializable {
     private String descripcion;
     private boolean disponible;
     private Tipo tipo;
+    private Rareza rareza;
 
     public Item() { }
     public Item(int idItem,
                 String nombre,
                 int tipoId,
+                int rarezaId,
                 int bonoVida,
                 int bonoEnergia,
                 int bonoAtk,
@@ -40,10 +43,12 @@ public class Item implements Serializable {
                 float peso,
                 String descripcion,
                 boolean disponible,
-                Tipo tipo) {
+                Tipo tipo,
+                Rareza rareza) {
         this.idItem = idItem;
         this.nombre = nombre;
         this.tipoId = tipoId;
+        this.rarezaId = rarezaId;
         this.bonoVida = bonoVida;
         this.bonoEnergia = bonoEnergia;
         this.bonoAtk = bonoAtk;
@@ -59,6 +64,7 @@ public class Item implements Serializable {
         this.descripcion = descripcion;
         this.disponible = disponible;
         this.tipo = tipo;
+        this.rareza = rareza;
     }
 
     public int getIdItem() {
@@ -83,6 +89,14 @@ public class Item implements Serializable {
 
     public void setTipoId(int tipoId) {
         this.tipoId = tipoId;
+    }
+
+    public int getRarezaId() {
+        return rarezaId;
+    }
+
+    public void setRarezaId(int rarezaId) {
+        this.rarezaId = rarezaId;
     }
 
     public int getBonoVida() {
@@ -203,6 +217,14 @@ public class Item implements Serializable {
 
     public void setTipo(Tipo tipo) {
         this.tipo = tipo;
+    }
+
+    public Rareza getRareza() {
+        return rareza;
+    }
+
+    public void setRareza(Rareza rareza) {
+        this.rareza = rareza;
     }
 
     @Override

@@ -12,12 +12,14 @@ import androidx.navigation.Navigation;
 
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Filter;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -53,8 +55,21 @@ public class ArmaFragment extends Fragment {
         armaVM.getMutableArmas().observe(getViewLifecycleOwner(), new Observer<ArrayList<Arma>>() {
             @Override
             public void onChanged(ArrayList<Arma> armas) {
-                ArmaAdapter aa = new ArmaAdapter(getContext(), R.layout.item_arma, armas);
-                lvArma.setAdapter(aa);
+                ArmaAdapter adapter = new ArmaAdapter(getContext(), R.layout.item_arma, armas);
+                lvArma.setAdapter(adapter);
+
+                etBuscar_Arma.addTextChangedListener(new TextWatcher() {
+                    @Override
+                    public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) { }
+
+                    @Override
+                    public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                        adapter.getFilter().filter(charSequence);
+                    }
+
+                    @Override
+                    public void afterTextChanged(Editable editable) { }
+                });
             }
         });
         armaVM.obtenerArmas();
@@ -79,20 +94,6 @@ public class ArmaFragment extends Fragment {
         });
 
         this.etBuscar_Arma = v.findViewById(R.id.etBuscar_Arma);
-        this.etBuscar_Arma.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) { }
-
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                String nombre = etBuscar_Arma.getText().toString();
-                armaVM.obtenerPorNombre(nombre);
-            }
-
-            @Override
-            public void afterTextChanged(Editable editable) { }
-        });
-
         this.lvArma = v.findViewById(R.id.lvArma);
         this.lvArma.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override

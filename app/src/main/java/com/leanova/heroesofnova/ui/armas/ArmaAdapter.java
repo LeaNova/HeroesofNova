@@ -1,10 +1,13 @@
 package com.leanova.heroesofnova.ui.armas;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -12,17 +15,37 @@ import androidx.annotation.Nullable;
 
 import com.leanova.heroesofnova.R;
 import com.leanova.heroesofnova.modelos.Arma;
+import com.leanova.heroesofnova.modelos.Rareza;
 
+import java.util.ArrayList;
 import java.util.List;
 
-public class ArmaAdapter extends ArrayAdapter<Arma> {
+public class ArmaAdapter extends ArrayAdapter<Arma> implements Filterable {
     private LayoutInflater lInflater;
     private List<Arma> listaArmas;
+    private List<Arma> listaFiltrada;
 
     public ArmaAdapter(@NonNull Context context, int resource, @NonNull List<Arma> objects) {
         super(context, resource, objects);
         this.lInflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         this.listaArmas = objects;
+        this.listaFiltrada = objects;
+    }
+
+    @Override
+    public int getCount() {
+        return listaFiltrada.size();
+    }
+
+    @Nullable
+    @Override
+    public Arma getItem(int position) {
+        return listaFiltrada.get(position);
+    }
+
+    @Override
+    public long getItemId(int position) {
+        return position;
     }
 
     @NonNull
@@ -34,11 +57,55 @@ public class ArmaAdapter extends ArrayAdapter<Arma> {
             itemView = lInflater.inflate(R.layout.item_arma, parent, false);
         }
 
-        Arma a = listaArmas.get(position);
+        Arma a = listaFiltrada.get(position);
+        Rareza r = a.getRareza();
 
+        TextView tvRareza_IArma = itemView.findViewById(R.id.tvRareza_IArma);
         TextView tvNombre_IArma = itemView.findViewById(R.id.tvNombre_IArma);
+        tvRareza_IArma.setText(r.getIniciales() + " ");
+        tvRareza_IArma.setTextColor(Color.parseColor(r.getCodColor()));
         tvNombre_IArma.setText(a.getNombre());
 
         return itemView;
+    }
+
+    @NonNull
+    @Override
+    public Filter getFilter() {
+        return new Filter() {
+            @Override
+            protected FilterResults performFiltering(CharSequence charSequence) {
+                FilterResults results = new FilterResults();
+
+                //If there's nothing to filter on, return the original data for your list
+                if(charSequence == null || charSequence.length() == 0) {
+                    results.values = listaArmas;
+                    results.count = listaArmas.size();
+                } else {
+                    ArrayList<Arma> filterResultsData = new ArrayList<Arma>();
+
+                    for(Arma data : listaArmas) {
+                        //In this loop, you'll filter through originalData and compare each item to charSequence.
+                        //If you find a match, add it to your new ArrayList
+                        //I'm not sure how you're going to do comparison, so you'll need to fill out this conditional
+
+                        if(data.getNombre().toLowerCase().contains(charSequence.toString().toLowerCase())) {
+                            filterResultsData.add(data);
+                        }
+                    }
+
+                    results.values = filterResultsData;
+                    results.count = filterResultsData.size();
+                }
+
+                return results;
+            }
+
+            @Override
+            protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
+                listaFiltrada = (ArrayList<Arma>) filterResults.values;
+                notifyDataSetChanged();
+            }
+        };
     }
 }

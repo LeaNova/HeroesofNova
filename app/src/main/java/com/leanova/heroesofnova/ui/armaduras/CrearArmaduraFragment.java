@@ -15,6 +15,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
@@ -23,6 +24,9 @@ import android.widget.TextView;
 import com.leanova.heroesofnova.R;
 import com.leanova.heroesofnova.databinding.FragmentCrearArmaduraBinding;
 import com.leanova.heroesofnova.modelos.Armadura;
+import com.leanova.heroesofnova.modelos.Rareza;
+
+import java.util.ArrayList;
 
 public class CrearArmaduraFragment extends Fragment {
     private FragmentCrearArmaduraBinding binding;
@@ -30,6 +34,7 @@ public class CrearArmaduraFragment extends Fragment {
 
     private TextView tvNuevaEditar_CArmadura;
     private EditText etNombre_CArmadura, etBonoDef_CArmadura, etBonoDfm_CArmadura, etBonoDex_CArmadura, etBonoEva_CArmadura, etModDef_CArmadura, etModDfm_CArmadura, etPrecio_CArmadura, etPeso_CArmadura, etDescripcion_CArmadura;
+    private Spinner spRareza_CArmadura;
     private Button btCrearActualizar_CArmadura;
 
     @Override
@@ -38,10 +43,19 @@ public class CrearArmaduraFragment extends Fragment {
         View root = binding.getRoot();
 
         crearArmaduraVM = new ViewModelProvider(this).get(CrearArmaduraViewModel.class);
+        crearArmaduraVM.getMutableRarezas().observe(getViewLifecycleOwner(), new Observer<ArrayList<Rareza>>() {
+            @Override
+            public void onChanged(ArrayList<Rareza> rarezas) {
+                ArrayAdapter<Rareza> spinnerRareza = new ArrayAdapter<>(getContext(), R.layout.style_sp_c1, rarezas);
+                spRareza_CArmadura.setAdapter(spinnerRareza);
+            }
+        });
+        crearArmaduraVM.obtenerRarezas();
         crearArmaduraVM.getMutableArmadura().observe(getViewLifecycleOwner(), new Observer<Armadura>() {
             @Override
             public void onChanged(Armadura armadura) {
                 etNombre_CArmadura.setText(armadura.getNombre()+"");
+                spRareza_CArmadura.setSelection(armadura.getRarezaId()-1);
                 etBonoDef_CArmadura.setText(armadura.getBonoDef()+"");
                 etBonoDfm_CArmadura.setText(armadura.getBonoDfm()+"");
                 etBonoDex_CArmadura.setText(armadura.getBonoDex()+"");
@@ -95,6 +109,7 @@ public class CrearArmaduraFragment extends Fragment {
     private void inicializarVista(View v) {
         this.tvNuevaEditar_CArmadura = v.findViewById(R.id.tvNuevaEditar_CArmadura);
         this.etNombre_CArmadura = v.findViewById(R.id.etNombre_CArmadura);
+        this.spRareza_CArmadura = v.findViewById(R.id.spRareza_CArmadura);
         this.etBonoDef_CArmadura = v.findViewById(R.id.etBonoDef_CArmadura);
         this.etBonoDfm_CArmadura = v.findViewById(R.id.etBonoDfm_CArmadura);
         this.etBonoDex_CArmadura = v.findViewById(R.id.etBonoDex_CArmadura);
@@ -113,6 +128,7 @@ public class CrearArmaduraFragment extends Fragment {
                     String action = btCrearActualizar_CArmadura.getText().toString();
 
                     String nombre = etNombre_CArmadura.getText().toString();
+                    Rareza rareza = (Rareza) spRareza_CArmadura.getSelectedItem();
                     int bonoDef = Integer.parseInt(etBonoDef_CArmadura.getText().toString());
                     int bonoDfm = Integer.parseInt(etBonoDfm_CArmadura.getText().toString());
                     int bonoDex = Integer.parseInt(etBonoDex_CArmadura.getText().toString());
@@ -123,7 +139,7 @@ public class CrearArmaduraFragment extends Fragment {
                     float peso = Float.parseFloat(etPeso_CArmadura.getText().toString());
                     String descripcion = etDescripcion_CArmadura.getText().toString();
 
-                    crearArmaduraVM.tomarAccion(action, nombre, bonoDef, bonoDfm, bonoDex, bonoEva, modDef, modDfm, precio, peso, descripcion);
+                    crearArmaduraVM.tomarAccion(action, nombre, rareza, bonoDef, bonoDfm, bonoDex, bonoEva, modDef, modDfm, precio, peso, descripcion);
                 } catch (NumberFormatException ex) {
                     crearArmaduraVM.getAviso();
                 } catch (Exception ex) {

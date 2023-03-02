@@ -60,20 +60,29 @@
         app:layout_constraintTop_toTopOf="@+id/textSeccion" />
 
     <TextView
-        android:id="@+id/tvSeccion_CArtefacto"
-        android:layout_width="wrap_content"
+        android:id="@+id/textRareza"
+        android:layout_width="85dp"
         android:layout_height="wrap_content"
-        android:text="[seccion]"
-        app:layout_constraintBottom_toBottomOf="@+id/textSeccion"
-        app:layout_constraintStart_toEndOf="@+id/textSeccion"
-        app:layout_constraintTop_toTopOf="@+id/textSeccion" />
+        android:layout_marginTop="16dp"
+        android:text="Rareza: "
+        android:textAlignment="textEnd"
+        app:layout_constraintStart_toStartOf="@+id/textSeccion"
+        app:layout_constraintTop_toBottomOf="@+id/textSeccion" />
+
+    <Spinner
+        android:id="@+id/spRareza_CArtefacto"
+        android:layout_width="264dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@+id/textRareza"
+        app:layout_constraintStart_toEndOf="@+id/textRareza"
+        app:layout_constraintTop_toTopOf="@+id/textRareza" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_begin="155dp" />
+        app:layout_constraintGuide_begin="190dp" />
 
     <TextView
         android:id="@+id/textVida"
@@ -299,7 +308,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_begin="430dp" />
+        app:layout_constraintGuide_begin="460dp" />
 
     <TextView
         android:id="@+id/textPrecio"

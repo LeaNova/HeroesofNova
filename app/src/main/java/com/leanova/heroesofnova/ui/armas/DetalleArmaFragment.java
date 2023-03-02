@@ -28,7 +28,7 @@ public class DetalleArmaFragment extends Fragment {
     private DetalleArmaViewModel detalleArmaVM;
 
     private Arma arma;
-    private TextView tvNombre_DArma, tvCategoria_DArma, tvDanio_DArma, tvBono_DArma, tvAtk_DArma, tvAtm_DArma, tvDef_DArma, tvDfm_DArma, tvCrt_DArma, tvAcc_DArma, tvModAtk_DArma, tvModAtm_DArma, tvModDef_DArma, tvModDfm_DArma, tvPrecio_DArma, tvPeso_DArma, tvDetalle_DArma;
+    private TextView tvNombre_DArma, tvCategoria_DArma, tvRareza_DArma, tvDanio_DArma, tvBono_DArma, tvAtk_DArma, tvAtm_DArma, tvDef_DArma, tvDfm_DArma, tvCrt_DArma, tvAcc_DArma, tvModAtk_DArma, tvModAtm_DArma, tvModDef_DArma, tvModDfm_DArma, tvPrecio_DArma, tvPeso_DArma, tvDetalle_DArma;
     private CheckBox cbDisponible_DArma;
     private Button btEditar_DArma, btBorrar_DArma;
 
@@ -43,8 +43,9 @@ public class DetalleArmaFragment extends Fragment {
             public void onChanged(Arma a) {
                 arma = a;
                 tvNombre_DArma.setText(arma.getNombre());
-                cbDisponible_DArma.setChecked(a.isDisponible());
+                cbDisponible_DArma.setChecked(arma.isDisponible());
                 tvCategoria_DArma.setText(arma.getCategoria().getNombre());
+                tvRareza_DArma.setText(arma.getRareza().getNombre());
                 tvDanio_DArma.setText("1d" + arma.getDanioArma());
                 tvBono_DArma.setText("+" + arma.getBonoArma());
                 tvAtk_DArma.setText("+" + arma.getBonoAtk());
@@ -81,6 +82,7 @@ public class DetalleArmaFragment extends Fragment {
     private void inicializarVista(View v) {
         this.tvNombre_DArma = v.findViewById(R.id.tvNombre_DArma);
         this.tvCategoria_DArma = v.findViewById(R.id.tvCategoria_DArma);
+        this.tvRareza_DArma = v.findViewById(R.id.tvRareza_DArma);
         this.tvDanio_DArma = v.findViewById(R.id.tvDanio_DArma);
         this.tvBono_DArma = v.findViewById(R.id.tvBono_DArma);
         this.tvAtk_DArma = v.findViewById(R.id.tvAtk_DArma);

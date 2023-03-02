@@ -12,6 +12,7 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
 import com.leanova.heroesofnova.modelos.Item;
+import com.leanova.heroesofnova.modelos.Rareza;
 import com.leanova.heroesofnova.modelos.Tipo;
 import com.leanova.heroesofnova.request.ApiRetrofit;
 
@@ -25,6 +26,7 @@ public class CrearItemViewModel extends AndroidViewModel {
     private Context context;
     private MutableLiveData<Item> mutableItem;
     private MutableLiveData<ArrayList<Tipo>> mutableTipos;
+    private MutableLiveData<ArrayList<Rareza>> mutableRarezas;
     private MutableLiveData<String> mutableAviso;
     private MutableLiveData<String> mutableClean;
 
@@ -46,6 +48,13 @@ public class CrearItemViewModel extends AndroidViewModel {
             mutableTipos = new MutableLiveData<>();
         }
         return mutableTipos;
+    }
+
+    public LiveData<ArrayList<Rareza>> getMutableRarezas() {
+        if(mutableRarezas == null) {
+            mutableRarezas = new MutableLiveData<>();
+        }
+        return mutableRarezas;
     }
 
     public LiveData<String> getMutableAviso() {
@@ -70,9 +79,14 @@ public class CrearItemViewModel extends AndroidViewModel {
         }
     }
 
-    public void obtenerTipos() {
+    public void obtenerTiposRarezas() {
         String token = ApiRetrofit.obtenerToken(context);
 
+        obtenerTipos(token);
+        obtenerRarezas(token);
+    }
+
+    private void obtenerTipos(String token) {
         Call<ArrayList<Tipo>> tiposPromesa = ApiRetrofit.getServiceApi().obtenerTipos(token);
         tiposPromesa.enqueue(new Callback<ArrayList<Tipo>>() {
             @Override
@@ -89,11 +103,28 @@ public class CrearItemViewModel extends AndroidViewModel {
         });
     }
 
+    private void obtenerRarezas(String token) {
+        Call<ArrayList<Rareza>> rarezasPromesa = ApiRetrofit.getServiceApi().obtenerRarezas(token);
+        rarezasPromesa.enqueue(new Callback<ArrayList<Rareza>>() {
+            @Override
+            public void onResponse(Call<ArrayList<Rareza>> call, Response<ArrayList<Rareza>> response) {
+                if(response.isSuccessful()) {
+                    mutableRarezas.postValue(response.body());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ArrayList<Rareza>> call, Throwable t) {
+                Log.d("APIerror", t.getMessage());
+            }
+        });
+    }
+
     public void getAviso() {
         mutableAviso.setValue("Revise que todos los campos esten llenos.");
     }
 
-    public void tomarAccion(String accion, String nombre, Tipo tipo, int bonoVida, int bonoEnergia, int bonoAtk, int bonoAtm, int bonoDef, int bonoDfm, int bonoDex, int bonoEva, int bonoCrt, int bonoAcc, int precio, float peso, String descripcion) {
+    public void tomarAccion(String accion, String nombre, Tipo tipo, Rareza rareza, int bonoVida, int bonoEnergia, int bonoAtk, int bonoAtm, int bonoDef, int bonoDfm, int bonoDex, int bonoEva, int bonoCrt, int bonoAcc, int precio, float peso, String descripcion) {
         boolean ok = true;
         String aviso = "";
 
@@ -103,7 +134,7 @@ public class CrearItemViewModel extends AndroidViewModel {
         }
 
         if(ok && accion.equals("Crear")) {
-            crearItem(nombre, tipo, bonoVida, bonoEnergia, bonoAtk, bonoAtm, bonoDef, bonoDfm, bonoDex, bonoEva, bonoCrt, bonoAcc, precio, peso, descripcion);
+            crearItem(nombre, tipo, rareza, bonoVida, bonoEnergia, bonoAtk, bonoAtm, bonoDef, bonoDfm, bonoDex, bonoEva, bonoCrt, bonoAcc, precio, peso, descripcion);
         }
 
         if(ok && accion.equals("Actualizar")) {
@@ -113,10 +144,10 @@ public class CrearItemViewModel extends AndroidViewModel {
         if(!aviso.equals("")) mutableAviso.setValue(aviso);
     }
 
-    private void crearItem(String nombre, Tipo tipo, int bonoVida, int bonoEnergia, int bonoAtk, int bonoAtm, int bonoDef, int bonoDfm, int bonoDex, int bonoEva, int bonoCrt, int bonoAcc, int precio, float peso, String descripcion) {
+    private void crearItem(String nombre, Tipo tipo, Rareza rareza, int bonoVida, int bonoEnergia, int bonoAtk, int bonoAtm, int bonoDef, int bonoDfm, int bonoDex, int bonoEva, int bonoCrt, int bonoAcc, int precio, float peso, String descripcion) {
         String token = ApiRetrofit.obtenerToken(context);
 
-        Call<Item> itemPromesa = ApiRetrofit.getServiceApi().crearItem(nombre, tipo.getIdTipo(), bonoVida, bonoEnergia, bonoAtk, bonoAtm, bonoDef, bonoDfm, bonoDex, bonoEva, bonoCrt, bonoAcc, precio, peso, descripcion, true, token);
+        Call<Item> itemPromesa = ApiRetrofit.getServiceApi().crearItem(nombre, tipo.getIdTipo(), rareza.getIdRareza(), bonoVida, bonoEnergia, bonoAtk, bonoAtm, bonoDef, bonoDfm, bonoDex, bonoEva, bonoCrt, bonoAcc, precio, peso, descripcion, true, token);
         itemPromesa.enqueue(new Callback<Item>() {
             @Override
             public void onResponse(Call<Item> call, Response<Item> response) {

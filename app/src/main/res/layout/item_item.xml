@@ -6,11 +6,19 @@
     android:padding="10dp" >
 
     <TextView
+        android:id="@+id/tvRareza_IItem"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="[Rareza]"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
         android:id="@+id/tvNombre_IItem"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="[nombre]"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintBottom_toBottomOf="@+id/tvRareza_IItem"
+        app:layout_constraintStart_toEndOf="@+id/tvRareza_IItem" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

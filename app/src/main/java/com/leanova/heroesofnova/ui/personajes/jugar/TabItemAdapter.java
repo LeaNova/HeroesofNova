@@ -99,7 +99,7 @@ public class TabItemAdapter extends ArrayAdapter<InvItem> {
 
     private void usarItem(Item item) {
         Jugar jugar = PersonajeValues.getJugar();
-        jugar.getPersonaje().recuperar(item);
+        jugar.getPersonaje().usarItem(item);
         PersonajeValues.setJugar(jugar);
     }
 }

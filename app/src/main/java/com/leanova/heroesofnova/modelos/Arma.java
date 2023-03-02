@@ -1,11 +1,13 @@
 package com.leanova.heroesofnova.modelos;
 
 import java.io.Serializable;
+import java.util.Objects;
 
 public class Arma implements Serializable {
     private int idArma;
     private String nombre;
     private int categoriaId;
+    private int rarezaId;
     private int danioArma;
     private int bonoArma;
     private int bonoAtk;
@@ -23,11 +25,13 @@ public class Arma implements Serializable {
     private String descripcion;
     private boolean disponible;
     private Categoria categoria;
+    private Rareza rareza;
 
     public Arma() { }
     public Arma(int idArma,
                 String nombre,
                 int categoriaId,
+                int rarezaId,
                 int danioArma,
                 int bonoArma,
                 int bonoAtk,
@@ -44,10 +48,12 @@ public class Arma implements Serializable {
                 float peso,
                 String descripcion,
                 boolean disponible,
-                Categoria categoria) {
+                Categoria categoria,
+                Rareza rareza) {
         this.idArma = idArma;
         this.nombre = nombre;
         this.categoriaId = categoriaId;
+        this.rarezaId = rarezaId;
         this.danioArma = danioArma;
         this.bonoArma = bonoArma;
         this.bonoAtk = bonoAtk;
@@ -65,6 +71,7 @@ public class Arma implements Serializable {
         this.descripcion = descripcion;
         this.disponible = disponible;
         this.categoria = categoria;
+        this.rareza = rareza;
     }
 
     public int getIdArma() {
@@ -89,6 +96,14 @@ public class Arma implements Serializable {
 
     public void setCategoriaId(int categoriaId) {
         this.categoriaId = categoriaId;
+    }
+
+    public int getRarezaId() {
+        return rarezaId;
+    }
+
+    public void setRarezaId(int rarezaId) {
+        this.rarezaId = rarezaId;
     }
 
     public int getDanioArma() {
@@ -227,16 +242,38 @@ public class Arma implements Serializable {
         this.categoria = categoria;
     }
 
+    public Rareza getRareza() {
+        return rareza;
+    }
+
+    public void setRareza(Rareza rareza) {
+        this.rareza = rareza;
+    }
+
     public Arma getArma() {
         Arma arma = new Arma(
-                0, "Sin arma", 0,
+                0, "Sin arma", 0, 0,
                 1, 0, 0, 0,
                 0, 0, 0, 0,
                 1, 1, 1, 1,
                 0, 0, "A puño limpio.",
-                true, new Categoria(0, "Unico", ""));
+                true, new Categoria(0, "Unico", ""),
+                new Rareza().getRareza());
 
         return arma;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Arma arma = (Arma) o;
+        return getIdArma() == arma.getIdArma();
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(idArma);
     }
 
     @Override

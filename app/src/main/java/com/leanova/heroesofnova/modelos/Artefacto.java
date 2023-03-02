@@ -1,11 +1,13 @@
 package com.leanova.heroesofnova.modelos;
 
 import java.io.Serializable;
+import java.util.Objects;
 
 public class Artefacto implements Serializable {
     private int idArtefacto;
     private String nombre;
     private int seccionId;
+    private int rarezaId;
     private int bonoVida;
     private int bonoEnergia;
     private int bonoAtk;
@@ -21,11 +23,13 @@ public class Artefacto implements Serializable {
     private String descripcion;
     private boolean disponible;
     private Seccion seccion;
+    private Rareza rareza;
 
     public Artefacto() { }
     public Artefacto(int idArtefacto,
                      String nombre,
                      int seccionId,
+                     int rarezaId,
                      int bonoVida,
                      int bonoEnergia,
                      int bonoAtk,
@@ -40,10 +44,12 @@ public class Artefacto implements Serializable {
                      float peso,
                      String descripcion,
                      boolean disponible,
-                     Seccion seccion) {
+                     Seccion seccion,
+                     Rareza rareza) {
         this.idArtefacto = idArtefacto;
         this.nombre = nombre;
         this.seccionId = seccionId;
+        this.rarezaId = rarezaId;
         this.bonoVida = bonoVida;
         this.bonoEnergia = bonoEnergia;
         this.bonoAtk = bonoAtk;
@@ -59,6 +65,7 @@ public class Artefacto implements Serializable {
         this.descripcion = descripcion;
         this.disponible = disponible;
         this.seccion = seccion;
+        this.rareza = rareza;
     }
 
     public int getIdArtefacto() {
@@ -83,6 +90,14 @@ public class Artefacto implements Serializable {
 
     public void setSeccionId(int seccionId) {
         this.seccionId = seccionId;
+    }
+
+    public int getRarezaId() {
+        return rarezaId;
+    }
+
+    public void setRarezaId(int rarezaId) {
+        this.rarezaId = rarezaId;
     }
 
     public int getBonoVida() {
@@ -205,52 +220,77 @@ public class Artefacto implements Serializable {
         this.seccion = seccion;
     }
 
+    public Rareza getRareza() {
+        return rareza;
+    }
+
+    public void setRareza(Rareza rareza) {
+        this.rareza = rareza;
+    }
+
     public Artefacto getCorona() {
         Artefacto corona = new Artefacto(
-                0, "Sin corona",
+                0, "Sin corona", 0,
                 0, 0, 0,
                 0, 0, 0, 0,
                 0, 0, 0, 0,
                 0, 0, "Sin corona",
-                true, new Seccion(0, "Especial", ""));
+                true, new Seccion(0, "Especial", ""),
+                new Rareza().getRareza());
 
         return corona;
     }
 
     public Artefacto getIzquierda() {
         Artefacto izquierda = new Artefacto(
-                0, "Sin izquierda",
+                0, "Sin izquierda", 0,
                 0, 0, 0,
                 0, 0, 0, 0,
                 0, 0, 0, 0,
                 0, 0, "Sin izquierda",
-                true, new Seccion(0, "Especial", ""));
+                true, new Seccion(0, "Especial", ""),
+                new Rareza().getRareza());
 
         return izquierda;
     }
 
     public Artefacto getDerecha() {
         Artefacto derecha = new Artefacto(
-                0, "Sin derecha",
+                0, "Sin derecha", 0,
                 0, 0, 0,
                 0, 0, 0, 0,
                 0, 0, 0, 0,
                 0, 0, "Sin derecha",
-                true, new Seccion(0, "Especial", ""));
+                true, new Seccion(0, "Especial", ""),
+                new Rareza().getRareza());
 
         return derecha;
     }
 
     public Artefacto getAdorno() {
         Artefacto adorno = new Artefacto(
-                0, "Sin adorno",
+                0, "Sin adorno", 0,
                 0, 0, 0,
                 0, 0, 0, 0,
                 0, 0, 0, 0,
                 0, 0, "Sin adorno",
-                true, new Seccion(0, "Especial", ""));
+                true, new Seccion(0, "Especial", ""),
+                new Rareza().getRareza());
 
         return adorno;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Artefacto artefacto = (Artefacto) o;
+        return getIdArtefacto() == artefacto.getIdArtefacto();
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(idArtefacto);
     }
 
     @Override

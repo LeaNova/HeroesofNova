@@ -28,7 +28,7 @@ public class DetalleArmaduraFragment extends Fragment {
     private DetalleArmaduraViewModel detalleArmaduraVM;
 
     private Armadura armadura;
-    private TextView tvNombre_DArmadura, tvDef_DArmadura, tvDfm_DArmadura, tvDex_DArmadura, tvEva_DArmadura, tvModDef_DArmadura, tvModDfm_DArmadura, tvPrecio_DArmadura, tvPeso_DArmadura, tvDetalle_DArmadura;
+    private TextView tvNombre_DArmadura, tvRareza_DArmadura, tvDef_DArmadura, tvDfm_DArmadura, tvDex_DArmadura, tvEva_DArmadura, tvModDef_DArmadura, tvModDfm_DArmadura, tvPrecio_DArmadura, tvPeso_DArmadura, tvDetalle_DArmadura;
     private CheckBox cbDisponible_DArmadura;
     private Button btEditar_DArmadura, btBorrar_DArmadura;
 
@@ -43,6 +43,7 @@ public class DetalleArmaduraFragment extends Fragment {
             public void onChanged(Armadura a) {
                 armadura = a;
                 tvNombre_DArmadura.setText(armadura.getNombre());
+                tvRareza_DArmadura.setText(armadura.getRareza().getNombre());
                 tvDef_DArmadura.setText("+" + armadura.getBonoDef());
                 tvDfm_DArmadura.setText("+" + armadura.getBonoDfm());
                 tvDex_DArmadura.setText("+" + armadura.getBonoDex());
@@ -72,6 +73,7 @@ public class DetalleArmaduraFragment extends Fragment {
 
     private void inicializarVista(View v) {
         this.tvNombre_DArmadura = v.findViewById(R.id.tvNombre_DArmadura);
+        this.tvRareza_DArmadura = v.findViewById(R.id.tvRareza_DArmadura);
         this.tvDef_DArmadura = v.findViewById(R.id.tvDef_DArmadura);
         this.tvDfm_DArmadura = v.findViewById(R.id.tvDfm_DArmadura);
         this.tvDex_DArmadura = v.findViewById(R.id.tvDex_DArmadura);

@@ -24,6 +24,7 @@ import android.widget.TextView;
 import com.leanova.heroesofnova.R;
 import com.leanova.heroesofnova.databinding.FragmentCrearItemBinding;
 import com.leanova.heroesofnova.modelos.Item;
+import com.leanova.heroesofnova.modelos.Rareza;
 import com.leanova.heroesofnova.modelos.Tipo;
 
 import java.util.ArrayList;
@@ -32,9 +33,9 @@ public class CrearItemFragment extends Fragment {
     private FragmentCrearItemBinding binding;
     private CrearItemViewModel crearItemVM;
 
-    private TextView tvNuevaEditar_CItem, tvTipo_CTipo;
+    private TextView tvNuevaEditar_CItem;
     private EditText etNombre_CItem, etBonoVida_CItem, etBonoEnergia_CItem, etBonoAtk_CItem, etBonoAtm_CItem, etBonoDef_CItem, etBonoDfm_CItem, etBonoDex_CItem, etBonoEva_CItem, etBonoCrt_CItem, etBonoAcc_CItem, etPrecio_CItem, etPeso_CItem, etDescripcion_CItem;
-    private Spinner spTipo_CItem;
+    private Spinner spTipo_CItem, spRareza_CItem;
     private Button btCrearActualizar_CItem;
 
     @Override
@@ -50,14 +51,18 @@ public class CrearItemFragment extends Fragment {
                 spTipo_CItem.setAdapter(spinnerTipo);
             }
         });
-        crearItemVM.obtenerTipos();
+        crearItemVM.getMutableRarezas().observe(getViewLifecycleOwner(), new Observer<ArrayList<Rareza>>() {
+            @Override
+            public void onChanged(ArrayList<Rareza> rarezas) {
+                ArrayAdapter<Rareza> spinnerRareza = new ArrayAdapter<>(getContext(), R.layout.style_sp_c1, rarezas);
+                spRareza_CItem.setAdapter(spinnerRareza);
+            }
+        });
+        crearItemVM.obtenerTiposRarezas();
         crearItemVM.getMutableItem().observe(getViewLifecycleOwner(), new Observer<Item>() {
             @Override
             public void onChanged(Item item) {
                 etNombre_CItem.setText(item.getNombre());
-                spTipo_CItem.setVisibility(View.GONE);
-                tvTipo_CTipo.setText(item.getTipo().getNombre());
-                tvTipo_CTipo.setVisibility(View.VISIBLE);
                 etBonoVida_CItem.setText(item.getBonoVida()+"");
                 etBonoEnergia_CItem.setText(item.getBonoEnergia()+"");
                 etBonoAtk_CItem.setText(item.getBonoAtk()+"");
@@ -120,9 +125,7 @@ public class CrearItemFragment extends Fragment {
         this.tvNuevaEditar_CItem = v.findViewById(R.id.tvNuevaEditar_CItem);
         this.etNombre_CItem = v.findViewById(R.id.etNombre_CItem);
         this.spTipo_CItem = v.findViewById(R.id.spTipo_CItem);
-        this.tvTipo_CTipo = v.findViewById(R.id.tvTipo_CTipo);
-        this.tvTipo_CTipo.setText("");
-        this.tvTipo_CTipo.setVisibility(View.GONE);
+        this.spRareza_CItem = v.findViewById(R.id.spRareza_CItem);
         this.etBonoVida_CItem = v.findViewById(R.id.etBonoVida_CItem);
         this.etBonoEnergia_CItem = v.findViewById(R.id.etBonoEnergia_CItem);
         this.etBonoAtk_CItem = v.findViewById(R.id.etBonoAtk_CItem);
@@ -146,6 +149,7 @@ public class CrearItemFragment extends Fragment {
 
                     String nombre = etNombre_CItem.getText().toString();
                     Tipo tipo = (Tipo) spTipo_CItem.getSelectedItem();
+                    Rareza rareza = (Rareza) spRareza_CItem.getSelectedItem();
                     int bonoVida = Integer.parseInt(etBonoVida_CItem.getText().toString());
                     int bonoEnergia = Integer.parseInt(etBonoEnergia_CItem.getText().toString());
                     int bonoAtk = Integer.parseInt(etBonoAtk_CItem.getText().toString());
@@ -160,7 +164,7 @@ public class CrearItemFragment extends Fragment {
                     float peso = Float.parseFloat(etPeso_CItem.getText().toString());
                     String descripcion = etDescripcion_CItem.getText().toString();
 
-                    crearItemVM.tomarAccion(action, nombre, tipo, bonoVida, bonoEnergia, bonoAtk, bonoAtm, bonoDef, bonoDfm, bonoDex, bonoEva, bonoCrt, bonoAcc, precio, peso, descripcion);
+                    crearItemVM.tomarAccion(action, nombre, tipo, rareza, bonoVida, bonoEnergia, bonoAtk, bonoAtm, bonoDef, bonoDfm, bonoDex, bonoEva, bonoCrt, bonoAcc, precio, peso, descripcion);
                 } catch (NumberFormatException ex) {
                     crearItemVM.getAviso();
                 } catch (Exception ex) {

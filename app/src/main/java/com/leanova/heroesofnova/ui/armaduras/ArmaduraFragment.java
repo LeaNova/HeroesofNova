@@ -53,8 +53,21 @@ public class ArmaduraFragment extends Fragment {
         armaduraVM.getMutableArmaduras().observe(getViewLifecycleOwner(), new Observer<ArrayList<Armadura>>() {
             @Override
             public void onChanged(ArrayList<Armadura> armaduras) {
-                ArmaduraAdapter aa = new ArmaduraAdapter(getContext(), R.layout.item_armadura, armaduras);
-                lvArmaduras.setAdapter(aa);
+                ArmaduraAdapter adapter = new ArmaduraAdapter(getContext(), R.layout.item_armadura, armaduras);
+                lvArmaduras.setAdapter(adapter);
+
+                etBuscar_Armadura.addTextChangedListener(new TextWatcher() {
+                    @Override
+                    public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) { }
+
+                    @Override
+                    public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                        adapter.getFilter().filter(charSequence);
+                    }
+
+                    @Override
+                    public void afterTextChanged(Editable editable) { }
+                });
             }
         });
         armaduraVM.obtenerArmaduras();
@@ -79,20 +92,6 @@ public class ArmaduraFragment extends Fragment {
         });
 
         this.etBuscar_Armadura = v.findViewById(R.id.etBuscar_Armadura);
-        this.etBuscar_Armadura.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) { }
-
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                String nombre = etBuscar_Armadura.getText().toString();
-                armaduraVM.obtenerPorNombre(nombre);
-            }
-
-            @Override
-            public void afterTextChanged(Editable editable) { }
-        });
-
         this.lvArmaduras = v.findViewById(R.id.lvArmadura);
         this.lvArmaduras.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
